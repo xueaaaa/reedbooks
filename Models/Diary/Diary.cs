@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ReedBooks.Models.Diary
 {
-    public class Diary : ObservableObject
+    public class ReadingDiary : ObservableObject
     {
         public DateTime BeginReadingAt { get; set; }
         public DateTime EndReadingAt { get; set; }

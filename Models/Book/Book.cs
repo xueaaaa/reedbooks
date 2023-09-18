@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Models.Diary;
 using System.Drawing;
 using VersOne.Epub;
 
@@ -8,6 +9,7 @@ namespace ReedBooks.Models.Book
     {
         public EpubBook Origin { get; }
         public Bitmap Cover { get; set; }
+        public ReadingDiary BoundDiary { get; }
         public string BookName { get; set; }
         public string Author { get; set; }
         public int PagesCount { get; }
