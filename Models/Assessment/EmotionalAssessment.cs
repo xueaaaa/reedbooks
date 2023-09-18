@@ -1,9 +1,11 @@
-﻿namespace ReedBooks.Models.Assessment
+﻿using System.Text.Json.Serialization;
+
+namespace ReedBooks.Models.Assessment
 {
     public class EmotionalAssessment
     {
-        public Emote Start { get; set; }
-        public Emote Middle { get; set; }
-        public Emote End { get; set; }
+        [JsonPropertyName("start")] public Emote Start { get; set; }
+        [JsonPropertyName("middle")]public Emote Middle { get; set; }
+        [JsonPropertyName("end")] public Emote End { get; set; }
     }
 }
