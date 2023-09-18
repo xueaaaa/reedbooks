@@ -15,6 +15,10 @@ namespace ReedBooks.Models.Assessment
         [Range(1, 5)] [JsonPropertyName("humor")] public ushort Humor { get; set; }
         [Range(1, 5)] [JsonPropertyName("meaning_fulness")] public ushort Meaningfulness { get; set; }
 
+        /// <summary>
+        /// Calculates the book's overall grade based on 6 individual grades, rounded to tenths
+        /// </summary>
+        /// <returns></returns>
         public float CalculateArithmeticAverage()
         {
             float rawAverage = (PlotOriginality 

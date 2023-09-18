@@ -28,10 +28,16 @@ namespace ReedBooks.Models.Book
             Cover.Dispose();
         }
 
+        /// <summary>
+        /// Creates and returns an instance of a book from an external .epub file
+        /// </summary>
+        /// <param name="path">Path to .epub file</param>
+        /// <returns></returns>
         public async static Task<Book> Create(string path)
         {
             Book book = new Book();
             path = MoveToInternalFolder(path);
+            book.LinkToOrigin = path;
 
             EpubBook epubBook = await EpubReader.ReadBookAsync(path);
             book.Origin = epubBook;
@@ -40,7 +46,9 @@ namespace ReedBooks.Models.Book
             {
                 Bitmap bitmap = new Bitmap(stream);
                 book.Cover = bitmap;
-                bitmap.Save($"{Directory.GetCurrentDirectory()}/covers/{Path.GetFileName(epubBook.FilePath)}.png");
+                string bitmapPath = $"{Directory.GetCurrentDirectory()}/covers/{Path.GetFileName(epubBook.FilePath)}.png";
+                bitmap.Save(bitmapPath);
+                book.LinkToCover = bitmapPath;
             }
 
             book.Author = epubBook.Author;
