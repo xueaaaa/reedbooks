@@ -2,6 +2,7 @@
 using ReedBooks.Models.Diary;
 using System.Drawing;
 using System.IO;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using VersOne.Epub;
@@ -58,9 +59,44 @@ namespace ReedBooks.Models.Book
             return book;
         }
 
+        /// <summary>
+        /// Saves an instance of the class in json format in a special folder
+        /// </summary>
+        public void Save()
+        {
+            using (StreamWriter streamWriter = new StreamWriter($"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(LinkToOrigin)}.epub"))
+            {
+                string json = JsonSerializer.Serialize(this);
+                streamWriter.Write(json);
+            }
+        }
+
+        /// <summary>
+        /// Reads all jsonized instances of book classes from a special folder 
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<Book[]> ReadAll()
+        {
+            string[] paths = Directory.GetFiles($"{Directory.GetCurrentDirectory()}/books/");
+            Book[] books = new Book[paths.Length];
+            int i = 0;
+
+            foreach (var path in paths)
+            {
+                using (StreamReader streamReader = new StreamReader(path))
+                {
+                    string data = await streamReader.ReadToEndAsync();
+                    books[i] = JsonSerializer.Deserialize<Book>(data);
+                    i++;
+                }
+            }
+
+            return books;
+        }
+
         private static string MoveToInternalFolder(string originPath)
         {
-            string newPath = $"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(originPath)}.epub";
+            string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{Path.GetFileName(originPath)}.epub";
             File.Move(originPath, newPath);
             return newPath;
         }
