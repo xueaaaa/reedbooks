@@ -176,6 +176,10 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Locales\lang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Themes\dark.theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
