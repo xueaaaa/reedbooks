@@ -12,4 +12,5 @@
     <v:String x:Key="m_new_collection">Новая коллекция</v:String>
     <v:String x:Key="m_current">Текущие</v:String>
     <v:String x:Key="m_recent">Недавние</v:String>
+    <v:String x:Key="m_no_elements">Еще не добавлено ни одного элемента</v:String>
 </ResourceDictionary>
