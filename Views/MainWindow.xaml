@@ -19,12 +19,14 @@
             <StackPanel Grid.Column="0" 
                         Background="{DynamicResource container_background_color}" 
                         Orientation="Vertical">
+                <!-- Top panel -->
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Hide panel button -->
                     <Button Grid.Column="0"
                             HorizontalAlignment="Left" 
                             Style="{DynamicResource MaterialDesignIconButton}" 
@@ -34,6 +36,16 @@
                                Height="20" 
                                Source="/Resources/Icons/hide_bar.png"/>
                     </Button>
+                    <!-- Settings button -->
+                    <Button Grid.Column="0"
+                            Style="{DynamicResource MaterialDesignIconButton}" 
+                            Width="25" 
+                            Height="25" >
+                        <Image Width="20" 
+                               Height="20" 
+                               Source="/Resources/Icons/settings.png"/>
+                    </Button>
+
 
                     <Button Style="{DynamicResource MaterialDesignToolButton}" 
                             Grid.Column="1"
@@ -48,6 +60,7 @@
                            Text="{DynamicResource m_books}" 
                            FontWeight="DemiBold"/>
 
+                <!-- Panel buttons -->
                 <StackPanel Margin="10">
                     <Button Style="{DynamicResource MaterialDesignRaisedButton}" 
                             Background="{DynamicResource accent_color}"
@@ -103,6 +116,7 @@
                     </Button>
                 </StackPanel>
 
+                <!-- Readers diary expander -->
                 <Expander Margin="10 0 10 10"
                           Style="{DynamicResource MaterialDesignExpander}" 
                           Background="{DynamicResource container_background_color}"
@@ -115,6 +129,7 @@
                     
                 </Expander>
 
+                <!-- Collections expander -->
                 <Expander Margin="10 0 10 10"
                           Style="{DynamicResource MaterialDesignExpander}" 
                           Background="{DynamicResource container_background_color}"
@@ -156,12 +171,14 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Current reding -->
                     <StackPanel Grid.Column="0"
                                 Orientation="Vertical">
                         <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                     Text="{DynamicResource m_current}"/>
                     </StackPanel>
 
+                    <!-- Recently readed -->
                     <StackPanel Grid.Column="1"
                                 Orientation="Vertical">
                         <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
