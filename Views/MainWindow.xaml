@@ -3,57 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ReedBooks.Views"
+        xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
         Title="{DynamicResource h_main_window}" Height="600" Width="1000">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid Background="{DynamicResource window_background_color}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
-            <StackPanel Grid.Column="0" 
+            
+             <!-- Hide panel button -->
+            <Button Grid.Column="0"
+                    Command="{Binding ChangeSidePanelVisibilityCommand}"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top"
+                    Style="{DynamicResource MaterialDesignIconButton}" 
+                    Width="25" 
+                    Height="25"
+                    Margin="13.5"
+                    Panel.ZIndex="100">
+                <Image Width="20" 
+                       Height="20" 
+                       Source="/Resources/Icons/hide_bar.png"/>
+            </Button>
+            <StackPanel Grid.Column="0"
+                        Visibility="{Binding SidePanelVisibility}"
                         Background="{DynamicResource container_background_color}" 
                         Orientation="Vertical">
                 <!-- Top panel -->
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Hide panel button -->
-                    <Button Grid.Column="0"
-                            HorizontalAlignment="Left" 
-                            Style="{DynamicResource MaterialDesignIconButton}" 
-                            Width="25" 
-                            Height="25" >
-                        <Image Width="20" 
-                               Height="20" 
-                               Source="/Resources/Icons/hide_bar.png"/>
-                    </Button>
-                    <!-- Settings button -->
-                    <Button Grid.Column="0"
-                            Style="{DynamicResource MaterialDesignIconButton}" 
-                            Width="25" 
-                            Height="25" >
-                        <Image Width="20" 
-                               Height="20" 
-                               Source="/Resources/Icons/settings.png"/>
-                    </Button>
-
-
+                <StackPanel Orientation="Vertical"
+                            Margin="10">
                     <Button Style="{DynamicResource MaterialDesignToolButton}" 
-                            Grid.Column="1"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             Foreground="{DynamicResource text_color}"
                             Content="{DynamicResource m_edit}" Cursor="Hand"/>
-                </Grid>
+                    <!-- Settings button -->
+                    <Button Style="{DynamicResource MaterialDesignIconButton}"
+                            HorizontalAlignment="Right"
+                            Width="25" 
+                            Height="25">
+                        <Image Width="20" 
+                               Height="20" 
+                               Source="/Resources/Icons/settings.png"/>
+                    </Button>
+                </StackPanel>
 
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                            Margin="10"

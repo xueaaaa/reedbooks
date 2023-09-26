@@ -111,6 +111,7 @@
     <Compile Include="Models\Diary\Diary.cs" />
     <Compile Include="Models\Assessment\EmotionalAssessment.cs" />
     <Compile Include="Models\Diary\Quote.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -172,9 +173,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Resources\Locales\lang.xaml">
       <SubType>Designer</SubType>
