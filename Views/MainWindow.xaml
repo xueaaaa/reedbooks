@@ -5,8 +5,170 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReedBooks.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Foreground="{DynamicResource text_color}"
+        FontFamily="{DynamicResource MainFont}"
+        FontSize="14"
+        Title="{DynamicResource h_main_window}" Height="600" Width="1000">
+    <Grid Background="{DynamicResource window_background_color}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" 
+                        Background="{DynamicResource container_background_color}" 
+                        Orientation="Vertical">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            HorizontalAlignment="Left" 
+                            Style="{DynamicResource MaterialDesignIconButton}" 
+                            Width="25" 
+                            Height="25" >
+                        <Image Width="20" 
+                               Height="20" 
+                               Source="/Resources/Icons/hide_bar.png"/>
+                    </Button>
+
+                    <Button Style="{DynamicResource MaterialDesignToolButton}" 
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Foreground="{DynamicResource text_color}"
+                            Content="{DynamicResource m_edit}" Cursor="Hand"/>
+                </Grid>
+
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           Margin="10"
+                           Text="{DynamicResource m_books}" 
+                           FontWeight="DemiBold"/>
+
+                <StackPanel Margin="10">
+                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" 
+                            Background="{DynamicResource accent_color}"
+                            Margin="0 0 0 10" >
+                        <DockPanel VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                            <Image DockPanel.Dock="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Source="/Resources/Icons/book.png"/>
+
+                            <TextBlock DockPanel.Dock="Right"
+                                       Margin="10 0 0 0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource text_color}"
+                                       Text="{DynamicResource m_reading_now}"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Style="{DynamicResource MaterialDesignFlatButton}" 
+                            Margin="0 0 0 10">
+                        <DockPanel VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                            <Image DockPanel.Dock="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Source="/Resources/Icons/all_books.png"/>
+
+                            <TextBlock DockPanel.Dock="Right"
+                                       Margin="10 0 0 0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource text_color}"
+                                       Text="{DynamicResource m_all_books}"/>
+                        </DockPanel>
+                    </Button>
+                    <Button Style="{DynamicResource MaterialDesignFlatButton}" 
+                            Margin="0 0 0 10">
+                        <DockPanel VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                            <Image DockPanel.Dock="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Source="/Resources/Icons/search.png"/>
+
+                            <TextBlock DockPanel.Dock="Right"
+                                       Margin="10 0 0 0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource text_color}"
+                                       Text="{DynamicResource m_search}"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+
+                <Expander Margin="10 0 10 10"
+                          Style="{DynamicResource MaterialDesignExpander}" 
+                          Background="{DynamicResource container_background_color}"
+                          IsExpanded="True"
+                          Header="{DynamicResource m_readers_diary_collection}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Foreground="{DynamicResource hint_color}"
+                               Text="{DynamicResource m_no_elements}"/>
+                    </StackPanel>
+                    
+                </Expander>
+
+                <Expander Margin="10 0 10 10"
+                          Style="{DynamicResource MaterialDesignExpander}" 
+                          Background="{DynamicResource container_background_color}"
+                          IsExpanded="True"
+                          Header="{DynamicResource m_my_collections_collection}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Foreground="{DynamicResource hint_color}"
+                               Text="{DynamicResource m_no_elements}"/>
+                        <Separator/>
+                        <Button Style="{DynamicResource MaterialDesignFlatButton}">
+                            <DockPanel VerticalAlignment="Center"
+                                   HorizontalAlignment="Left">
+                                <Image DockPanel.Dock="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Source="/Resources/Icons/add.png"/>
+
+                                <TextBlock DockPanel.Dock="Right"
+                                       Margin="10 0 0 0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource text_color}"
+                                       Text="{DynamicResource m_new_collection}"/>
+                            </DockPanel>
+                        </Button>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical">
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           Margin="30"
+                           Text="{DynamicResource m_reading_now}"/>
+                <Separator Margin="30 0 30 0"/>
+                <Grid Margin="30 0 0 30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                    Text="{DynamicResource m_current}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Vertical">
+                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                    Text="{DynamicResource m_recent}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
