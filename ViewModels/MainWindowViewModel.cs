@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -19,11 +20,24 @@ namespace ReedBooks.ViewModels
                 }
             }
         }
+        private int _selectedTab;
+        public int SelectedTab
+        {
+            get { return _selectedTab; }
+            set
+            {
+                if (value >= 0) _selectedTab = value;
+                OnPropertyChanged(nameof(SelectedTab));
+            }
+        }
+
         public ICommand ChangeSidePanelVisibilityCommand { get; }
+        public ICommand SwitchToTabCommand { get; }
 
         public MainWindowViewModel()
         {
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
+            SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
         }
 
         private void ChangeSidePanelVisibility()
@@ -40,6 +54,11 @@ namespace ReedBooks.ViewModels
                     SidePanelVisibility = Visibility.Visible;
                     break;
             }
+        }
+
+        private void SwitchToTab(object param)
+        {
+            SelectedTab = Convert.ToInt32(param);
         }
     }
 }

@@ -63,9 +63,22 @@
 
                 <!-- Panel buttons -->
                 <StackPanel Margin="10">
-                    <Button Style="{DynamicResource MaterialDesignRaisedButton}" 
-                            Background="{DynamicResource accent_color}"
-                            Margin="0 0 0 10" >
+                    <Button Command="{Binding SwitchToTabCommand}"
+                            CommandParameter="0"
+                            Margin="0 0 0 10">
+                        <Button.Style>
+                            <Style TargetType="Button" 
+                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                         <DockPanel VerticalAlignment="Center"
                                    HorizontalAlignment="Left">
                             <Image DockPanel.Dock="Left"
@@ -81,8 +94,22 @@
                                        Text="{DynamicResource m_reading_now}"/>
                         </DockPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" 
+                    <Button Command="{Binding SwitchToTabCommand}"
+                            CommandParameter="1"
                             Margin="0 0 0 10">
+                        <Button.Style>
+                            <Style TargetType="Button" 
+                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                         <DockPanel VerticalAlignment="Center"
                                    HorizontalAlignment="Left">
                             <Image DockPanel.Dock="Left"
@@ -98,8 +125,22 @@
                                        Text="{DynamicResource m_all_books}"/>
                         </DockPanel>
                     </Button>
-                    <Button Style="{DynamicResource MaterialDesignFlatButton}" 
-                            Margin="0 0 0 10">
+                    <Button Command="{Binding SwitchToTabCommand}"
+                            CommandParameter="2"
+                            Margin="0 0 0 10" Cursor="Hand">
+                        <Button.Style>
+                            <Style TargetType="Button" 
+                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsFocused" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                         <DockPanel VerticalAlignment="Center"
                                    HorizontalAlignment="Left">
                             <Image DockPanel.Dock="Left"
@@ -116,6 +157,7 @@
                         </DockPanel>
                     </Button>
                 </StackPanel>
+
 
                 <!-- Readers diary expander -->
                 <Expander Margin="10 0 10 10"
@@ -160,33 +202,41 @@
                 </Expander>
             </StackPanel>
 
-            <StackPanel Grid.Column="1"
-                        Orientation="Vertical">
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+            <TabControl SelectedIndex="{Binding SelectedTab}"
+                        Grid.Column="1"
+                        Style="{DynamicResource MaterialDesignFilledTabControl}">
+                <TabItem>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                            Margin="30"
                            Text="{DynamicResource m_reading_now}"/>
-                <Separator Margin="30 0 30 0"/>
-                <Grid Margin="30 0 0 30">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                        <Separator Margin="30 0 30 0"/>
+                        <Grid Margin="30 0 0 30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                    <!-- Current reding -->
-                    <StackPanel Grid.Column="0"
+                            <!-- Current reding -->
+                            <StackPanel Grid.Column="0"
                                 Orientation="Vertical">
-                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                     Text="{DynamicResource m_current}"/>
-                    </StackPanel>
+                            </StackPanel>
 
-                    <!-- Recently readed -->
-                    <StackPanel Grid.Column="1"
+                            <!-- Recently readed -->
+                            <StackPanel Grid.Column="1"
                                 Orientation="Vertical">
-                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                     Text="{DynamicResource m_recent}"/>
+                            </StackPanel>
+                        </Grid>
                     </StackPanel>
-                </Grid>
-            </StackPanel>
+                </TabItem>
+                <TabItem>
+                    
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
 </Window>
