@@ -285,10 +285,18 @@
                         <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                     Background="{DynamicResource accent_color}"
-                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
-                                     materialDesign:HintAssist.HintOpacity="0.5"/>
+                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"/>
                         </StackPanel>
+
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      Margin="30"
+                                      MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+                            <WrapPanel Orientation="Horizontal">
+
+                            </WrapPanel>
+                        </ScrollViewer>
                     </Grid>
                 </TabItem>
             </TabControl>
