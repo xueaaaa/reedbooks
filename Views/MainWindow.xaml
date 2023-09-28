@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
@@ -228,7 +229,7 @@
                             <StackPanel Grid.Column="1"
                                 Orientation="Vertical">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
-                                    Text="{DynamicResource m_recent}"/>
+                                           Text="{DynamicResource m_recent}"/>
                             </StackPanel>
                         </Grid>
                     </StackPanel>
@@ -271,6 +272,23 @@
 
                             </WrapPanel>
                         </ScrollViewer>
+                    </Grid>
+                </TabItem>
+
+                <TabItem>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="91*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Margin="10 0 10 0">
+                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                     Background="{DynamicResource accent_color}"
+                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
+                                     materialDesign:HintAssist.HintOpacity="0.5"/>
+                        </StackPanel>
                     </Grid>
                 </TabItem>
             </TabControl>
