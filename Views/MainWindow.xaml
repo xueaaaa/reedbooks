@@ -44,7 +44,7 @@
                     <Button Style="{DynamicResource MaterialDesignToolButton}" 
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
-                            Foreground="{DynamicResource text_color}"
+                            Foreground="{DynamicResource hint_color}"
                             Content="{DynamicResource m_edit}" Cursor="Hand"/>
                     <!-- Settings button -->
                     <Button Style="{DynamicResource MaterialDesignIconButton}"
