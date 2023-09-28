@@ -233,8 +233,36 @@
                         </Grid>
                     </StackPanel>
                 </TabItem>
+                
                 <TabItem>
-                    
+                    <StackPanel Orientation="Vertical">
+                        <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                Margin="10 0 10 0"
+                                Width="300" Cursor="Hand">
+                            <DockPanel>
+                                <Image DockPanel.Dock="Left"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   Source="/Resources/Icons/add.png"/>
+
+                                <TextBlock DockPanel.Dock="Right"
+                                       Margin="10 0 0 0"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource text_color}"
+                                       Text="{DynamicResource m_load_book}"/>
+                            </DockPanel>
+                        </Button>
+                        <Separator/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      Margin="30"
+                                      MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+                            <WrapPanel Orientation="Horizontal">
+                                
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </StackPanel>
                 </TabItem>
             </TabControl>
         </Grid>
