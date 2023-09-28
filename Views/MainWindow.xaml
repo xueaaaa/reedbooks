@@ -235,34 +235,43 @@
                 </TabItem>
                 
                 <TabItem>
-                    <StackPanel Orientation="Vertical">
-                        <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                Margin="10 0 10 0"
-                                Width="300" Cursor="Hand">
-                            <DockPanel>
-                                <Image DockPanel.Dock="Left"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="91*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0"
+                                    Margin="10 0 10 0">
+                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                    Width="300" Cursor="Hand">
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Left"
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Source="/Resources/Icons/add.png"/>
 
-                                <TextBlock DockPanel.Dock="Right"
+                                    <TextBlock DockPanel.Dock="Right"
                                        Margin="10 0 0 0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
                                        Foreground="{DynamicResource text_color}"
                                        Text="{DynamicResource m_load_book}"/>
-                            </DockPanel>
-                        </Button>
-                        <Separator/>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                </DockPanel>
+                            </Button>
+                            <Separator/>
+                        </StackPanel>
+
+                        <ScrollViewer Grid.Row="1"
+                                      VerticalScrollBarVisibility="Auto"
                                       HorizontalScrollBarVisibility="Disabled"
                                       Margin="30"
                                       MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
                             <WrapPanel Orientation="Horizontal">
-                                
+
                             </WrapPanel>
                         </ScrollViewer>
-                    </StackPanel>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
