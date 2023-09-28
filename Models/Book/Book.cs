@@ -96,7 +96,7 @@ namespace ReedBooks.Models.Book
 
         private static string MoveToInternalFolder(string originPath)
         {
-            string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{Path.GetFileName(originPath)}.epub";
+            string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{Path.GetFileNameWithoutExtension(originPath)}.epub";
             File.Move(originPath, newPath);
             return newPath;
         }
