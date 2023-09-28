@@ -1,4 +1,6 @@
-﻿using ReedBooks.Core;
+﻿using Microsoft.Win32;
+using ReedBooks.Core;
+using ReedBooks.Models.Book;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -33,11 +35,13 @@ namespace ReedBooks.ViewModels
 
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
+        public ICommand LoadFileCommand { get; }
 
         public MainWindowViewModel()
         {
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
+            LoadFileCommand = new RelayCommand(obj => LoadFile());
         }
 
         private void ChangeSidePanelVisibility()
@@ -59,6 +63,18 @@ namespace ReedBooks.ViewModels
         private void SwitchToTab(object param)
         {
             SelectedTab = Convert.ToInt32(param);
+        }
+
+        public async void LoadFile()
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "Epub-files (.epub)|*.epub";
+
+            if (ofd.ShowDialog() == true)
+            {
+                var filePath = ofd.FileName;
+                Book book = await Book.Create(filePath);
+            }
         }
     }
 }

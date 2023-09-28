@@ -16,7 +16,7 @@
     <Grid Background="{DynamicResource window_background_color}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.4*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
@@ -245,6 +245,7 @@
                         <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
                             <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                    Command="{Binding LoadFileCommand}"
                                     Width="300" Cursor="Hand">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left"
