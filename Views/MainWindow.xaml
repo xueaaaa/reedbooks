@@ -269,9 +269,56 @@
                                       HorizontalScrollBarVisibility="Disabled"
                                       Margin="30"
                                       MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
-                            <WrapPanel Orientation="Horizontal">
+                            <ItemsControl Grid.Row="1"
+                                          ItemsSource="{Binding LoadedBooks}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="10"
+                                                CornerRadius="10"
+                                                Height="400"
+                                                Width="400"
+                                                Background="{DynamicResource container_background_color}">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="80*"/>
+                                                    <RowDefinition Height="20*"/>
+                                                </Grid.RowDefinitions>
 
-                            </WrapPanel>
+                                                <Image Grid.Row="0"
+                                                       Margin="0 10 0 0"
+                                                       Source="{Binding LinkToCover}"/>
+
+                                                <StackPanel Grid.Row="1"
+                                                            Orientation="Vertical"
+                                                            Margin="10">
+                                                    <TextBlock Text="{Binding Name}"
+                                                               HorizontalAlignment="Center"
+                                                               FontWeight="Bold"
+                                                               FontSize="20"/>
+                                                    <DockPanel>
+                                                        <TextBlock Text="{Binding Author}"
+                                                                   DockPanel.Dock="Left"
+                                                                   FontWeight="Light"
+                                                                   Foreground="{DynamicResource hint_color}"/>
+                                                        <TextBlock Text="{Binding Genre}"
+                                                                   DockPanel.Dock="Right"
+                                                                   FontWeight="Light"
+                                                                   Foreground="{DynamicResource hint_color}"/>
+                                                    </DockPanel>
+                                                    
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"
+                                                   Margin="30"
+                                                   Grid.Row="1"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
                         </ScrollViewer>
                     </Grid>
                 </TabItem>

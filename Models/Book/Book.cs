@@ -24,11 +24,6 @@ namespace ReedBooks.Models.Book
         [JsonPropertyName("origin_link")] public string LinkToOrigin { get; set; }
         [JsonPropertyName("cover_link")] public string LinkToCover { get; set; }
 
-        ~Book()
-        {
-            Cover.Dispose();
-        }
-
         /// <summary>
         /// Creates and returns an instance of a book from an external .epub file
         /// </summary>
@@ -56,6 +51,8 @@ namespace ReedBooks.Models.Book
             book.Name = epubBook.Title;
             book.ChaptersCount = epubBook.ReadingOrder.Count;
 
+            book.Save();
+
             return book;
         }
 
@@ -64,7 +61,7 @@ namespace ReedBooks.Models.Book
         /// </summary>
         public void Save()
         {
-            using (StreamWriter streamWriter = new StreamWriter($"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(LinkToOrigin)}.epub"))
+            using (StreamWriter streamWriter = new StreamWriter($"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(LinkToOrigin)}.json"))
             {
                 string json = JsonSerializer.Serialize(this);
                 streamWriter.Write(json);
@@ -75,7 +72,29 @@ namespace ReedBooks.Models.Book
         /// Reads all jsonized instances of book classes from a special folder 
         /// </summary>
         /// <returns></returns>
-        public async static Task<Book[]> ReadAll()
+        public static Book[] ReadAll() {
+            string[] paths = Directory.GetFiles($"{Directory.GetCurrentDirectory()}/books/");
+            Book[] books = new Book[paths.Length];
+            int i = 0;
+
+            foreach (var path in paths)
+            {
+                using (StreamReader streamReader = new StreamReader(path))
+                {
+                    string data = streamReader.ReadToEnd();
+                    books[i] = JsonSerializer.Deserialize<Book>(data);
+                    i++;
+                }
+            }
+
+            return books;
+        }
+
+        /// <summary>
+        /// Reads async all jsonized instances of book classes from a special folder 
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<Book[]> ReadAllAsync()
         {
             string[] paths = Directory.GetFiles($"{Directory.GetCurrentDirectory()}/books/");
             Book[] books = new Book[paths.Length];
@@ -93,6 +112,8 @@ namespace ReedBooks.Models.Book
 
             return books;
         }
+
+
 
         private static string MoveToInternalFolder(string originPath)
         {

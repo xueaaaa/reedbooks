@@ -2,6 +2,8 @@
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -32,6 +34,16 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(SelectedTab));
             }
         }
+        private ObservableCollection<Book> _loadedBooks;
+        public ObservableCollection<Book> LoadedBooks
+        {
+            get { return _loadedBooks; }
+            set
+            {
+                if (value != null) _loadedBooks = value;
+                OnPropertyChanged(nameof(LoadedBooks));
+            }
+        }
 
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
@@ -42,6 +54,9 @@ namespace ReedBooks.ViewModels
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
             LoadFileCommand = new RelayCommand(obj => LoadFile());
+
+            var books = Book.ReadAll();
+            LoadedBooks = new ObservableCollection<Book>(books);
         }
 
         private void ChangeSidePanelVisibility()
