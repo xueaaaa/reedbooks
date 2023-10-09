@@ -4,6 +4,8 @@ using ReedBooks.Models.Book;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -48,12 +50,14 @@ namespace ReedBooks.ViewModels
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
+        public ICommand DeleteBookCommand { get; }
 
         public MainWindowViewModel()
         {
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
             LoadFileCommand = new RelayCommand(obj => LoadFile());
+            DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
 
             var books = Book.ReadAll();
             LoadedBooks = new ObservableCollection<Book>(books);
@@ -90,6 +94,14 @@ namespace ReedBooks.ViewModels
                 var filePath = ofd.FileName;
                 Book book = await Book.Create(filePath);
             }
+        }
+
+        public void DeleteBook(object param)
+        {
+            var guid = (Guid)param;
+            var book = LoadedBooks.Where(b => b.Guid == guid).First();
+            LoadedBooks.Remove(book);
+            book.DeleteBook();
         }
     }
 }

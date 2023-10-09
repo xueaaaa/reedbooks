@@ -1,5 +1,6 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Diary;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Text.Json;
@@ -12,8 +13,8 @@ namespace ReedBooks.Models.Book
 {
     public class Book : ObservableObject
     {
+        [JsonPropertyName("guid")] public Guid Guid { get; set; }
         [JsonIgnore] public EpubBook Origin { get; set; }
-        [JsonIgnore] public Bitmap Cover { get; set; }
 
         private ReadingDiary _boundDiary;
         [JsonPropertyName("diary")] public ReadingDiary BoundDiary { get => _boundDiary; }
@@ -32,7 +33,8 @@ namespace ReedBooks.Models.Book
         public async static Task<Book> Create(string path)
         {
             Book book = new Book();
-            path = MoveToInternalFolder(path);
+            book.Guid = Guid.NewGuid();
+            path = MoveToInternalFolder(path, book.Guid.ToString());
             book.LinkToOrigin = path;
 
             EpubBook epubBook = await EpubReader.ReadBookAsync(path);
@@ -41,8 +43,7 @@ namespace ReedBooks.Models.Book
             using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
             {
                 Bitmap bitmap = new Bitmap(stream);
-                book.Cover = bitmap;
-                string bitmapPath = $"{Directory.GetCurrentDirectory()}/covers/{Path.GetFileName(epubBook.FilePath)}.png";
+                string bitmapPath = $"{Directory.GetCurrentDirectory()}/covers/{book.Guid}.png";
                 bitmap.Save(bitmapPath);
                 book.LinkToCover = bitmapPath;
             }
@@ -61,7 +62,7 @@ namespace ReedBooks.Models.Book
         /// </summary>
         public void Save()
         {
-            using (StreamWriter streamWriter = new StreamWriter($"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(LinkToOrigin)}.json"))
+            using (StreamWriter streamWriter = new StreamWriter(GetJsonFilePath()))
             {
                 string json = JsonSerializer.Serialize(this);
                 streamWriter.Write(json);
@@ -113,13 +114,26 @@ namespace ReedBooks.Models.Book
             return books;
         }
 
-
-
-        private static string MoveToInternalFolder(string originPath)
+        /// <summary>
+        /// Removes a json record of a book as well as its ebup original from the application catalog.
+        /// Does not remove the book cover.
+        /// </summary>
+        public void DeleteBook()
         {
-            string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{Path.GetFileNameWithoutExtension(originPath)}.epub";
+            File.Delete(LinkToOrigin);
+            File.Delete(GetJsonFilePath());      
+        }
+
+        private static string MoveToInternalFolder(string originPath, string newName)
+        {
+            string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{newName}.epub";
             File.Move(originPath, newPath);
             return newPath;
+        }
+
+        private string GetJsonFilePath()
+        {
+            return $"{Directory.GetCurrentDirectory()}/books/{Path.GetFileName(LinkToOrigin)}.json";
         }
     }
 }
