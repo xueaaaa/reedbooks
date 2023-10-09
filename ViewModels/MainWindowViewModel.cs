@@ -93,6 +93,7 @@ namespace ReedBooks.ViewModels
             {
                 var filePath = ofd.FileName;
                 Book book = await Book.Create(filePath);
+                LoadedBooks.Add(book);
             }
         }
 
