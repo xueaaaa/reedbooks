@@ -1,5 +1,6 @@
 ﻿using ReedBooks.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ReedBooks.Views
 {
@@ -9,6 +10,11 @@ namespace ReedBooks.Views
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((MainWindowViewModel)DataContext).SearchCommand.Execute(((TextBox)sender).Text);
         }
     }
 }

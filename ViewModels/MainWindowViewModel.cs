@@ -2,12 +2,12 @@
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace ReedBooks.ViewModels
 {
@@ -47,10 +47,22 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<Book> _searchedBooks;
+        public ObservableCollection<Book> SearchedBooks
+        {
+            get { return _searchedBooks; }
+            set
+            {
+                if (value != null) _searchedBooks = value;
+                OnPropertyChanged(nameof(SearchedBooks));
+            }
+        }
+
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
         public ICommand DeleteBookCommand { get; }
+        public ICommand SearchCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -58,9 +70,11 @@ namespace ReedBooks.ViewModels
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
             LoadFileCommand = new RelayCommand(obj => LoadFile());
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
+            SearchCommand = new RelayCommand(obj => Search(obj));
 
             var books = Book.ReadAll();
             LoadedBooks = new ObservableCollection<Book>(books);
+            SearchedBooks = LoadedBooks;
         }
 
         private void ChangeSidePanelVisibility()
@@ -103,6 +117,12 @@ namespace ReedBooks.ViewModels
             var book = LoadedBooks.Where(b => b.Guid == guid).First();
             LoadedBooks.Remove(book);
             book.DeleteBook();
+        }
+
+        public void Search(object param)
+        {
+            var namePart = (string)param;
+            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.Contains(namePart)).ToList());
         }
     }
 }

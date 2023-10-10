@@ -402,7 +402,8 @@
                         <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"/>
+                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
+                                     TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
                         <ScrollViewer Grid.Row="1"
@@ -410,8 +411,126 @@
                                       HorizontalScrollBarVisibility="Disabled"
                                       Margin="30"
                                       MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
-                            <WrapPanel Orientation="Horizontal">
-                            </WrapPanel>
+                            <ItemsControl Grid.Row="1"
+                                          ItemsSource="{Binding SearchedBooks}">
+
+                                <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="10"
+                                            CornerRadius="10"
+                                            Height="500"
+                                            Width="300"
+                                            Background="{DynamicResource container_background_color}">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.5*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Image Margin="10"
+                                                   Grid.Row="0"
+                                                   Source="{Binding LinkToCover, Mode=OneWay}"/>
+
+                                            <StackPanel Margin="10"
+                                                        Grid.Row="1"
+                                                        Orientation="Vertical">
+                                                <TextBlock HorizontalAlignment="Center"
+                                                           Text="{Binding Name}"
+                                                           FontWeight="SemiBold"
+                                                           FontSize="20"/>
+                                                <TextBlock HorizontalAlignment="Left"
+                                                           Text="{Binding Author}"
+                                                           FontWeight="Light"
+                                                           FontSize="16"
+                                                           Foreground="{DynamicResource hint_color}"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{DynamicResource m_genre}"
+                                                               Margin="0 0 4 0"
+                                                               VerticalAlignment="Center"
+                                                               Foreground="{DynamicResource hint_color}"
+                                                               FontSize="16"/>
+                                                    <TextBlock HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Text="{Binding Genre}"
+                                                               Margin="0 0 4 0"
+                                                               FontWeight="Light"
+                                                               FontSize="16"
+                                                               Foreground="{DynamicResource hint_color}"/>
+                                                    <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                            VerticalAlignment="Center"
+                                                            Width="25" 
+                                                            Height="25">
+                                                        <Image Width="20" 
+                                                               Height="20" 
+                                                               Source="/Resources/Icons/edit.png"/>
+                                                    </Button>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{DynamicResource m_chapters_count}"
+                                                               Margin="0 0 4 0"
+                                                               VerticalAlignment="Center"
+                                                               Foreground="{DynamicResource hint_color}"
+                                                               FontSize="16"/>
+                                                    <TextBlock HorizontalAlignment="Left"
+                                                               VerticalAlignment="Center"
+                                                               Text="{Binding ChaptersCount}"
+                                                               Margin="0 0 4 0"
+                                                               FontWeight="Light"
+                                                               FontSize="16"
+                                                               Foreground="{DynamicResource hint_color}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                                <Grid Margin="10"
+                                                      Grid.Row="2"
+                                                      VerticalAlignment="Bottom">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                            Grid.Column="0">
+                                                        <DockPanel VerticalAlignment="Center"
+                                                                   HorizontalAlignment="Left">
+                                                            <Image DockPanel.Dock="Left"
+                                                                   HorizontalAlignment="Left"
+                                                                   VerticalAlignment="Center"
+                                                                   Source="/Resources/Icons/read_book.png"/>
+
+                                                            <TextBlock DockPanel.Dock="Right"
+                                                                       Margin="10 0 0 0"
+                                                                       HorizontalAlignment="Right"
+                                                                       VerticalAlignment="Center"
+                                                                       Foreground="{DynamicResource text_color}"
+                                                                       Text="{DynamicResource m_read}"/>
+                                                        </DockPanel>
+                                                    </Button>
+                                                    <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                            Grid.Column="1"
+                                                            Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                            CommandParameter="{Binding Guid}"
+                                                            HorizontalAlignment="Right"
+                                                            Width="30" 
+                                                            Height="30">
+                                                        <Image Width="20" 
+                                                               Height="20" 
+                                                               Source="/Resources/Icons/delete.png"/>
+                                                    </Button>
+                                                </Grid>
+                                            </Grid>
+                                    </Border>
+                                </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"
+                                                   Margin="30"
+                                                   Grid.Row="1"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
                         </ScrollViewer>
                     </Grid>
                 </TabItem>
