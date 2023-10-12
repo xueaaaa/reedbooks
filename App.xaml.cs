@@ -1,15 +1,19 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using AppContext = ReedBooks.Core.AppContext;
 
 namespace ReedBooks
 {
     public partial class App : Application
     {
         public static event EventHandler LanguageChanged;
+
+        public static AppContext ApplicationContext { get; private set; }
 
         private static List<CultureInfo> _appLanguages = new List<CultureInfo>();
         public static List<CultureInfo> AppLanguages
@@ -53,6 +57,10 @@ namespace ReedBooks
 
         public App()
         {
+            ApplicationContext = new AppContext();
+            ApplicationContext.Database.EnsureCreated();
+            ApplicationContext.Books.Load();
+
             _appLanguages.Clear();
             _appLanguages.Add(new CultureInfo("ru"));
             LanguageChanged += App_LanguageChanged;

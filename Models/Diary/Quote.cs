@@ -1,16 +1,19 @@
 ﻿using ReedBooks.Core;
-using System.Text.Json.Serialization;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Diary
 {
     public class Quote : ObservableObject
     {
-        [JsonPropertyName("data")] public string Data { get; set; }
-        [JsonPropertyName("author")] public string Author { get; set; }
-        [JsonPropertyName("location_in_book")] public string LocationInBook { get; set; }
+        [Key] public Guid Guid { get; set; }
+        public string Data { get; set; }
+        public string Author { get; set; }
+        public string LocationInBook { get; set; }
 
         public Quote(string data)
         {
+            Guid = Guid.NewGuid();
             Data = data;
         }
 

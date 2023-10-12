@@ -1,11 +1,18 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Assessment
 {
     public class EmotionalAssessment
     {
-        [JsonPropertyName("start")] public Emote Start { get; set; }
-        [JsonPropertyName("middle")]public Emote Middle { get; set; }
-        [JsonPropertyName("end")] public Emote End { get; set; }
+        [Key] public Guid Guid { get; set; }
+        public Emote Start { get; set; }
+        public Emote Middle { get; set; }
+        public Emote End { get; set; }
+
+        public EmotionalAssessment()
+        {
+            Guid = Guid.NewGuid();
+        }
     }
 }
