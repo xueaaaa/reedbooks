@@ -15,4 +15,7 @@
     <v:String x:Key="m_no_elements">Еще не добавлено ни одного элемента</v:String>
     <v:String x:Key="m_load_book">Загрузить книгу</v:String>
     <v:String x:Key="m_search_hint">Начните вводить название книги...</v:String>
+    <v:String x:Key="m_genre">Жанр:</v:String>
+    <v:String x:Key="m_chapters_count">Количество глав:</v:String>
+    <v:String x:Key="m_read">Читать</v:String>
 </ResourceDictionary>
