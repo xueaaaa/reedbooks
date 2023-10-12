@@ -49,7 +49,7 @@ namespace ReedBooks.Models.Book
             book.Name = epubBook.Title;
             book.ChaptersCount = epubBook.ReadingOrder.Count;
 
-            await App.ApplicationContext.Books.AddAsync(book);
+            await App.ApplicationContext.AddEntityAsync(book);
 
             return book;
         }
@@ -72,8 +72,9 @@ namespace ReedBooks.Models.Book
         /// Removes a record of a book from the database as well as its ebup original from the application catalog.
         /// Does not remove the book cover.
         /// </summary>
-        public void DeleteBook()
+        public async void Delete()
         {
+            await App.ApplicationContext.RemoveEntityAsync(this);
             File.Delete(LinkToOrigin);
         }
 

@@ -116,7 +116,7 @@ namespace ReedBooks.ViewModels
             var guid = (Guid)param;
             var book = LoadedBooks.Where(b => b.Guid == guid).First();
             LoadedBooks.Remove(book);
-            book.DeleteBook();
+            book.Delete();
         }
 
         public void Search(object param)

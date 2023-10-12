@@ -2,15 +2,25 @@
 using ReedBooks.Models.Assessment;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
+using System.Threading.Tasks;
 
 namespace ReedBooks.Core
 {
     public class AppContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
-        public DbSet<ReadingDiary> Diary { get; set; }
-        public DbSet<BookAssessment> BookAssessment { get; set; }
-        public DbSet<EmotionalAssessment> EmotionalAssessment { get; set; }
+
+        public async Task<int> AddEntityAsync<T>(T enitity)
+        {
+            await AddAsync(enitity);
+            return await SaveChangesAsync();
+        }
+
+        public async Task<int> RemoveEntityAsync<T>(T enitity)
+        {
+            Remove(enitity);
+            return await SaveChangesAsync();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
