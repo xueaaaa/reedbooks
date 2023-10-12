@@ -45,7 +45,9 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
                             Foreground="{DynamicResource hint_color}"
-                            Content="{DynamicResource m_edit}" Cursor="Hand"/>
+                            Content="{DynamicResource m_edit}" 
+                            Command="{Binding TEMP_ChangeThemeCommand}"
+                            Cursor="Hand"/>
                     <!-- Settings button -->
                     <Button Style="{DynamicResource MaterialDesignIconButton}"
                             HorizontalAlignment="Right"

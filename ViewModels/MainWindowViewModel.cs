@@ -5,9 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace ReedBooks.ViewModels
 {
@@ -63,6 +61,7 @@ namespace ReedBooks.ViewModels
         public ICommand LoadFileCommand { get; }
         public ICommand DeleteBookCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand TEMP_ChangeThemeCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -71,6 +70,7 @@ namespace ReedBooks.ViewModels
             LoadFileCommand = new RelayCommand(obj => LoadFile());
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
             SearchCommand = new RelayCommand(obj => Search(obj));
+            TEMP_ChangeThemeCommand = new RelayCommand(obj => TEMP_ChangeTheme());
 
             var books = Book.ReadAll();
             LoadedBooks = new ObservableCollection<Book>(books);
@@ -122,7 +122,16 @@ namespace ReedBooks.ViewModels
         public void Search(object param)
         {
             var namePart = (string)param;
-            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.Contains(namePart)).ToList());
+            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.ToLower().Contains(namePart.ToLower())).ToList());
+        }
+
+        public void TEMP_ChangeTheme()
+        {
+            var old = Application.Current.Resources.MergedDictionaries.Where(a => a.Source.OriginalString.EndsWith("theme.xaml")).First();
+            Application.Current.Resources.MergedDictionaries.Remove(old);
+            ResourceDictionary ne = new ResourceDictionary();
+            ne.Source = old.Source.OriginalString.Contains("light") ? new Uri("Resources/Themes/dark.theme.xaml", UriKind.Relative) : new Uri("Resources/Themes/light.theme.xaml", UriKind.Relative);
+            Application.Current.Resources.MergedDictionaries.Add(ne);
         }
     }
 }
