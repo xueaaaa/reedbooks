@@ -12,16 +12,124 @@ namespace ReedBooks.Models.Book
 {
     public class Book : ObservableObject
     {
-        [Key] public Guid Guid { get; set; }
+        private Guid _guid;
+        [Key] public Guid Guid 
+        { 
+            get => _guid; 
+            set 
+            {
+                if (value != null)
+                {
+                    _guid = value;
+                    OnPropertyChanged(nameof(Guid));
+                }
+            } 
+        }
 
         private ReadingDiary _boundDiary;
-        public ReadingDiary BoundDiary { get => _boundDiary; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public int ChaptersCount { get; set; }
-        public string Genre { get; set; }
-        public string LinkToOrigin { get; set; }
-        public string LinkToCover { get; set; }
+        public ReadingDiary BoundDiary 
+        { 
+            get => _boundDiary; 
+            set
+            {
+                if (value != null)
+                {
+                    _boundDiary = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(BoundDiary));
+                }
+            }
+        }
+
+        private string _name;
+        public string Name 
+        { 
+            get => _name; 
+            set
+            {
+                if(value != null)
+                {
+                    _name = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(Name));
+                }
+            }
+        }
+
+        private string _author;
+        public string Author 
+        {
+            get => _author;
+            set
+            {
+                if(value != null)
+                {
+                    _author = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(Author));
+                }
+            }
+        }
+
+        private int _chaptersCount;
+        public int ChaptersCount 
+        { 
+            get => _chaptersCount; 
+            set
+            {
+                if (value >= 0)
+                {
+                    _chaptersCount = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(ChaptersCount));
+                }
+            }
+        }
+
+        private string _genre;
+        public string Genre 
+        {
+            get => _genre;
+            set
+            {
+                if(value != null)
+                {
+                    _genre = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(Genre));
+                }
+            }
+        }
+
+        private string _linkToOrigin;
+        public string LinkToOrigin 
+        {
+            get => _linkToOrigin;
+            set
+            {
+                if (value != null)
+                {
+                    _linkToOrigin = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(LinkToOrigin));
+                }
+            }
+        }
+
+        private string _linkToCover;
+        public string LinkToCover 
+        {
+            get => _linkToCover; 
+            set
+            {
+                if(value != null)
+                {
+                    _linkToCover = value;
+                    App.ApplicationContext.UpdateEnitity(this);
+                    OnPropertyChanged(nameof(LinkToCover));
+                }
+            }
+        }
 
         /// <summary>
         /// Creates and returns an instance of a book from an external .epub file

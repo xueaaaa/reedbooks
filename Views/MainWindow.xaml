@@ -309,21 +309,13 @@
                                                                    VerticalAlignment="Center"
                                                                    Foreground="{DynamicResource hint_color}"
                                                                    FontSize="16"/>
-                                                        <TextBlock HorizontalAlignment="Left"
+                                                        <TextBox HorizontalAlignment="Left"
                                                                    VerticalAlignment="Center"
                                                                    Text="{Binding Genre}"
                                                                    Margin="0 0 4 0"
                                                                    FontWeight="Light"
                                                                    FontSize="16"
                                                                    Foreground="{DynamicResource hint_color}"/>
-                                                        <Button Style="{DynamicResource MaterialDesignIconButton}"
-                                                                VerticalAlignment="Center"
-                                                                Width="25" 
-                                                                Height="25">
-                                                            <Image Width="20" 
-                                                                   Height="20" 
-                                                                   Source="/Resources/Icons/edit.png"/>
-                                                        </Button>
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{DynamicResource m_chapters_count}"
@@ -452,22 +444,14 @@
                                                                VerticalAlignment="Center"
                                                                Foreground="{DynamicResource hint_color}"
                                                                FontSize="16"/>
-                                                    <TextBlock HorizontalAlignment="Left"
+                                                        <TextBlock HorizontalAlignment="Left"
                                                                VerticalAlignment="Center"
                                                                Text="{Binding Genre}"
                                                                Margin="0 0 4 0"
                                                                FontWeight="Light"
                                                                FontSize="16"
                                                                Foreground="{DynamicResource hint_color}"/>
-                                                    <Button Style="{DynamicResource MaterialDesignIconButton}"
-                                                            VerticalAlignment="Center"
-                                                            Width="25" 
-                                                            Height="25">
-                                                        <Image Width="20" 
-                                                               Height="20" 
-                                                               Source="/Resources/Icons/edit.png"/>
-                                                    </Button>
-                                                </StackPanel>
+                                                    </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{DynamicResource m_chapters_count}"
                                                                Margin="0 0 4 0"

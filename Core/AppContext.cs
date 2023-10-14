@@ -10,10 +10,34 @@ namespace ReedBooks.Core
     {
         public DbSet<Book> Books { get; set; }
 
+        public int AddEntity<T>(T enitity)
+        {
+            Add(enitity);
+            return SaveChanges();
+        }
+
         public async Task<int> AddEntityAsync<T>(T enitity)
         {
             await AddAsync(enitity);
             return await SaveChangesAsync();
+        }
+
+        public int UpdateEnitity<T>(T enitity)
+        {
+            Update(enitity);
+            return SaveChanges();
+        }
+
+        public async Task<int> UpdateEnitityAsync<T>(T enitity)
+        {
+            Update(enitity);
+            return await SaveChangesAsync();
+        }
+
+        public int RemoveEntity<T>(T enitity)
+        {
+            Remove(enitity);
+            return SaveChanges();
         }
 
         public async Task<int> RemoveEntityAsync<T>(T enitity)
