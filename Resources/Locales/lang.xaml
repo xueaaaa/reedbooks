@@ -18,4 +18,6 @@
     <v:String x:Key="m_genre">Жанр:</v:String>
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_read">Читать</v:String>
+
+    <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
 </ResourceDictionary>
