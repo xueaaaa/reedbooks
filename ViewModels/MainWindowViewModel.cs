@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -61,6 +62,7 @@ namespace ReedBooks.ViewModels
         public ICommand LoadFileCommand { get; }
         public ICommand DeleteBookCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand ReadCommand { get; }
         public ICommand TEMP_ChangeThemeCommand { get; }
 
         public MainWindowViewModel()
@@ -70,6 +72,7 @@ namespace ReedBooks.ViewModels
             LoadFileCommand = new RelayCommand(obj => LoadFile());
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
             SearchCommand = new RelayCommand(obj => Search(obj));
+            ReadCommand = new RelayCommand(obj => Read(obj));
             TEMP_ChangeThemeCommand = new RelayCommand(obj => TEMP_ChangeTheme());
 
             var books = Book.ReadAll();
@@ -123,6 +126,13 @@ namespace ReedBooks.ViewModels
         {
             var namePart = (string)param;
             SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.ToLower().Contains(namePart.ToLower())).ToList());
+        }
+
+        public void Read(object param)
+        {
+            var selectedBook = (Book)param;
+            ReadingWindow rW = new ReadingWindow(selectedBook);
+            rW.Show();
         }
 
         public void TEMP_ChangeTheme()
