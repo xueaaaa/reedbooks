@@ -206,6 +206,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\AppContext.cs" />
+    <Compile Include="Core\FlowDocumentContentLoader.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Models\Assessment\Emote.cs" />

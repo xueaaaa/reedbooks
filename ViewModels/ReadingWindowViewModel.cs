@@ -1,6 +1,7 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using System.Windows;
+using System.Windows.Documents;
 using VersOne.Epub;
 
 namespace ReedBooks.ViewModels
@@ -28,6 +29,12 @@ namespace ReedBooks.ViewModels
             get => _epubBook;
         }
 
+        private FlowDocument _loadedFlowDocument;
+        public FlowDocument LoadedFlowDocument
+        {
+            get => _loadedFlowDocument;
+        }
+
         public ReadingWindowViewModel()
         {
             ChaptersListBoxLength = new GridLength(0.3, GridUnitType.Star);
@@ -37,6 +44,7 @@ namespace ReedBooks.ViewModels
         {
             ReadingBook = readingBook;
             _epubBook = ReadingBook.GetEpub();
+            _loadedFlowDocument = FlowDocumentContentLoader.LoadFromEpubBook(EpubBook);
         }
     }
 }

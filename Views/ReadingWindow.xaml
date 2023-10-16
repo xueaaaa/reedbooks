@@ -31,6 +31,10 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <FlowDocumentPageViewer Grid.Column="1"
+                                    Document="{Binding LoadedFlowDocument}">
+            </FlowDocumentPageViewer>
         </Grid>
     </Grid>
 </Window>
