@@ -21,14 +21,13 @@
             </Grid.ColumnDefinitions>
 
             <ListBox Grid.Column="0"
-                     DataContext="{Binding ReadingBook.}"
+                     ItemsSource="{Binding EpubBook.Navigation}"
                      Background="{DynamicResource container_background_color}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Background="{DynamicResource accent_color}">
-                            <TextBlock Margin="5"
-                                   Foreground="{DynamicResource text_color}"/>
-                        </StackPanel>
+                        <TextBlock Margin="5"
+                                   Foreground="{DynamicResource text_color}"
+                                   Text="{Binding Title}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

@@ -342,7 +342,7 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                            Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                            Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                                             CommandParameter="{Binding}"
                                                             Grid.Column="0">
                                                         <DockPanel VerticalAlignment="Center"
@@ -479,7 +479,7 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                            Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                            Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                                             CommandParameter="{Binding}"
                                                             Grid.Column="0">
                                                         <DockPanel VerticalAlignment="Center"
