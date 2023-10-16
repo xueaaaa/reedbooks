@@ -14,6 +14,24 @@
         <local:ReadingWindowViewModel/>
     </Window.DataContext>
     <Grid Background="{DynamicResource window_background_color}">
-        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding ChaptersListBoxLength}"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0"
+                     DataContext="{Binding ReadingBook.}"
+                     Background="{DynamicResource container_background_color}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="{DynamicResource accent_color}">
+                            <TextBlock Margin="5"
+                                   Foreground="{DynamicResource text_color}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Window>

@@ -171,6 +171,10 @@ namespace ReedBooks.Models.Book
             return await App.ApplicationContext.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Reads all book records from the database and returns them as an ObservableCollection
+        /// </summary>
+        /// <returns></returns>
         public static ObservableCollection<Book> ReadAll()
         {
             return App.ApplicationContext.Books.Local.ToObservableCollection();
