@@ -190,6 +190,11 @@ namespace ReedBooks.Models.Book
             File.Delete(LinkToOrigin);
         }
 
+        public EpubBook GetEpub()
+        {
+            return EpubReader.ReadBook(LinkToOrigin);
+        }
+
         private static string MoveToInternalFolder(string originPath, string newName)
         {
             string newPath = $"{Directory.GetCurrentDirectory()}/epubs/{newName}.epub";
