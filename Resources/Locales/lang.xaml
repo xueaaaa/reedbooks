@@ -20,4 +20,5 @@
     <v:String x:Key="m_read">Читать</v:String>
 
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Эта чать приложения пока не работает.</v:String>
 </ResourceDictionary>

@@ -139,9 +139,9 @@ namespace ReedBooks.Models.Book
         public async static Task<Book> Create(string path)
         {
             Book book = new Book();
-            book.Guid = Guid.NewGuid();
+            book._guid = Guid.NewGuid();
             path = MoveToInternalFolder(path, book.Guid.ToString());
-            book.LinkToOrigin = path;
+            book._linkToOrigin = path;
 
             EpubBook epubBook = await EpubReader.ReadBookAsync(path);
 
@@ -150,12 +150,12 @@ namespace ReedBooks.Models.Book
                 Bitmap bitmap = new Bitmap(stream);
                 string bitmapPath = $"{Directory.GetCurrentDirectory()}/covers/{book.Guid}.png";
                 bitmap.Save(bitmapPath);
-                book.LinkToCover = bitmapPath;
+                book._linkToCover = bitmapPath;
             }
 
-            book.Author = epubBook.Author;
-            book.Name = epubBook.Title;
-            book.ChaptersCount = epubBook.ReadingOrder.Count;
+            book._author = epubBook.Author;
+            book._name = epubBook.Title;
+            book._chaptersCount = epubBook.ReadingOrder.Count;
 
             await App.ApplicationContext.AddEntityAsync(book);
 

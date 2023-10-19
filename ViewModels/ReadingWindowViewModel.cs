@@ -1,7 +1,9 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 using VersOne.Epub;
 
 namespace ReedBooks.ViewModels
@@ -35,8 +37,26 @@ namespace ReedBooks.ViewModels
             get => _loadedFlowDocument;
         }
 
+        private FlowDocument _selectedFlowDocument;
+        public FlowDocument SelectedFlowDocument
+        {
+            get => _selectedFlowDocument;
+            set
+            {
+                if(value != null)
+                {
+                    _selectedFlowDocument = value;
+                    OnPropertyChanged(nameof(SelectedFlowDocument));
+                }
+            }
+        }
+
+        public ICommand ChangeSelectedFlowDocumentCommand { get; }
+
         public ReadingWindowViewModel()
         {
+            ChangeSelectedFlowDocumentCommand = new RelayCommand(obj => ChangeSelectedFlowDocument(obj));
+
             ChaptersListBoxLength = new GridLength(0.3, GridUnitType.Star);
         }
 
@@ -45,6 +65,14 @@ namespace ReedBooks.ViewModels
             ReadingBook = readingBook;
             _epubBook = ReadingBook.GetEpub();
             _loadedFlowDocument = FlowDocumentContentLoader.LoadFromEpubBook(EpubBook);
+        }
+
+        public void ChangeSelectedFlowDocument(object param)
+        {
+            int index = (int)param;
+            var flowDocument = new FlowDocument();
+            flowDocument.Blocks.Add(LoadedFlowDocument.Blocks.ElementAt(index));
+            SelectedFlowDocument = flowDocument;
         }
     }
 }

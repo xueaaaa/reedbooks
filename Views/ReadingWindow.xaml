@@ -20,21 +20,43 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListBox Grid.Column="0"
-                     ItemsSource="{Binding EpubBook.Navigation}"
-                     Background="{DynamicResource container_background_color}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="5"
+            <StackPanel Grid.Column="0"
+                        Orientation="Vertical">
+                <ItemsControl ItemsSource="{Binding EpubBook.Navigation}"
+                              Background="{DynamicResource container_background_color}"
+                              IsEnabled="False">
+                <ItemsControl.ItemTemplate>
+                    <ItemContainerTemplate>
+                        <Button Style="{DynamicResource MaterialDesignOutlinedLightButton}"
+                                Foreground="{DynamicResource accent_color}"
+                                Command="{Binding DataContext.ChangeSelectedFlowDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding Path=SelectedIndex, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
+                            <TextBlock 
                                    Foreground="{DynamicResource text_color}"
                                    Text="{Binding Title}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        </Button>
+                    </ItemContainerTemplate>
+                </ItemsControl.ItemTemplate>
 
-            <FlowDocumentPageViewer Grid.Column="1"
-                                    Document="{Binding LoadedFlowDocument}">
-            </FlowDocumentPageViewer>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical">
+
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+                <TextBlock Foreground="{DynamicResource hint_color}"
+                           Text="{DynamicResource r_temporarily_out_of_service}"
+                           TextAlignment="Center"/>
+            </StackPanel>
+
+            
+
+            <FlowDocumentReader Grid.Column="1"
+                                Document="{Binding LoadedFlowDocument}"
+                                ViewingMode="Scroll">
+            </FlowDocumentReader>
         </Grid>
     </Grid>
 </Window>
