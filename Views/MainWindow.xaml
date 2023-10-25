@@ -50,6 +50,7 @@
                             Cursor="Hand"/>
                     <!-- Settings button -->
                     <Button Style="{DynamicResource MaterialDesignIconButton}"
+                            Command="{Binding OpenSettingsCommand}"
                             HorizontalAlignment="Right"
                             Width="25" 
                             Height="25">

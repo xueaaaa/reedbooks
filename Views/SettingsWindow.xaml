@@ -9,11 +9,43 @@
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
-        Title="{DynamicResource h_main_window}" Height="300" Width="200">
+        Title="{DynamicResource h_main_window}" Height="300" Width="500">
     <Window.DataContext>
         <local:SettingsWindowViewModel/>
     </Window.DataContext>
     <Grid Background="{DynamicResource window_background_color}">
-        
+        <Border CornerRadius="10"
+                Margin="20"
+                Background="{DynamicResource container_background_color}">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="40"
+                                  Color="{DynamicResource MaterialDesignShadow}"/>
+            </Border.Effect>
+
+            <StackPanel Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <TextBlock Text="{DynamicResource s_language_label}"
+                                   Style="{DynamicResource MaterialDesignSubtitle1TextBlock}"
+                                   FontSize="15"
+                                   Foreground="{DynamicResource text_color}"/>
+                        <TextBlock Text="{DynamicResource s_language_hint}"
+                                   Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource hint_color}"/>
+                    </StackPanel>
+
+                    <ComboBox Grid.Column="1"
+                              DataContext="{Binding AppLanguages}"
+                              SelectedItem="{Binding SelectedLanguage}"/>
+                </Grid>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

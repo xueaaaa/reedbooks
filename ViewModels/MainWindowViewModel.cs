@@ -63,6 +63,7 @@ namespace ReedBooks.ViewModels
         public ICommand DeleteBookCommand { get; }
         public ICommand SearchCommand { get; }
         public ICommand ReadCommand { get; }
+        public ICommand OpenSettingsCommand { get; }
         public ICommand TEMP_ChangeThemeCommand { get; }
 
         public MainWindowViewModel()
@@ -73,6 +74,7 @@ namespace ReedBooks.ViewModels
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
             SearchCommand = new RelayCommand(obj => Search(obj));
             ReadCommand = new RelayCommand(obj => Read(obj));
+            OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
             TEMP_ChangeThemeCommand = new RelayCommand(obj => TEMP_ChangeTheme());
 
             var books = Book.ReadAll();
@@ -133,6 +135,12 @@ namespace ReedBooks.ViewModels
             var selectedBook = (Book)param;
             ReadingWindow rW = new ReadingWindow(selectedBook);
             rW.Show();
+        }
+
+        public void OpenSettings()
+        {
+            SettingsWindow sW = new SettingsWindow();
+            sW.ShowDialog();
         }
 
         public void TEMP_ChangeTheme()
