@@ -1,0 +1,19 @@
+﻿<Window x:Class="ReedBooks.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        mc:Ignorable="d"
+        Foreground="{DynamicResource text_color}"
+        FontFamily="{DynamicResource MainFont}"
+        FontSize="14"
+        Title="{DynamicResource h_main_window}" Height="300" Width="200">
+    <Window.DataContext>
+        <local:SettingsWindowViewModel/>
+    </Window.DataContext>
+    <Grid Background="{DynamicResource window_background_color}">
+        
+    </Grid>
+</Window>

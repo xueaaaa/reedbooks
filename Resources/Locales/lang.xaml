@@ -21,4 +21,7 @@
 
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чать приложения пока не работает.</v:String>
+
+    <v:String x:Key="s_language_label">Язык приложения</v:String>
+    <v:String x:Key="s_language_hint">Эта настройка меняет только язык интерфейса. Имена авторов книг, и их содержание не локализуются.</v:String>
 </ResourceDictionary>
