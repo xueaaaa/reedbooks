@@ -1,26 +1,39 @@
 ﻿using ReedBooks.Core;
 using System.Collections.ObjectModel;
-using System.Globalization;
 
 namespace ReedBooks.ViewModels
 {
     public class SettingsWindowViewModel : ObservableObject
     {
-        private ObservableCollection<CultureInfo> _appLanguages;
-        public ObservableCollection<CultureInfo> AppLanguages
+        public ObservableCollection<LanguageViewModel> Languages
         {
-            get => _appLanguages;
+            get
+            {
+                var items = new ObservableCollection<LanguageViewModel>();
+                foreach (var lang in Localizator.AppLanguages)
+                {
+                    var item = new LanguageViewModel
+                    {
+                        DisplayName = Localizator.GetLanguageName(lang),
+                        Tag = lang.Name
+                    };
+
+                    items.Add(item);
+                }
+
+                return items;
+            }
         }
 
-        private CultureInfo _selectedLanguage;
-        public object SelectedLanguage
+        private LanguageViewModel _selectedLanguage;
+        public LanguageViewModel SelectedLanguage
         {
-            get => _selectedLanguage;
+            get { return _selectedLanguage; }
             set
             {
-                if (value != null)
+                if (_selectedLanguage != value)
                 {
-                    _selectedLanguage = (CultureInfo)value;
+                    _selectedLanguage = value;
                     OnPropertyChanged(nameof(SelectedLanguage));
                 }
             }
@@ -28,8 +41,6 @@ namespace ReedBooks.ViewModels
 
         public SettingsWindowViewModel()
         {
-            _appLanguages = new ObservableCollection<CultureInfo>(App.AppLanguages);
-            _selectedLanguage = App.CurrentLanguage;
         }
     }
 }
