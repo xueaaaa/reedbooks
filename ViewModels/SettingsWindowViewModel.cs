@@ -7,14 +7,14 @@ namespace ReedBooks.ViewModels
 {
     public class SettingsWindowViewModel : ObservableObject
     {
-        public ObservableCollection<LanguageViewModel> Languages
+        public ObservableCollection<SettingsParameterViewModel> Languages
         {
             get
             {
-                var items = new ObservableCollection<LanguageViewModel>();
+                var items = new ObservableCollection<SettingsParameterViewModel>();
                 foreach (var lang in Localizator.AppLanguages)
                 {
-                    var item = new LanguageViewModel
+                    var item = new SettingsParameterViewModel
                     {
                         DisplayName = lang.NativeName,
                         Tag = lang.Name
@@ -27,8 +27,8 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private LanguageViewModel _selectedLanguage;
-        public LanguageViewModel SelectedLanguage
+        private SettingsParameterViewModel _selectedLanguage;
+        public SettingsParameterViewModel SelectedLanguage
         {
             get => _selectedLanguage;
             set
@@ -41,20 +41,32 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        public ObservableCollection<string> Themes
+        public ObservableCollection<SettingsParameterViewModel> Themes
         {
             get
             {
-                var themes = new ObservableCollection<string>();
-                themes.Add(Application.Current.Resources["theme_light"].ToString());
-                themes.Add(Application.Current.Resources["theme_dark"].ToString());
+                var themes = new ObservableCollection<SettingsParameterViewModel>();
+
+                var lightTheme = new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["theme_light"].ToString(),
+                    Tag = "theme_light"
+                };
+                themes.Add(lightTheme);
+
+                var darkTheme = new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["theme_dark"].ToString(),
+                    Tag = "theme_dark"
+                };
+                themes.Add(darkTheme);
                     
                 return themes;
             }
         }
 
-        private string _selectedTheme;
-        public string SelectedTheme
+        private SettingsParameterViewModel _selectedTheme;
+        public SettingsParameterViewModel SelectedTheme
         {
             get => _selectedTheme;
             set

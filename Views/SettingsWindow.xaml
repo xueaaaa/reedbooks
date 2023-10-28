@@ -75,7 +75,9 @@
                               Grid.Row="2"
                               Focusable="False"
                               ItemsSource="{Binding Themes}"
-                              SelectedItem="{Binding SelectedTheme}"/>
+                              SelectedItem="{Binding SelectedTheme}"
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="Tag"/>
                     <!--#endregion-->
                 </Grid>
 
