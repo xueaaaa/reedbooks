@@ -1,5 +1,7 @@
 ﻿using ReedBooks.Core;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace ReedBooks.ViewModels
 {
@@ -28,7 +30,7 @@ namespace ReedBooks.ViewModels
         private LanguageViewModel _selectedLanguage;
         public LanguageViewModel SelectedLanguage
         {
-            get { return _selectedLanguage; }
+            get => _selectedLanguage;
             set
             {
                 if (_selectedLanguage != value)
@@ -36,6 +38,29 @@ namespace ReedBooks.ViewModels
                     _selectedLanguage = value;
                     OnPropertyChanged(nameof(SelectedLanguage));
                 }
+            }
+        }
+
+        public ObservableCollection<string> Themes
+        {
+            get
+            {
+                var themes = new ObservableCollection<string>();
+                themes.Add(Application.Current.Resources["theme_light"].ToString());
+                themes.Add(Application.Current.Resources["theme_dark"].ToString());
+                    
+                return themes;
+            }
+        }
+
+        private string _selectedTheme;
+        public string SelectedTheme
+        {
+            get => _selectedTheme;
+            set
+            {
+                _selectedTheme = value;
+                OnPropertyChanged(nameof(SelectedTheme));
             }
         }
 
