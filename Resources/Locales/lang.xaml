@@ -27,7 +27,8 @@
     <v:String x:Key="s_language_hint">Эта настройка меняет только язык интерфейса. Имена авторов книг, и их содержание не локализуются.</v:String>
     <v:String x:Key="s_theme_label">Тема</v:String>
     <v:String x:Key="s_theme_hint">Меняет тему приложения на светлую (по умолчанию) либо тёмную.</v:String>
-    
+    <v:String x:Key="s_save">Сохранить</v:String>
+
     <!--#region SPECIAL STRINGS -->
     <v:String x:Key="theme_light">Светлая</v:String>
     <v:String x:Key="theme_dark">Тёмная</v:String>

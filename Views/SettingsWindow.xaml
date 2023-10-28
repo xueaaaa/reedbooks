@@ -17,22 +17,22 @@
         <Border CornerRadius="10"
                 Margin="30"
                 Background="{DynamicResource container_background_color}">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="40"
-                                  Color="{DynamicResource MaterialDesignShadow}"/>
-            </Border.Effect>
-
-            <StackPanel Margin="10">
-                <Grid Margin="10">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.6*"/>
                         <ColumnDefinition Width="0.2*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <!--#region Language -->
@@ -72,13 +72,20 @@
                                    Foreground="{DynamicResource hint_color}"/>
                     </StackPanel>
                     <ComboBox Grid.Column="1"
-                              Grid.Row="3"
+                              Grid.Row="2"
                               Focusable="False"
                               ItemsSource="{Binding Themes}"
                               SelectedItem="{Binding SelectedTheme}"/>
                     <!--#endregion-->
                 </Grid>
-            </StackPanel>
+
+                <Button Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Background="{DynamicResource accent_color}"
+                        Content="{DynamicResource s_save}"/>
+            </Grid>
         </Border>
     </Grid>
 </Window>
