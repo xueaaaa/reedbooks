@@ -14,7 +14,7 @@ namespace ReedBooks.ViewModels
                 {
                     var item = new LanguageViewModel
                     {
-                        DisplayName = Localizator.GetLanguageName(lang),
+                        DisplayName = lang.NativeName,
                         Tag = lang.Name
                     };
 

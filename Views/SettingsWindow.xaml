@@ -9,13 +9,13 @@
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
-        Title="{DynamicResource h_main_window}" Height="400" Width="800">
+        Title="{DynamicResource h_settings_window}" Height="400" Width="800">
     <Window.DataContext>
         <local:SettingsWindowViewModel/>
     </Window.DataContext>
     <Grid Background="{DynamicResource window_background_color}">
         <Border CornerRadius="10"
-                Margin="20"
+                Margin="30"
                 Background="{DynamicResource container_background_color}">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="40"
@@ -26,17 +26,19 @@
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="0.3*"/>
+                        <ColumnDefinition Width="0.4*"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0"
                                 Orientation="Vertical">
                         <TextBlock Text="{DynamicResource s_language_label}"
-                                   Style="{DynamicResource MaterialDesignSubtitle1TextBlock}"
+                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                    Foreground="{DynamicResource text_color}"/>
                         <TextBlock Text="{DynamicResource s_language_hint}"
                                    Style="{DynamicResource MaterialDesignOverlineTextBlock}"
-                                   FontSize="11"
+                                   HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   FontSize="14"
                                    Foreground="{DynamicResource hint_color}"/>
                     </StackPanel>
 

@@ -9,14 +9,23 @@ namespace ReedBooks.Core
 {
     public static class Localizator
     {
+        /// <summary>
+        /// Called when the application language is changed
+        /// </summary>
         public static event EventHandler LanguageChanged;
 
         private static List<CultureInfo> _appLanguages = new List<CultureInfo>();
+        /// <summary>
+        /// List of all available application languages in CultureInfo format 
+        /// </summary>
         public static List<CultureInfo> AppLanguages
         {
             get { return _appLanguages; }
         }
 
+        /// <summary>
+        /// Current application language
+        /// </summary>
         public static CultureInfo CurrentLanguage
         {
             get { return Thread.CurrentThread.CurrentUICulture; }
@@ -52,20 +61,13 @@ namespace ReedBooks.Core
             }
         }
 
+        /// <summary>
+        /// Adds a new language to the list of available application languages
+        /// </summary>
+        /// <param name="culture">Language</param>
         public static void AddLang(CultureInfo culture)
         {
             _appLanguages.Add(culture);
-        }
-
-        public static string GetLanguageName(CultureInfo culture)
-        {
-            string name = MakeLanguageName(culture);
-            return name;
-        }
-
-        private static string MakeLanguageName(CultureInfo culture)
-        {
-            return $"{culture.NativeName} / {culture.EnglishName}";
         }
     }
 }
