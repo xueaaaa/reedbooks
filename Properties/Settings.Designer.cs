@@ -46,5 +46,14 @@ namespace ReedBooks.Properties {
                 this["Theme"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ru")]
+        public global::System.Globalization.CultureInfo DefaultLanguage {
+            get {
+                return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
+            }
+        }
     }
 }

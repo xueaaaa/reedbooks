@@ -36,12 +36,11 @@ namespace ReedBooks.Core
 
                 Thread.CurrentThread.CurrentUICulture = value;
                 ResourceDictionary dictionary = new ResourceDictionary();
-                switch (value.Name)
-                {
-                    default:
-                        dictionary.Source = new Uri("Resources/Locales/lang.xaml", UriKind.Relative);
-                        break;
-                }
+
+                if(value == Properties.Settings.Default.DefaultLanguage)
+                    dictionary.Source = new Uri("Resources/Locales/lang.xaml", UriKind.Relative);
+                else
+                    dictionary.Source = new Uri($"Resources/Locales/lang.{value.Name}.xaml", UriKind.Relative);
 
                 ResourceDictionary oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d =>
                 d.Source != null && d.Source.OriginalString.StartsWith("Resources/Locales/lang.")).First();

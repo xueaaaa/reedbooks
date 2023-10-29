@@ -22,6 +22,7 @@ namespace ReedBooks
             ApplicationContext.Books.Load();
 
             Localizator.AddLang(new CultureInfo("ru"));
+            Localizator.AddLang(new CultureInfo("en"));
             Localizator.LanguageChanged += App_LanguageChanged;
         }
 
