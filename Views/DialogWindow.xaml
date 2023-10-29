@@ -9,7 +9,7 @@
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
-        Title="{DynamicResource h_dialog_window}" MaxHeight="450" MaxWidth="700">
+        Title="{DynamicResource h_dialog_window}" SizeToContent="WidthAndHeight">
     <Window.DataContext>
         <local:DialogWindowViewModel/>
     </Window.DataContext>
@@ -17,15 +17,22 @@
         <Border Margin="30"
                 CornerRadius="10"
                 Background="{DynamicResource container_background_color}">
-            <StackPanel Margin="20">
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
                            TextWrapping="Wrap"
                            Text="{Binding Title}"/>
-                <Separator Margin="0 10 0 10"/>
-                <TextBlock TextWrapping="Wrap"
+                    <Separator Margin="0 10 0 10"/>
+                    <TextBlock TextWrapping="Wrap"
                            Text="{Binding Content}"/>
-
-                <DockPanel Margin="0 10 0 10">
+                </StackPanel>
+                
+                <DockPanel Grid.Row="1" Margin="0 10 0 10" VerticalAlignment="Bottom">
                     <Button Margin="0 0 20 0"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             IsDefault="True"
@@ -41,7 +48,7 @@
                             Foreground="{DynamicResource accent_color}"
                             Content="{DynamicResource d_refuse_button}"/>
                 </DockPanel>
-            </StackPanel>
+            </Grid>
         </Border>
     </Grid>
 </Window>
