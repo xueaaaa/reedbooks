@@ -64,8 +64,6 @@ namespace ReedBooks.ViewModels
         public ICommand SearchCommand { get; }
         public ICommand ReadCommand { get; }
         public ICommand OpenSettingsCommand { get; }
-        public ICommand TEMP_ChangeThemeCommand { get; }
-
         public MainWindowViewModel()
         {
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
@@ -75,7 +73,6 @@ namespace ReedBooks.ViewModels
             SearchCommand = new RelayCommand(obj => Search(obj));
             ReadCommand = new RelayCommand(obj => Read(obj));
             OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
-            TEMP_ChangeThemeCommand = new RelayCommand(obj => TEMP_ChangeTheme());
 
             var books = Book.ReadAll();
             LoadedBooks = new ObservableCollection<Book>(books);
@@ -141,15 +138,6 @@ namespace ReedBooks.ViewModels
         {
             SettingsWindow sW = new SettingsWindow();
             sW.ShowDialog();
-        }
-
-        public void TEMP_ChangeTheme()
-        {
-            var old = Application.Current.Resources.MergedDictionaries.Where(a => a.Source.OriginalString.EndsWith("theme.xaml")).First();
-            Application.Current.Resources.MergedDictionaries.Remove(old);
-            ResourceDictionary ne = new ResourceDictionary();
-            ne.Source = old.Source.OriginalString.Contains("light") ? new Uri("Resources/Themes/dark.theme.xaml", UriKind.Relative) : new Uri("Resources/Themes/light.theme.xaml", UriKind.Relative);
-            Application.Current.Resources.MergedDictionaries.Add(ne);
         }
     }
 }
