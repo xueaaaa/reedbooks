@@ -2,6 +2,7 @@
 using ReedBooks.Views;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -9,23 +10,29 @@ namespace ReedBooks.ViewModels
 {
     public class SettingsWindowViewModel : ObservableObject
     {
+        private ObservableCollection<SettingsParameterViewModel> _languages;
         public ObservableCollection<SettingsParameterViewModel> Languages
         {
             get
             {
-                var items = new ObservableCollection<SettingsParameterViewModel>();
-                foreach (var lang in Localizator.AppLanguages)
+                if (_languages == null)
                 {
-                    var item = new SettingsParameterViewModel
+                    var items = new ObservableCollection<SettingsParameterViewModel>();
+                    foreach (var lang in Localizator.AppLanguages)
                     {
-                        DisplayName = char.ToUpper(lang.NativeName[0]) + lang.NativeName.Substring(1),
-                        Tag = lang.Name
-                    };
+                        var item = new SettingsParameterViewModel
+                        {
+                            DisplayName = char.ToUpper(lang.NativeName[0]) + lang.NativeName.Substring(1),
+                            Tag = lang.Name
+                        };
 
-                    items.Add(item);
+                        items.Add(item);
+                    }
+
+                    _languages = items;
                 }
 
-                return items;
+                return _languages;
             }
         }
 
@@ -43,27 +50,33 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<SettingsParameterViewModel> _themes;
         public ObservableCollection<SettingsParameterViewModel> Themes
         {
             get
             {
-                var themes = new ObservableCollection<SettingsParameterViewModel>();
-
-                var lightTheme = new SettingsParameterViewModel
+                if (_themes == null)
                 {
-                    DisplayName = Application.Current.Resources[App.LIGHT_THEME_NAME].ToString(),
-                    Tag = App.LIGHT_THEME_NAME
-                };
-                themes.Add(lightTheme);
+                    var themes = new ObservableCollection<SettingsParameterViewModel>();
 
-                var darkTheme = new SettingsParameterViewModel
-                {
-                    DisplayName = Application.Current.Resources[App.DARK_THEME_NAME].ToString(),
-                    Tag = App.DARK_THEME_NAME
-                };
-                themes.Add(darkTheme);
-                    
-                return themes;
+                    var lightTheme = new SettingsParameterViewModel
+                    {
+                        DisplayName = Application.Current.Resources[App.LIGHT_THEME_NAME].ToString(),
+                        Tag = App.LIGHT_THEME_NAME
+                    };
+                    themes.Add(lightTheme);
+
+                    var darkTheme = new SettingsParameterViewModel
+                    {
+                        DisplayName = Application.Current.Resources[App.DARK_THEME_NAME].ToString(),
+                        Tag = App.DARK_THEME_NAME
+                    };
+                    themes.Add(darkTheme);
+
+                    _themes = themes;
+                }
+                
+                return _themes;
             }
         }
 
@@ -83,6 +96,9 @@ namespace ReedBooks.ViewModels
         public SettingsWindowViewModel()
         {
             SaveCommand = new RelayCommand(obj => Save());
+
+            SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
+            SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
         }
 
         public void Save()
