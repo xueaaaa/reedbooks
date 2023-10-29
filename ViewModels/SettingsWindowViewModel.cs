@@ -1,6 +1,8 @@
 ﻿using ReedBooks.Core;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
 {
@@ -15,7 +17,7 @@ namespace ReedBooks.ViewModels
                 {
                     var item = new SettingsParameterViewModel
                     {
-                        DisplayName = lang.NativeName,
+                        DisplayName = char.ToUpper(lang.NativeName[0]) + lang.NativeName.Substring(1),
                         Tag = lang.Name
                     };
 
@@ -75,8 +77,19 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        public ICommand SaveCommand { get; }
+
         public SettingsWindowViewModel()
         {
+            SaveCommand = new RelayCommand(obj => Save());
+        }
+
+        public void Save()
+        {
+            if (_selectedLanguage != null) Properties.Settings.Default.Language = new CultureInfo(_selectedLanguage.Tag);
+            if (_selectedTheme != null) Properties.Settings.Default.Theme = _selectedTheme.Tag;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

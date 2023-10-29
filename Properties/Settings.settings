@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ReedBooks.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DefaultLanguage" Type="System.Globalization.CultureInfo" Scope="User">
+    <Setting Name="Language" Type="System.Globalization.CultureInfo" Scope="User">
       <Value Profile="(Default)">ru</Value>
+    </Setting>
+    <Setting Name="Theme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">theme_light</Value>
     </Setting>
   </Settings>
 </SettingsFile>

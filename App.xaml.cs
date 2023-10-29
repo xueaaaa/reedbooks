@@ -17,19 +17,19 @@ namespace ReedBooks
             ApplicationContext.Database.EnsureCreated();
             ApplicationContext.Books.Load();
 
-            Localizator.AddLang(new CultureInfo("ru_RU"));
+            Localizator.AddLang(new CultureInfo("ru"));
             Localizator.LanguageChanged += App_LanguageChanged;
         }
 
         private void App_LanguageChanged(object sender, EventArgs e)
         {
-            ReedBooks.Properties.Settings.Default.DefaultLanguage = Localizator.CurrentLanguage;
+            ReedBooks.Properties.Settings.Default.Language = Localizator.CurrentLanguage;
             ReedBooks.Properties.Settings.Default.Save();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Localizator.CurrentLanguage = ReedBooks.Properties.Settings.Default.DefaultLanguage;
+            Localizator.CurrentLanguage = ReedBooks.Properties.Settings.Default.Language;
         }
     }
 }
