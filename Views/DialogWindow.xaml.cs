@@ -10,5 +10,10 @@ namespace ReedBooks.Views
             InitializeComponent();
             DataContext = new DialogWindowViewModel(title, content);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

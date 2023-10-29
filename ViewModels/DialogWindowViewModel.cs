@@ -1,6 +1,4 @@
 ﻿using ReedBooks.Core;
-using ReedBooks.Models.Book;
-using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
 {
@@ -39,24 +37,15 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        public ICommand OkCommand { get; }
-        public ICommand CancelCommand { get; }
-
         public DialogWindowViewModel() 
         {
-            OkCommand = new RelayCommand(obj => ChangeDialogResult(true));
-            CancelCommand = new RelayCommand(obj => ChangeDialogResult(false));
+
         }
 
         public DialogWindowViewModel(string title, string content) 
         {
             Title = title;
             Content = content;
-        }
-
-        public void ChangeDialogResult(bool val)
-        {
-            _dialogResult = val;
         }
     }
 }

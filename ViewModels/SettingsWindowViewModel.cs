@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Views;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
@@ -90,6 +91,15 @@ namespace ReedBooks.ViewModels
             if (_selectedTheme != null) Properties.Settings.Default.Theme = _selectedTheme.Tag;
 
             Properties.Settings.Default.Save();
+
+            var dW = new DialogWindow(Application.Current.Resources["dialog_settings_title"].ToString(),
+                Application.Current.Resources["dialog_settings_content"].ToString());
+
+            if (dW.ShowDialog() == true)
+            {
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
+            }
         }
     }
 }
