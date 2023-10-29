@@ -44,7 +44,7 @@ namespace ReedBooks.Core
                 }
 
                 ResourceDictionary oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d =>
-                d.Source != null && d.Source.OriginalString.StartsWith("/Resources/Locales/lang.")).First();
+                d.Source != null && d.Source.OriginalString.StartsWith("Resources/Locales/lang.")).First();
 
                 if (oldDictionary != null)
                 {

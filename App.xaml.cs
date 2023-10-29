@@ -20,16 +20,16 @@ namespace ReedBooks
             Localizator.AddLang(new CultureInfo("ru_RU"));
             Localizator.LanguageChanged += App_LanguageChanged;
         }
-        
 
-        private void App_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-            Localizator.CurrentLanguage = ReedBooks.Properties.Settings.Default.DefaultLanguage;
-        }
         private void App_LanguageChanged(object sender, EventArgs e)
         {
             ReedBooks.Properties.Settings.Default.DefaultLanguage = Localizator.CurrentLanguage;
             ReedBooks.Properties.Settings.Default.Save();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Localizator.CurrentLanguage = ReedBooks.Properties.Settings.Default.DefaultLanguage;
         }
     }
 }
