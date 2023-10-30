@@ -42,6 +42,10 @@
     <v:String x:Key="d_refuse_button">Cancel</v:String>
     <!--#endregion-->
 
+    <!--#region Reading Diary window -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Reader's Diary</v:String>
+    <!--#endregion-->
+
     <!--#region SPECIAL STRINGS -->
     <v:String x:Key="theme_light">Light</v:String>
     <v:String x:Key="theme_dark">Dark</v:String>

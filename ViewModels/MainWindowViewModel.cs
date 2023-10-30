@@ -63,6 +63,7 @@ namespace ReedBooks.ViewModels
         public ICommand DeleteBookCommand { get; }
         public ICommand SearchCommand { get; }
         public ICommand ReadCommand { get; }
+        public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OpenSettingsCommand { get; }
         public MainWindowViewModel()
         {
@@ -72,6 +73,7 @@ namespace ReedBooks.ViewModels
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
             SearchCommand = new RelayCommand(obj => Search(obj));
             ReadCommand = new RelayCommand(obj => Read(obj));
+            OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary(obj));
             OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
 
             var books = Book.ReadAll();
@@ -132,6 +134,13 @@ namespace ReedBooks.ViewModels
             var selectedBook = (Book)param;
             ReadingWindow rW = new ReadingWindow(selectedBook);
             rW.Show();
+        }
+
+        public void OpenReadingDiary(object param)
+        {
+            var selectedBook = (Book)param;
+            ReadingDiaryWindow rDW = new ReadingDiaryWindow(selectedBook);
+            rDW.Show();
         }
 
         public void OpenSettings()
