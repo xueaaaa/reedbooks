@@ -51,7 +51,12 @@
     <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
     <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
     <v:String x:Key="rd_assessment">Оценка</v:String>
-    <v:String x:Key="rd_plot_originality">Оригинальность сюжета:</v:String>
+    <v:String x:Key="rd_plot_originality">Оригинальность сюжета</v:String>
+    <v:String x:Key="rd_characters">Персонажи</v:String>
+    <v:String x:Key="rd_world_inside_book">Мир внутри книги</v:String>
+    <v:String x:Key="rd_love_line">Любовная линия</v:String>
+    <v:String x:Key="rd_humor">Юмор</v:String>
+    <v:String x:Key="rd_meaning_fulness">Смысловая нагрузка</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->

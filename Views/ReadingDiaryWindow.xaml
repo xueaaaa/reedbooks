@@ -9,7 +9,8 @@
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
-        Title="{DynamicResource h_reading_diary_window}" Height="450" Width="800">
+        SizeToContent="WidthAndHeight"
+        Title="{DynamicResource h_reading_diary_window}">
     <Window.DataContext>
         <local:ReadingDiaryWindowViewModel/>
     </Window.DataContext>
@@ -110,10 +111,104 @@
                                TextWrapping="Wrap"/>
                     <Separator/>
 
-                    <StackPanel Margin="0 10 0 0"
-                                Orientation="Horizontal">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
                         
-                    </StackPanel>
+                        <!--#region Plot Originality -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="0"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_plot_originality}"/>
+
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="0"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+
+                        <!--#region Characters -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_characters}"/>
+                        
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="1"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+                        
+                        <!--#region World Inside Book -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_world_inside_book}"/>
+
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="2"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+
+                        <!--#region Love Line -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="3"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_love_line}"/>
+
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="3"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.LoveLine}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+
+                        <!--#region Humor -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="4"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_humor}"/>
+
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="4"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.Humor}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+
+                        <!--#region Meaning Fulness -->
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="5"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_meaning_fulness}"/>
+
+                        <materialDesign:RatingBar Grid.Column="1"
+                                                  Grid.Row="5"
+                                                  Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness}"
+                                                  Background="{DynamicResource hint_color}"/>
+                        <!--#endregion-->
+                    </Grid>
                 </StackPanel>
             </Grid>
         </Border>

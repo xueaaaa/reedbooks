@@ -83,15 +83,15 @@ namespace ReedBooks.Models.Assessment
             }
         }
 
-        private ushort _meaningfulness;
+        private ushort _meaningFulness;
         [Range(1, 5)]
-        public ushort Meaningfulness
+        public ushort MeaningFulness
         {
-            get => _meaningfulness;
+            get => _meaningFulness;
             set
             {
-                _meaningfulness = value;
-                OnPropertyChanged(nameof(Meaningfulness));
+                _meaningFulness = value;
+                OnPropertyChanged(nameof(MeaningFulness));
             }
         }
 
