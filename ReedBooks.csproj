@@ -221,6 +221,7 @@
     <Compile Include="Models\Assessment\EmotionalAssessment.cs" />
     <Compile Include="Models\Diary\Quote.cs" />
     <Compile Include="ViewModels\DialogWindowViewModel.cs" />
+    <Compile Include="ViewModels\ReadingDiaryWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingsParameterViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ReadingWindowViewModel.cs" />
@@ -230,6 +231,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadingDiaryWindow.xaml.cs">
+      <DependentUpon>ReadingDiaryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReadingWindow.xaml.cs">
       <DependentUpon>ReadingWindow.xaml</DependentUpon>
@@ -317,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReadingDiaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

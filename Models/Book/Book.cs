@@ -1,10 +1,12 @@
-﻿using ReedBooks.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using ReedBooks.Core;
 using ReedBooks.Models.Diary;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using VersOne.Epub;
 
@@ -177,7 +179,27 @@ namespace ReedBooks.Models.Book
         /// <returns></returns>
         public static ObservableCollection<Book> ReadAll()
         {
-            return App.ApplicationContext.Books.Local.ToObservableCollection();
+            var books = App.ApplicationContext.Books.Local.ToObservableCollection();
+
+            foreach (var book in books)
+            {
+                if (book != null)
+                {
+                    App.ApplicationContext.Entry(book)
+                        .Reference(b => b.BoundDiary)
+                        .Load();
+
+                    App.ApplicationContext.Entry(book.BoundDiary)
+                        .Reference(d => d.EmotionalAssessment)
+                        .Load();
+
+                    App.ApplicationContext.Entry(book.BoundDiary)
+                        .Reference(d => d.BookAssessment)
+                        .Load();
+                }
+            }
+
+            return books;
         }
 
         /// <summary>

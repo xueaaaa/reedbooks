@@ -44,6 +44,14 @@
     
     <!--#region Reading Diary window -->
     <v:String x:Key="h_reading_diary_window">ReedBooks - Читательский дневник</v:String>
+    <v:String x:Key="rd_author_label">Автор:</v:String>
+    <v:String x:Key="rd_chapters_count_label">Количество глав:</v:String>
+    <v:String x:Key="rd_genre_label">Жанр:</v:String>
+    <v:String x:Key="rd_begin_reading_at">Начало прочтения:</v:String>
+    <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
+    <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
+    <v:String x:Key="rd_assessment">Оценка</v:String>
+    <v:String x:Key="rd_plot_originality">Оригинальность сюжета:</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->

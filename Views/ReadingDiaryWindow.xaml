@@ -3,13 +3,119 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
         Title="{DynamicResource h_reading_diary_window}" Height="450" Width="800">
+    <Window.DataContext>
+        <local:ReadingDiaryWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid Background="{DynamicResource window_background_color}">
-        
+        <Border Margin="30"
+                Background="{DynamicResource container_background_color}"
+                CornerRadius="20">
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Grid.ColumnSpan="2">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                               HorizontalAlignment="Center"
+                               Text="{Binding Book.Name}"/>
+                    <Separator/>
+                </StackPanel>
+
+                <Image Grid.Column="0"
+                       Grid.Row="1"
+                       MaxHeight="{Binding RelativeSource={RelativeSource AncestorType=RowDefinition}}"
+                       Width="Auto"
+                       Margin="20"
+                       Source="{Binding Book.LinkToCover}"/>
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="20">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="0 0 4 0"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_author_label}"/>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="0 0 4 0"
+                                   Text="{Binding Book.Author}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="0 0 4 0"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_chapters_count_label}"/>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="0 0 4 0"
+                                   Text="{Binding Book.ChaptersCount}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="0 0 4 0"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_genre_label}"/>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="0 0 4 0"
+                                   Text="{Binding Book.Genre}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="0 0 4 0"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_begin_reading_at}"/>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="0 0 4 0"
+                                   Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock HorizontalAlignment="Left"
+                                   Margin="0 0 4 0"
+                                   Foreground="{DynamicResource hint_color}"
+                                   Text="{DynamicResource rd_end_reading_at}"/>
+                        <TextBlock HorizontalAlignment="Right"
+                                   Margin="0 0 4 0"
+                                   Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0"
+                            Grid.Row="2"
+                            Margin="20">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               Text="{DynamicResource rd_my_emotions}"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="2"
+                            Margin="20">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               Text="{DynamicResource rd_assessment}"
+                               TextWrapping="Wrap"/>
+                    <Separator/>
+
+                    <StackPanel Margin="0 10 0 0"
+                                Orientation="Horizontal">
+                        
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

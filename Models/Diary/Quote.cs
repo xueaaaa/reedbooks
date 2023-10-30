@@ -6,10 +6,53 @@ namespace ReedBooks.Models.Diary
 {
     public class Quote : ObservableObject
     {
-        [Key] public Guid Guid { get; set; }
-        public string Data { get; set; }
-        public string Author { get; set; }
-        public string LocationInBook { get; set; }
+        private Guid _guid;
+        [Key]
+        public Guid Guid
+        {
+            get => _guid;
+            set
+            {
+                if (value != null)
+                {
+                    _guid = value;
+                    OnPropertyChanged(nameof(Guid));
+                }
+            }
+        }
+
+        private string _data;
+        public string Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                OnPropertyChanged(nameof(Data));
+            }
+        }
+
+        private string _author;
+        public string Author
+        {
+            get => _author;
+            set
+            {
+                _author = value;
+                OnPropertyChanged(nameof(Author));
+            }
+        }
+
+        private string _locationInBook;
+        public string LocationInBook
+        {
+            get => _locationInBook;
+            set
+            {
+                _locationInBook = value;
+                OnPropertyChanged(nameof(LocationInBook));
+            }
+        }
 
         public Quote(string data)
         {

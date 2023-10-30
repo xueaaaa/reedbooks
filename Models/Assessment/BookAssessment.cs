@@ -1,19 +1,99 @@
-﻿using System;
+﻿using ReedBooks.Core;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Assessment
 {
-    public class BookAssessment
+    public class BookAssessment : ObservableObject
     {
         private const ushort ASSESMENTS_TOTAL_NUMBER = 6;
 
-        [Key] public Guid Guid { get; set; }
-        [Range(1, 5)] public ushort PlotOriginality { get; set; }
-        [Range(1, 5)] public ushort Characters { get; set; }
-        [Range(1, 5)] public ushort WorldInsideBook { get; set; }
-        [Range(1, 5)] public ushort LoveLine { get; set; }
-        [Range(1, 5)] public ushort Humor { get; set; }
-        [Range(1, 5)] public ushort Meaningfulness { get; set; }
+        private Guid _guid;
+        [Key]
+        public Guid Guid
+        {
+            get => _guid;
+            set
+            {
+                if (value != null)
+                {
+                    _guid = value;
+                    OnPropertyChanged(nameof(Guid));
+                }
+            }
+        }
+
+        private ushort _plotOriginality;
+        [Range(1, 5)]
+        public ushort PlotOriginality
+        {
+            get => _plotOriginality;
+            set
+            {
+                _plotOriginality = value;
+                OnPropertyChanged(nameof(PlotOriginality));
+            }
+        }
+
+        private ushort _characters;
+        [Range(1, 5)]
+        public ushort Characters
+        {
+            get => _characters;
+            set
+            {
+                _characters = value;
+                OnPropertyChanged(nameof(Characters));
+            }
+        }
+
+        private ushort _worldInsideBook;
+        [Range(1, 5)]
+        public ushort WorldInsideBook
+        {
+            get => _worldInsideBook;
+            set
+            {
+                _worldInsideBook = value;
+                OnPropertyChanged(nameof(WorldInsideBook));
+            }
+        }
+
+        private ushort _loveLine;
+        [Range(1, 5)]
+        public ushort LoveLine
+        {
+            get => _loveLine;
+            set
+            {
+                _loveLine = value;
+                OnPropertyChanged(nameof(LoveLine));
+            }
+        }
+
+        private ushort _humor;
+        [Range(1, 5)]
+        public ushort Humor
+        {
+            get => _humor;
+            set
+            {
+                _humor = value;
+                OnPropertyChanged(nameof(Humor));
+            }
+        }
+
+        private ushort _meaningfulness;
+        [Range(1, 5)]
+        public ushort Meaningfulness
+        {
+            get => _meaningfulness;
+            set
+            {
+                _meaningfulness = value;
+                OnPropertyChanged(nameof(Meaningfulness));
+            }
+        }
 
         public BookAssessment() 
         {
