@@ -50,6 +50,9 @@
     <v:String x:Key="rd_begin_reading_at">Начало прочтения:</v:String>
     <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
     <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
+    <v:String x:Key="rd_start">В начале книги</v:String>
+    <v:String x:Key="rd_middle">В середине книги</v:String>
+    <v:String x:Key="rd_end">В конце книги</v:String>
     <v:String x:Key="rd_assessment">Оценка</v:String>
     <v:String x:Key="rd_plot_originality">Оригинальность сюжета</v:String>
     <v:String x:Key="rd_characters">Персонажи</v:String>

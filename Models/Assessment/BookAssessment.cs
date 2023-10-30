@@ -111,7 +111,7 @@ namespace ReedBooks.Models.Assessment
                 + WorldInsideBook 
                 + LoveLine 
                 + Humor 
-                + Meaningfulness) 
+                + MeaningFulness) 
                 / ASSESMENTS_TOTAL_NUMBER;
 
             return (float)Math.Round(rawAverage, 1);

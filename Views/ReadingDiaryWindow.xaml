@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
@@ -101,6 +102,105 @@
                     <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                Text="{DynamicResource rd_my_emotions}"
                                TextWrapping="Wrap"/>
+                    <Separator/>
+                    <!--#region At Start -->
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Text="{DynamicResource rd_start}"/>
+                    <StackPanel Margin="10"
+                                Orientation="Horizontal">
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetBeginEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Sadness}">
+                            <materialDesign:PackIcon Kind="EmoticonCryOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetBeginEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Amazement}">
+                            <materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetBeginEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Indifference}">
+                            <materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetBeginEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Interesting}">
+                            <materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetBeginEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Happyness}">
+                            <materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+                        </RadioButton>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region At Middle -->
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Text="{DynamicResource rd_middle}"/>
+                    <StackPanel Margin="10"
+                                Orientation="Horizontal">
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetMiddleEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Sadness}">
+                            <materialDesign:PackIcon Kind="EmoticonCryOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetMiddleEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Amazement}">
+                            <materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetMiddleEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Indifference}">
+                            <materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetMiddleEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Interesting}">
+                            <materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetMiddleEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Happyness}">
+                            <materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+                        </RadioButton>
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region At End -->
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Text="{DynamicResource rd_end}"/>
+                    <StackPanel Margin="10"
+                                Orientation="Horizontal">
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetEndEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Sadness}">
+                            <materialDesign:PackIcon Kind="EmoticonCryOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetEndEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Amazement}">
+                            <materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetEndEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Indifference}">
+                            <materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetEndEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Interesting}">
+                            <materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                     Command="{Binding SetEndEmoteCommand}"
+                                     CommandParameter="{x:Static e:Emote.Happyness}">
+                            <materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+                        </RadioButton>
+                    </StackPanel>
+                    <!--#endregion-->
                 </StackPanel>
 
                 <StackPanel Grid.Column="1"
@@ -135,6 +235,7 @@
 
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="0"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
@@ -149,6 +250,7 @@
                         
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="1"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
@@ -163,6 +265,7 @@
 
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="2"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
@@ -177,6 +280,7 @@
 
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="3"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.LoveLine}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
@@ -191,6 +295,7 @@
 
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="4"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.Humor}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
@@ -205,6 +310,7 @@
 
                         <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="5"
+                                                  HorizontalAlignment="Right"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness}"
                                                   Background="{DynamicResource hint_color}"/>
                         <!--#endregion-->
