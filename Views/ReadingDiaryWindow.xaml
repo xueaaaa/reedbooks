@@ -214,11 +214,11 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="1"
-                            Grid.Row="2"
-                            Margin="20">
+                                Grid.Row="2"
+                                Margin="20">
                         <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                               Text="{DynamicResource rd_assessment}"
-                               TextWrapping="Wrap"/>
+                                   Text="{DynamicResource rd_assessment}"
+                                   TextWrapping="Wrap"/>
                         <Separator/>
 
                         <Grid Margin="10">
@@ -227,6 +227,8 @@
                                 <ColumnDefinition Width="0.5*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -246,6 +248,9 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="0"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
@@ -261,6 +266,9 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="1"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.Characters,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
@@ -276,6 +284,9 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="2"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
@@ -291,6 +302,9 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="3"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.LoveLine,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
@@ -306,6 +320,9 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="4"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.Humor,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
@@ -321,23 +338,30 @@
                             <materialDesign:RatingBar Grid.Column="1"
                                                   Grid.Row="5"
                                                   HorizontalAlignment="Right"
+                                                  Min="0"
+                                                  Max="5"
+                                                  ValueIncrements="0.25"
                                                   Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness,Mode=TwoWay}"
                                                   Background="{DynamicResource hint_color}"/>
                             <!--#endregion-->
-                        </Grid>
 
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="10">
-                            <TextBlock HorizontalAlignment="Left"
-                                       VerticalAlignment="Center"
-                                       Margin="0 0 4 0"
-                                       Foreground="{DynamicResource hint_color}"
+                            <Separator Grid.ColumnSpan="2"
+                                       Grid.Row="6"/>
+
+                            <!--#region Arithmetic Average -->
+                            <TextBlock Grid.Column="0"
+                                       Grid.Row="7"
+                                       HorizontalAlignment="Left"
+                                       Foreground="{DynamicResource text_color}"
                                        Text="{DynamicResource rd_arithmetic_average}"/>
-                            <TextBlock HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Margin="0 0 4 0"
-                                       Text="{Binding Book.BoundDiary.BookAssessment.ArithmeticAverage}"/>
-                        </StackPanel>
+                            <materialDesign:RatingBar Grid.Column="1"
+                                                      Grid.Row="7"
+                                                      HorizontalAlignment="Right"
+                                                      IsReadOnly="True"
+                                                      Value="{Binding Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
+                                                      Background="{DynamicResource hint_color}"/>
+                            <!--#endregion-->
+                        </Grid>
                     </StackPanel>
 
                     <TextBox Grid.ColumnSpan="2"
@@ -350,6 +374,15 @@
                              SpellCheck.IsEnabled="True"
                              TextWrapping="Wrap"
                              Text="{Binding Book.BoundDiary.PlotBriefRetelling,Mode=TwoWay}"/>
+
+                    <StackPanel Grid.ColumnSpan="2"
+                                Grid.Row="6"
+                                Margin="20">
+                        <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                   Text="{DynamicResource rd_quotes}"
+                                   TextWrapping="Wrap"/>
+                        <Separator/>
+                    </StackPanel>
                 </Grid>
             </ScrollViewer>
         </Border>

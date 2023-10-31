@@ -63,6 +63,7 @@
     <v:String x:Key="rd_humor">Юмор</v:String>
     <v:String x:Key="rd_meaning_fulness">Смысловая нагрузка</v:String>
     <v:String x:Key="rd_plot_brief_retelling_hint">Это место для написания краткого пересказа. Или для ваших заметок.</v:String>
+    <v:String x:Key="rd_quotes">Цитаты</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->
