@@ -8,6 +8,9 @@ namespace ReedBooks.Models.Assessment
     {
         private const ushort ASSESMENTS_TOTAL_NUMBER = 6;
 
+        public delegate void AssessmentChangedEventHandler();
+        public event AssessmentChangedEventHandler AssessmentChanged;
+
         private Guid _guid;
         [Key]
         public Guid Guid
@@ -23,90 +26,108 @@ namespace ReedBooks.Models.Assessment
             }
         }
 
-        private ushort _plotOriginality;
+        private double _plotOriginality;
         [Range(1, 5)]
-        public ushort PlotOriginality
+        public double PlotOriginality
         {
             get => _plotOriginality;
             set
             {
                 _plotOriginality = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(PlotOriginality));
             }
         }
 
-        private ushort _characters;
+        private double _characters;
         [Range(1, 5)]
-        public ushort Characters
+        public double Characters
         {
             get => _characters;
             set
             {
                 _characters = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(Characters));
             }
         }
 
-        private ushort _worldInsideBook;
+        private double _worldInsideBook;
         [Range(1, 5)]
-        public ushort WorldInsideBook
+        public double WorldInsideBook
         {
             get => _worldInsideBook;
             set
             {
                 _worldInsideBook = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(WorldInsideBook));
             }
         }
 
-        private ushort _loveLine;
+        private double _loveLine;
         [Range(1, 5)]
-        public ushort LoveLine
+        public double LoveLine
         {
             get => _loveLine;
             set
             {
                 _loveLine = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(LoveLine));
             }
         }
 
-        private ushort _humor;
+        private double _humor;
         [Range(1, 5)]
-        public ushort Humor
+        public double Humor
         {
             get => _humor;
             set
             {
                 _humor = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(Humor));
             }
         }
 
-        private ushort _meaningFulness;
+        private double _meaningFulness;
         [Range(1, 5)]
-        public ushort MeaningFulness
+        public double MeaningFulness
         {
             get => _meaningFulness;
             set
             {
                 _meaningFulness = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                AssessmentChanged();
                 OnPropertyChanged(nameof(MeaningFulness));
             }
         }
 
-        public BookAssessment() 
+        public double ArithmeticAverage
+        {
+            get => CalculateArithmeticAverage();
+        }
+
+        public BookAssessment()
         {
             Guid = Guid.NewGuid();
+            AssessmentChanged += OnAssessmentChanged;
         }
 
         /// <summary>
-        /// Calculates the book's overall grade based on 6 individual grades, rounded to tenths
+        /// Calculates the book's overall grade based on 6 individual grades, rounded to hundredths
         /// </summary>
         /// <returns></returns>
-        public float CalculateArithmeticAverage()
+        public double CalculateArithmeticAverage()
         {
-            float rawAverage = (PlotOriginality 
+            double rawAverage = (PlotOriginality 
                 + Characters 
                 + WorldInsideBook 
                 + LoveLine 
@@ -114,7 +135,12 @@ namespace ReedBooks.Models.Assessment
                 + MeaningFulness) 
                 / ASSESMENTS_TOTAL_NUMBER;
 
-            return (float)Math.Round(rawAverage, 1);
+            return Math.Round(rawAverage,2);
+        }
+
+        private void OnAssessmentChanged()
+        {
+            OnPropertyChanged(nameof(ArithmeticAverage));
         }
     }
 }

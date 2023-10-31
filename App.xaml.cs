@@ -22,6 +22,8 @@ namespace ReedBooks
         {
             ApplicationContext = new AppContext();
             ApplicationContext.Database.EnsureCreated();
+            //ApplicationContext.Books.RemoveRange(ApplicationContext.Books.ToList());
+            //ApplicationContext.SaveChanges();
             ApplicationContext.Books.Load();
 
             EnsureCreated();

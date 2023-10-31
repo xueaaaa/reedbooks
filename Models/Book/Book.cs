@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ReedBooks.Core;
+﻿using ReedBooks.Core;
 using ReedBooks.Models.Diary;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using VersOne.Epub;
 

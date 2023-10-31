@@ -35,7 +35,7 @@ namespace ReedBooks.ViewModels
             SetEndEmoteCommand = new RelayCommand(obj => SetEndEmote(obj));
 
             if (book.BoundDiary == null)
-                book.BoundDiary = new ReadingDiary();
+                book.BoundDiary = ReadingDiary.Create();
             Book = book;
         }
 

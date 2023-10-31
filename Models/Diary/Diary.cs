@@ -30,6 +30,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _beginReadingAt = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(BeginReadingAt));
             }
         }
@@ -41,6 +42,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _endReadingAt = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(EndReadingAt));
             }
         }
@@ -52,6 +54,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _emotionalAssessment = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(EmotionalAssessment));
             }
         }
@@ -63,6 +66,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _bookAssessment = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(BookAssessment));
             }
         }
@@ -74,6 +78,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _plotBriefRetelling = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(PlotBriefRetelling));
             }
         }
@@ -85,16 +90,20 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _quotes = value;
+                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(Quotes));
             }
         }
 
-        public ReadingDiary()
+        public static ReadingDiary Create()
         {
-            Guid = Guid.NewGuid();
-            EmotionalAssessment = new EmotionalAssessment();
-            BookAssessment = new BookAssessment();
-            Quotes = new List<Quote>();
+            var diary = new ReadingDiary();
+            diary._guid = Guid.NewGuid();
+            diary._emotionalAssessment = new EmotionalAssessment();
+            diary._bookAssessment = new BookAssessment();
+            diary._quotes = new List<Quote>();
+
+            return diary;
         }
     }
 }
