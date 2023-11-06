@@ -352,6 +352,7 @@
                             <TextBlock Grid.Column="0"
                                        Grid.Row="7"
                                        HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"
                                        Foreground="{DynamicResource text_color}"
                                        Text="{DynamicResource rd_arithmetic_average}"/>
                             <materialDesign:RatingBar Grid.Column="1"
@@ -382,6 +383,56 @@
                                    Text="{DynamicResource rd_quotes}"
                                    TextWrapping="Wrap"/>
                         <Separator/>
+                        
+                        <WrapPanel Margin="10"
+                                   Orientation="Horizontal">
+                            <ItemsControl Margin="10"
+                                          ItemsSource="{Binding Book.BoundDiary.Quotes}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{DynamicResource MaterialDesignOutlinedButton}">
+                                            <DockPanel VerticalAlignment="Center"
+                                                       HorizontalAlignment="Left">
+                                                <Image DockPanel.Dock="Left"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Center"
+                                                       Source="/Resources/Icons/add.png"/>
+
+                                                <TextBlock DockPanel.Dock="Right"
+                                                           Margin="10 0 0 0"
+                                                           HorizontalAlignment="Right"
+                                                           VerticalAlignment="Center"
+                                                           Foreground="{DynamicResource text_color}"
+                                                           Text="{DynamicResource rd_add_quote}"/>
+                                            </DockPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
+                            <Button Style="{DynamicResource MaterialDesignOutlinedButton}">
+                                <DockPanel VerticalAlignment="Center"
+                                           HorizontalAlignment="Left">
+                                    <Image DockPanel.Dock="Left"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Source="/Resources/Icons/add.png"/>
+
+                                    <TextBlock DockPanel.Dock="Right"
+                                               Margin="10 0 0 0"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text_color}"
+                                               Text="{DynamicResource rd_add_quote}"/>
+                                </DockPanel>
+                            </Button>
+                        </WrapPanel>
+                        
                     </StackPanel>
                 </Grid>
             </ScrollViewer>
