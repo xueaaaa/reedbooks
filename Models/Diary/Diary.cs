@@ -1,8 +1,10 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Assessment;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace ReedBooks.Models.Diary
 {
@@ -83,16 +85,20 @@ namespace ReedBooks.Models.Diary
             }
         }
 
-        private List<Quote> _quotes;
-        public List<Quote> Quotes
+        private ObservableCollection<Quote> _quotes;
+        [NotMapped] public ObservableCollection<Quote> Quotes
         {
             get => _quotes;
             set
             {
                 _quotes = value;
-                App.ApplicationContext.UpdateEnitity(this);
                 OnPropertyChanged(nameof(Quotes));
             }
+        }
+
+        public ReadingDiary()
+        {
+            Quotes = new ObservableCollection<Quote>(App.ApplicationContext.Quotes.Where(q => q.DiaryGuid == this.Guid));
         }
 
         public static ReadingDiary Create()
@@ -101,7 +107,7 @@ namespace ReedBooks.Models.Diary
             diary._guid = Guid.NewGuid();
             diary._emotionalAssessment = new EmotionalAssessment();
             diary._bookAssessment = new BookAssessment();
-            diary._quotes = new List<Quote>();
+            diary._quotes = new ObservableCollection<Quote>();
 
             return diary;
         }

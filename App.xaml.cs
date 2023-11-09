@@ -25,6 +25,7 @@ namespace ReedBooks
             //ApplicationContext.Books.RemoveRange(ApplicationContext.Books.ToList());
             //ApplicationContext.SaveChanges();
             ApplicationContext.Books.Load();
+            ApplicationContext.Quotes.Load();
 
             EnsureCreated();
 

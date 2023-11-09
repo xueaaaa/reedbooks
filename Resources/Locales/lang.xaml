@@ -64,7 +64,12 @@
     <v:String x:Key="rd_meaning_fulness">Смысловая нагрузка</v:String>
     <v:String x:Key="rd_plot_brief_retelling_hint">Это место для написания краткого пересказа. Или для ваших заметок.</v:String>
     <v:String x:Key="rd_quotes">Цитаты</v:String>
-    <v:String x:Key="rd_add_quote">Добавить...</v:String>
+    <v:String x:Key="rd_add_quote">Добавить</v:String>
+    <v:String x:Key="rd_add_quote_header">Добавление цитаты</v:String>
+    <v:String x:Key="rd_quote_data_hint">Введите текст цитаты...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Введите автора цитаты...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
+    <v:String x:Key="rd_cancel">Отменить</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->
@@ -73,5 +78,8 @@
 
     <v:String x:Key="dialog_settings_title">Требуется перезагрузка</v:String>
     <v:String x:Key="dialog_settings_content">Для вступления установленных настроек в силу необходимо перезагрузить приложение. Вы хотите сделать это сейчас?</v:String>
+
+    <v:String x:Key="dialog_error_title">Ошибка</v:String>
+    <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
     <!--#endregion-->
 </ResourceDictionary>

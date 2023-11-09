@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using ReedBooks.Models.Diary;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -111,6 +112,7 @@ namespace ReedBooks.ViewModels
             {
                 var filePath = ofd.FileName;
                 Book book = await Book.Create(filePath);
+                book.BoundDiary = ReadingDiary.Create();
                 LoadedBooks.Add(book);
             }
         }
