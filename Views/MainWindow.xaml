@@ -324,6 +324,7 @@
                                                             Orientation="Vertical">
                                                     <TextBlock HorizontalAlignment="Center"
                                                                Text="{Binding Name}"
+                                                               TextWrapping="Wrap"
                                                                FontWeight="SemiBold"
                                                                FontSize="20"/>
                                                     <TextBlock HorizontalAlignment="Left"
