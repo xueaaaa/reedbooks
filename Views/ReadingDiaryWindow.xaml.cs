@@ -1,6 +1,7 @@
 ﻿using ReedBooks.Models.Book;
 using ReedBooks.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ReedBooks.Views
 {
@@ -10,6 +11,11 @@ namespace ReedBooks.Views
         {
             InitializeComponent();
             DataContext = new ReadingDiaryWindowViewModel(book);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((ReadingDiaryWindowViewModel)DataContext).DeleteQuoteCommand.Execute(((Button)sender).CommandParameter);
         }
     }
 }

@@ -5,6 +5,7 @@ using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
 using ReedBooks.Properties;
 using ReedBooks.Views;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -60,6 +61,7 @@ namespace ReedBooks.ViewModels
         public ICommand SetMiddleEmoteCommand { get; }
         public ICommand SetEndEmoteCommand { get; }
         public ICommand AddQuoteCommand { get; }
+        public ICommand DeleteQuoteCommand { get; }
 
         public ReadingDiaryWindowViewModel()
         {
@@ -72,6 +74,7 @@ namespace ReedBooks.ViewModels
             SetMiddleEmoteCommand = new RelayCommand(obj => SetMiddleEmote(obj));
             SetEndEmoteCommand = new RelayCommand(obj => SetEndEmote(obj));
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
+            DeleteQuoteCommand = new RelayCommand(obj => DeleteQuote(obj));
 
             Book = book;
         }
@@ -103,6 +106,13 @@ namespace ReedBooks.ViewModels
             else
                 new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(), Application.Current.Resources["dialog_null_quote_content"].ToString())
                     .ShowDialog();
+        }
+
+        public async void DeleteQuote(object param)
+        {
+            Quote toDelete = await App.ApplicationContext.FindAsync<Quote>(param);
+            Book.BoundDiary.Quotes.Remove(toDelete);
+            await App.ApplicationContext.RemoveEntityAsync(toDelete);
         }
     }
 }
