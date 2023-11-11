@@ -24,15 +24,15 @@
 
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Reading Mode</v:String>
-    <v:String x:Key="r_temporarily_out_of_service">This part of the application is temporarily out of service.</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">This part of the application is currently not available</v:String>
     <!--#endregion-->
 
     <!--#region Settings window-->
     <v:String x:Key="h_settings_window">ReedBooks - Settings</v:String>
     <v:String x:Key="s_language_label">Application Language</v:String>
-    <v:String x:Key="s_language_hint">This setting only changes the interface language. Authors' names and content are not localized.</v:String>
+    <v:String x:Key="s_language_hint">This setting only changes the interface language. Book authors' names and content remain untranslated.</v:String>
     <v:String x:Key="s_theme_label">Theme</v:String>
-    <v:String x:Key="s_theme_hint">Changes the application theme to light (default) or dark.</v:String>
+    <v:String x:Key="s_theme_hint">Switches the application theme to light (default) or dark.</v:String>
     <v:String x:Key="s_save">Save</v:String>
     <!--#endregion-->
 
@@ -43,7 +43,33 @@
     <!--#endregion-->
 
     <!--#region Reading Diary window -->
-    <v:String x:Key="h_reading_diary_window">ReedBooks - Reader's Diary</v:String>
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Reading Diary</v:String>
+    <v:String x:Key="rd_author_label">Author:</v:String>
+    <v:String x:Key="rd_chapters_count_label">Number of Chapters:</v:String>
+    <v:String x:Key="rd_genre_label">Genre:</v:String>
+    <v:String x:Key="rd_genre_hint">Enter the genre name...</v:String>
+    <v:String x:Key="rd_begin_reading_at">Start of Reading:</v:String>
+    <v:String x:Key="rd_end_reading_at">End of Reading:</v:String>
+    <v:String x:Key="rd_arithmetic_average">Overall Rating:</v:String>
+    <v:String x:Key="rd_my_emotions">My Emotions</v:String>
+    <v:String x:Key="rd_start">At the Beginning of the Book</v:String>
+    <v:String x:Key="rd_middle">In the Middle of the Book</v:String>
+    <v:String x:Key="rd_end">At the End of the Book</v:String>
+    <v:String x:Key="rd_assessment">Rating</v:String>
+    <v:String x:Key="rd_plot_originality">Plot Originality</v:String>
+    <v:String x:Key="rd_characters">Characters</v:String>
+    <v:String x:Key="rd_world_inside_book">World Inside the Book</v:String>
+    <v:String x:Key="rd_love_line">Love Line</v:String>
+    <v:String x:Key="rd_humor">Humor</v:String>
+    <v:String x:Key="rd_meaning_fulness">Meaningfulness</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">This is a place for a brief retelling or your notes.</v:String>
+    <v:String x:Key="rd_quotes">Quotes</v:String>
+    <v:String x:Key="rd_add_quote">Add</v:String>
+    <v:String x:Key="rd_add_quote_header">Adding a Quote</v:String>
+    <v:String x:Key="rd_quote_data_hint">Enter the quote text...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Enter the quote author...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Enter the quote location in the book (e.g., chapter, page, etc.)...</v:String>
+    <v:String x:Key="rd_cancel">Close</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->
@@ -51,6 +77,12 @@
     <v:String x:Key="theme_dark">Dark</v:String>
 
     <v:String x:Key="dialog_settings_title">Restart Required</v:String>
-    <v:String x:Key="dialog_settings_content">To apply the changes made in settings, the application needs to be restarted. Do you want to do this now?</v:String>
+    <v:String x:Key="dialog_settings_content">To apply the set preferences, the application needs to be restarted. Do you want to do it now?</v:String>
+
+    <v:String x:Key="dialog_error_title">Error</v:String>
+    <v:String x:Key="dialog_null_quote_content">Cannot add an empty quote!</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">Delete Book</v:String>
+    <v:String x:Key="dialog_delete_book_content">Are you sure you want to delete this book?</v:String>
     <!--#endregion-->
 </ResourceDictionary>
