@@ -392,12 +392,12 @@
                                                     Margin="10">
                                                 <Button.CommandParameter>
                                                     <StackPanel Margin="20"
+                                                                MaxWidth="500"
                                                                 Orientation="Vertical"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center">
                                                         <TextBlock Text="{Binding Data}"
                                                                    Foreground="{DynamicResource text_color}"
-                                                                   MaxWidth="150"
                                                                    TextWrapping="Wrap"
                                                                    Margin="0 0 0 7"/>
                                                         <TextBlock Text="{Binding Author}"
