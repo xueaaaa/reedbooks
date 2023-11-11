@@ -16,7 +16,7 @@ namespace ReedBooks.ViewModels
         private Visibility _sidePanelVisibility;
         public Visibility SidePanelVisibility
         {
-            get { return _sidePanelVisibility; }
+            get => _sidePanelVisibility;
             set
             {
                 if (_sidePanelVisibility != value)
@@ -29,7 +29,7 @@ namespace ReedBooks.ViewModels
         private int _selectedTab;
         public int SelectedTab
         {
-            get { return _selectedTab; }
+            get => _selectedTab;
             set
             {
                 if (value >= 0) _selectedTab = value;
@@ -39,10 +39,10 @@ namespace ReedBooks.ViewModels
         private ObservableCollection<Book> _loadedBooks;
         public ObservableCollection<Book> LoadedBooks
         {
-            get { return _loadedBooks; }
+            get => _loadedBooks; 
             set
             {
-                if (value != null) _loadedBooks = value;
+                _loadedBooks = value;
                 OnPropertyChanged(nameof(LoadedBooks));
             }
         }
@@ -50,10 +50,10 @@ namespace ReedBooks.ViewModels
         private ObservableCollection<Book> _searchedBooks;
         public ObservableCollection<Book> SearchedBooks
         {
-            get { return _searchedBooks; }
+            get => _searchedBooks;
             set
             {
-                if (value != null) _searchedBooks = value;
+                _searchedBooks = value;
                 OnPropertyChanged(nameof(SearchedBooks));
             }
         }

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
@@ -13,6 +14,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+    </Window.Resources>
     <Grid Background="{DynamicResource window_background_color}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -168,11 +172,28 @@
                           Background="{DynamicResource container_background_color}"
                           IsExpanded="True"
                           Header="{DynamicResource m_readers_diary_collection}">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Foreground="{DynamicResource hint_color}"
-                               Text="{DynamicResource m_no_elements}"/>
-                    </StackPanel>
-                    
+                    <ItemsControl ItemsSource="{Binding LoadedBooks}">
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <ItemsPresenter/>
+                                    <TextBlock Foreground="{DynamicResource hint_color}"
+                                               Text="{DynamicResource m_no_elements}"
+                                               Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Content="{Binding Name}"
+                                        Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
                 </Expander>
 
                 <!-- Collections expander -->
@@ -316,13 +337,12 @@
                                                                    VerticalAlignment="Center"
                                                                    Foreground="{DynamicResource hint_color}"
                                                                    FontSize="16"/>
-                                                        <TextBox HorizontalAlignment="Left"
-                                                                 VerticalAlignment="Center"
-                                                                 Text="{Binding Genre}"
-                                                                 Margin="0 0 4 0"
-                                                                 FontWeight="Light"
-                                                                 FontSize="16"
-                                                                 Foreground="{DynamicResource hint_color}"/>
+                                                        <TextBlock HorizontalAlignment="Left"
+                                                                   VerticalAlignment="Center"
+                                                                   Text="{Binding Genre}"
+                                                                   Margin="0 0 4 0"
+                                                                   FontSize="16"
+                                                                   Foreground="{DynamicResource hint_color}"/>
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Text="{DynamicResource m_chapters_count}"
