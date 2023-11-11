@@ -81,5 +81,8 @@
 
     <v:String x:Key="dialog_error_title">Ошибка</v:String>
     <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>
+    <v:String x:Key="dialog_delete_book_content">Вы уверены, что хотите удалить эту книгу?</v:String>
     <!--#endregion-->
 </ResourceDictionary>

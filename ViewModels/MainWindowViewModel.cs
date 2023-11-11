@@ -119,10 +119,16 @@ namespace ReedBooks.ViewModels
 
         public void DeleteBook(object param)
         {
-            var guid = (Guid)param;
-            var book = LoadedBooks.Where(b => b.Guid == guid).First();
-            LoadedBooks.Remove(book);
-            book.Delete();
+            var dialog = new DialogWindow(Application.Current.Resources["dialog_delete_book_title"].ToString(), 
+                Application.Current.Resources["dialog_delete_book_content"].ToString());
+
+            if (dialog.ShowDialog() == true)
+            {
+                var guid = (Guid)param;
+                var book = LoadedBooks.Where(b => b.Guid == guid).First();
+                LoadedBooks.Remove(book);
+                book.Delete();
+            }
         }
 
         public void Search(object param)
