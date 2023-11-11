@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using ReedBooks.Models.Diary;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ namespace ReedBooks.ViewModels
         private Visibility _sidePanelVisibility;
         public Visibility SidePanelVisibility
         {
-            get { return _sidePanelVisibility; }
+            get => _sidePanelVisibility;
             set
             {
                 if (_sidePanelVisibility != value)
@@ -28,7 +29,7 @@ namespace ReedBooks.ViewModels
         private int _selectedTab;
         public int SelectedTab
         {
-            get { return _selectedTab; }
+            get => _selectedTab;
             set
             {
                 if (value >= 0) _selectedTab = value;
@@ -38,10 +39,10 @@ namespace ReedBooks.ViewModels
         private ObservableCollection<Book> _loadedBooks;
         public ObservableCollection<Book> LoadedBooks
         {
-            get { return _loadedBooks; }
+            get => _loadedBooks; 
             set
             {
-                if (value != null) _loadedBooks = value;
+                _loadedBooks = value;
                 OnPropertyChanged(nameof(LoadedBooks));
             }
         }
@@ -49,10 +50,10 @@ namespace ReedBooks.ViewModels
         private ObservableCollection<Book> _searchedBooks;
         public ObservableCollection<Book> SearchedBooks
         {
-            get { return _searchedBooks; }
+            get => _searchedBooks;
             set
             {
-                if (value != null) _searchedBooks = value;
+                _searchedBooks = value;
                 OnPropertyChanged(nameof(SearchedBooks));
             }
         }
@@ -63,6 +64,7 @@ namespace ReedBooks.ViewModels
         public ICommand DeleteBookCommand { get; }
         public ICommand SearchCommand { get; }
         public ICommand ReadCommand { get; }
+        public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OpenSettingsCommand { get; }
         public MainWindowViewModel()
         {
@@ -72,6 +74,7 @@ namespace ReedBooks.ViewModels
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
             SearchCommand = new RelayCommand(obj => Search(obj));
             ReadCommand = new RelayCommand(obj => Read(obj));
+            OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary(obj));
             OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
 
             var books = Book.ReadAll();
@@ -109,16 +112,23 @@ namespace ReedBooks.ViewModels
             {
                 var filePath = ofd.FileName;
                 Book book = await Book.Create(filePath);
+                book.BoundDiary = ReadingDiary.Create();
                 LoadedBooks.Add(book);
             }
         }
 
         public void DeleteBook(object param)
         {
-            var guid = (Guid)param;
-            var book = LoadedBooks.Where(b => b.Guid == guid).First();
-            LoadedBooks.Remove(book);
-            book.Delete();
+            var dialog = new DialogWindow(Application.Current.Resources["dialog_delete_book_title"].ToString(), 
+                Application.Current.Resources["dialog_delete_book_content"].ToString());
+
+            if (dialog.ShowDialog() == true)
+            {
+                var guid = (Guid)param;
+                var book = LoadedBooks.Where(b => b.Guid == guid).First();
+                LoadedBooks.Remove(book);
+                book.Delete();
+            }
         }
 
         public void Search(object param)
@@ -132,6 +142,13 @@ namespace ReedBooks.ViewModels
             var selectedBook = (Book)param;
             ReadingWindow rW = new ReadingWindow(selectedBook);
             rW.Show();
+        }
+
+        public void OpenReadingDiary(object param)
+        {
+            var selectedBook = (Book)param;
+            ReadingDiaryWindow rDW = new ReadingDiaryWindow(selectedBook);
+            rDW.Show();
         }
 
         public void OpenSettings()

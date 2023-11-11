@@ -24,7 +24,7 @@
 
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
-    <v:String x:Key="r_temporarily_out_of_service">Эта чать приложения пока не работает.</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
 
     <!--#region Settings window-->
@@ -41,6 +41,36 @@
     <v:String x:Key="d_acept_button">ОК</v:String>
     <v:String x:Key="d_refuse_button">Отмена</v:String>
     <!--#endregion-->
+    
+    <!--#region Reading Diary window -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Читательский дневник</v:String>
+    <v:String x:Key="rd_author_label">Автор:</v:String>
+    <v:String x:Key="rd_chapters_count_label">Количество глав:</v:String>
+    <v:String x:Key="rd_genre_label">Жанр:</v:String>
+    <v:String x:Key="rd_genre_hint">Введите название жанра...</v:String>
+    <v:String x:Key="rd_begin_reading_at">Начало прочтения:</v:String>
+    <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
+    <v:String x:Key="rd_arithmetic_average">Общая оценка:</v:String>
+    <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
+    <v:String x:Key="rd_start">В начале книги</v:String>
+    <v:String x:Key="rd_middle">В середине книги</v:String>
+    <v:String x:Key="rd_end">В конце книги</v:String>
+    <v:String x:Key="rd_assessment">Оценка</v:String>
+    <v:String x:Key="rd_plot_originality">Оригинальность сюжета</v:String>
+    <v:String x:Key="rd_characters">Персонажи</v:String>
+    <v:String x:Key="rd_world_inside_book">Мир внутри книги</v:String>
+    <v:String x:Key="rd_love_line">Любовная линия</v:String>
+    <v:String x:Key="rd_humor">Юмор</v:String>
+    <v:String x:Key="rd_meaning_fulness">Смысловая нагрузка</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">Это место для написания краткого пересказа. Или для ваших заметок.</v:String>
+    <v:String x:Key="rd_quotes">Цитаты</v:String>
+    <v:String x:Key="rd_add_quote">Добавить</v:String>
+    <v:String x:Key="rd_add_quote_header">Добавление цитаты</v:String>
+    <v:String x:Key="rd_quote_data_hint">Введите текст цитаты...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Введите автора цитаты...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
+    <v:String x:Key="rd_cancel">Закрыть</v:String>
+    <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->
     <v:String x:Key="theme_light">Светлая</v:String>
@@ -48,5 +78,12 @@
 
     <v:String x:Key="dialog_settings_title">Требуется перезагрузка</v:String>
     <v:String x:Key="dialog_settings_content">Для вступления установленных настроек в силу необходимо перезагрузить приложение. Вы хотите сделать это сейчас?</v:String>
+
+    <v:String x:Key="dialog_error_title">Ошибка</v:String>
+    <v:String x:Key="dialog_fatal_error_content">Работа приложения будет приостановлена, потому что произошла ошибка:</v:String>
+    <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>
+    <v:String x:Key="dialog_delete_book_content">Вы уверены, что хотите удалить эту книгу?</v:String>
     <!--#endregion-->
 </ResourceDictionary>

@@ -1,0 +1,523 @@
+﻿<Window x:Class="ReedBooks.Views.ReadingDiaryWindow"
+	    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
+	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
+        mc:Ignorable="d"
+        Foreground="{DynamicResource text_color}"
+        FontFamily="{DynamicResource MainFont}"
+        FontSize="14"
+        SizeToContent="WidthAndHeight"
+        Title="{DynamicResource h_reading_diary_window}">
+	<Window.DataContext>
+		<local:ReadingDiaryWindowViewModel/>
+	</Window.DataContext>
+	<Grid Background="{DynamicResource window_background_color}">
+        <materialDesign:DialogHost DialogContentUniformCornerRadius="20"
+                                   CloseOnClickAway="True"
+                                   DialogBackground="{DynamicResource container_background_color}">
+
+            <Border Margin="30"
+                    Background="{DynamicResource container_background_color}"
+                    CornerRadius="20">
+				<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+					<Grid Margin="20">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.5*"/>
+							<ColumnDefinition Width="0.5*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="0.5*"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="2">
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding Book.Name}"/>
+							<Separator/>
+						</StackPanel>
+						<Image Grid.Column="0"
+                               Grid.Row="1"
+                               Height="250"
+                               Width="Auto"
+                               Margin="20"
+                               Source="{Binding Book.LinkToCover}"/>
+						<StackPanel Grid.Column="1"
+                                    Grid.Row="1"
+                                    Margin="20">
+							<StackPanel Orientation="Horizontal">
+								<TextBlock HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 4 0"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_author_label}"/>
+								<TextBlock HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 4 0"
+                                           Text="{Binding Book.Author}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock HorizontalAlignment="Left"
+                                           Margin="0 0 4 0"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_chapters_count_label}"/>
+								<TextBlock HorizontalAlignment="Right"
+                                           Margin="0 0 4 0"
+                                           Text="{Binding Book.ChaptersCount}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 4 0"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_genre_label}"/>
+								<TextBox HorizontalAlignment="Right"
+                                         Margin="0 0 4 0"
+                                         materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
+                                         Text="{Binding Book.Genre}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 4 0"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_begin_reading_at}"/>
+								<TextBox HorizontalAlignment="Right"
+                                         Margin="0 0 4 0"
+                                         Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 4 0"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_end_reading_at}"/>
+								<TextBox HorizontalAlignment="Right"
+                                         Margin="0 0 4 0"
+                                         Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy}"/>
+							</StackPanel>
+						</StackPanel>
+
+                        <Grid Grid.Column="0"
+                              Grid.Row="2">
+                            <StackPanel Margin="20"
+                                        IsEnabled="False">
+                                <StackPanel.Effect>
+                                <BlurEffect Radius="30"/>
+                            </StackPanel.Effect>
+							    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                       Text="{DynamicResource rd_my_emotions}"
+                                       TextWrapping="Wrap"/>
+							    <Separator/>
+							    <!--#region At Start -->
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                       Text="{DynamicResource rd_start}"/>
+							<StackPanel Margin="10"
+                                        Orientation="Horizontal">
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetBeginEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Sadness}">
+									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetBeginEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Amazement}">
+									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetBeginEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Indifference}">
+									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetBeginEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Interesting}">
+									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetBeginEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Happyness}">
+									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+								</RadioButton>
+							</StackPanel>
+							<!--#endregion-->
+							    <!--#region At Middle -->
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                       Text="{DynamicResource rd_middle}"/>
+							<StackPanel Margin="10"
+                                        Orientation="Horizontal">
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetMiddleEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Sadness}">
+									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetMiddleEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Amazement}">
+									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetMiddleEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Indifference}">
+									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetMiddleEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Interesting}">
+									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetMiddleEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Happyness}">
+									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+								</RadioButton>
+							</StackPanel>
+							<!--#endregion-->
+							    <!--#region At End -->
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                       Text="{DynamicResource rd_end}"/>
+							<StackPanel Margin="10"
+                                        Orientation="Horizontal">
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetEndEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Sadness}">
+									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetEndEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Amazement}">
+									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetEndEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Indifference}">
+									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetEndEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Interesting}">
+									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+								</RadioButton>
+								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                                             Command="{Binding SetEndEmoteCommand}"
+                                             CommandParameter="{x:Static e:Emote.Happyness}">
+									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+								</RadioButton>
+							</StackPanel>
+							<!--#endregion-->
+						</StackPanel>
+                            <TextBlock Text="{DynamicResource r_temporarily_out_of_service}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource hint_color}"/>
+                        </Grid>
+						
+						<StackPanel Grid.Column="1"
+                                    Grid.Row="2"
+                                    Margin="20">
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                       Text="{DynamicResource rd_assessment}"
+                                       TextWrapping="Wrap"/>
+							<Separator/>
+							<Grid Margin="10">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="0.5*"/>
+									<ColumnDefinition Width="0.5*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+									<RowDefinition/>
+								</Grid.RowDefinitions>
+								<!--#region Plot Originality -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="0"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_plot_originality}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="0"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<!--#region Characters -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="1"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_characters}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="1"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.Characters,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<!--#region World Inside Book -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="2"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_world_inside_book}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="2"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<!--#region Love Line -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="3"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_love_line}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="3"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.LoveLine,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<!--#region Humor -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="4"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_humor}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="4"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.Humor,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<!--#region Meaning Fulness -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="5"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource rd_meaning_fulness}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="5"
+                                          HorizontalAlignment="Right"
+                                          Min="0"
+                                          Max="5"
+                                          ValueIncrements="0.5"
+                                          Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness,Mode=TwoWay}"
+                                          Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+								<Separator Grid.ColumnSpan="2"
+                                           Grid.Row="6"/>
+								<!--#region Arithmetic Average -->
+								<TextBlock Grid.Column="0"
+                                           Grid.Row="7"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource text_color}" 
+                                           Text="{DynamicResource rd_arithmetic_average}"/>
+								<materialDesign:RatingBar Grid.Column="1"
+                                              Grid.Row="7"
+                                              HorizontalAlignment="Right"
+                                              IsReadOnly="True"
+                                              Value="{Binding Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
+                                              Background="{DynamicResource hint_color}"/>
+								<!--#endregion-->
+							</Grid>
+						</StackPanel>
+						<TextBox Grid.ColumnSpan="2"
+                                 Grid.Row="3"
+                                 Margin="20"
+                                 VerticalScrollBarVisibility="Auto"
+                                 VerticalAlignment="Stretch"
+                                 materialDesign:HintAssist.Hint="{DynamicResource rd_plot_brief_retelling_hint}"
+                                 AcceptsReturn="True"
+                                 SpellCheck.IsEnabled="True"
+                                 TextWrapping="Wrap"
+                                 Text="{Binding Book.BoundDiary.PlotBriefRetelling,Mode=TwoWay}"/>
+						<StackPanel Grid.ColumnSpan="2"
+                                    Grid.Row="6"
+                                    Margin="20">
+							<TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                       Text="{DynamicResource rd_quotes}"
+                                       TextWrapping="Wrap"/>
+							<Separator/>
+							<WrapPanel Margin="10"
+                                       Orientation="Horizontal">
+                                <ItemsControl x:Name="ItemsControl"
+                                              Margin="10"
+                                              ItemsSource="{Binding Book.BoundDiary.Quotes}">
+
+                                    <ItemsControl.ItemsPanel>
+										<ItemsPanelTemplate>
+											<WrapPanel Orientation="Horizontal"/>
+										</ItemsPanelTemplate>
+									</ItemsControl.ItemsPanel>
+                                    
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<Button Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                    Margin="10">
+                                                <Button.CommandParameter>
+                                                    <StackPanel Margin="20"
+                                                                MaxWidth="500"
+                                                                Orientation="Vertical"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center">
+                                                        <TextBlock Text="{Binding Data}"
+                                                                   Foreground="{DynamicResource text_color}"
+                                                                   TextWrapping="Wrap"
+                                                                   Margin="0 0 0 7"/>
+                                                        <TextBlock Text="{Binding Author}"
+                                                                   Foreground="{DynamicResource text_color}"
+                                                                   Style="{DynamicResource MaterialDesignBody2TextBlock}"/>
+                                                        <TextBlock Text="{Binding LocationInBook}"
+                                                                   Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                                                                   Foreground="{DynamicResource hint_color}"/>
+
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                                    Click="Button_Click"
+                                                                    CommandParameter="{Binding Guid}"
+                                                                    HorizontalAlignment="Left"
+                                                                    Width="25" 
+                                                                    Height="25">
+                                                                <Image Width="20" 
+                                                                       Height="20" 
+                                                                       Source="/Resources/Icons/delete.png"/>
+                                                            </Button>
+
+                                                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                                    Grid.Column="1"
+                                                                    HorizontalAlignment="Right"
+                                                                    Foreground="{DynamicResource accent_color}"
+                                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                                    Content="{DynamicResource rd_cancel}"/>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </Button.CommandParameter>
+
+                                                <TextBlock DockPanel.Dock="Right"
+                                                           Margin="10 0 0 0"
+                                                           HorizontalAlignment="Left"
+                                                           VerticalAlignment="Center"
+                                                           MaxWidth="150"
+                                                           TextTrimming="WordEllipsis"
+                                                           Foreground="{DynamicResource text_color}"
+                                                           Text="{Binding Data}"/>
+                                            </Button>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+								</ItemsControl>
+                                
+								<Button Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+									<Button.CommandParameter>
+										<StackPanel Margin="20"
+                                                    Orientation="Vertical"
+                                                    MaxWidth="500">
+                                            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                                       Foreground="{DynamicResource text_color}"
+                                                       Margin="0 0 0 20"
+                                                       Text="{DynamicResource rd_add_quote_header}"/>
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
+                                                     Margin="0 0 0 15"
+                                                     VerticalScrollBarVisibility="Auto"
+                                                     VerticalAlignment="Stretch"
+                                                     TextWrapping="Wrap"
+                                                     AcceptsReturn="True"
+                                                     Text="{Binding QuoteData}"/>
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
+                                                     Margin="0 0 0 15"
+                                                     Text="{Binding QuoteAuthor}"/>
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
+                                                     Margin="0 0 0 15"
+                                                     Text="{Binding QuoteLocation}"/>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                
+                                                <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                                                        Grid.Column="0"
+                                                        HorizontalAlignment="Left"
+                                                        Background="{DynamicResource accent_color}"
+                                                        Foreground="{DynamicResource text_color}"
+                                                        Command="{Binding AddQuoteCommand}"
+                                                        Content="{DynamicResource rd_add_quote}"/>
+                                                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                        Grid.Column="1"
+                                                        HorizontalAlignment="Right"
+                                                        Foreground="{DynamicResource accent_color}"
+                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                        Content="{DynamicResource rd_cancel}"/>
+                                            </Grid>
+                                        </StackPanel>
+									</Button.CommandParameter>
+									<DockPanel VerticalAlignment="Center"
+                                               HorizontalAlignment="Left">
+										<Image DockPanel.Dock="Left"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Source="/Resources/Icons/add.png"/>
+										<TextBlock DockPanel.Dock="Right"
+                                                   Margin="10 0 0 0"
+                                                   HorizontalAlignment="Right"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicResource text_color}"
+                                                   Text="{DynamicResource rd_add_quote}"/>
+									</DockPanel>
+								</Button>
+							</WrapPanel>
+						</StackPanel>
+					</Grid>
+				</ScrollViewer>
+			</Border>
+		</materialDesign:DialogHost>
+	</Grid>
+</Window>

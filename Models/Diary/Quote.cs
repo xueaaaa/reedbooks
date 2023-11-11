@@ -6,25 +6,84 @@ namespace ReedBooks.Models.Diary
 {
     public class Quote : ObservableObject
     {
-        [Key] public Guid Guid { get; set; }
-        public string Data { get; set; }
-        public string Author { get; set; }
-        public string LocationInBook { get; set; }
+        private Guid _guid;
+        [Key] public Guid Guid
+        {
+            get => _guid;
+            set
+            {
+                if (value != null)
+                {
+                    _guid = value;
+                    OnPropertyChanged(nameof(Guid));
+                }
+            }
+        }
 
-        public Quote(string data)
+        private Guid _diaryGuid;
+        public Guid DiaryGuid
+        {
+            get => _diaryGuid;
+            set
+            {
+                if (value != null)
+                {
+                    _diaryGuid = value;
+                    OnPropertyChanged(nameof(DiaryGuid));
+                }
+            }
+        }
+
+        private string _data;
+        public string Data
+        {
+            get => _data;
+            set
+            {
+                _data = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                OnPropertyChanged(nameof(Data));
+            }
+        }
+
+        private string _author;
+        public string Author
+        {
+            get => _author;
+            set
+            {
+                _author = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                OnPropertyChanged(nameof(Author));
+            }
+        }
+
+        private string _locationInBook;
+        public string LocationInBook
+        {
+            get => _locationInBook;
+            set
+            {
+                _locationInBook = value;
+                App.ApplicationContext.UpdateEnitity(this);
+                OnPropertyChanged(nameof(LocationInBook));
+            }
+        }
+
+        public Quote(string data, Guid diaryGuid)
         {
             Guid = Guid.NewGuid();
-            Data = data;
+            _data = data;
         }
 
-        public Quote(string data, string author) : this(data)
+        public Quote(string data, Guid diaryGuid, string author) : this(data, diaryGuid)
         {
-            Author = author;
+            _author = author;
         }
 
-        public Quote(string data, string author, string locationInBook) : this(data, author)
+        public Quote(string data, Guid diaryGuid, string author, string locationInBook) : this(data, diaryGuid, author)
         {
-            LocationInBook = locationInBook;
+            _locationInBook = locationInBook;
         }
     }
 }

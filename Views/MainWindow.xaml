@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
         mc:Ignorable="d"
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
@@ -13,6 +14,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+    </Window.Resources>
     <Grid Background="{DynamicResource window_background_color}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -71,7 +75,7 @@
                             Margin="0 0 0 10">
                         <Button.Style>
                             <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
                                 <Style.Triggers>
                                     <Trigger Property="IsFocused" Value="True">
                                         <Setter Property="Background" Value="{DynamicResource accent_color}"/>
@@ -102,7 +106,7 @@
                             Margin="0 0 0 10">
                         <Button.Style>
                             <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
                                 <Style.Triggers>
                                     <Trigger Property="IsFocused" Value="True">
                                         <Setter Property="Background" Value="{DynamicResource accent_color}"/>
@@ -133,7 +137,7 @@
                             Margin="0 0 0 10" Cursor="Hand">
                         <Button.Style>
                             <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
                                 <Style.Triggers>
                                     <Trigger Property="IsFocused" Value="True">
                                         <Setter Property="Background" Value="{DynamicResource accent_color}"/>
@@ -168,11 +172,28 @@
                           Background="{DynamicResource container_background_color}"
                           IsExpanded="True"
                           Header="{DynamicResource m_readers_diary_collection}">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Foreground="{DynamicResource hint_color}"
-                               Text="{DynamicResource m_no_elements}"/>
-                    </StackPanel>
-                    
+                    <ItemsControl ItemsSource="{Binding LoadedBooks}">
+                        <ItemsControl.Template>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <ItemsPresenter/>
+                                    <TextBlock Foreground="{DynamicResource hint_color}"
+                                               Text="{DynamicResource m_no_elements}"
+                                               Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </ItemsControl.Template>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Content="{Binding Name}"
+                                        Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
                 </Expander>
 
                 <!-- Collections expander -->
@@ -208,6 +229,13 @@
             <TabControl SelectedIndex="{Binding SelectedTab}"
                         Grid.Column="1"
                         Style="{DynamicResource MaterialDesignFilledTabControl}">
+                <TabControl.ItemContainerStyle>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
+                    </Style>
+                </TabControl.ItemContainerStyle>
+
                 <TabItem>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
@@ -251,16 +279,16 @@
                                     Width="300" Cursor="Hand">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Source="/Resources/Icons/add.png"/>
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"
+                                           Source="/Resources/Icons/add.png"/>
 
                                     <TextBlock DockPanel.Dock="Right"
-                                       Margin="10 0 0 0"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource text_color}"
-                                       Text="{DynamicResource m_load_book}"/>
+                                               Margin="10 0 0 0"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource text_color}"
+                                               Text="{DynamicResource m_load_book}"/>
                                 </DockPanel>
                             </Button>
                             <Separator/>
@@ -296,6 +324,7 @@
                                                             Orientation="Vertical">
                                                     <TextBlock HorizontalAlignment="Center"
                                                                Text="{Binding Name}"
+                                                               TextWrapping="Wrap"
                                                                FontWeight="SemiBold"
                                                                FontSize="20"/>
                                                     <TextBlock HorizontalAlignment="Left"
@@ -309,11 +338,10 @@
                                                                    VerticalAlignment="Center"
                                                                    Foreground="{DynamicResource hint_color}"
                                                                    FontSize="16"/>
-                                                        <TextBox HorizontalAlignment="Left"
+                                                        <TextBlock HorizontalAlignment="Left"
                                                                    VerticalAlignment="Center"
                                                                    Text="{Binding Genre}"
                                                                    Margin="0 0 4 0"
-                                                                   FontWeight="Light"
                                                                    FontSize="16"
                                                                    Foreground="{DynamicResource hint_color}"/>
                                                     </StackPanel>
@@ -360,17 +388,28 @@
                                                                        Text="{DynamicResource m_read}"/>
                                                         </DockPanel>
                                                     </Button>
-                                                    <Button Style="{DynamicResource MaterialDesignIconButton}"
-                                                            Grid.Column="1"
-                                                            Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                                            CommandParameter="{Binding Guid}"
-                                                            HorizontalAlignment="Right"
-                                                            Width="30" 
-                                                            Height="30">
-                                                        <Image Width="20" 
+                                                    <StackPanel Grid.Column="1"
+                                                                HorizontalAlignment="Right"
+                                                                Orientation="Horizontal">
+                                                        <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                                Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                CommandParameter="{Binding}"
+                                                                Width="30" 
+                                                                Height="30">
+                                                            <Image Width="20" 
+                                                               Height="20" 
+                                                               Source="/Resources/Icons/book.png"/>
+                                                        </Button>
+                                                        <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                                Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                CommandParameter="{Binding Guid}"
+                                                                Width="30" 
+                                                                Height="30">
+                                                            <Image Width="20" 
                                                                Height="20" 
                                                                Source="/Resources/Icons/delete.png"/>
-                                                    </Button>
+                                                        </Button>
+                                                    </StackPanel>
                                                 </Grid>
                                             </Grid>
                                         </Border>
@@ -497,17 +536,28 @@
                                                                        Text="{DynamicResource m_read}"/>
                                                         </DockPanel>
                                                     </Button>
-                                                    <Button Style="{DynamicResource MaterialDesignIconButton}"
-                                                            Grid.Column="1"
-                                                            Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                                            CommandParameter="{Binding Guid}"
-                                                            HorizontalAlignment="Right"
-                                                            Width="30" 
-                                                            Height="30">
-                                                        <Image Width="20" 
+                                                    <StackPanel Grid.Column="1"
+                                                                HorizontalAlignment="Right"
+                                                                Orientation="Horizontal">
+                                                        <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                                Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                CommandParameter="{Binding}"
+                                                                Width="30" 
+                                                                Height="30">
+                                                            <Image Width="20" 
+                                                               Height="20" 
+                                                               Source="/Resources/Icons/book.png"/>
+                                                        </Button>
+                                                        <Button Style="{DynamicResource MaterialDesignIconButton}"
+                                                                Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                CommandParameter="{Binding Guid}"
+                                                                Width="30" 
+                                                                Height="30">
+                                                            <Image Width="20" 
                                                                Height="20" 
                                                                Source="/Resources/Icons/delete.png"/>
-                                                    </Button>
+                                                        </Button>
+                                                    </StackPanel>
                                                 </Grid>
                                             </Grid>
                                     </Border>

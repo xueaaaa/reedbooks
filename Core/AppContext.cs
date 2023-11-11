@@ -9,6 +9,7 @@ namespace ReedBooks.Core
     public class AppContext : DbContext
     {
         public DbSet<Book> Books { get; set; }
+        public DbSet<Quote> Quotes { get; set; }
 
         public int AddEntity<T>(T enitity)
         {
@@ -55,6 +56,7 @@ namespace ReedBooks.Core
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Book>()
                 .HasOne(b => b.BoundDiary)
                 .WithOne()

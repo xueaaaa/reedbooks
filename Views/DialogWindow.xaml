@@ -9,6 +9,8 @@
         Foreground="{DynamicResource text_color}"
         FontFamily="{DynamicResource MainFont}"
         FontSize="14"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
         Title="{DynamicResource h_dialog_window}" SizeToContent="WidthAndHeight" MaxHeight="400" MaxWidth="600">
     <Window.DataContext>
         <local:DialogWindowViewModel/>
