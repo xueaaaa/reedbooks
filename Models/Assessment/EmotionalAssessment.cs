@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Assessment
 {
+    /// <summary>
+    /// A class for evaluating a book on emotional feelings
+    /// </summary>
     public class EmotionalAssessment : ObservableObject
     {
         private Guid _guid;
@@ -22,6 +25,9 @@ namespace ReedBooks.Models.Assessment
         }
 
         private Emote _start;
+        /// <summary>
+        /// Evaluation at the beginning of the book
+        /// </summary>
         public Emote Start
         {
             get => _start;
@@ -34,6 +40,9 @@ namespace ReedBooks.Models.Assessment
         }
 
         private Emote _middle;
+        /// <summary>
+        /// A mid-book evaluation
+        /// </summary>
         public Emote Middle
         {
             get => _middle;
@@ -46,6 +55,9 @@ namespace ReedBooks.Models.Assessment
         }
 
         private Emote _end;
+        /// <summary>
+        /// Evaluation at the end of the book
+        /// </summary>
         public Emote End
         {
             get => _end;

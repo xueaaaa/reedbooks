@@ -11,36 +11,66 @@ namespace ReedBooks.Core
         public DbSet<Book> Books { get; set; }
         public DbSet<Quote> Quotes { get; set; }
 
+        /// <summary>
+        /// Adds an item to the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity for whose class there is a table in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public int AddEntity<T>(T enitity)
         {
             Add(enitity);
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Asynchronously adds an item to the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity for whose class there is a table in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public async Task<int> AddEntityAsync<T>(T enitity)
         {
             await AddAsync(enitity);
             return await SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Updates an item in the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity whose key matches any entry in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public int UpdateEnitity<T>(T enitity)
         {
             Update(enitity);
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Asynchronously updates an item in the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity whose key matches any entry in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public async Task<int> UpdateEnitityAsync<T>(T enitity)
         {
             Update(enitity);
             return await SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Deletes an item from the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity that matches any record in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public int RemoveEntity<T>(T enitity)
         {
             Remove(enitity);
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Asynchronously deletes an item from the database and saves the changes
+        /// </summary>
+        /// <param name="enitity">Any entity that matches any record in the database</param>
+        /// <returns>The number of state entries written to the database</returns>
         public async Task<int> RemoveEntityAsync<T>(T enitity)
         {
             Remove(enitity);

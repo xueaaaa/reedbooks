@@ -7,6 +7,9 @@ using System.Windows;
 
 namespace ReedBooks.Core
 {
+    /// <summary>
+    /// Class for working with application locales
+    /// </summary>
     public static class Localizator
     {
         /// <summary>
@@ -28,7 +31,7 @@ namespace ReedBooks.Core
         /// </summary>
         public static CultureInfo CurrentLanguage
         {
-            get { return Thread.CurrentThread.CurrentUICulture; }
+            get => Thread.CurrentThread.CurrentUICulture;
             set
             {
                 if (value == null) throw new ArgumentNullException("cannot use null language");
@@ -42,11 +45,13 @@ namespace ReedBooks.Core
                 else
                     dictionary.Source = new Uri($"Resources/Locales/lang.{value.Name}.xaml", UriKind.Relative);
 
+                // Search for the dictionary of the previous locale
                 ResourceDictionary oldDictionary = Application.Current.Resources.MergedDictionaries.Where(d =>
                 d.Source != null && d.Source.OriginalString.StartsWith("Resources/Locales/lang.")).First();
 
                 if (oldDictionary != null)
                 {
+                    // Replacing the dictionary of the previous locale with a new one
                     int i = Application.Current.Resources.MergedDictionaries.IndexOf(oldDictionary);
                     Application.Current.Resources.MergedDictionaries.Remove(oldDictionary);
                     Application.Current.Resources.MergedDictionaries.Insert(i, dictionary);

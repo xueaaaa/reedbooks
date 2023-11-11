@@ -4,11 +4,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Assessment
 {
+    /// <summary>
+    /// A class for evaluating a book based on the parameters
+    /// </summary>
     public class BookAssessment : ObservableObject
     {
         private const ushort ASSESMENTS_TOTAL_NUMBER = 6;
 
         public delegate void AssessmentChangedEventHandler();
+        /// <summary>
+        /// Called upon any change in any grade
+        /// </summary>
         public event AssessmentChangedEventHandler AssessmentChanged;
 
         private Guid _guid;
@@ -27,8 +33,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _plotOriginality;
-        [Range(1, 5)]
-        public double PlotOriginality
+        [Range(1, 5)] public double PlotOriginality
         {
             get => _plotOriginality;
             set
@@ -41,8 +46,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _characters;
-        [Range(1, 5)]
-        public double Characters
+        [Range(1, 5)] public double Characters
         {
             get => _characters;
             set
@@ -55,8 +59,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _worldInsideBook;
-        [Range(1, 5)]
-        public double WorldInsideBook
+        [Range(1, 5)] public double WorldInsideBook
         {
             get => _worldInsideBook;
             set
@@ -69,8 +72,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _loveLine;
-        [Range(1, 5)]
-        public double LoveLine
+        [Range(1, 5)] public double LoveLine
         {
             get => _loveLine;
             set
@@ -83,8 +85,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _humor;
-        [Range(1, 5)]
-        public double Humor
+        [Range(1, 5)] public double Humor
         {
             get => _humor;
             set
@@ -97,8 +98,7 @@ namespace ReedBooks.Models.Assessment
         }
 
         private double _meaningFulness;
-        [Range(1, 5)]
-        public double MeaningFulness
+        [Range(1, 5)] public double MeaningFulness
         {
             get => _meaningFulness;
             set
@@ -110,6 +110,9 @@ namespace ReedBooks.Models.Assessment
             }
         }
 
+        /// <summary>
+        /// The arithmetic mean calculated on the basis of all grades assigned
+        /// </summary>
         public double ArithmeticAverage
         {
             get => CalculateArithmeticAverage();

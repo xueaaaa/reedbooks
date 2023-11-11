@@ -210,6 +210,10 @@ namespace ReedBooks.Models.Book
             File.Delete(LinkToOrigin);
         }
 
+        /// <summary>
+        /// Gets the content of the book
+        /// </summary>
+        /// <returns>Content in the form of an EpubBook class</returns>
         public EpubBook GetEpub()
         {
             return EpubReader.ReadBook(LinkToOrigin);

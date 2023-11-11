@@ -5,6 +5,9 @@ using System.Windows;
 
 namespace ReedBooks.Converters
 {
+    /// <summary>
+    /// Converts the number of items in the collection to a visibility property
+    /// </summary>
     public class CountToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

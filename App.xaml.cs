@@ -35,6 +35,10 @@ namespace ReedBooks
             Localizator.LanguageChanged += App_LanguageChanged;
         }
 
+        /// <summary>
+        /// Changes the color theme of the application
+        /// </summary>
+        /// <param name="themeName">Theme name ("light" or "dark")</param>
         public void ChangeTheme(string themeName)
         {
             var old = Current.Resources.MergedDictionaries.Where(a => a.Source.OriginalString.EndsWith("theme.xaml")).First();
@@ -44,6 +48,9 @@ namespace ReedBooks
             Current.Resources.MergedDictionaries.Add(ne);
         }
 
+        /// <summary>
+        /// Checks the current application directory for folders required for its operation and creates them if they are missing
+        /// </summary>
         public void EnsureCreated()
         {
             var coversPath = $"{Directory.GetCurrentDirectory()}{COVERS_DIRECTORY}";
@@ -67,6 +74,8 @@ namespace ReedBooks
 
             DispatcherUnhandledException += App_DispatcherUnhandledException;
 
+            // Gets the set language from settings and checks it for null
+            // If the received language is null, the value of the default language is assigned
             var lang = Settings.Default.Language;
             Localizator.CurrentLanguage = lang == null ?
                 Settings.Default.DefaultLanguage :
