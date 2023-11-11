@@ -254,7 +254,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
@@ -270,7 +270,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.Characters,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
@@ -286,7 +286,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
@@ -302,7 +302,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.LoveLine,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
@@ -318,7 +318,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.Humor,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
@@ -334,7 +334,7 @@
                                           HorizontalAlignment="Right"
                                           Min="0"
                                           Max="5"
-                                          ValueIncrements="0.25"
+                                          ValueIncrements="0.5"
                                           Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness,Mode=TwoWay}"
                                           Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
