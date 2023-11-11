@@ -24,7 +24,7 @@
 
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
-    <v:String x:Key="r_temporarily_out_of_service">Эта чать приложения пока не работает.</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Эта чать приложения пока не работает</v:String>
     <!--#endregion-->
 
     <!--#region Settings window-->
@@ -69,7 +69,7 @@
     <v:String x:Key="rd_quote_data_hint">Введите текст цитаты...</v:String>
     <v:String x:Key="rd_quote_author_hint">Введите автора цитаты...</v:String>
     <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
-    <v:String x:Key="rd_cancel">Отменить</v:String>
+    <v:String x:Key="rd_cancel">Закрыть</v:String>
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->

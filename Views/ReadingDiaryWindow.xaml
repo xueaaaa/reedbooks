@@ -105,14 +105,19 @@
                                          Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy}"/>
 							</StackPanel>
 						</StackPanel>
-						<StackPanel Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="20">
-							<TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+
+                        <Grid Grid.Column="0"
+                              Grid.Row="2">
+                            <StackPanel Margin="20"
+                                        IsEnabled="False">
+                                <StackPanel.Effect>
+                                <BlurEffect Radius="30"/>
+                            </StackPanel.Effect>
+							    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                        Text="{DynamicResource rd_my_emotions}"
                                        TextWrapping="Wrap"/>
-							<Separator/>
-							<!--#region At Start -->
+							    <Separator/>
+							    <!--#region At Start -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_start}"/>
 							<StackPanel Margin="10"
@@ -144,7 +149,7 @@
 								</RadioButton>
 							</StackPanel>
 							<!--#endregion-->
-							<!--#region At Middle -->
+							    <!--#region At Middle -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_middle}"/>
 							<StackPanel Margin="10"
@@ -176,7 +181,7 @@
 								</RadioButton>
 							</StackPanel>
 							<!--#endregion-->
-							<!--#region At End -->
+							    <!--#region At End -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_end}"/>
 							<StackPanel Margin="10"
@@ -209,6 +214,12 @@
 							</StackPanel>
 							<!--#endregion-->
 						</StackPanel>
+                            <TextBlock Text="{DynamicResource r_temporarily_out_of_service}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{DynamicResource hint_color}"/>
+                        </Grid>
+						
 						<StackPanel Grid.Column="1"
                                     Grid.Row="2"
                                     Margin="20">
