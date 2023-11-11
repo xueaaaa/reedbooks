@@ -80,6 +80,7 @@
     <v:String x:Key="dialog_settings_content">To apply the set preferences, the application needs to be restarted. Do you want to do it now?</v:String>
 
     <v:String x:Key="dialog_error_title">Error</v:String>
+    <v:String x:Key="dialog_fatal_error_content">The application will be suspended because an error occurred:</v:String>
     <v:String x:Key="dialog_null_quote_content">Cannot add an empty quote!</v:String>
 
     <v:String x:Key="dialog_delete_book_title">Delete Book</v:String>
