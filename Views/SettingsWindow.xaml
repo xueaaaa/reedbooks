@@ -20,65 +20,36 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.6*"/>
-                        <ColumnDefinition Width="0.2*"/>
-                    </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            Orientation="Vertical">
+                    <controls:SettingsParameter ParameterName="{DynamicResource s_language_label}"
+                                                ParameterHint="{DynamicResource s_language_hint}">
+                        <controls:SettingsParameter.ValueSelector>
+                            <ComboBox Focusable="False"
+                                      ItemsSource="{Binding Languages}"
+                                      SelectedItem="{Binding SelectedLanguage}"
+                                      DisplayMemberPath="DisplayName"
+                                      SelectedValuePath="Tag"/>
+                        </controls:SettingsParameter.ValueSelector>
+                    </controls:SettingsParameter>
 
-                    <!--#region Language -->
-                    <StackPanel Grid.Column="0"
-                                Grid.Row="0">
-                        <TextBlock Text="{DynamicResource s_language_label}"
-                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                   Foreground="{DynamicResource text_color}"/>
-                        <TextBlock Text="{DynamicResource s_language_hint}"
-                                   Style="{DynamicResource MaterialDesignCaptionTextBlock}"
-                                   HorizontalAlignment="Left"
-                                   TextWrapping="Wrap"
-                                   Foreground="{DynamicResource hint_color}"/>
-                    </StackPanel>
-                    <ComboBox Grid.Column="1"
-                              Grid.Row="0"
-                              Focusable="False"
-                              ItemsSource="{Binding Languages}"
-                              SelectedItem="{Binding SelectedLanguage}"
-                              DisplayMemberPath="DisplayName"
-                              SelectedValuePath="Tag"/>
-                    <!--#endregion-->
-                        
-                    <Separator Grid.ColumnSpan="2"
-                               Grid.Row="1"
-                               Margin="0 10 0 10"/>
-                    
-                    <!--#region Theme -->
-                    <StackPanel Grid.Column="0"
-                                Grid.Row="2">
-                        <TextBlock Text="{DynamicResource s_theme_label}"
-                                   Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                   Foreground="{DynamicResource text_color}"/>
-                        <TextBlock Text="{DynamicResource s_theme_hint}"
-                                   Style="{DynamicResource MaterialDesignCaptionTextBlock}"
-                                   HorizontalAlignment="Left"
-                                   TextWrapping="Wrap"
-                                   Foreground="{DynamicResource hint_color}"/>
-                    </StackPanel>
-                    <ComboBox Grid.Column="1"
-                              Grid.Row="2"
-                              Focusable="False"
-                              ItemsSource="{Binding Themes}"
-                              SelectedItem="{Binding SelectedTheme}"
-                              DisplayMemberPath="DisplayName"
-                              SelectedValuePath="Tag"/>
-                    <!--#endregion-->
-                </Grid>
+
+                    <Separator Margin="10"/>
+
+                    <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
+                                                ParameterHint="{DynamicResource s_theme_hint}">
+                        <controls:SettingsParameter.ValueSelector>
+                            <ComboBox Grid.Column="1"
+                                      Grid.Row="2"
+                                      Focusable="False"
+                                      ItemsSource="{Binding Themes}"
+                                      SelectedItem="{Binding SelectedTheme}"
+                                      DisplayMemberPath="DisplayName"
+                                      SelectedValuePath="Tag"/>
+                        </controls:SettingsParameter.ValueSelector>
+                    </controls:SettingsParameter>
+                </StackPanel>
 
                 <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
                                           Grid.Row="1"
