@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Title="{DynamicResource h_settings_window}" Height="400" Width="800">
@@ -80,13 +80,13 @@
                     <!--#endregion-->
                 </Grid>
 
-                <Button Grid.Row="1"
-                        Command="{Binding SaveCommand}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Background="{DynamicResource accent_color}"
-                        Content="{DynamicResource s_save}"/>
+                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
+                                          Grid.Row="1"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Command="{Binding SaveCommand}"
+                                          Source="/Resources/Icons/save.png"
+                                          Text="{DynamicResource s_save}"/>
             </Grid>
         </Border>
     </Grid>

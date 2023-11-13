@@ -63,105 +63,29 @@
                 </StackPanel>
 
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                           FontWeight="DemiBold"
                            Margin="10"
-                           Text="{DynamicResource m_books}" 
-                           FontWeight="DemiBold"/>
+                           Text="{DynamicResource m_books}"/>
 
-                <!-- Panel buttons -->
+                <!-- Main menu buttons -->
                 <StackPanel Margin="10">
-                    <Button Command="{Binding SwitchToTabCommand}"
-                            CommandParameter="0"
-                            Margin="0 0 0 10">
-                        <Button.Style>
-                            <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
-                                    </Trigger>
-                                    <Trigger Property="IsFocused" Value="False">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <DockPanel VerticalAlignment="Center"
-                                   HorizontalAlignment="Left">
-                            <Image DockPanel.Dock="Left"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Source="/Resources/Icons/book.png"/>
+                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                              Source="/Resources/Icons/book.png"
+                                              Text="{DynamicResource m_reading_now}"
+                                              Command="{Binding SwitchToTabCommand}"
+                                              CommandParameter="0"/>
 
-                            <TextBlock DockPanel.Dock="Right"
-                                       Margin="10 0 0 0"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource text_color}"
-                                       Text="{DynamicResource m_reading_now}"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding SwitchToTabCommand}"
-                            CommandParameter="1"
-                            Margin="0 0 0 10">
-                        <Button.Style>
-                            <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
-                                    </Trigger>
-                                    <Trigger Property="IsFocused" Value="False">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <DockPanel VerticalAlignment="Center"
-                                   HorizontalAlignment="Left">
-                            <Image DockPanel.Dock="Left"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Source="/Resources/Icons/all_books.png"/>
+                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                              Source="/Resources/Icons/all_books.png"
+                                              Text="{DynamicResource m_all_books}"
+                                              Command="{Binding SwitchToTabCommand}"
+                                              CommandParameter="1"/>
 
-                            <TextBlock DockPanel.Dock="Right"
-                                       Margin="10 0 0 0"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource text_color}"
-                                       Text="{DynamicResource m_all_books}"/>
-                        </DockPanel>
-                    </Button>
-                    <Button Command="{Binding SwitchToTabCommand}"
-                            CommandParameter="2"
-                            Margin="0 0 0 10" Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button" 
-                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
-                                    </Trigger>
-                                    <Trigger Property="IsFocused" Value="False">
-                                        <Setter Property="Background" Value="Transparent"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                        <DockPanel VerticalAlignment="Center"
-                                   HorizontalAlignment="Left">
-                            <Image DockPanel.Dock="Left"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Source="/Resources/Icons/search.png"/>
-
-                            <TextBlock DockPanel.Dock="Right"
-                                       Margin="10 0 0 0"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource text_color}"
-                                       Text="{DynamicResource m_search}"/>
-                        </DockPanel>
-                    </Button>
+                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                              Source="/Resources/Icons/search.png"
+                                              Text="{DynamicResource m_search}"
+                                              Command="{Binding SwitchToTabCommand}"
+                                              CommandParameter="2"/>
                 </StackPanel>
 
 
@@ -260,23 +184,11 @@
 
                         <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
-                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                    Command="{Binding LoadFileCommand}"
-                                    Width="300" Cursor="Hand">
-                                <DockPanel>
-                                    <Image DockPanel.Dock="Left"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Source="/Resources/Icons/add.png"/>
-
-                                    <TextBlock DockPanel.Dock="Right"
-                                               Margin="10 0 0 0"
-                                               HorizontalAlignment="Right"
-                                               VerticalAlignment="Center"
-                                               Foreground="{DynamicResource text_color}"
-                                               Text="{DynamicResource m_load_book}"/>
-                                </DockPanel>
-                            </Button>
+                            <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                                      Width="300"
+                                                      Command="{Binding LoadFileCommand}"
+                                                      Source="/Resources/Icons/add.png"
+                                                      Text="{DynamicResource m_load_book}"/>
                             <Separator/>
                         </StackPanel>
 
@@ -329,6 +241,7 @@
                                                                    Text="{Binding Genre}"
                                                                    Margin="0 0 4 0"
                                                                    FontSize="16"
+                                                                   FontWeight="Light"
                                                                    Foreground="{DynamicResource hint_color}"/>
                                                     </StackPanel>
                                                     <StackPanel Orientation="Horizontal">
@@ -355,25 +268,13 @@
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                            Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                                            CommandParameter="{Binding}"
-                                                            Grid.Column="0">
-                                                        <DockPanel VerticalAlignment="Center"
-                                                                   HorizontalAlignment="Left">
-                                                            <Image DockPanel.Dock="Left"
-                                                                   HorizontalAlignment="Left"
-                                                                   VerticalAlignment="Center"
-                                                                   Source="/Resources/Icons/read_book.png"/>
+                                                    <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                                                              Grid.Column="0"
+                                                                              Source="/Resources/Icons/read_book.png"
+                                                                              Text="{DynamicResource m_read}"
+                                                                              Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                              CommandParameter="{Binding}"/>
 
-                                                            <TextBlock DockPanel.Dock="Right"
-                                                                       Margin="10 0 0 0"
-                                                                       HorizontalAlignment="Right"
-                                                                       VerticalAlignment="Center"
-                                                                       Foreground="{DynamicResource text_color}"
-                                                                       Text="{DynamicResource m_read}"/>
-                                                        </DockPanel>
-                                                    </Button>
                                                     <StackPanel Grid.Column="1"
                                                                 HorizontalAlignment="Right"
                                                                 Orientation="Horizontal">
@@ -503,25 +404,13 @@
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
 
-                                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                            Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                                                            CommandParameter="{Binding}"
-                                                            Grid.Column="0">
-                                                        <DockPanel VerticalAlignment="Center"
-                                                                   HorizontalAlignment="Left">
-                                                            <Image DockPanel.Dock="Left"
-                                                                   HorizontalAlignment="Left"
-                                                                   VerticalAlignment="Center"
-                                                                   Source="/Resources/Icons/read_book.png"/>
-
-                                                            <TextBlock DockPanel.Dock="Right"
-                                                                       Margin="10 0 0 0"
-                                                                       HorizontalAlignment="Right"
-                                                                       VerticalAlignment="Center"
-                                                                       Foreground="{DynamicResource text_color}"
-                                                                       Text="{DynamicResource m_read}"/>
-                                                        </DockPanel>
-                                                    </Button>
+                                                    <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                                                              Source="/Resources/Icons/read_book.png"
+                                                                              Text="{DynamicResource m_read}"
+                                                                              Grid.Column="0"
+                                                                              Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                                                              CommandParameter="{Binding}"/>
+                                                    
                                                     <StackPanel Grid.Column="1"
                                                                 HorizontalAlignment="Right"
                                                                 Orientation="Horizontal">

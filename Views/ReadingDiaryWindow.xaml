@@ -6,6 +6,7 @@
 	    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
 	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
@@ -444,11 +445,13 @@
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>
 								</ItemsControl>
-                                
-								<Button Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-									<Button.CommandParameter>
-										<StackPanel Margin="20"
+
+                                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                          Source="/Resources/Icons/add.png"
+                                                          Text="{DynamicResource rd_add_quote}"
+                                                          Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                    <Button.CommandParameter>
+                                        <StackPanel Margin="20"
                                                     Orientation="Vertical"
                                                     MaxWidth="500">
                                             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
@@ -466,13 +469,11 @@
                                                      Text="{Binding QuoteData}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
-                                                     Foreground="{DynamicResource text_color}"
                                                      Margin="0 0 0 15"
                                                      Text="{Binding QuoteAuthor}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
                                                      Foreground="{DynamicResource text_color}"
-                                                     Margin="0 0 0 15"
                                                      Text="{Binding QuoteLocation}"/>
 
                                             <Grid>
@@ -480,9 +481,8 @@
                                                     <ColumnDefinition/>
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
-                                                
+
                                                 <Button Style="{DynamicResource MaterialDesignRaisedButton}"
-                                                        Grid.Column="0"
                                                         HorizontalAlignment="Left"
                                                         Background="{DynamicResource accent_color}"
                                                         Foreground="{DynamicResource text_color}"
@@ -496,22 +496,9 @@
                                                         Content="{DynamicResource rd_cancel}"/>
                                             </Grid>
                                         </StackPanel>
-									</Button.CommandParameter>
-									<DockPanel VerticalAlignment="Center"
-                                               HorizontalAlignment="Left">
-										<Image DockPanel.Dock="Left"
-                                               HorizontalAlignment="Left"
-                                               VerticalAlignment="Center"
-                                               Source="/Resources/Icons/add.png"/>
-										<TextBlock DockPanel.Dock="Right"
-                                                   Margin="10 0 0 0"
-                                                   HorizontalAlignment="Right"
-                                                   VerticalAlignment="Center"
-                                                   Foreground="{DynamicResource text_color}"
-                                                   Text="{DynamicResource rd_add_quote}"/>
-									</DockPanel>
-								</Button>
-							</WrapPanel>
+                                    </Button.CommandParameter>
+                                </controls:ButtonWithImage>
+                            </WrapPanel>
 						</StackPanel>
 					</Grid>
 				</ScrollViewer>
