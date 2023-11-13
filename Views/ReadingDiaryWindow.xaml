@@ -53,55 +53,32 @@
                                     Grid.Row="1"
                                     Margin="20">
 							<StackPanel Orientation="Horizontal">
-								<TextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 4 0"
-                                           Foreground="{DynamicResource hint_color}"
+								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_author_label}"/>
-								<TextBlock HorizontalAlignment="Right"
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 4 0"
+								<TextBlock Style="{DynamicResource PropertyValue}"
                                            Text="{Binding Book.Author}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock HorizontalAlignment="Left"
-                                           Margin="0 0 4 0"
-                                           Foreground="{DynamicResource hint_color}"
+								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_chapters_count_label}"/>
-								<TextBlock HorizontalAlignment="Right"
-                                           Margin="0 0 4 0"
+								<TextBlock Style="{DynamicResource PropertyValue}"
                                            Text="{Binding Book.ChaptersCount}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 4 0"
-                                           Foreground="{DynamicResource hint_color}"
+								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_genre_label}"/>
-								<TextBox HorizontalAlignment="Right"
-                                         Margin="0 0 4 0"
-                                         materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
+								<TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
                                          Text="{Binding Book.Genre}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 4 0"
-                                           Foreground="{DynamicResource hint_color}"
+								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_begin_reading_at}"/>
-								<TextBox HorizontalAlignment="Right"
-                                         Margin="0 0 4 0"
-                                         Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"/>
+								<TextBox Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy, Mode=TwoWay}"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock HorizontalAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           Margin="0 0 4 0"
-                                           Foreground="{DynamicResource hint_color}"
+								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_end_reading_at}"/>
-								<TextBox HorizontalAlignment="Right"
-                                         Margin="0 0 4 0"
-                                         Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy}"/>
+								<TextBox Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy, Mode=TwoWay}"/>
 							</StackPanel>
 						</StackPanel>
 
