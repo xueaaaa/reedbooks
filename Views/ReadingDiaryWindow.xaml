@@ -1,4 +1,5 @@
 ﻿<Window x:Class="ReedBooks.Views.ReadingDiaryWindow"
+        Style="{DynamicResource ReedBooksWindow}"
 	    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,9 +8,6 @@
 	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
 	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
-        Foreground="{DynamicResource text_color}"
-        FontFamily="{DynamicResource MainFont}"
-        FontSize="14"
         SizeToContent="WidthAndHeight"
         Title="{DynamicResource h_reading_diary_window}">
 	<Window.DataContext>

@@ -14,6 +14,7 @@
                 <materialDesign:CustomColorTheme BaseTheme="Light"
                                                  PrimaryColor="#807d77"
                                                  SecondaryColor="#616161"/>
+                <ResourceDictionary Source="Resources/Styles/GeneralStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

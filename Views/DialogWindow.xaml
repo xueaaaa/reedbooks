@@ -1,4 +1,5 @@
 ﻿<Window x:Class="ReedBooks.Views.DialogWindow"
+        Style="{DynamicResource ReedBooksWindow}"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,12 +7,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
-        Foreground="{DynamicResource text_color}"
-        FontFamily="{DynamicResource MainFont}"
-        FontSize="14"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
-        Title="{DynamicResource h_dialog_window}" SizeToContent="WidthAndHeight" MaxHeight="400" MaxWidth="600">
+        SizeToContent="WidthAndHeight"
+        Title="{DynamicResource h_dialog_window}" MaxHeight="400" MaxWidth="600">
     <Window.DataContext>
         <local:DialogWindowViewModel/>
     </Window.DataContext>
