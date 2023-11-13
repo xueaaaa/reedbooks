@@ -41,6 +41,7 @@
                             DockPanel.Dock="Left"
                             HorizontalAlignment="Left"
                             Background="{DynamicResource accent_color}"
+                            Foreground="{DynamicResource text_color}"
                             Content="{DynamicResource d_acept_button}"/>
                     <Button Style="{StaticResource MaterialDesignOutlinedButton}"
                             DockPanel.Dock="Right"

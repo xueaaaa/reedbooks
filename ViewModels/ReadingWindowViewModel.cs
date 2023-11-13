@@ -57,7 +57,7 @@ namespace ReedBooks.ViewModels
         {
             ChangeSelectedFlowDocumentCommand = new RelayCommand(obj => ChangeSelectedFlowDocument(obj));
 
-            ChaptersListBoxLength = new GridLength(0.3, GridUnitType.Star);
+            ChaptersListBoxLength = new GridLength(0.4, GridUnitType.Star);
         }
 
         public ReadingWindowViewModel(Book readingBook) : base()

@@ -18,36 +18,43 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0"
-                        Orientation="Vertical">
+            <Grid>
                 <ItemsControl ItemsSource="{Binding EpubBook.Navigation}"
                               Background="{DynamicResource container_background_color}"
                               IsEnabled="False">
-                <ItemsControl.ItemTemplate>
-                    <ItemContainerTemplate>
-                        <Button Style="{DynamicResource MaterialDesignOutlinedLightButton}"
+                    <ItemsControl.Effect>
+                        <BlurEffect Radius="30"/>
+                    </ItemsControl.Effect>
+                    
+                    <ItemsControl.ItemTemplate>
+                        <ItemContainerTemplate>
+                            <Button Style="{DynamicResource MaterialDesignOutlinedLightButton}"
                                 Foreground="{DynamicResource accent_color}"
                                 Command="{Binding DataContext.ChangeSelectedFlowDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                 CommandParameter="{Binding Path=SelectedIndex, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
-                            <TextBlock 
+                                <TextBlock 
                                    Foreground="{DynamicResource text_color}"
                                    Text="{Binding Title}"/>
-                        </Button>
-                    </ItemContainerTemplate>
-                </ItemsControl.ItemTemplate>
+                            </Button>
+                        </ItemContainerTemplate>
+                    </ItemsControl.ItemTemplate>
 
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical">
 
-                        </StackPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+                            </StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
                 <TextBlock Foreground="{DynamicResource hint_color}"
                            Text="{DynamicResource r_temporarily_out_of_service}"
-                           TextAlignment="Center"/>
-            </StackPanel>
+                           TextAlignment="Center"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+            
 
             
 
