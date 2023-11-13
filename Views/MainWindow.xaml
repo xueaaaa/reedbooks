@@ -24,44 +24,34 @@
             </Grid.ColumnDefinitions>
             
              <!-- Hide panel button -->
-            <Button Grid.Column="0"
-                    Command="{Binding ChangeSidePanelVisibilityCommand}"
-                    HorizontalAlignment="Left" 
-                    VerticalAlignment="Top"
-                    Style="{DynamicResource MaterialDesignIconButton}" 
-                    Width="25" 
-                    Height="25"
-                    Margin="13.5"
-                    Panel.ZIndex="100">
-                <Image Width="20" 
-                       Height="20" 
-                       Source="/Resources/Icons/hide_bar.png"/>
-            </Button>
+            <controls:IconButton Style="{DynamicResource HidePanelButton}" 
+                                 Source="/Resources/Icons/hide_bar.png"
+                                 Command="{Binding ChangeSidePanelVisibilityCommand}"/>
+            
             <StackPanel Grid.Column="0"
                         Visibility="{Binding SidePanelVisibility}"
                         Background="{DynamicResource container_background_color}" 
                         Orientation="Vertical">
-                <!-- Top panel -->
+                <!--#region Top panel-->
                 <StackPanel Orientation="Vertical"
                             Margin="10">
-                    <Button Style="{DynamicResource MaterialDesignToolButton}" 
+                    <Button Style="{DynamicResource HintedButton}" 
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
-                            Foreground="{DynamicResource hint_color}"
-                            Content="{DynamicResource m_edit}" 
-                            Cursor="Hand"/>
-                    <!-- Settings button -->
+                            Content="{DynamicResource m_edit}" />
+                    
                     <controls:IconButton Source="/Resources/Icons/settings.png"
                                          HorizontalAlignment="Right"
                                          Command="{Binding OpenSettingsCommand}"/>
                 </StackPanel>
+                <!--#endregion-->
 
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                            FontWeight="DemiBold"
                            Margin="10"
                            Text="{DynamicResource m_books}"/>
 
-                <!-- Main menu buttons -->
+                <!--#region Main menu buttons -->
                 <StackPanel Margin="10">
                     <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
                                               Source="/Resources/Icons/book.png"
@@ -81,13 +71,10 @@
                                               Command="{Binding SwitchToTabCommand}"
                                               CommandParameter="2"/>
                 </StackPanel>
+                <!--#endregion-->
 
-
-                <!-- Readers diary expander -->
-                <Expander Margin="10 0 10 10"
-                          Style="{DynamicResource MaterialDesignExpander}" 
-                          Background="{DynamicResource container_background_color}"
-                          IsExpanded="True"
+                <!--#region Readers diary expander-->
+                <Expander Style="{DynamicResource MainMenuExpander}" 
                           Header="{DynamicResource m_readers_diary_collection}">
                     <ItemsControl ItemsSource="{Binding LoadedBooks}">
                         <ItemsControl.Template>
@@ -103,7 +90,7 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                <Button Style="{DynamicResource HintedButton}"
                                         Content="{Binding Name}"
                                         Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                         CommandParameter="{Binding}"/>
@@ -112,39 +99,32 @@
                     </ItemsControl>
 
                 </Expander>
+                <!--#endregion-->
 
-                <!-- Collections expander -->
-                <Expander Margin="10 0 10 10"
-                          Style="{DynamicResource MaterialDesignExpander}" 
-                          Background="{DynamicResource container_background_color}"
-                          IsExpanded="True"
+                <!--#region Collections expander-->
+                <Expander Style="{DynamicResource MainMenuExpander}" 
                           Header="{DynamicResource m_my_collections_collection}">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Foreground="{DynamicResource hint_color}"
-                               Text="{DynamicResource m_no_elements}"/>
+                                   Text="{DynamicResource m_no_elements}"/>
                         <Separator/>
                         <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
                                                   Source="/Resources/Icons/add.png"
                                                   Text="{DynamicResource m_new_collection}"/>
                     </StackPanel>
                 </Expander>
+                <!--#endregion-->
             </StackPanel>
 
-            <TabControl SelectedIndex="{Binding SelectedTab}"
+            <TabControl Style="{DynamicResource MainTabControl}"
                         Grid.Column="1"
-                        Style="{DynamicResource MaterialDesignFilledTabControl}">
-                <TabControl.ItemContainerStyle>
-                    <Style TargetType="TabItem">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
-                    </Style>
-                </TabControl.ItemContainerStyle>
-
+                        SelectedIndex="{Binding SelectedTab}">
+                <!--#region Reading Now Tab-->
                 <TabItem>
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                           Margin="30"
-                           Text="{DynamicResource m_reading_now}"/>
+                                   Margin="30"
+                                   Text="{DynamicResource m_reading_now}"/>
                         <Separator Margin="30 0 30 0"/>
                         <Grid Margin="30 0 0 30">
                             <Grid.ColumnDefinitions>
@@ -152,22 +132,25 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- Current reding -->
+                            <!--#region Current reding-->
                             <StackPanel Grid.Column="0"
                                 Orientation="Vertical">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
-                                    Text="{DynamicResource m_current}"/>
+                                           Text="{DynamicResource m_current}"/>
                             </StackPanel>
+                            <!--#endregion-->
 
-                            <!-- Recently readed -->
+                            <!--#region Recently readed-->
                             <StackPanel Grid.Column="1"
                                 Orientation="Vertical">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                            Text="{DynamicResource m_recent}"/>
                             </StackPanel>
+                            <!--#endregion-->
                         </Grid>
                     </StackPanel>
                 </TabItem>
+                <!--#endregion-->
                 
                 <TabItem>
                     <Grid>
@@ -186,11 +169,7 @@
                             <Separator/>
                         </StackPanel>
 
-                        <ScrollViewer Grid.Row="1"
-                                      VerticalScrollBarVisibility="Auto"
-                                      HorizontalScrollBarVisibility="Disabled"
-                                      Margin="30"
-                                      MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+                        <ScrollViewer Style="{DynamicResource BookScrollViewer}">
                             <ItemsControl Grid.Row="1"
                                           ItemsSource="{Binding LoadedBooks}">
                                 <ItemsControl.ItemTemplate>
@@ -200,9 +179,7 @@
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal"
-                                                   Margin="30"
-                                                   Grid.Row="1"/>
+                                        <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
@@ -224,11 +201,7 @@
                                      TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
-                        <ScrollViewer Grid.Row="1"
-                                      VerticalScrollBarVisibility="Auto"
-                                      HorizontalScrollBarVisibility="Disabled"
-                                      Margin="30"
-                                      MaxHeight="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}">
+                        <ScrollViewer Style="{DynamicResource BookScrollViewer}">
                             <ItemsControl Grid.Row="1"
                                           ItemsSource="{Binding SearchedBooks}">
                                 <ItemsControl.ItemTemplate>
@@ -238,9 +211,7 @@
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal"
-                                                   Margin="30"
-                                                   Grid.Row="1"/>
+                                        <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>

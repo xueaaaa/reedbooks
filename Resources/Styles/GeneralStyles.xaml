@@ -28,4 +28,10 @@
         <Setter Property="Foreground" Value="{DynamicResource hint_color}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
+    <Style x:Key="HintedButton"
+           BasedOn="{StaticResource MaterialDesignToolButton}"
+           TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource hint_color}"/>
+    </Style>
 </ResourceDictionary>

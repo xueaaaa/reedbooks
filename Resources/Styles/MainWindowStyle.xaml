@@ -14,4 +14,52 @@
 
         <Setter Property="Margin" Value="0 0 0 10"/>
     </Style>
+
+    <Style x:Key="HidePanelButton"
+           TargetType="Button"
+           BasedOn="{StaticResource MaterialDesignIconButton}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="13.5"/>
+        <Setter Property="Panel.ZIndex" Value="100"/>
+        <Setter Property="Grid.Column" Value="0"/>
+    </Style>
+
+    <Style x:Key="MainMenuExpander"
+           TargetType="Expander"
+           BasedOn="{StaticResource MaterialDesignExpander}">
+        <Setter Property="Margin" Value="10 0 10 10"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="IsExpanded" Value="True"/>
+    </Style>
+
+    <Style x:Key="MainTabControl"
+           TargetType="TabControl"
+           BasedOn="{StaticResource MaterialDesignFilledTabControl}">
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="TabItem">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BookScrollViewer"
+           TargetType="ScrollViewer">
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="MaxHeight" Value="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Window}}"/>
+    </Style>
+
+    <Style x:Key="BookWrapPanel"
+           TargetType="WrapPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="Grid.Row" Value="1"/>
+    </Style>
 </ResourceDictionary>
