@@ -14,7 +14,7 @@
     <Window.DataContext>
         <local:DialogWindowViewModel/>
     </Window.DataContext>
-    <Grid Background="{DynamicResource window_background_color}">
+    <Grid Style="{DynamicResource MainGrid}">
         <Border Margin="30"
                 CornerRadius="10"
                 Background="{DynamicResource container_background_color}">

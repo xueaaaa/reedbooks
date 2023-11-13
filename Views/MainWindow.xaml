@@ -7,6 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:converters="clr-namespace:ReedBooks.Converters"
+        xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         mc:Ignorable="d"
         Title="{DynamicResource h_main_window}" Height="600" Width="1000">
     <Window.DataContext>
@@ -15,7 +16,7 @@
     <Window.Resources>
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     </Window.Resources>
-    <Grid Background="{DynamicResource window_background_color}">
+    <Grid Style="{DynamicResource MainGrid}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.4*"/>
@@ -204,22 +205,9 @@
                         <TextBlock Foreground="{DynamicResource hint_color}"
                                Text="{DynamicResource m_no_elements}"/>
                         <Separator/>
-                        <Button Style="{DynamicResource MaterialDesignFlatButton}">
-                            <DockPanel VerticalAlignment="Center"
-                                   HorizontalAlignment="Left">
-                                <Image DockPanel.Dock="Left"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Source="/Resources/Icons/add.png"/>
-
-                                <TextBlock DockPanel.Dock="Right"
-                                       Margin="10 0 0 0"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource text_color}"
-                                       Text="{DynamicResource m_new_collection}"/>
-                            </DockPanel>
-                        </Button>
+                        <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                                  Source="/Resources/Icons/add.png"
+                                                  Text="{DynamicResource m_new_collection}"/>
                     </StackPanel>
                 </Expander>
             </StackPanel>

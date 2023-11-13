@@ -11,7 +11,7 @@
     <Window.DataContext>
         <local:ReadingWindowViewModel/>
     </Window.DataContext>
-    <Grid Background="{DynamicResource window_background_color}">
+    <Grid Style="{DynamicResource MainGrid}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding ChaptersListBoxLength}"/>

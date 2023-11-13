@@ -7,4 +7,9 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
     </Style>
+
+    <Style x:Key="MainGrid"
+           TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource window_background_color}"/>
+    </Style>
 </ResourceDictionary>
