@@ -16,7 +16,7 @@
     </Window.DataContext>
     <Grid Style="{DynamicResource MainGrid}">
         <Border Margin="30"
-                CornerRadius="10"
+                CornerRadius="{DynamicResource CornerRadius}"
                 Background="{DynamicResource container_background_color}">
             <Grid Margin="20">
                 <Grid.RowDefinitions>
@@ -34,20 +34,17 @@
                 </StackPanel>
                 
                 <DockPanel Grid.Row="1" Margin="0 10 0 10" VerticalAlignment="Bottom">
-                    <Button Margin="0 0 20 0"
-                            Style="{StaticResource MaterialDesignRaisedLightButton}"
-                            IsDefault="True"
-                            Click="Button_Click"
+                    <Button Style="{StaticResource ReedBooksRaisedButton}"
+                            Margin="0 0 20 0"
                             DockPanel.Dock="Left"
                             HorizontalAlignment="Left"
-                            Background="{DynamicResource accent_color}"
-                            Foreground="{DynamicResource text_color}"
+                            IsDefault="True"
+                            Click="Button_Click"
                             Content="{DynamicResource d_acept_button}"/>
-                    <Button Style="{StaticResource MaterialDesignOutlinedButton}"
+                    <Button Style="{StaticResource ReedBooksOutlinedButton}"
                             DockPanel.Dock="Right"
-                            IsCancel="True"
                             HorizontalAlignment="Right"
-                            Foreground="{DynamicResource accent_color}"
+                            IsCancel="True"
                             Content="{DynamicResource d_refuse_button}"/>
                 </DockPanel>
             </Grid>

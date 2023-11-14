@@ -328,6 +328,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\ReadingDiaryWindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Themes\dark.theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

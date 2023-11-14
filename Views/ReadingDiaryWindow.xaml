@@ -21,7 +21,7 @@
 
             <Border Margin="30"
                     Background="{DynamicResource container_background_color}"
-                    CornerRadius="20">
+                    CornerRadius="{DynamicResource CornerRadius}">
 				<ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
 					<Grid Margin="20">
@@ -43,11 +43,7 @@
                                        Text="{Binding Book.Name}"/>
 							<Separator/>
 						</StackPanel>
-						<Image Grid.Column="0"
-                               Grid.Row="1"
-                               Height="250"
-                               Width="Auto"
-                               Margin="20"
+						<Image Style="{DynamicResource DiaryCoverImage}"
                                Source="{Binding Book.LinkToCover}"/>
 						<StackPanel Grid.Column="1"
                                     Grid.Row="1"
@@ -68,17 +64,20 @@
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_genre_label}"/>
 								<TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
-                                         Text="{Binding Book.Genre}"/>
+                                         Text="{Binding Book.Genre}"
+                                         VerticalAlignment="Center"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_begin_reading_at}"/>
-								<TextBox Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy, Mode=TwoWay}"/>
+								<TextBox Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy, Mode=TwoWay}"
+                                         VerticalAlignment="Center"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_end_reading_at}"/>
-								<TextBox Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy, Mode=TwoWay}"/>
+								<TextBox Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy, Mode=TwoWay}"
+                                         VerticalAlignment="Center"/>
 							</StackPanel>
 						</StackPanel>
 
@@ -93,7 +92,7 @@
                                        Text="{DynamicResource rd_my_emotions}"
                                        TextWrapping="Wrap"/>
 							    <Separator/>
-							    <!--#region At Start -->
+							<!--#region At Start -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_start}"/>
 							<StackPanel Margin="10"
@@ -125,7 +124,7 @@
 								</RadioButton>
 							</StackPanel>
 							<!--#endregion-->
-							    <!--#region At Middle -->
+							<!--#region At Middle -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_middle}"/>
 							<StackPanel Margin="10"
@@ -219,103 +218,68 @@
 									<RowDefinition/>
 								</Grid.RowDefinitions>
 								<!--#region Plot Originality -->
-								<TextBlock Grid.Column="0"
+								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="0"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_plot_originality}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="0"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="0"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.PlotOriginality,Mode=TwoWay}"/>
 								<!--#endregion-->
 								<!--#region Characters -->
-								<TextBlock Grid.Column="0"
+                                <TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="1"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_characters}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="1"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.Characters,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="1"                
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.Characters,Mode=TwoWay}"/>
 								<!--#endregion-->
 								<!--#region World Inside Book -->
-								<TextBlock Grid.Column="0"
+								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="2"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_world_inside_book}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="2"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="2"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.WorldInsideBook,Mode=TwoWay}"/>
 								<!--#endregion-->
 								<!--#region Love Line -->
-								<TextBlock Grid.Column="0"
+								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="3"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_love_line}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="3"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.LoveLine,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="3"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.LoveLine,Mode=TwoWay}"/>
 								<!--#endregion-->
 								<!--#region Humor -->
-								<TextBlock Grid.Column="0"
+								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="4"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_humor}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="4"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.Humor,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="4"/>
 								<!--#endregion-->
 								<!--#region Meaning Fulness -->
-								<TextBlock Grid.Column="0"
+								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
+                                           Grid.Column="0"
                                            Grid.Row="5"
-                                           TextWrapping="Wrap"
-                                           VerticalAlignment="Center"
-                                           Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource rd_meaning_fulness}"/>
-								<materialDesign:RatingBar Grid.Column="1"
-                                          Grid.Row="5"
-                                          HorizontalAlignment="Right"
-                                          Min="0"
-                                          Max="5"
-                                          ValueIncrements="0.5"
-                                          Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness,Mode=TwoWay}"
-                                          Background="{DynamicResource hint_color}"/>
+								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
+                                                          Grid.Column="1"
+                                                          Grid.Row="5"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.MeaningFulness,Mode=TwoWay}"/>
 								<!--#endregion-->
+                                
 								<Separator Grid.ColumnSpan="2"
                                            Grid.Row="6"/>
+                                
 								<!--#region Arithmetic Average -->
 								<TextBlock Grid.Column="0"
                                            Grid.Row="7"
@@ -324,23 +288,19 @@
                                            Foreground="{DynamicResource text_color}" 
                                            Text="{DynamicResource rd_arithmetic_average}"/>
 								<materialDesign:RatingBar Grid.Column="1"
-                                              Grid.Row="7"
-                                              HorizontalAlignment="Right"
-                                              IsReadOnly="True"
-                                              Value="{Binding Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
-                                              Background="{DynamicResource hint_color}"/>
+                                                          Grid.Row="7"
+                                                          HorizontalAlignment="Right"
+                                                          IsReadOnly="True"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
+                                                          Background="{DynamicResource hint_color}"/>
 								<!--#endregion-->
 							</Grid>
 						</StackPanel>
-						<TextBox Grid.ColumnSpan="2"
+						<TextBox Style="{DynamicResource MultilineTextBox}"
+                                 Grid.ColumnSpan="2"
                                  Grid.Row="3"
                                  Margin="20"
-                                 VerticalScrollBarVisibility="Auto"
-                                 VerticalAlignment="Stretch"
                                  materialDesign:HintAssist.Hint="{DynamicResource rd_plot_brief_retelling_hint}"
-                                 AcceptsReturn="True"
-                                 SpellCheck.IsEnabled="True"
-                                 TextWrapping="Wrap"
                                  Text="{Binding Book.BoundDiary.PlotBriefRetelling,Mode=TwoWay}"/>
 						<StackPanel Grid.ColumnSpan="2"
                                     Grid.Row="6"
@@ -367,11 +327,7 @@
                                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                                     Margin="10">
                                                 <Button.CommandParameter>
-                                                    <StackPanel Margin="20"
-                                                                MaxWidth="500"
-                                                                Orientation="Vertical"
-                                                                VerticalAlignment="Center"
-                                                                HorizontalAlignment="Center">
+                                                    <StackPanel Style="{DynamicResource DialogPanel}">
                                                         <TextBlock Text="{Binding Data}"
                                                                    Foreground="{DynamicResource text_color}"
                                                                    TextWrapping="Wrap"
@@ -389,34 +345,23 @@
                                                                 <ColumnDefinition/>
                                                             </Grid.ColumnDefinitions>
 
-                                                            <Button Style="{DynamicResource MaterialDesignIconButton}"
-                                                                    Click="Button_Click"
-                                                                    CommandParameter="{Binding Guid}"
-                                                                    HorizontalAlignment="Left"
-                                                                    Width="25" 
-                                                                    Height="25">
-                                                                <Image Width="20" 
-                                                                       Height="20" 
-                                                                       Source="/Resources/Icons/delete.png"/>
-                                                            </Button>
+                                                            <controls:IconButton Style="{DynamicResource MaterialDesignIconButton}"
+                                                                                 HorizontalAlignment="Left"
+                                                                                 Click="Button_Click"
+                                                                                 CommandParameter="{Binding Guid}"
+                                                                                 Source="/Resources/Icons/delete.png"/>
 
                                                             <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                                     Grid.Column="1"
                                                                     HorizontalAlignment="Right"
                                                                     Foreground="{DynamicResource accent_color}"
-                                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                                     Content="{DynamicResource rd_cancel}"/>
                                                         </Grid>
                                                     </StackPanel>
                                                 </Button.CommandParameter>
 
-                                                <TextBlock DockPanel.Dock="Right"
-                                                           Margin="10 0 0 0"
-                                                           HorizontalAlignment="Left"
-                                                           VerticalAlignment="Center"
-                                                           MaxWidth="150"
-                                                           TextTrimming="WordEllipsis"
-                                                           Foreground="{DynamicResource text_color}"
+                                                <TextBlock Style="{DynamicResource ButtonQuoteTextBlock}"
                                                            Text="{Binding Data}"/>
                                             </Button>
 										</DataTemplate>
@@ -428,28 +373,23 @@
                                                           Text="{DynamicResource rd_add_quote}"
                                                           Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                                     <Button.CommandParameter>
-                                        <StackPanel Margin="20"
-                                                    Orientation="Vertical"
-                                                    MaxWidth="500">
+                                        <StackPanel Style="{DynamicResource DialogPanel}">
                                             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                                        Foreground="{DynamicResource text_color}"
                                                        Margin="0 0 0 20"
                                                        Text="{DynamicResource rd_add_quote_header}"/>
-                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
-                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
-                                                     Foreground="{DynamicResource text_color}"
-                                                     Margin="0 0 0 15"
-                                                     VerticalScrollBarVisibility="Auto"
-                                                     VerticalAlignment="Stretch"
-                                                     TextWrapping="Wrap"
-                                                     AcceptsReturn="True"
+                                            <TextBox Style="{DynamicResource MultilineTextBox}"
+                                                     materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     Margin="0 0 0 15"
                                                      Text="{Binding QuoteData}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
                                                      Margin="0 0 0 15"
                                                      Text="{Binding QuoteAuthor}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Margin="0 0 0 15"
                                                      Foreground="{DynamicResource text_color}"
                                                      Text="{Binding QuoteLocation}"/>
 
@@ -459,10 +399,8 @@
                                                     <ColumnDefinition/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Button Style="{DynamicResource MaterialDesignRaisedButton}"
+                                                <Button Style="{DynamicResource ReedBooksRaisedButton}"
                                                         HorizontalAlignment="Left"
-                                                        Background="{DynamicResource accent_color}"
-                                                        Foreground="{DynamicResource text_color}"
                                                         Command="{Binding AddQuoteCommand}"
                                                         Content="{DynamicResource rd_add_quote}"/>
                                                 <Button Style="{DynamicResource MaterialDesignFlatButton}"

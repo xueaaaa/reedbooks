@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <CornerRadius x:Key="CornerRadius">20</CornerRadius>
+    
     <Style x:Key="ReedBooksWindow"
            TargetType="Window">
         <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
@@ -34,4 +36,31 @@
            TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource hint_color}"/>
     </Style>
+
+    <Style x:Key="ReedBooksRaisedButton"
+           TargetType="Button"
+           BasedOn="{StaticResource MaterialDesignRaisedButton}">
+        <Setter Property="Background" Value="{DynamicResource accent_color}"/>
+        <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
+    </Style>
+
+    <Style x:Key="ReedBooksOutlinedButton"
+           TargetType="Button"
+           BasedOn="{StaticResource MaterialDesignOutlinedButton}">
+        <Setter Property="Foreground" Value="{DynamicResource accent_color}"/>
+    </Style>
+<<<<<<< HEAD
+=======
+
+    <Style x:Key="MultilineTextBox"
+           TargetType="TextBox"
+           BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+>>>>>>> upgrade_xaml
 </ResourceDictionary>
