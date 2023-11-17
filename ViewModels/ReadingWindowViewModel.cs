@@ -1,10 +1,11 @@
-﻿using ReedBooks.Core;
+﻿using MaterialDesignThemes.Wpf;
+using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using ReedBooks.Views;
 using ReedBooks.Views.Controls;
 using System.Collections.Generic;
 using System.Windows.Documents;
 using System.Windows.Input;
-using VersOne.Epub;
 
 namespace ReedBooks.ViewModels
 {
@@ -47,10 +48,14 @@ namespace ReedBooks.ViewModels
         }
 
         public ICommand MoveToAnotherDocumentCommand { get; }
+        public ICommand MarkAsReadCommand { get; }
+        public ICommand OpenReadingDiaryCommand { get; }
 
         public ReadingWindowViewModel()
         {
             MoveToAnotherDocumentCommand = new RelayCommand(obj => MoveToAnotherDocument(obj));
+            MarkAsReadCommand = new RelayCommand(obj => MarkAsRead(obj));
+            OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary());
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
@@ -63,6 +68,18 @@ namespace ReedBooks.ViewModels
         {
             var document = Book.LoadChapter(param.ToString());
             SelectedFlowDocument = document;
+        }
+
+        public void MarkAsRead(object param)
+        {
+            DialogHost.Show(param);
+            Book.MarkAsRead();
+        }
+
+        public void OpenReadingDiary() 
+        {
+            ReadingDiaryWindow rDW = new ReadingDiaryWindow(Book);
+            rDW.Show();
         }
     }
 }

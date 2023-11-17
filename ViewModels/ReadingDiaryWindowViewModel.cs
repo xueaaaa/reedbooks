@@ -102,6 +102,7 @@ namespace ReedBooks.ViewModels
             {
                 Book.BoundDiary.Quotes.Add(toAdd);
                 await App.ApplicationContext.AddEntityAsync(toAdd);
+                DialogHost.Close("Dialog");
             }
             else
                 new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(), Application.Current.Resources["dialog_null_quote_content"].ToString())

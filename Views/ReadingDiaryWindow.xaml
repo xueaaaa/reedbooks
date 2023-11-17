@@ -15,7 +15,8 @@
 		<local:ReadingDiaryWindowViewModel/>
 	</Window.DataContext>
     <Grid Style="{DynamicResource MainGrid}">
-        <materialDesign:DialogHost DialogContentUniformCornerRadius="20"
+        <materialDesign:DialogHost Identifier="Dialog"
+                                   DialogContentUniformCornerRadius="20"
                                    CloseOnClickAway="True"
                                    DialogBackground="{DynamicResource container_background_color}">
 

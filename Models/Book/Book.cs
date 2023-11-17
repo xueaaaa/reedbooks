@@ -178,7 +178,7 @@ namespace ReedBooks.Models.Book
         /// <returns>FlowDocument containing the formatted text of the chapter</returns>
         public FlowDocument LoadChapter(string contentFilePath)
         {
-            if (BoundDiary.BeginReadingAt == DateTime.MinValue) BoundDiary.BeginReadingAt = DateTime.Now;
+            SetStartReadingDate();
 
             var book = GetEpub();
             var content = book.ReadingOrder.Where(c => c.FilePath == contentFilePath).First();
@@ -188,8 +188,7 @@ namespace ReedBooks.Models.Book
             var background = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["book_background_color"].ToString());
             html.Background = new SolidColorBrush(background);
 
-
-            html.IsSelectionEnabled = true;
+            html.PreviewMouseDown += (sender, e) => e.Handled = true;
 
             var uiContainer = new BlockUIContainer(html);
             var flowDoc = new FlowDocument();
@@ -214,6 +213,16 @@ namespace ReedBooks.Models.Book
             }
 
             return navigaion;
+        }
+
+        public void SetStartReadingDate()
+        {
+            if (BoundDiary.BeginReadingAt == DateTime.MinValue) BoundDiary.BeginReadingAt = DateTime.Now;
+        }
+
+        public void MarkAsRead()
+        {
+            BoundDiary.EndReadingAt = DateTime.Now;
         }
 
         /// <summary>

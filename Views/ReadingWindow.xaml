@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
@@ -12,23 +13,71 @@
         <local:ReadingWindowViewModel/>
     </Window.DataContext>
     <Grid Style="{DynamicResource MainGrid}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <materialDesign:DialogHost DialogContentUniformCornerRadius="20"
+                                   CloseOnClickAway="True"
+                                   DialogBackground="{DynamicResource container_background_color}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <controls:ChaptersView Grid.Column="0"
-                                   Navigation="{Binding Navigation}"
-                                   OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-            <GridSplitter Grid.Column="1"
+                    <controls:ChaptersView Grid.Row="0"
+                                       Navigation="{Binding Navigation}"
+                                       OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
+
+                    <controls:ButtonWithImage Style="{DynamicResource MarkAsReadButton}"
+                                              Command="{Binding MarkAsReadCommand}"
+                                              Source="/Resources/Icons/done.png"
+                                              Text="{DynamicResource r_mark_as_read}"
+                                              ToolTip="{DynamicResource r_mark_as_read_hint}">
+                        <controls:ButtonWithImage.CommandParameter>
+                            <StackPanel Style="{DynamicResource DialogPanel}">
+                                <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
+                                           Foreground="{DynamicResource text_color}"
+                                           Text="{DynamicResource r_end_of_read_dialog_header}"/>
+                                <Separator Margin="0 0 0 15"/>
+                                <TextBlock Foreground="{DynamicResource text_color}"
+                                           Margin="0 0 0 15"
+                                           TextWrapping="Wrap"
+                                           Text="{DynamicResource r_end_of_read_dialog_content}"/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Style="{DynamicResource ReedBooksRaisedButton}"
+                                            HorizontalAlignment="Left"
+                                            Command="{Binding OpenReadingDiaryCommand}"
+                                            Content="{DynamicResource r_open_reading_diary}"/>
+                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Right"
+                                            Foreground="{DynamicResource accent_color}"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            Content="{DynamicResource r_stay}"/>
+                                </Grid>
+                            </StackPanel>
+                        </controls:ButtonWithImage.CommandParameter>
+                    </controls:ButtonWithImage>
+                </Grid>
+
+                <GridSplitter Grid.Column="1"
                           Style="{DynamicResource ReedBooksGridSplitter}"/>
 
-            <FlowDocumentScrollViewer Grid.Column="2"
+                <FlowDocumentScrollViewer Grid.Column="2"
                                       IsToolBarVisible="True"
                                       Document="{Binding SelectedFlowDocument}"/>
-        </Grid>
+            </Grid>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>
