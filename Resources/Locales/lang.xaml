@@ -35,6 +35,7 @@
 
     <!--#region Settings window-->
     <v:String x:Key="h_settings_window">ReedBooks - Настройки</v:String>
+    <v:String x:Key="s_interface_header">Интерфейс</v:String>
     <v:String x:Key="s_language_label">Язык приложения</v:String>
     <v:String x:Key="s_language_hint">Эта настройка меняет только язык интерфейса. Имена авторов книг, и их содержание не локализуются.</v:String>
     <v:String x:Key="s_theme_label">Тема</v:String>

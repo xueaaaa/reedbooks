@@ -23,7 +23,17 @@
 
                 <StackPanel Grid.Row="0"
                             Orientation="Vertical">
-                    <controls:SettingsParameter ParameterName="{DynamicResource s_language_label}"
+                    <!--#region Interface settings-->
+                    <Expander Background="{DynamicResource container_background_color}"
+                              IsExpanded="True">
+                        <Expander.Header>
+                            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                       FontWeight="Bold"
+                                       Text="{DynamicResource s_interface_header}"/>
+                        </Expander.Header>
+                        
+                        <StackPanel Orientation="Vertical">
+                            <controls:SettingsParameter ParameterName="{DynamicResource s_language_label}"
                                                 ParameterHint="{DynamicResource s_language_hint}">
                         <controls:SettingsParameter.ValueSelector>
                             <ComboBox Focusable="False"
@@ -33,10 +43,7 @@
                                       SelectedValuePath="Tag"/>
                         </controls:SettingsParameter.ValueSelector>
                     </controls:SettingsParameter>
-
-
                     <Separator Margin="10"/>
-
                     <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
                                                 ParameterHint="{DynamicResource s_theme_hint}">
                         <controls:SettingsParameter.ValueSelector>
@@ -49,6 +56,10 @@
                                       SelectedValuePath="Tag"/>
                         </controls:SettingsParameter.ValueSelector>
                     </controls:SettingsParameter>
+                        </StackPanel>
+                    </Expander>
+                    <!--#endregion-->
+                    
                 </StackPanel>
 
                 <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
