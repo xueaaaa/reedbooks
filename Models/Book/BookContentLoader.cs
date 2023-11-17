@@ -22,6 +22,9 @@ namespace ReedBooks.Models.Book
             var foreground = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["text_color"].ToString());
             html.Foreground = new SolidColorBrush(foreground);
 
+            html.PreviewMouseDown += (sender, e) => e.Handled = true;
+            html.IsSelectionEnabled = true;
+
             var uiContainer = new BlockUIContainer(html);
             var flowDoc = new FlowDocument();
             flowDoc.Blocks.Add(uiContainer);
@@ -35,27 +38,33 @@ namespace ReedBooks.Models.Book
 
             foreach (var item in book.Navigation)
             {
-                NavigationItem navItem = new NavigationItem();
-                navItem.Header = item.Title;
-
-                if (item.NestedItems.Count > 0)
-                {
-                    List<NavigationItem> nestedItems = new List<NavigationItem>();
-
-                    foreach (var nestedItem in item.NestedItems)
-                    {
-                        var i = new NavigationItem();
-                        i.Header = nestedItem.Title;
-                        nestedItems.Add(i);
-                    }
-
-                    navItem.ItemsSource = nestedItems;
-                }    
-
+                var navItem = LoadNavigationItem(item);
                 navigaion.Add(navItem);
             }
 
             return navigaion;
+        }
+
+        private static NavigationItem LoadNavigationItem(EpubNavigationItem item)
+        {
+            var navigationItem = new NavigationItem();
+            navigationItem.Header = item.Title;
+            navigationItem.Link = item.Link.ContentFilePath;
+
+            if (item.NestedItems.Count > 0)
+            {
+                List<NavigationItem> nestedItems = new List<NavigationItem>();
+
+                foreach (var nestedItem in item.NestedItems)
+                {
+                    var i = LoadNavigationItem(nestedItem);
+                    nestedItems.Add(i);
+                }
+
+                navigationItem.ItemsSource = nestedItems;
+            }
+
+            return navigationItem;
         }
     }
 }

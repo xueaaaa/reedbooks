@@ -19,14 +19,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <controls:ChaptersView Navigation="{Binding Navigation}"
-                                   Grid.Column="0"/>
-            
-            <GridSplitter Style="{DynamicResource ReedBooksGridSplitter}"
-                          Grid.Column="1"/>
+            <controls:ChaptersView Grid.Column="0"
+                                   Navigation="{Binding Navigation}"
+                                   OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
 
-            <FlowDocumentReader Grid.Column="2"
-                                Document="{Binding SelectedFlowDocument}"/>
+            <GridSplitter Grid.Column="1"
+                          Style="{DynamicResource ReedBooksGridSplitter}"/>
+
+            <FlowDocumentScrollViewer Grid.Column="2"
+                                      IsToolBarVisible="True"
+                                      Document="{Binding SelectedFlowDocument}"/>
         </Grid>
     </Grid>
 </Window>

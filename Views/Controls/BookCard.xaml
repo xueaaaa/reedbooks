@@ -22,7 +22,6 @@
                Margin="20"
                Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
 
-
         <StackPanel Grid.Row="1"
                     Margin="10"
                     Orientation="Vertical">
