@@ -1,0 +1,102 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region Main window -->
+    <v:String x:Key="h_main_window">ReedBooks</v:String>
+    <v:String x:Key="m_edit">Bearbeiten</v:String>
+    <v:String x:Key="m_books">Bücher</v:String>
+    <v:String x:Key="m_reading_now">Aktuell Lesen</v:String>
+    <v:String x:Key="m_all_books">Alle Bücher</v:String>
+    <v:String x:Key="m_search">Suchen</v:String>
+    <v:String x:Key="m_readers_diary_collection">Lesertagebuch</v:String>
+    <v:String x:Key="m_my_collections_collection">Meine Sammlungen</v:String>
+    <v:String x:Key="m_new_collection">Neue Sammlung</v:String>
+    <v:String x:Key="m_current">Aktuell</v:String>
+    <v:String x:Key="m_recent">Kürzlich</v:String>
+    <v:String x:Key="m_no_elements">Es wurde noch kein Element hinzugefügt</v:String>
+    <v:String x:Key="m_load_book">Buch Laden</v:String>
+    <v:String x:Key="m_search_hint">Geben Sie den Buchtitel ein...</v:String>
+    <v:String x:Key="m_genre">Genre:</v:String>
+    <v:String x:Key="m_chapters_count">Anzahl der Kapitel:</v:String>
+    <v:String x:Key="m_read">Lesen</v:String>
+    <!--#endregion-->
+
+    <!--#region Reading window -->
+    <v:String x:Key="h_reading_window">ReedBooks - Lese-Modus</v:String>
+    <v:String x:Key="r_mark_as_read">Als Gelesen Markieren</v:String>
+    <v:String x:Key="r_mark_as_read_hint">Durch Klicken auf diese Schaltfläche wird das heutige Datum im Abschnitt "Ende des Lesens" im Lesertagebuch festgelegt.</v:String>
+    <v:String x:Key="r_end_of_read_dialog_header">Herzlichen Glückwunsch!</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">Herzlichen Glückwunsch zum Beenden des Buches. Wir laden Sie ein, zum Lesertagebuch zu gehen und es zu bewerten.</v:String>
+    <v:String x:Key="r_open_reading_diary">Gehe zu</v:String>
+    <v:String x:Key="r_stay">Verbleiben</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Dieser Teil der Anwendung ist derzeit nicht verfügbar</v:String>
+    <!--#endregion-->
+
+    <!--#region Settings window-->
+    <v:String x:Key="h_settings_window">ReedBooks - Einstellungen</v:String>
+    <v:String x:Key="s_interface_header">Benutzeroberfläche</v:String>
+    <v:String x:Key="s_storage_management_header">Speicherverwaltung</v:String>
+    <v:String x:Key="s_delete_unused_files_label">Unbenutzte Dateien löschen</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern aus der Anwendung können einige Dateien in den Verzeichnissen verbleiben. Gesamtgröße der unbenutzten Dateien:</v:String>
+    <v:String x:Key="s_delete">Löschen</v:String>
+    <v:String x:Key="s_language_label">Sprache der Anwendung</v:String>
+    <v:String x:Key="s_language_hint">Diese Einstellung ändert nur die Sprache der Benutzeroberfläche. Die Namen der Autoren und der Inhalt der Bücher werden nicht lokalisiert.</v:String>
+    <v:String x:Key="s_theme_label">Thema</v:String>
+    <v:String x:Key="s_theme_hint">Ändert zwischen dem hellen (Standard) und dunklen Thema.</v:String>
+    <v:String x:Key="s_save">Speichern</v:String>
+    <!--#endregion-->
+
+    <!--#region Dialog window -->
+    <v:String x:Key="h_dialog_window">ReedBooks - Dialog</v:String>
+    <v:String x:Key="d_acept_button">OK</v:String>
+    <v:String x:Key="d_refuse_button">Abbrechen</v:String>
+    <!--#endregion-->
+
+    <!--#region Reading Diary window -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Lesetagebuch</v:String>
+    <v:String x:Key="rd_author_label">Autor:</v:String>
+    <v:String x:Key="rd_chapters_count_label">Anzahl der Kapitel:</v:String>
+    <v:String x:Key="rd_genre_label">Genre:</v:String>
+    <v:String x:Key="rd_genre_hint">Geben Sie den Namen des Genres ein...</v:String>
+    <v:String x:Key="rd_begin_reading_at">Beginn des Lesens:</v:String>
+    <v:String x:Key="rd_end_reading_at">Ende des Lesens:</v:String>
+    <v:String x:Key="rd_arithmetic_average">Gesamtbewertung:</v:String>
+    <v:String x:Key="rd_my_emotions">Meine Emotionen</v:String>
+    <v:String x:Key="rd_start">Am Anfang des Buches</v:String>
+    <v:String x:Key="rd_middle">In der Mitte des Buches</v:String>
+    <v:String x:Key="rd_end">Am Ende des Buches</v:String>
+    <v:String x:Key="rd_assessment">Bewertung</v:String>
+    <v:String x:Key="rd_plot_originality">Originalität der Handlung</v:String>
+    <v:String x:Key="rd_characters">Charaktere</v:String>
+    <v:String x:Key="rd_world_inside_book">Welt im Buch</v:String>
+    <v:String x:Key="rd_love_line">Liebesgeschichte</v:String>
+    <v:String x:Key="rd_humor">Humor</v:String>
+    <v:String x:Key="rd_meaning_fulness">Bedeutung</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">Dies ist ein Ort für eine kurze Zusammenfassung oder Ihre Notizen.</v:String>
+    <v:String x:Key="rd_quotes">Zitate</v:String>
+    <v:String x:Key="rd_add_quote">Hinzufügen</v:String>
+    <v:String x:Key="rd_add_quote_header">Zitat hinzufügen</v:String>
+    <v:String x:Key="rd_quote_data_hint">Geben Sie den Text des Zitats ein...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Geben Sie den Autor des Zitats ein...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Geben Sie den Ort des Zitats im Buch ein (z.B. Kapitel, Seite, usw.)...</v:String>
+    <v:String x:Key="rd_cancel">Schließen</v:String>
+    <!--#endregion-->
+
+    <!--#region SPECIAL STRINGS -->
+    <v:String x:Key="theme_light">Hell</v:String>
+    <v:String x:Key="theme_dark">Dunkel</v:String>
+
+    <v:String x:Key="megabytes">MB</v:String>
+
+    <v:String x:Key="dialog_settings_title">Neustart erforderlich</v:String>
+    <v:String x:Key="dialog_settings_content">Um die vorgenommenen Einstellungen wirksam zu machen, muss die Anwendung neu gestartet werden. Möchten Sie dies jetzt tun?</v:String>
+
+    <v:String x:Key="dialog_error_title">Fehler</v:String>
+    <v:String x:Key="dialog_fatal_error_content">Die Anwendung wird aufgrund eines Fehlers angehalten:</v:String>
+    <v:String x:Key="dialog_null_quote_content">Es kann kein leeres Zitat hinzugefügt werden!</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">Buch löschen</v:String>
+    <v:String x:Key="dialog_delete_book_content">Sind Sie sicher, dass Sie dieses Buch löschen möchten?</v:String>
+    <!--#endregion-->
+</ResourceDictionary>
