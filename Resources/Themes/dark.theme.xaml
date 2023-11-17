@@ -5,6 +5,7 @@
     </FontFamily>
     <SolidColorBrush x:Key="window_background_color">#0c0c0c</SolidColorBrush>
     <SolidColorBrush x:Key="container_background_color">#313131</SolidColorBrush>
+    <SolidColorBrush x:Key="book_background_color">#8a8888</SolidColorBrush>
     <SolidColorBrush x:Key="accent_color">#848f82</SolidColorBrush>
     <SolidColorBrush x:Key="text_color">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="hint_color">#787878</SolidColorBrush>

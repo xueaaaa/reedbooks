@@ -210,7 +210,6 @@
     </Compile>
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Core\AppContext.cs" />
-    <Compile Include="Models\Book\BookContentLoader.cs" />
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />

@@ -1,6 +1,5 @@
 ﻿<TreeView x:Class="ReedBooks.Views.Controls.ChaptersView"
           Background="{DynamicResource container_background_color}"
-          Foreground="{DynamicResource text_color}"
           ItemsSource="{Binding ElementName=Control, Path=Navigation}"
           SelectedItemChanged="TreeView_SelectedItemChanged"
           ScrollViewer.HorizontalScrollBarVisibility="Auto"

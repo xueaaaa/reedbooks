@@ -1,12 +1,21 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Diary;
+using ReedBooks.Views.Controls;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Media;
+using TheArtOfDev.HtmlRenderer.WPF;
 using VersOne.Epub;
+using Color = System.Windows.Media.Color;
+using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace ReedBooks.Models.Book
 {
@@ -163,6 +172,51 @@ namespace ReedBooks.Models.Book
         }
 
         /// <summary>
+        /// Loads a chapter from epub
+        /// </summary>
+        /// <param name="contentFilePath">Title of the chapter's html file</param>
+        /// <returns>FlowDocument containing the formatted text of the chapter</returns>
+        public FlowDocument LoadChapter(string contentFilePath)
+        {
+            if (BoundDiary.BeginReadingAt == DateTime.MinValue) BoundDiary.BeginReadingAt = DateTime.Now;
+
+            var book = GetEpub();
+            var content = book.ReadingOrder.Where(c => c.FilePath == contentFilePath).First();
+            var html = new HtmlPanel();
+            html.Text = content.Content;
+
+            var background = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["book_background_color"].ToString());
+            html.Background = new SolidColorBrush(background);
+
+
+            html.IsSelectionEnabled = true;
+
+            var uiContainer = new BlockUIContainer(html);
+            var flowDoc = new FlowDocument();
+            flowDoc.Blocks.Add(uiContainer);
+
+            return flowDoc;
+        }
+
+        /// <summary>
+        /// Creates a list that corresponds to the epub book's navigation
+        /// </summary>
+        /// <returns>List with items of type NavigationItem for use in TreeView</returns>
+        public List<NavigationItem> LoadNavigation()
+        {
+            var book = GetEpub();
+            var navigaion = new List<NavigationItem>();
+
+            foreach (var item in book.Navigation)
+            {
+                var navItem = LoadNavigationItem(item);
+                navigaion.Add(navItem);
+            }
+
+            return navigaion;
+        }
+
+        /// <summary>
         /// Saves a record of the current object to the local database
         /// </summary>
         public async Task<int> Save()
@@ -224,6 +278,28 @@ namespace ReedBooks.Models.Book
             string newPath = $"{Directory.GetCurrentDirectory()}/{App.EPUBS_DIRECTORY}/{newName}.epub";
             File.Move(originPath, newPath);
             return newPath;
+        }
+
+        private NavigationItem LoadNavigationItem(EpubNavigationItem item)
+        {
+            var navigationItem = new NavigationItem();
+            navigationItem.Header = item.Title;
+            navigationItem.Link = item.Link.ContentFilePath;
+
+            if (item.NestedItems.Count > 0)
+            {
+                List<NavigationItem> nestedItems = new List<NavigationItem>();
+
+                foreach (var nestedItem in item.NestedItems)
+                {
+                    var i = LoadNavigationItem(nestedItem);
+                    nestedItems.Add(i);
+                }
+
+                navigationItem.ItemsSource = nestedItems;
+            }
+
+            return navigationItem;
         }
     }
 }

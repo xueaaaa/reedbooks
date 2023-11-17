@@ -10,12 +10,15 @@ namespace ReedBooks.ViewModels
 {
     public class ReadingWindowViewModel : ObservableObject
     {
-        public Book ReadingBook { get; set; }
-
-        private EpubBook _epubBook;
-        public EpubBook EpubBook
+        private Book _book;
+        public Book Book
         {
-            get => _epubBook;
+            get => _book;
+            set
+            {
+                _book = value;
+                OnPropertyChanged(nameof(Book));
+            }
         }
 
         private FlowDocument _selectedFlowDocument;
@@ -52,16 +55,13 @@ namespace ReedBooks.ViewModels
 
         public ReadingWindowViewModel(Book readingBook) : this()
         {
-            ReadingBook = readingBook;
-            _epubBook = ReadingBook.GetEpub();
-            Navigation = BookContentLoader.LoadNavigation(EpubBook);
-
-            MoveToAnotherDocumentCommand.Execute(_epubBook.ReadingOrder[0].FilePath);
+            Book = readingBook;
+            Navigation = Book.LoadNavigation();
         }
 
         public void MoveToAnotherDocument(object param)
         {
-            var document = BookContentLoader.LoadChapterFromEpub(EpubBook, param.ToString());
+            var document = Book.LoadChapter(param.ToString());
             SelectedFlowDocument = document;
         }
     }

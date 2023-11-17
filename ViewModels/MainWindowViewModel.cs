@@ -140,6 +140,7 @@ namespace ReedBooks.ViewModels
         public void Read(object param)
         {
             var selectedBook = (Book)param;
+                    
             ReadingWindow rW = new ReadingWindow(selectedBook);
             rW.Show();
         }

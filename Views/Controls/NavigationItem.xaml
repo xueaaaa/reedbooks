@@ -1,7 +1,7 @@
 ﻿<TreeViewItem x:Class="ReedBooks.Views.Controls.NavigationItem"
               IsExpanded="False"
               Style="{DynamicResource MaterialDesignTreeViewItem}"
-              Foreground="{DynamicResource accent_color}"
+              Foreground="{DynamicResource text_color}"
               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
