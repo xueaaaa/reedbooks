@@ -1,7 +1,7 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Models.Book;
-using System.Linq;
-using System.Windows;
+using ReedBooks.Views.Controls;
+using System.Collections.Generic;
 using System.Windows.Documents;
 using System.Windows.Input;
 using VersOne.Epub;
@@ -10,31 +10,12 @@ namespace ReedBooks.ViewModels
 {
     public class ReadingWindowViewModel : ObservableObject
     {
-        private GridLength _chaptersListBoxLength;
-        public GridLength ChaptersListBoxLength
-        {
-            get => _chaptersListBoxLength;
-            set
-            {
-                if(value != null)
-                {
-                    _chaptersListBoxLength = value;
-                    OnPropertyChanged(nameof(ChaptersListBoxLength));
-                }
-            }
-        }
         public Book ReadingBook { get; set; }
 
         private EpubBook _epubBook;
         public EpubBook EpubBook
         {
             get => _epubBook;
-        }
-
-        private FlowDocument _loadedFlowDocument;
-        public FlowDocument LoadedFlowDocument
-        {
-            get => _loadedFlowDocument;
         }
 
         private FlowDocument _selectedFlowDocument;
@@ -51,28 +32,37 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        public ICommand ChangeSelectedFlowDocumentCommand { get; }
+        private List<NavigationItem> _navigation;
+        public List<NavigationItem> Navigation
+        {
+            get => _navigation;
+            set
+            {
+                _navigation = value;
+                OnPropertyChanged(nameof(Navigation));
+            }
+        }
+
+        public ICommand MoveToAnotherDocumentCommand { get; }
 
         public ReadingWindowViewModel()
         {
-            ChangeSelectedFlowDocumentCommand = new RelayCommand(obj => ChangeSelectedFlowDocument(obj));
-
-            ChaptersListBoxLength = new GridLength(0.4, GridUnitType.Star);
+            MoveToAnotherDocumentCommand = new RelayCommand(obj => MoveToAnotherDocument(obj));
         }
 
-        public ReadingWindowViewModel(Book readingBook) : base()
+        public ReadingWindowViewModel(Book readingBook) : this()
         {
             ReadingBook = readingBook;
             _epubBook = ReadingBook.GetEpub();
-            _loadedFlowDocument = FlowDocumentContentLoader.LoadFromEpubBook(EpubBook);
+            Navigation = BookContentLoader.LoadNavigation(EpubBook);
+
+            MoveToAnotherDocumentCommand.Execute(_epubBook.ReadingOrder[0].FilePath);
         }
 
-        public void ChangeSelectedFlowDocument(object param)
+        public void MoveToAnotherDocument(object param)
         {
-            int index = (int)param;
-            var flowDocument = new FlowDocument();
-            flowDocument.Blocks.Add(LoadedFlowDocument.Blocks.ElementAt(index));
-            SelectedFlowDocument = flowDocument;
+            var document = BookContentLoader.LoadChapterFromEpub(EpubBook, param.ToString());
+            SelectedFlowDocument = document;
         }
     }
 }

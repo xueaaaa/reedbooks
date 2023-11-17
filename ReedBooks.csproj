@@ -210,7 +210,7 @@
     </Compile>
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Core\AppContext.cs" />
-    <Compile Include="Core\FlowDocumentContentLoader.cs" />
+    <Compile Include="Models\Book\BookContentLoader.cs" />
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
@@ -232,8 +232,14 @@
     <Compile Include="Views\Controls\ButtonWithImage.xaml.cs">
       <DependentUpon>ButtonWithImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ChaptersView.xaml.cs">
+      <DependentUpon>ChaptersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\NavigationItem.xaml.cs">
+      <DependentUpon>NavigationItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\SettingsParameter.xaml.cs">
       <DependentUpon>SettingsParameter.xaml</DependentUpon>
@@ -328,7 +334,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ReadingDiaryWindowStyles.xaml">
+    <Page Include="Resources\Styles\ReadingDiaryWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ReadingWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -348,7 +358,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\ChaptersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\IconButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\NavigationItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

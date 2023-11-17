@@ -16,7 +16,8 @@
                                                  SecondaryColor="#616161"/>
                 <ResourceDictionary Source="Resources/Styles/GeneralStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/MainWindowStyle.xaml"/>
-                <ResourceDictionary Source="Resources/Styles/ReadingDiaryWindowStyles.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/ReadingWindowStyle.xaml"/>
+                <ResourceDictionary Source="Resources/Styles/ReadingDiaryWindowStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

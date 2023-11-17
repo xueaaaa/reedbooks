@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
@@ -14,54 +14,19 @@
     <Grid Style="{DynamicResource MainGrid}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="{Binding ChaptersListBoxLength}"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid>
-                <ItemsControl ItemsSource="{Binding EpubBook.Navigation}"
-                              Background="{DynamicResource container_background_color}"
-                              IsEnabled="False">
-                    <ItemsControl.Effect>
-                        <BlurEffect Radius="30"/>
-                    </ItemsControl.Effect>
-                    
-                    <ItemsControl.ItemTemplate>
-                        <ItemContainerTemplate>
-                            <Button Style="{DynamicResource MaterialDesignOutlinedLightButton}"
-                                Foreground="{DynamicResource accent_color}"
-                                Command="{Binding DataContext.ChangeSelectedFlowDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                CommandParameter="{Binding Path=SelectedIndex, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}">
-                                <TextBlock 
-                                   Foreground="{DynamicResource text_color}"
-                                   Text="{Binding Title}"/>
-                            </Button>
-                        </ItemContainerTemplate>
-                    </ItemsControl.ItemTemplate>
-
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical">
-
-                            </StackPanel>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-
-                <TextBlock Foreground="{DynamicResource hint_color}"
-                           Text="{DynamicResource r_temporarily_out_of_service}"
-                           TextAlignment="Center"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
-            </Grid>
+            <controls:ChaptersView Navigation="{Binding Navigation}"
+                                   Grid.Column="0"/>
             
+            <GridSplitter Style="{DynamicResource ReedBooksGridSplitter}"
+                          Grid.Column="1"/>
 
-            
-
-            <FlowDocumentReader Grid.Column="1"
-                                Document="{Binding LoadedFlowDocument}"
-                                ViewingMode="Scroll">
-            </FlowDocumentReader>
+            <FlowDocumentReader Grid.Column="2"
+                                Document="{Binding SelectedFlowDocument}"/>
         </Grid>
     </Grid>
 </Window>

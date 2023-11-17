@@ -49,8 +49,6 @@
            BasedOn="{StaticResource MaterialDesignOutlinedButton}">
         <Setter Property="Foreground" Value="{DynamicResource accent_color}"/>
     </Style>
-<<<<<<< HEAD
-=======
 
     <Style x:Key="MultilineTextBox"
            TargetType="TextBox"
@@ -62,5 +60,4 @@
         <Setter Property="SpellCheck.IsEnabled" Value="True"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
->>>>>>> upgrade_xaml
 </ResourceDictionary>
