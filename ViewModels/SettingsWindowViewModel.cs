@@ -1,5 +1,6 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -91,11 +92,18 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        public string DeleteUnusedFilesHint
+        {
+            get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
+        }
+
         public ICommand SaveCommand { get; }
+        public ICommand DeleteUnusedFilesCommand { get; }
 
         public SettingsWindowViewModel()
         {
             SaveCommand = new RelayCommand(obj => Save());
+            DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
 
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
@@ -116,6 +124,12 @@ namespace ReedBooks.ViewModels
                 System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
                 Application.Current.Shutdown();
             }
+        }
+
+        public void DeleteUnusedFiles()
+        {
+            App.StorageManager.DeleteUnusedFiles();
+            OnPropertyChanged(nameof(DeleteUnusedFilesHint));
         }
     }
 }

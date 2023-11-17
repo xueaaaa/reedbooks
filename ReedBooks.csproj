@@ -213,6 +213,7 @@
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\StorageManager.cs" />
     <Compile Include="Models\Assessment\Emote.cs" />
     <Compile Include="Models\Book\Book.cs" />
     <Compile Include="Models\Assessment\BookAssessment.cs" />

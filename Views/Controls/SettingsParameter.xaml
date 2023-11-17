@@ -6,11 +6,13 @@
       Name="Parameter"
       mc:Ignorable="d">
     <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="0.7*"/>
+        <ColumnDefinition Width="*"/>
         <ColumnDefinition Width="0.2*"/>
     </Grid.ColumnDefinitions>
 
-    <StackPanel Grid.Column="0">
+    <StackPanel Grid.Column="0"
+                Margin="0 0 20 0"
+                VerticalAlignment="Center">
         <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                    Foreground="{DynamicResource text_color}"
                    Text="{Binding ElementName=Parameter, Path=ParameterName}"/>
@@ -22,6 +24,6 @@
     </StackPanel>
     
     <ContentControl Grid.Column="1"
-                    Margin="5 0 0 0"
+                    VerticalAlignment="Center"
                     Content="{Binding ElementName=Parameter, Path=ValueSelector}"/>
 </Grid>

@@ -16,10 +16,9 @@ namespace ReedBooks
     {
         public const string LIGHT_THEME_NAME = "theme_light";
         public const string DARK_THEME_NAME = "theme_dark";
-        public const string COVERS_DIRECTORY = "\\covers\\";
-        public const string EPUBS_DIRECTORY = "\\epubs\\";
 
         public static AppContext ApplicationContext { get; private set; }
+        public static StorageManager StorageManager { get; private set; }
         
         public App()
         {
@@ -28,7 +27,9 @@ namespace ReedBooks
             ApplicationContext.Books.Load();
             ApplicationContext.Quotes.Load();
 
-            EnsureCreated();
+            StorageManager = new StorageManager();
+
+            StorageManager.EnsureCreated();
 
             Localizator.AddLang(new CultureInfo("ru"));
             Localizator.AddLang(new CultureInfo("en"));
@@ -46,20 +47,6 @@ namespace ReedBooks
             ResourceDictionary ne = new ResourceDictionary();
             ne.Source = new Uri($"Resources/Themes/{themeName}.theme.xaml", UriKind.Relative);
             Current.Resources.MergedDictionaries.Add(ne);
-        }
-
-        /// <summary>
-        /// Checks the current application directory for folders required for its operation and creates them if they are missing
-        /// </summary>
-        public void EnsureCreated()
-        {
-            var coversPath = $"{Directory.GetCurrentDirectory()}{COVERS_DIRECTORY}";
-            var epubsPath = $"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}";
-
-            if (!Directory.Exists(coversPath))
-                Directory.CreateDirectory(coversPath);
-            if (!Directory.Exists(epubsPath))
-                Directory.CreateDirectory(epubsPath);
         }
 
         private void App_LanguageChanged(object sender, EventArgs e)

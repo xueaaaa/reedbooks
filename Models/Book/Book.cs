@@ -157,7 +157,7 @@ namespace ReedBooks.Models.Book
             using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
             {
                 Bitmap bitmap = new Bitmap(stream);
-                string bitmapPath = $"{Directory.GetCurrentDirectory()}/{App.COVERS_DIRECTORY}/{book.Guid}.png";
+                string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{book.Guid}.png";
                 bitmap.Save(bitmapPath);
                 book._linkToCover = bitmapPath;
             }
@@ -270,7 +270,7 @@ namespace ReedBooks.Models.Book
         public async void Delete()
         {
             await App.ApplicationContext.RemoveEntityAsync(this);
-            File.Delete(LinkToOrigin);
+            Image.FromFile(LinkToCover).Dispose();
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace ReedBooks.Models.Book
 
         private static string MoveToInternalFolder(string originPath, string newName)
         {
-            string newPath = $"{Directory.GetCurrentDirectory()}/{App.EPUBS_DIRECTORY}/{newName}.epub";
+            string newPath = $"{Directory.GetCurrentDirectory()}{StorageManager.EPUBS_DIRECTORY}{newName}.epub";
             File.Move(originPath, newPath);
             return newPath;
         }
