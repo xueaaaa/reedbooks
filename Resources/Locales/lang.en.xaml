@@ -37,6 +37,8 @@
     <v:String x:Key="h_settings_window">ReedBooks - Settings</v:String>
     <v:String x:Key="s_interface_header">Interface</v:String>
     <v:String x:Key="s_storage_management_header">Memory Management</v:String>
+    <v:String x:Key="s_delete_all_books_label">Delete all books</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Pressing the button will delete all books loaded into the application.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Delete Unused Files</v:String>
     <v:String x:Key="s_delete_unused_files_hint">When deleting books from the app, some of their files may still remain in directories. Total size of unused files:</v:String>
     <v:String x:Key="s_delete">Delete</v:String>
@@ -98,5 +100,8 @@
 
     <v:String x:Key="dialog_delete_book_title">Delete Book</v:String>
     <v:String x:Key="dialog_delete_book_content">Are you sure you want to delete this book?</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">Delete All Books</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Are you sure you want to delete all books? This action cannot be undone.</v:String>
     <!--#endregion-->
 </ResourceDictionary>

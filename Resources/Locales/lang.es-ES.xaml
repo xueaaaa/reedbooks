@@ -37,6 +37,8 @@
     <v:String x:Key="h_settings_window">ReedBooks - Configuración</v:String>
     <v:String x:Key="s_interface_header">Interfaz</v:String>
     <v:String x:Key="s_storage_management_header">Gestión de Memoria</v:String>
+    <v:String x:Key="s_delete_all_books_label">Eliminar todos los libros</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Al presionar el botón se eliminarán todos los libros cargados en la aplicación.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Eliminar Archivos No Utilizados</v:String>
     <v:String x:Key="s_delete_unused_files_hint">Al eliminar libros de la aplicación, algunos de sus archivos pueden permanecer en los directorios. Tamaño total de archivos no utilizados:</v:String>
     <v:String x:Key="s_delete">Eliminar</v:String>
@@ -98,5 +100,8 @@
 
     <v:String x:Key="dialog_delete_book_title">Eliminar Libro</v:String>
     <v:String x:Key="dialog_delete_book_content">¿Estás seguro de que deseas eliminar este libro?</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">Eliminar todos los libros</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">¿Está seguro de que desea eliminar todos los libros? Esta acción no se puede deshacer.</v:String>
     <!--#endregion-->
 </ResourceDictionary>

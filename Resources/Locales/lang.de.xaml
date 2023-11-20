@@ -37,6 +37,8 @@
     <v:String x:Key="h_settings_window">ReedBooks - Einstellungen</v:String>
     <v:String x:Key="s_interface_header">Benutzeroberfläche</v:String>
     <v:String x:Key="s_storage_management_header">Speicherverwaltung</v:String>
+    <v:String x:Key="s_delete_all_books_label">Alle Bücher löschen</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Durch Drücken der Schaltfläche werden alle in die Anwendung geladenen Bücher gelöscht.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Unbenutzte Dateien löschen</v:String>
     <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern aus der Anwendung können einige Dateien in den Verzeichnissen verbleiben. Gesamtgröße der unbenutzten Dateien:</v:String>
     <v:String x:Key="s_delete">Löschen</v:String>
@@ -98,5 +100,8 @@
 
     <v:String x:Key="dialog_delete_book_title">Buch löschen</v:String>
     <v:String x:Key="dialog_delete_book_content">Sind Sie sicher, dass Sie dieses Buch löschen möchten?</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">Alle Bücher löschen</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Möchten Sie wirklich alle Bücher löschen? Diese Aktion kann nicht rückgängig gemacht werden.</v:String>
     <!--#endregion-->
 </ResourceDictionary>

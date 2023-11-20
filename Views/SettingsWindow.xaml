@@ -7,7 +7,6 @@
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
-        SizeToContent="Height"
         Title="{DynamicResource h_settings_window}" Width="800">
     <Window.DataContext>
         <local:SettingsWindowViewModel/>
@@ -85,6 +84,17 @@
                                                 Command="{Binding DeleteUnusedFilesCommand}"/>
                                     </controls:SettingsParameter.ValueSelector>
                                 </controls:SettingsParameter>
+
+                                <controls:SettingsParameter ParameterName="{DynamicResource s_delete_all_books_label}"
+                                                            ParameterHint="{DynamicResource s_delete_all_books_hint}">
+                                    <controls:SettingsParameter.ValueSelector>
+                                        <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                Foreground="OrangeRed"
+                                                BorderBrush="OrangeRed"
+                                                Content="{DynamicResource s_delete}"
+                                                Command="{Binding DeleteAllBooksCommand}"/>
+                                    </controls:SettingsParameter.ValueSelector>
+                                </controls:SettingsParameter>
                             </StackPanel>
                         </Expander>
                         <!--#endregion-->
@@ -92,6 +102,7 @@
                     
                     <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
                                               Grid.Row="1"
+                                              Margin="10"
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Bottom"
                                               Command="{Binding SaveCommand}"

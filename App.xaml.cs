@@ -35,6 +35,7 @@ namespace ReedBooks
             Localizator.AddLang(new CultureInfo("en"));
             Localizator.AddLang(new CultureInfo("es-ES"));
             Localizator.AddLang(new CultureInfo("de"));
+            Localizator.AddLang(new CultureInfo("ky-KG"));
             Localizator.LanguageChanged += App_LanguageChanged;
         }
 

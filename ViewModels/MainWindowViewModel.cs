@@ -13,6 +13,8 @@ namespace ReedBooks.ViewModels
 {
     public class MainWindowViewModel : ObservableObject
     {
+        public delegate void BooksListChanged();
+
         private Visibility _sidePanelVisibility;
         public Visibility SidePanelVisibility
         {
@@ -26,6 +28,17 @@ namespace ReedBooks.ViewModels
                 }
             }
         }
+        private GridLength _sidePanelColumnLength;
+        public GridLength SidePanelColumnLength
+        {
+            get => _sidePanelColumnLength;
+            set
+            {
+                _sidePanelColumnLength = value;
+                OnPropertyChanged(nameof(SidePanelColumnLength));
+            }
+        }
+
         private int _selectedTab;
         public int SelectedTab
         {
@@ -77,8 +90,8 @@ namespace ReedBooks.ViewModels
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary(obj));
             OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
 
-            var books = Book.ReadAll();
-            LoadedBooks = new ObservableCollection<Book>(books);
+            SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
+            LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
             SearchedBooks = LoadedBooks;
         }
 
@@ -87,10 +100,12 @@ namespace ReedBooks.ViewModels
             switch (SidePanelVisibility)
             {
                 case Visibility.Visible:
-                    SidePanelVisibility = Visibility.Collapsed;
+                    SidePanelVisibility = Visibility.Hidden;
+                    SidePanelColumnLength = new GridLength(0.05, GridUnitType.Star);
                     break;
-                case Visibility.Collapsed:
+                case Visibility.Hidden:
                     SidePanelVisibility = Visibility.Visible;
+                    SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
                     break;
                 default:
                     SidePanelVisibility = Visibility.Visible;

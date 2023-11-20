@@ -37,6 +37,8 @@
     <v:String x:Key="h_settings_window">ReedBooks - Настройки</v:String>
     <v:String x:Key="s_interface_header">Интерфейс</v:String>
     <v:String x:Key="s_storage_management_header">Управление памятью</v:String>
+    <v:String x:Key="s_delete_all_books_label">Удалить все книги</v:String>
+    <v:String x:Key="s_delete_all_books_hint">По нажатию на кнопку будут удалены все загруженные в приложение книги.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Удалить неиспользуемые файлы</v:String>
     <v:String x:Key="s_delete_unused_files_hint">При удалении книг из приложения некоторые их файлы продолжают храниться в директориях. Суммарный размер неиспользуемых файлов:</v:String>
     <v:String x:Key="s_delete">Удалить</v:String>
@@ -98,5 +100,8 @@
 
     <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>
     <v:String x:Key="dialog_delete_book_content">Вы уверены, что хотите удалить эту книгу?</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">Удаление всех книг</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Вы уверены, что хотите удалить все книги? Это действие нельзя будет отменить.</v:String>
     <!--#endregion-->
 </ResourceDictionary>

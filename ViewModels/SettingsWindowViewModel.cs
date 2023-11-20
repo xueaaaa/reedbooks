@@ -99,11 +99,13 @@ namespace ReedBooks.ViewModels
 
         public ICommand SaveCommand { get; }
         public ICommand DeleteUnusedFilesCommand { get; }
+        public ICommand DeleteAllBooksCommand { get; }
 
         public SettingsWindowViewModel()
         {
             SaveCommand = new RelayCommand(obj => Save());
             DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
+            DeleteAllBooksCommand = new RelayCommand(obj => DeleteAllBooks());
 
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
@@ -119,17 +121,31 @@ namespace ReedBooks.ViewModels
             var dW = new DialogWindow(Application.Current.Resources["dialog_settings_title"].ToString(),
                 Application.Current.Resources["dialog_settings_content"].ToString());
 
-            if (dW.ShowDialog() == true)
-            {
-                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-                Application.Current.Shutdown();
-            }
+            if (dW.ShowDialog() == true) Restart();
         }
 
         public void DeleteUnusedFiles()
         {
             App.StorageManager.DeleteUnusedFiles();
             OnPropertyChanged(nameof(DeleteUnusedFilesHint));
+        }
+
+        public void DeleteAllBooks()
+        {
+            var dW = new DialogWindow(Application.Current.Resources["dialog_delete_all_books_title"].ToString(),
+                Application.Current.Resources["dialog_delete_all_books_content"].ToString());
+
+            if (dW.ShowDialog() == true)
+            {
+                App.StorageManager.DeleteAllBooks();
+                Restart();
+            }
+        }
+
+        private void Restart()
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

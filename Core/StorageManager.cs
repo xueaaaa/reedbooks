@@ -49,6 +49,12 @@ namespace ReedBooks.Core
             }
         }
 
+        public async void DeleteAllBooks()
+        {
+            App.ApplicationContext.RemoveRange(App.ApplicationContext.Books);
+            await App.ApplicationContext.SaveChangesAsync();
+        }
+
         /// <summary>
         /// Checks the current application directory for folders required for its operation and creates them if they are missing
         /// </summary>

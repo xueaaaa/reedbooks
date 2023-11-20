@@ -1,0 +1,107 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <!--#region Main window -->
+    <v:String x:Key="h_main_window">ReedBooks</v:String>
+    <v:String x:Key="m_edit">Редактировать</v:String>
+    <v:String x:Key="m_books">Китептер</v:String>
+    <v:String x:Key="m_reading_now">Ушул китептер</v:String>
+    <v:String x:Key="m_all_books">Бардык китептер</v:String>
+    <v:String x:Key="m_search">Издөө</v:String>
+    <v:String x:Key="m_readers_diary_collection">Окуучунун күндөлүгү</v:String>
+    <v:String x:Key="m_my_collections_collection">Менин коллекцияларым</v:String>
+    <v:String x:Key="m_new_collection">Жаңы коллекция</v:String>
+    <v:String x:Key="m_current">Азырынки</v:String>
+    <v:String x:Key="m_recent">Соңку</v:String>
+    <v:String x:Key="m_no_elements">Жок бир элемент кошулган жок</v:String>
+    <v:String x:Key="m_load_book">Китепти жүктөө</v:String>
+    <v:String x:Key="m_search_hint">Китептин аталышын киргизиңиз...</v:String>
+    <v:String x:Key="m_genre">Жанр:</v:String>
+    <v:String x:Key="m_chapters_count">Бөлүмдөр саны:</v:String>
+    <v:String x:Key="m_read">Окуу</v:String>
+    <!--#endregion-->
+
+    <!--#region Reading window -->
+    <v:String x:Key="h_reading_window">ReedBooks - Окуу режими</v:String>
+    <v:String x:Key="r_mark_as_read">Окуганды белгиле</v:String>
+    <v:String x:Key="r_mark_as_read_hint">Бул баскычты басканда "Окуу даярдалган" графикасында бүгүнгө көйгөй күн белгиленет</v:String>
+    <v:String x:Key="r_end_of_read_dialog_header">Куттуктайбыз!</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">Китепти окуганга куттуктайбыз жана анын баарысын баары күндөлөрүнү талаа алуу үчүн окуучу күндөлүгүне көзөмөлдөнөт</v:String>
+    <v:String x:Key="r_open_reading_diary">Өтүү</v:String>
+    <v:String x:Key="r_stay">Турган жерде калуу</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Бул бөлүм кабарчысы азырынча иштемеди</v:String>
+    <!--#endregion-->
+
+    <!--#region Settings window-->
+    <v:String x:Key="h_settings_window">ReedBooks - Настройкалар</v:String>
+    <v:String x:Key="s_interface_header">Интерфейс</v:String>
+    <v:String x:Key="s_storage_management_header">Жаткаларды башкаруу</v:String>
+    <v:String x:Key="s_delete_all_books_label">Бардык китептерди жок кылуу</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Баскычты басканда приложацияга жүктөлгөн бардык китептер жок кылынат.</v:String>
+    <v:String x:Key="s_delete_unused_files_label">Иштемелип турган файлдарды жок кылуу</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">Китептерди приложациядан жок кылганда бардык файлдардын бардыгы андан кийин директорияларда сакталат. Иштемелип турган файлдардын бардыгы:</v:String>
+    <v:String x:Key="s_delete">Жок кылуу</v:String>
+    <v:String x:Key="s_language_label">Приложация тили</v:String>
+    <v:String x:Key="s_language_hint">Бул баптыкка чектештирилген учур тилди текше алгыштырууда колдонот. Китептерди аткырган автордордун аты жана агалары локализациялоштурулган эмес.</v:String>
+    <v:String x:Key="s_theme_label">Тема</v:String>
+    <v:String x:Key="s_theme_hint">Приложациянын темасын жарыялуу (өзгөчө болуп) же кара кылуу</v:String>
+    <v:String x:Key="s_save">Сактоо</v:String>
+    <!--#endregion-->
+
+    <!--#region Dialog window -->
+    <v:String x:Key="h_dialog_window">ReedBooks - Диалог</v:String>
+    <v:String x:Key="d_acept_button">ОК</v:String>
+    <v:String x:Key="d_refuse_button">Жокко</v:String>
+    <!--#endregion-->
+
+    <!--#region Reading Diary window -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Окуучу күндөлүгү</v:String>
+    <v:String x:Key="rd_author_label">Автор:</v:String>
+    <v:String x:Key="rd_chapters_count_label">Бөлүмдөр саны:</v:String>
+    <v:String x:Key="rd_genre_label">Жанр:</v:String>
+    <v:String x:Key="rd_genre_hint">Жанрын аталышын киргизиңиз...</v:String>
+    <v:String x:Key="rd_begin_reading_at">Окууга баштоо:</v:String>
+    <v:String x:Key="rd_end_reading_at">Окууга аяктоо:</v:String>
+    <v:String x:Key="rd_arithmetic_average">Жалпы баалуу:</v:String>
+    <v:String x:Key="rd_my_emotions">Менин эмоцияларым</v:String>
+    <v:String x:Key="rd_start">Китептин башында</v:String>
+    <v:String x:Key="rd_middle">Китептин ортосунда</v:String>
+    <v:String x:Key="rd_end">Китептин аягында</v:String>
+    <v:String x:Key="rd_assessment">Баалуу</v:String>
+    <v:String x:Key="rd_plot_originality">Сюжеттик оригиналдыктыгы</v:String>
+    <v:String x:Key="rd_characters">Карактерлер</v:String>
+    <v:String x:Key="rd_world_inside_book">Китеп ичиндеги жашоо</v:String>
+    <v:String x:Key="rd_love_line">Махаббаттык сырты</v:String>
+    <v:String x:Key="rd_humor">Күлкү</v:String>
+    <v:String x:Key="rd_meaning_fulness">Маанавий ташыктык</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">Бул жерге тиркеме кылуу үчүн же кайра кечирме үчүн. Же чоң акыркыдан жеңки учур каталыстарды жазуу үчүн.</v:String>
+    <v:String x:Key="rd_quotes">Цитаталар</v:String>
+    <v:String x:Key="rd_add_quote">Кошуу</v:String>
+    <v:String x:Key="rd_add_quote_header">Цитата кошуу</v:String>
+    <v:String x:Key="rd_quote_data_hint">Цитатанын текстин киргизиңиз...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Цитатанын авторун киргизиңиз...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Цитатанын китепте болгон орнун киргизиңиз (мисалы, бөлүм, бет жана булагыч иштеп жатат)...</v:String>
+    <v:String x:Key="rd_cancel">Жабуу</v:String>
+    <!--#endregion-->
+
+    <!--#region SPECIAL STRINGS -->
+    <v:String x:Key="theme_light">Жарыялуу</v:String>
+    <v:String x:Key="theme_dark">Кара</v:String>
+
+    <v:String x:Key="megabytes">МБ</v:String>
+
+    <v:String x:Key="dialog_settings_title">Перезагрузка талап кылышы келет</v:String>
+    <v:String x:Key="dialog_settings_content">Кошулган настройкалардын кызматка кирүүгө, программаны перезагрузка кылуу керек. Сиз булдонго тыюу кылгысызбы?</v:String>
+
+    <v:String x:Key="dialog_error_title">Ката</v:String>
+    <v:String x:Key="dialog_fatal_error_content">Программанын ишини тоо токтотулган, четки каралган жаталык болгондо:</v:String>
+    <v:String x:Key="dialog_null_quote_content">Бош цитатаны кошууга болбойт!</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">Китепти жок кылуу</v:String>
+    <v:String x:Key="dialog_delete_book_content">Бул китепти жок кылгынызды учурму жатсызбы?</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">Бардык китептерди жок кылуу</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Сиз бардык китептерди жок кылууга ишенгиздинизге караанызбы? Бул болгон иш кайталап болгон жок кылууга болот.</v:String> 
+    <!--#endregion-->
+</ResourceDictionary>

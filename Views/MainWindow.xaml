@@ -19,12 +19,13 @@
     <Grid Style="{DynamicResource MainGrid}">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="{Binding SidePanelColumnLength}"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
              <!-- Hide panel button -->
-            <controls:IconButton Style="{DynamicResource HidePanelButton}" 
+            <controls:IconButton Grid.ColumnSpan="2"
+                                 Style="{DynamicResource HidePanelButton}" 
                                  Source="/Resources/Icons/hide_bar.png"
                                  Command="{Binding ChangeSidePanelVisibilityCommand}"/>
             
