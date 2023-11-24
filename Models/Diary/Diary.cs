@@ -32,7 +32,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _beginReadingAt = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(BeginReadingAt));
             }
         }
@@ -44,8 +44,20 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _endReadingAt = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(EndReadingAt));
+            }
+        }
+
+        private DateTime _lastReadingAt;
+        public DateTime LastReadingAt
+        {
+            get => _lastReadingAt;
+            set
+            {
+                _lastReadingAt = value;
+                App.ApplicationContext.UpdateEntity(this);
+                OnPropertyChanged(nameof(LastReadingAt));
             }
         }
 
@@ -56,7 +68,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _emotionalAssessment = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(EmotionalAssessment));
             }
         }
@@ -68,7 +80,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _bookAssessment = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(BookAssessment));
             }
         }
@@ -80,8 +92,20 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _plotBriefRetelling = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(PlotBriefRetelling));
+            }
+        }
+
+        private bool _readingIsOver;
+        public bool ReadingIsOver
+        {
+            get => _readingIsOver;
+            set
+            {
+                _readingIsOver = value;
+                App.ApplicationContext.UpdateEntity(this);
+                OnPropertyChanged(nameof(ReadingIsOver));
             }
         }
 
@@ -108,8 +132,14 @@ namespace ReedBooks.Models.Diary
             diary._emotionalAssessment = new EmotionalAssessment();
             diary._bookAssessment = new BookAssessment();
             diary._quotes = new ObservableCollection<Quote>();
+            diary._readingIsOver = false;
 
             return diary;
+        }
+
+        public void SetLastReadingDate()
+        {
+            LastReadingAt = DateTime.Now;
         }
     }
 }

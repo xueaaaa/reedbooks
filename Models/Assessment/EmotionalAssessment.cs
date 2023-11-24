@@ -34,7 +34,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _start = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(Start));
             }
         }
@@ -49,7 +49,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _middle = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(Middle));
             }
         }
@@ -64,7 +64,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _end = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(End));
             }
         }

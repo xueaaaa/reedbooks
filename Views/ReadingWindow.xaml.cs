@@ -11,6 +11,8 @@ namespace ReedBooks.Views
             InitializeComponent();
 
             DataContext = new ReadingWindowViewModel(readingBook);
+            readingBook.SetStartReadingDate();
+            readingBook.BoundDiary.SetLastReadingDate();
         }
     }
 }

@@ -71,6 +71,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<Book> _currentBooks;
+        public ObservableCollection<Book> CurrentBooks
+        {
+            get => _currentBooks;
+            set
+            {
+                _currentBooks = value;
+                OnPropertyChanged(nameof(CurrentBooks));
+            }
+        }
+
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
@@ -93,6 +104,11 @@ namespace ReedBooks.ViewModels
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
             SearchedBooks = LoadedBooks;
+
+            var books = App.ApplicationContext.Books.Where(b => b.BoundDiary.ReadingIsOver != true &&
+                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - 3);
+
+            CurrentBooks = new ObservableCollection<Book>(books);
         }
 
         private void ChangeSidePanelVisibility()

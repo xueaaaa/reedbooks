@@ -138,9 +138,25 @@
                                 Orientation="Vertical">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                            Text="{DynamicResource m_current}"/>
+                                <ListView Style="{DynamicResource MaterialDesignListView}"
+                                          Foreground="{DynamicResource text_color}"
+                                          ItemsSource="{Binding CurrentBooks}">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                                           Foreground="{DynamicResource accent_color}"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                <TextBlock Text="{DynamicResource m_name}"
+                                                           Foreground="{DynamicResource accent_color}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </StackPanel>
                             <!--#endregion-->
-
+                            
                             <!--#region Recently readed-->
                             <StackPanel Grid.Column="1"
                                 Orientation="Vertical">

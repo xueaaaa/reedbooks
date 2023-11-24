@@ -39,7 +39,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _plotOriginality = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(PlotOriginality));
             }
@@ -52,7 +52,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _characters = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(Characters));
             }
@@ -65,7 +65,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _worldInsideBook = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(WorldInsideBook));
             }
@@ -78,7 +78,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _loveLine = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(LoveLine));
             }
@@ -91,7 +91,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _humor = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(Humor));
             }
@@ -104,7 +104,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _meaningFulness = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 AssessmentChanged();
                 OnPropertyChanged(nameof(MeaningFulness));
             }

@@ -38,7 +38,7 @@ namespace ReedBooks.Core
         /// </summary>
         /// <param name="enitity">Any entity whose key matches any entry in the database</param>
         /// <returns>The number of state entries written to the database</returns>
-        public int UpdateEnitity<T>(T enitity)
+        public int UpdateEntity<T>(T enitity)
         {
             Update(enitity);
             return SaveChanges();
@@ -49,7 +49,7 @@ namespace ReedBooks.Core
         /// </summary>
         /// <param name="enitity">Any entity whose key matches any entry in the database</param>
         /// <returns>The number of state entries written to the database</returns>
-        public async Task<int> UpdateEnitityAsync<T>(T enitity)
+        public async Task<int> UpdateEntityAsync<T>(T enitity)
         {
             Update(enitity);
             return await SaveChangesAsync();

@@ -44,7 +44,7 @@ namespace ReedBooks.Models.Book
                 if (value != null)
                 {
                     _boundDiary = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(BoundDiary));
                 }
             }
@@ -59,7 +59,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _name = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -74,7 +74,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _author = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(Author));
                 }
             }
@@ -89,7 +89,7 @@ namespace ReedBooks.Models.Book
                 if (value >= 0)
                 {
                     _chaptersCount = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(ChaptersCount));
                 }
             }
@@ -104,7 +104,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _genre = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(Genre));
                 }
             }
@@ -119,7 +119,7 @@ namespace ReedBooks.Models.Book
                 if (value != null)
                 {
                     _linkToOrigin = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(LinkToOrigin));
                 }
             }
@@ -134,7 +134,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _linkToCover = value;
-                    App.ApplicationContext.UpdateEnitity(this);
+                    App.ApplicationContext.UpdateEntity(this);
                     OnPropertyChanged(nameof(LinkToCover));
                 }
             }
@@ -178,8 +178,6 @@ namespace ReedBooks.Models.Book
         /// <returns>FlowDocument containing the formatted text of the chapter</returns>
         public FlowDocument LoadChapter(string contentFilePath)
         {
-            SetStartReadingDate();
-
             var book = GetEpub();
             var content = book.ReadingOrder.Where(c => c.FilePath == contentFilePath).First();
             var html = new HtmlPanel();
@@ -223,6 +221,7 @@ namespace ReedBooks.Models.Book
         public void MarkAsRead()
         {
             BoundDiary.EndReadingAt = DateTime.Now;
+            BoundDiary.ReadingIsOver = true;
         }
 
         /// <summary>

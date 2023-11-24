@@ -41,7 +41,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _data = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(Data));
             }
         }
@@ -53,7 +53,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _author = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(Author));
             }
         }
@@ -65,7 +65,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _locationInBook = value;
-                App.ApplicationContext.UpdateEnitity(this);
+                App.ApplicationContext.UpdateEntity(this);
                 OnPropertyChanged(nameof(LocationInBook));
             }
         }
