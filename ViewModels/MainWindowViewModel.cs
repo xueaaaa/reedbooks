@@ -82,6 +82,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<Book> _recentBooks;
+        public ObservableCollection<Book> RecentBooks
+        {
+            get => _recentBooks;
+            set
+            {
+                _recentBooks = value;
+                OnPropertyChanged(nameof(RecentBooks));
+            }
+        }
+
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
@@ -105,10 +116,11 @@ namespace ReedBooks.ViewModels
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
             SearchedBooks = LoadedBooks;
 
-            var books = App.ApplicationContext.Books.Where(b => b.BoundDiary.ReadingIsOver != true &&
-                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - 3);
+            CurrentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.ReadingIsOver != true &&
+                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - 3)
+                .OrderByDescending(b => b.BoundDiary.LastReadingAt));
 
-            CurrentBooks = new ObservableCollection<Book>(books);
+            RecentBooks = new ObservableCollection<Book>(LoadedBooks.OrderByDescending(b => b.BoundDiary.LastReadingAt).Take(10));
         }
 
         private void ChangeSidePanelVisibility()

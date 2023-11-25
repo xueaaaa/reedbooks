@@ -16,5 +16,10 @@ namespace ReedBooks.Views
         {
             ((MainWindowViewModel)DataContext).SearchCommand.Execute(((TextBox)sender).Text);
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((MainWindowViewModel)DataContext).ReadCommand.Execute(((ListView)sender).SelectedItem);
+        }
     }
 }

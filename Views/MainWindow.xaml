@@ -135,12 +135,15 @@
 
                             <!--#region Current reding-->
                             <StackPanel Grid.Column="0"
-                                Orientation="Vertical">
+                                        Margin="0 10 10 0"
+                                        Orientation="Vertical">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                            Text="{DynamicResource m_current}"/>
+                                
                                 <ListView Style="{DynamicResource MaterialDesignListView}"
                                           Foreground="{DynamicResource text_color}"
-                                          ItemsSource="{Binding CurrentBooks}">
+                                          ItemsSource="{Binding CurrentBooks}"
+                                          SelectionChanged="ListView_SelectionChanged">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
@@ -159,9 +162,28 @@
                             
                             <!--#region Recently readed-->
                             <StackPanel Grid.Column="1"
-                                Orientation="Vertical">
+                                        Orientation="Vertical"
+                                        Margin="0 10 30 0">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                            Text="{DynamicResource m_recent}"/>
+
+                                <ListView Style="{DynamicResource MaterialDesignListView}"
+                                          Foreground="{DynamicResource text_color}"
+                                          ItemsSource="{Binding RecentBooks}"
+                                          SelectionChanged="ListView_SelectionChanged">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                                           Foreground="{DynamicResource accent_color}"/>
+                                            </GridViewColumn>
+                                            <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                <TextBlock Text="{DynamicResource m_name}"
+                                                           Foreground="{DynamicResource accent_color}"/>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </StackPanel>
                             <!--#endregion-->
                         </Grid>

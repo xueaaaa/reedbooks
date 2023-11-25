@@ -17,10 +17,10 @@
                 Background="{DynamicResource container_background_color}">
             <ScrollViewer>
                 <Grid Margin="40">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0"
                                 Orientation="Vertical">
@@ -45,9 +45,9 @@
                                                   SelectedValuePath="Tag"/>
                                     </controls:SettingsParameter.ValueSelector>
                                 </controls:SettingsParameter>
-                                
+
                                 <Separator Margin="10"/>
-                                
+
                                 <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
                                                             ParameterHint="{DynamicResource s_theme_hint}">
                                     <controls:SettingsParameter.ValueSelector>
@@ -63,7 +63,7 @@
                             </StackPanel>
                         </Expander>
                         <!--#endregion-->
-                        
+
                         <!--#region Story management settings-->
                         <Expander Background="{DynamicResource container_background_color}"
                                   IsExpanded="True">
@@ -85,6 +85,8 @@
                                     </controls:SettingsParameter.ValueSelector>
                                 </controls:SettingsParameter>
 
+                                <Separator Margin="10"/>
+
                                 <controls:SettingsParameter ParameterName="{DynamicResource s_delete_all_books_label}"
                                                             ParameterHint="{DynamicResource s_delete_all_books_hint}">
                                     <controls:SettingsParameter.ValueSelector>
@@ -99,7 +101,7 @@
                         </Expander>
                         <!--#endregion-->
                     </StackPanel>
-                    
+
                     <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
                                               Grid.Row="1"
                                               Margin="10"
@@ -108,9 +110,8 @@
                                               Command="{Binding SaveCommand}"
                                               Source="/Resources/Icons/save.png"
                                               Text="{DynamicResource s_save}"/>
-            </Grid>
+                </Grid>
             </ScrollViewer>
-            
         </Border>
     </Grid>
 </Window>
