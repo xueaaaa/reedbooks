@@ -7,7 +7,7 @@
         Name="Card"
         CornerRadius="{DynamicResource CornerRadius}"
         Width="300"
-        Margin="20"
+        Margin="10"
         Background="{DynamicResource container_background_color}"
         mc:Ignorable="d">
     <Grid Width="{Binding ElementName=Card, Path=Width}"
@@ -65,10 +65,13 @@
                 <TextBlock Style="{DynamicResource PropertyValue}"
                            Grid.Column="1"
                            Grid.Row="0"
-                           Text="{Binding ElementName=Card, Path=Book.Genre}"/>
+                           HorizontalAlignment="Left"
+                           Text="{Binding ElementName=Card, Path=Book.Genre}"
+                           TextWrapping="Wrap"/>
                 <TextBlock Style="{DynamicResource PropertyValue}"
                            Grid.Column="1"
                            Grid.Row="1"
+                           HorizontalAlignment="Left"
                            Text="{Binding ElementName=Card, Path=Book.ChaptersCount}"/>
                 <!--#endregion-->
             </Grid>

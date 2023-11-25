@@ -1,0 +1,32 @@
+﻿<RadioButton x:Class="ReedBooks.Views.Controls.SortButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Name="RadioButton">
+    <RadioButton.Template>
+        <ControlTemplate TargetType="RadioButton">
+            <Rectangle Width="18"
+                       Height="18">
+                <Rectangle.Fill>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <materialDesign:PackIcon Name="Icon"
+                                                     Kind="{Binding ElementName=RadioButton, Path=Icon}"
+                                                     Foreground="{DynamicResource hint_color}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="Icon" Property="Foreground" Value="{DynamicResource accent_color}"/>
+                </Trigger>
+
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter TargetName="Icon" Property="Foreground" Value="{DynamicResource hint_color}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </RadioButton.Template>
+</RadioButton>

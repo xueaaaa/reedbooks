@@ -229,8 +229,8 @@
                 <TabItem>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="9*"/>
-                            <RowDefinition Height="91*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0"
@@ -238,6 +238,38 @@
                             <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
                                      TextChanged="TextBox_TextChanged"/>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0 7 0 0">
+                                <TextBlock Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"
+                                           VerticalAlignment="Center"
+                                           Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource m_sort}"/>
+
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            Margin="10 0 0 0">
+                                    <controls:SortButton Icon="SortAlphabeticalAscending"
+                                                         Margin="0 0 7 0"
+                                                         Command="{Binding SortByNameCommand}"
+                                                         ToolTip="{DynamicResource m_sort_by_name_a-z}"/>
+
+                                    <controls:SortButton Icon="SortAlphabeticalDescending"
+                                                         Command="{Binding SortByNameDescendingCommand}"
+                                                         ToolTip="{DynamicResource m_sort_by_name_z-a}"/>
+
+                                    <controls:SortButton Icon="SortCalendarAscending"
+                                                         Margin="20 0 7 0"
+                                                         Command="{Binding SortByLastReadingDateCommand}"
+                                                         ToolTip="{DynamicResource m_sort_by_last_reading_date}"/>
+
+                                    <controls:SortButton Icon="SortCalendarDescending"
+                                                         Command="{Binding SortByLastReadingDateDescendingCommand}"
+                                                         ToolTip="{DynamicResource m_sort_by_last_reading_date_descending}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Separator Margin="0 10 0 0"/>
                         </StackPanel>
 
                         <ScrollViewer Style="{DynamicResource BookScrollViewer}">

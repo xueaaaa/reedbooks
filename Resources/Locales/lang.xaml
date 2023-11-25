@@ -19,6 +19,11 @@
     <v:String x:Key="m_no_elements">Еще не добавлено ни одного элемента</v:String>
     <v:String x:Key="m_load_book">Загрузить книгу</v:String>
     <v:String x:Key="m_search_hint">Начните вводить название книги...</v:String>
+    <v:String x:Key="m_sort">Сортировать:</v:String>
+    <v:String x:Key="m_sort_by_name_a-z">По названию книги (А-Я)</v:String>
+    <v:String x:Key="m_sort_by_name_z-a">По названию книги (Я-А)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date">По дате прочтения (от недавней)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date_descending">По дате прочтения (от самой старой)</v:String>
     <v:String x:Key="m_genre">Жанр:</v:String>
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_read">Читать</v:String>

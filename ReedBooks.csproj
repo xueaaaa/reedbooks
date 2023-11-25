@@ -244,6 +244,9 @@
     <Compile Include="Views\Controls\SettingsParameter.xaml.cs">
       <DependentUpon>SettingsParameter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\SortButton.xaml.cs">
+      <DependentUpon>SortButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
@@ -383,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\SettingsParameter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SortButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

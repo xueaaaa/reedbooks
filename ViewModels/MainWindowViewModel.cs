@@ -101,6 +101,11 @@ namespace ReedBooks.ViewModels
         public ICommand ReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OpenSettingsCommand { get; }
+        public ICommand SortByNameCommand { get; }
+        public ICommand SortByNameDescendingCommand { get; }
+        public ICommand SortByLastReadingDateCommand { get; }
+        public ICommand SortByLastReadingDateDescendingCommand { get; }
+
         public MainWindowViewModel()
         {
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
@@ -111,6 +116,10 @@ namespace ReedBooks.ViewModels
             ReadCommand = new RelayCommand(obj => Read(obj));
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary(obj));
             OpenSettingsCommand = new RelayCommand(obj => OpenSettings());
+            SortByNameCommand = new RelayCommand(obj => SortByName());
+            SortByNameDescendingCommand = new RelayCommand(obj => SortByNameDescending());
+            SortByLastReadingDateCommand = new RelayCommand(obj => SortByLastReadingDate());
+            SortByLastReadingDateDescendingCommand = new RelayCommand(obj => SortByLastReadingDateDescending());
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
@@ -199,6 +208,26 @@ namespace ReedBooks.ViewModels
         {
             SettingsWindow sW = new SettingsWindow();
             sW.ShowDialog();
+        }
+
+        public void SortByName()
+        {
+            SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderBy(b => b.Name));
+        }
+
+        public void SortByNameDescending()
+        {
+            SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderByDescending(b => b.Name));
+        }
+
+        public void SortByLastReadingDate()
+        {
+            SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderByDescending(b => b.BoundDiary.LastReadingAt));
+        }
+
+        public void SortByLastReadingDateDescending()
+        {
+            SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderBy(b => b.BoundDiary?.LastReadingAt));
         }
     }
 }
