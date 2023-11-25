@@ -6,6 +6,9 @@ using ReedBooks.Models.Diary;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -57,6 +60,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<string> _genres;
+        public ObservableCollection<string> Genres
+        {
+            get => _genres;
+            set
+            {
+                _genres = value;
+                OnPropertyChanged(nameof(Genres));
+            }
+        }
+
         public ICommand SetBeginEmoteCommand { get; }
         public ICommand SetMiddleEmoteCommand { get; }
         public ICommand SetEndEmoteCommand { get; }
@@ -65,18 +79,29 @@ namespace ReedBooks.ViewModels
 
         public ReadingDiaryWindowViewModel()
         {
-            
-        }
-
-        public ReadingDiaryWindowViewModel(Book book)
-        {
             SetBeginEmoteCommand = new RelayCommand(obj => SetBeginEmote(obj));
             SetMiddleEmoteCommand = new RelayCommand(obj => SetMiddleEmote(obj));
             SetEndEmoteCommand = new RelayCommand(obj => SetEndEmote(obj));
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
             DeleteQuoteCommand = new RelayCommand(obj => DeleteQuote(obj));
+        }
 
+        public ReadingDiaryWindowViewModel(Book book) : this()
+        {
             Book = book;
+
+            Genres = new ObservableCollection<string>();
+            var localeDictionary = Application.Current.Resources.MergedDictionaries.Where(d => d.Source.OriginalString.Contains("lang")).First();
+
+            foreach (var key in localeDictionary.Keys)
+            {
+                if(key.ToString().StartsWith("genre"))
+                {
+                    Genres.Add(Application.Current.Resources[key].ToString());
+                }
+            }
+
+            Genres = new ObservableCollection<string>(Genres.OrderBy(g => g));
         }
 
         public void SetBeginEmote(object param)

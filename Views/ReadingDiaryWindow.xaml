@@ -63,11 +63,14 @@
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
+                                           VerticalAlignment="Center"
                                            Text="{DynamicResource rd_genre_label}"/>
-								<TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
-                                         Text="{Binding Book.Genre}"
-                                         VerticalAlignment="Center"/>
-							</StackPanel>
+                                <ComboBox VerticalAlignment="Center"
+                                          IsEditable="True"
+                                          materialDesign:HintAssist.Hint="{DynamicResource rd_genre_hint}"
+                                          ItemsSource="{Binding Genres}"
+                                          Text="{Binding Book.Genre}"/>
+                            </StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_begin_reading_at}"/>

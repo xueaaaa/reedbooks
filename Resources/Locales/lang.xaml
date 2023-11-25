@@ -106,5 +106,17 @@
 
     <v:String x:Key="dialog_delete_all_books_title">Удаление всех книг</v:String>
     <v:String x:Key="dialog_delete_all_books_content">Вы уверены, что хотите удалить все книги? Это действие нельзя будет отменить.</v:String>
+
+    <v:String x:Key="genre_fantasy">Фантастика</v:String>
+    <v:String x:Key="genre_detective">Детектив</v:String>
+    <v:String x:Key="genre_horror">Хоррор</v:String>
+    <v:String x:Key="genre_adventure">Приключения</v:String>
+    <v:String x:Key="genre_poetry">Поэзия</v:String>
+    <v:String x:Key="genre_love_story">Любовный роман</v:String>
+    <v:String x:Key="genre_thriller">Триллер</v:String>
+    <v:String x:Key="genre_prose">Проза</v:String>
+    <v:String x:Key="genre_foreign_classics">Зарубежная классика</v:String>
+    <v:String x:Key="genre_locale_country_classics">Русская классика</v:String>
+    <v:String x:Key="genre_folklore">Фольклор</v:String>
     <!--#endregion-->
 </ResourceDictionary>
