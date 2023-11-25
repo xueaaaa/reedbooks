@@ -65,6 +65,7 @@
     <v:String x:Key="rd_genre_hint">Введите название жанра...</v:String>
     <v:String x:Key="rd_begin_reading_at">Начало прочтения:</v:String>
     <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
+    <v:String x:Key="rd_reading_is_over">Книга прочитана?</v:String>
     <v:String x:Key="rd_arithmetic_average">Общая оценка:</v:String>
     <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
     <v:String x:Key="rd_start">В начале книги</v:String>

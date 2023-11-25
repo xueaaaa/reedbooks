@@ -84,7 +84,7 @@ namespace ReedBooks.Models.Book
         public int ChaptersCount 
         { 
             get => _chaptersCount; 
-            set
+            private set
             {
                 if (value >= 0)
                 {

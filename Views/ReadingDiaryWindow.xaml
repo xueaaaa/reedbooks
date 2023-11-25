@@ -71,16 +71,26 @@
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_begin_reading_at}"/>
-								<TextBox Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy, Mode=TwoWay}"
-                                         VerticalAlignment="Center"/>
+								<TextBlock Style="{DynamicResource PropertyValue}"
+                                           Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"
+                                           VerticalAlignment="Center"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_end_reading_at}"/>
-								<TextBox Text="{Binding Book.BoundDiary.EndReadingAt,StringFormat=dd.MM.yyyy, Mode=TwoWay}"
-                                         VerticalAlignment="Center"/>
-							</StackPanel>
-						</StackPanel>
+                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                           Text="{Binding Book.BoundDiary.EndReadingAt, StringFormat=dd.MM.yyyy}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding Book.BoundDiary.ReadingIsOver}"
+                                          IsHitTestVisible="False"
+                                          VerticalAlignment="Center"/>
+                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                           Text="{DynamicResource rd_reading_is_over}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </StackPanel>
 
                         <Grid Grid.Column="0"
                               Grid.Row="2">
@@ -90,8 +100,8 @@
                                 <BlurEffect Radius="30"/>
                             </StackPanel.Effect>
 							    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                                       Text="{DynamicResource rd_my_emotions}"
-                                       TextWrapping="Wrap"/>
+                                           Text="{DynamicResource rd_my_emotions}"
+                                           TextWrapping="Wrap"/>
 							    <Separator/>
 							<!--#region At Start -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
@@ -157,7 +167,7 @@
 								</RadioButton>
 							</StackPanel>
 							<!--#endregion-->
-							    <!--#region At End -->
+							<!--#region At End -->
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Text="{DynamicResource rd_end}"/>
 							<StackPanel Margin="10"
