@@ -21,5 +21,10 @@ namespace ReedBooks.Views
         {
             ((MainWindowViewModel)DataContext).ReadCommand.Execute(((ListView)sender).SelectedItem);
         }
+
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            ((MainWindowViewModel)DataContext).HandleFileDropCommand.Execute(e);
+        }
     }
 }

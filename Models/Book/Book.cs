@@ -148,6 +148,7 @@ namespace ReedBooks.Models.Book
         public async static Task<Book> Create(string path)
         {
             Book book = new Book();
+            book._boundDiary = new ReadingDiary();
             book._guid = Guid.NewGuid();
             path = MoveToInternalFolder(path, book.Guid.ToString());
             book._linkToOrigin = path;

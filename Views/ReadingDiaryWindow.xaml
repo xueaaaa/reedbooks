@@ -10,7 +10,7 @@
         xmlns:converters="clr-namespace:ReedBooks.Converters"
 	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight"
+        MinWidth="800"
         Title="{DynamicResource h_reading_diary_window}">
 	<Window.DataContext>
 		<local:ReadingDiaryWindowViewModel/>
@@ -24,8 +24,8 @@
                                    DialogContentUniformCornerRadius="20"
                                    CloseOnClickAway="True"
                                    DialogBackground="{DynamicResource container_background_color}">
-
             <Border Margin="30"
+                    MaxWidth="800"
                     Background="{DynamicResource container_background_color}"
                     CornerRadius="{DynamicResource CornerRadius}">
 				<ScrollViewer HorizontalScrollBarVisibility="Disabled"

@@ -9,6 +9,8 @@
         xmlns:converters="clr-namespace:ReedBooks.Converters"
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         mc:Ignorable="d"
+        AllowDrop="True"
+        Drop="Window_Drop"
         Title="{DynamicResource h_main_window}" Height="600" Width="1000">
     <Window.DataContext>
         <local:MainWindowViewModel/>

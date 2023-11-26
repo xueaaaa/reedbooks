@@ -6,9 +6,11 @@ using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using VersOne.Epub;
 
 namespace ReedBooks.ViewModels
 {
@@ -94,6 +96,7 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        public ICommand HandleFileDropCommand { get; }
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
@@ -109,6 +112,7 @@ namespace ReedBooks.ViewModels
 
         public MainWindowViewModel()
         {
+            HandleFileDropCommand = new RelayCommand(obj => HandleFileDrop(obj));
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
             LoadFileCommand = new RelayCommand(obj => LoadFile());
@@ -136,6 +140,31 @@ namespace ReedBooks.ViewModels
             RecentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.LastReadingAt != DateTime.MinValue)
                 .OrderByDescending(b => b.BoundDiary.LastReadingAt)
                 .Take(Settings.Default.RecentBooksNumberDisplaying));
+        }
+
+        private async void HandleFileDrop(object param)
+        {
+            var e = (DragEventArgs)param;
+
+            if(e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                foreach (string file in files)
+                {
+                    if(Path.GetExtension(file) != ".epub")
+                    {
+                        var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
+                            Application.Current.Resources["dialog_not_epub_content"].ToString());
+                        dW.ShowDialog();
+
+                        return;
+                    }
+
+                    var book = await Book.Create(file);
+                    LoadedBooks.Add(book);
+                }
+            }
         }
 
         private void ChangeSidePanelVisibility()
@@ -170,7 +199,6 @@ namespace ReedBooks.ViewModels
             {
                 var filePath = ofd.FileName;
                 Book book = await Book.Create(filePath);
-                book.BoundDiary = ReadingDiary.Create();
                 LoadedBooks.Add(book);
             }
         }
