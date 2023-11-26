@@ -141,6 +141,7 @@
                                            Text="{DynamicResource m_current}"/>
                                 
                                 <ListView Style="{DynamicResource MaterialDesignListView}"
+                                          Name="CurrentListView"
                                           Foreground="{DynamicResource text_color}"
                                           ItemsSource="{Binding CurrentBooks}"
                                           SelectionChanged="ListView_SelectionChanged">
@@ -157,6 +158,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
+
+                                <TextBlock Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource m_no_current}"
+                                           TextWrapping="Wrap"
+                                           Visibility="{Binding Items.Count, ElementName=CurrentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
                             </StackPanel>
                             <!--#endregion-->
                             
@@ -168,6 +174,7 @@
                                            Text="{DynamicResource m_recent}"/>
 
                                 <ListView Style="{DynamicResource MaterialDesignListView}"
+                                          Name="RecentListView"
                                           Foreground="{DynamicResource text_color}"
                                           ItemsSource="{Binding RecentBooks}"
                                           SelectionChanged="ListView_SelectionChanged">
@@ -184,6 +191,11 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
+
+                                <TextBlock Foreground="{DynamicResource hint_color}"
+                                           Text="{DynamicResource m_no_recent}"
+                                           TextWrapping="Wrap"
+                                           Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
                             </StackPanel>
                             <!--#endregion-->
                         </Grid>

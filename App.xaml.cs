@@ -51,6 +51,12 @@ namespace ReedBooks
             Current.Resources.MergedDictionaries.Add(ne);
         }
 
+        public static void Restart()
+        {
+            System.Diagnostics.Process.Start(ResourceAssembly.Location);
+            Current.Shutdown();
+        }
+
         private void App_LanguageChanged(object sender, EventArgs e)
         {
             Settings.Default.Language = Localizator.CurrentLanguage;

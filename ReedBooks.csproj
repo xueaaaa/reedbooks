@@ -209,6 +209,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateToVisibilityConverter.cs" />
+    <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
     <Compile Include="Core\AppContext.cs" />
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />

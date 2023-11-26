@@ -55,5 +55,41 @@ namespace ReedBooks.Properties {
                 return ((global::System.Globalization.CultureInfo)(this["DefaultLanguage"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public ushort CurrentCountedDays {
+            get {
+                return ((ushort)(this["CurrentCountedDays"]));
+            }
+            set {
+                this["CurrentCountedDays"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public byte RecentBooksNumberDisplaying {
+            get {
+                return ((byte)(this["RecentBooksNumberDisplaying"]));
+            }
+            set {
+                this["RecentBooksNumberDisplaying"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte DefaultTab {
+            get {
+                return ((byte)(this["DefaultTab"]));
+            }
+            set {
+                this["DefaultTab"] = value;
+            }
+        }
     }
 }

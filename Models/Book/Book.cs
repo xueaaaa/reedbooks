@@ -164,7 +164,7 @@ namespace ReedBooks.Models.Book
 
             book._author = epubBook.Author;
             book._name = epubBook.Title;
-            book._chaptersCount = epubBook.ReadingOrder.Count;
+            book._chaptersCount = epubBook.Content.Html.Local.Count;
 
             await App.ApplicationContext.AddEntityAsync(book);
 

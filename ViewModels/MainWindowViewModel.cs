@@ -2,6 +2,7 @@
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
+using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -124,12 +125,17 @@ namespace ReedBooks.ViewModels
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
             SearchedBooks = LoadedBooks;
+            SelectedTab = Settings.Default.DefaultTab;
 
-            CurrentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.ReadingIsOver != true &&
-                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - 3)
+            CurrentBooks = new ObservableCollection<Book>(LoadedBooks
+                .Where(b => b.BoundDiary.ReadingIsOver != true &&
+                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - Settings.Default.CurrentCountedDays 
+                && b.BoundDiary.LastReadingAt != DateTime.MinValue)
                 .OrderByDescending(b => b.BoundDiary.LastReadingAt));
 
-            RecentBooks = new ObservableCollection<Book>(LoadedBooks.OrderByDescending(b => b.BoundDiary.LastReadingAt).Take(10));
+            RecentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.LastReadingAt != DateTime.MinValue)
+                .OrderByDescending(b => b.BoundDiary.LastReadingAt)
+                .Take(Settings.Default.RecentBooksNumberDisplaying));
         }
 
         private void ChangeSidePanelVisibility()

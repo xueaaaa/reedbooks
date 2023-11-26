@@ -92,6 +92,75 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ushort _selectedCurrentCountedDays;
+        public ushort SelectedCurrentCountedDays
+        {
+            get => _selectedCurrentCountedDays;
+            set
+            {
+                _selectedCurrentCountedDays = value;
+                OnPropertyChanged(nameof(SelectedCurrentCountedDays));
+            }
+        }
+
+        private byte _recentBooksNumberDisplaying;
+        public byte RecentBookNumberDisplaying
+        {
+            get => _recentBooksNumberDisplaying;
+            set
+            {
+                _recentBooksNumberDisplaying = value;
+                OnPropertyChanged(nameof(RecentBookNumberDisplaying));
+            }
+        }
+
+        private ObservableCollection<SettingsParameterViewModel> _tabs;
+        public ObservableCollection<SettingsParameterViewModel> Tabs
+        {
+            get
+            {
+                if (_tabs == null)
+                {
+                    _tabs = new ObservableCollection<SettingsParameterViewModel>
+                    {
+                        new SettingsParameterViewModel
+                        {
+                            DisplayName = Application.Current.Resources["m_reading_now"].ToString(),
+                            Tag = "0"
+                        },
+                        new SettingsParameterViewModel
+                        {
+                            DisplayName = Application.Current.Resources["m_all_books"].ToString(),
+                            Tag = "1"
+                        },
+                        new SettingsParameterViewModel
+                        {
+                            DisplayName = Application.Current.Resources["m_search"].ToString(),
+                            Tag = "2"
+                        }
+                    };
+                }
+
+                return _tabs;
+            }
+            set
+            {
+                _tabs = value;
+                OnPropertyChanged(nameof(Tabs));
+            }
+        }
+
+        private SettingsParameterViewModel _selectedTab;
+        public SettingsParameterViewModel SelectedTab
+        {
+            get => _selectedTab;
+            set
+            {
+                _selectedTab = value;
+                OnPropertyChanged(nameof(SelectedTab));
+            }
+        }
+
         public string DeleteUnusedFilesHint
         {
             get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
@@ -109,19 +178,25 @@ namespace ReedBooks.ViewModels
 
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
+            SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
+            RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
+            SelectedTab = Tabs.Where(t => t.Tag == Convert.ToString(Properties.Settings.Default.DefaultTab)).First();
         }
 
         public void Save()
         {
             if (_selectedLanguage != null) Properties.Settings.Default.Language = new CultureInfo(_selectedLanguage.Tag);
             if (_selectedTheme != null) Properties.Settings.Default.Theme = _selectedTheme.Tag;
+            if (_selectedCurrentCountedDays != 0) Properties.Settings.Default.CurrentCountedDays = _selectedCurrentCountedDays;
+            if (_recentBooksNumberDisplaying != 0) Properties.Settings.Default.RecentBooksNumberDisplaying = _recentBooksNumberDisplaying;
+            if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
 
             Properties.Settings.Default.Save();
 
             var dW = new DialogWindow(Application.Current.Resources["dialog_settings_title"].ToString(),
                 Application.Current.Resources["dialog_settings_content"].ToString());
 
-            if (dW.ShowDialog() == true) Restart();
+            if (dW.ShowDialog() == true) App.Restart();
         }
 
         public void DeleteUnusedFiles()
@@ -138,14 +213,8 @@ namespace ReedBooks.ViewModels
             if (dW.ShowDialog() == true)
             {
                 App.StorageManager.DeleteAllBooks();
-                Restart();
+                App.Restart();
             }
-        }
-
-        private void Restart()
-        {
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
         }
     }
 }

@@ -7,6 +7,7 @@
 	    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
 	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
@@ -14,6 +15,10 @@
 	<Window.DataContext>
 		<local:ReadingDiaryWindowViewModel/>
 	</Window.DataContext>
+    <Window.Resources>
+        <converters:DateToVisibilityConverter x:Key="DateToVisibilityConverter"/>
+        <converters:MinDateToVisibilityConverter x:Key="MinDateToVisibilityConverter"/>
+    </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
         <materialDesign:DialogHost Identifier="Dialog"
                                    DialogContentUniformCornerRadius="20"
@@ -75,15 +80,21 @@
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_begin_reading_at}"/>
 								<TextBlock Style="{DynamicResource PropertyValue}"
-                                           Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"
-                                           VerticalAlignment="Center"/>
-							</StackPanel>
+                                           Visibility="{Binding Book.BoundDiary.BeginReadingAt, Converter={StaticResource DateToVisibilityConverter}}"
+                                           Text="{Binding Book.BoundDiary.BeginReadingAt, StringFormat=dd.MM.yyyy}"/>
+                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                           Visibility="{Binding Book.BoundDiary.BeginReadingAt, Converter={StaticResource MinDateToVisibilityConverter}}"
+                                           Text="{DynamicResource rd_reading_not_beginned}"/>
+                            </StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Style="{DynamicResource PropertyTitle}"
                                            Text="{DynamicResource rd_end_reading_at}"/>
                                 <TextBlock Style="{DynamicResource PropertyValue}"
-                                           Text="{Binding Book.BoundDiary.EndReadingAt, StringFormat=dd.MM.yyyy}"
-                                           VerticalAlignment="Center"/>
+                                           Visibility="{Binding Book.BoundDiary.EndReadingAt, Converter={StaticResource DateToVisibilityConverter}}"
+                                           Text="{Binding Book.BoundDiary.EndReadingAt, StringFormat=dd.MM.yyyy}"/>
+                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                           Visibility="{Binding Book.BoundDiary.EndReadingAt, Converter={StaticResource MinDateToVisibilityConverter}}"
+                                           Text="{DynamicResource rd_reading_not_ended}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding Book.BoundDiary.ReadingIsOver}"
@@ -278,7 +289,8 @@
                                            Text="{DynamicResource rd_humor}"/>
 								<materialDesign:RatingBar Style="{DynamicResource BookAssessmentRatingBar}"
                                                           Grid.Column="1"
-                                                          Grid.Row="4"/>
+                                                          Grid.Row="4"
+                                                          Value="{Binding Book.BoundDiary.BookAssessment.Humor,Mode=TwoWay}"/>
 								<!--#endregion-->
 								<!--#region Meaning Fulness -->
 								<TextBlock Style="{DynamicResource BookAssessmentTitle}"
