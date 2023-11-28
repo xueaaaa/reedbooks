@@ -1,4 +1,7 @@
-﻿using ReedBooks.ViewModels;
+﻿using ReedBooks.Models.Book;
+using ReedBooks.ViewModels;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -25,6 +28,14 @@ namespace ReedBooks.Views
         private void Window_Drop(object sender, DragEventArgs e)
         {
             ((MainWindowViewModel)DataContext).HandleFileDropCommand.Execute(e);
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in ((ListBox)sender).SelectedItems)
+            {
+                ((MainWindowViewModel)DataContext).SelectedCollectionBooks.Add((Book)item);
+            }
         }
     }
 }

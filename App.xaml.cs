@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ReedBooks.Core;
+﻿using ReedBooks.Core;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
@@ -22,9 +21,6 @@ namespace ReedBooks
         public App()
         {
             ApplicationContext = new AppContext();
-            ApplicationContext.Database.EnsureCreated();
-            ApplicationContext.Books.Load();
-            ApplicationContext.Quotes.Load();
 
             StorageManager = new StorageManager();
 

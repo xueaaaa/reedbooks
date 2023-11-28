@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReedBooks.Models.Assessment;
 using ReedBooks.Models.Book;
+using ReedBooks.Models.Collection;
 using ReedBooks.Models.Diary;
 using System.Threading.Tasks;
 
@@ -10,6 +11,15 @@ namespace ReedBooks.Core
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Quote> Quotes { get; set; }
+        public DbSet<Collection> Collections { get; set; }
+
+        public AppContext()
+        {
+            Database.EnsureCreated();
+            Books.Load();
+            Quotes.Load();
+            Collections.Load();
+        }
 
         /// <summary>
         /// Adds an item to the database and saves the changes

@@ -12,6 +12,8 @@
     <v:String x:Key="m_readers_diary_collection">Читательский дневник</v:String>
     <v:String x:Key="m_my_collections_collection">Мои коллекции</v:String>
     <v:String x:Key="m_new_collection">Новая коллекция</v:String>
+    <v:String x:Key="m_new_collection_hint">Название коллекции...</v:String>
+    <v:String x:Key="m_create_collection">Создать коллекцию</v:String>
     <v:String x:Key="m_current">Текущие</v:String>
     <v:String x:Key="m_last_reading_at">Последняя дата открытия</v:String>
     <v:String x:Key="m_name">Название</v:String>

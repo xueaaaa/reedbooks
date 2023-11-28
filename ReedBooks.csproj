@@ -219,6 +219,7 @@
     <Compile Include="Models\Assessment\Emote.cs" />
     <Compile Include="Models\Book\Book.cs" />
     <Compile Include="Models\Assessment\BookAssessment.cs" />
+    <Compile Include="Models\Collection\Collection.cs" />
     <Compile Include="Models\Diary\Diary.cs" />
     <Compile Include="Models\Assessment\EmotionalAssessment.cs" />
     <Compile Include="Models\Diary\Quote.cs" />
@@ -332,10 +333,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Locales\lang.es-ES.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Locales\lang.ky.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

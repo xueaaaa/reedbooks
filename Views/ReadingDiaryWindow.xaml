@@ -406,7 +406,8 @@
                                                        Text="{DynamicResource rd_add_quote_header}"/>
                                             <TextBox Style="{DynamicResource MultilineTextBox}"
                                                      materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
-                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     Margin="0 0 0 15"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
+                                                     Margin="0 0 0 15"
                                                      Text="{Binding QuoteData}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"

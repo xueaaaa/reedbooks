@@ -19,7 +19,10 @@
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
-        <Grid>
+        <materialDesign:DialogHost DialogContentUniformCornerRadius="20"
+                                   CloseOnClickAway="True"
+                                   DialogBackground="{DynamicResource container_background_color}">
+            <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding SidePanelColumnLength}"/>
                 <ColumnDefinition Width="*"/>
@@ -113,8 +116,49 @@
                         <Separator/>
                         <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
                                                   Source="/Resources/Icons/add.png"
-                                                  Text="{DynamicResource m_new_collection}"/>
-                    </StackPanel>
+                                                  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                  Text="{DynamicResource m_new_collection}">
+                                <controls:ButtonWithImage.CommandParameter>
+                                    <StackPanel Style="{DynamicResource DialogPanel}">
+                                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                                   Foreground="{DynamicResource text_color}"
+                                                   Margin="0 0 0 20"
+                                                   Text="{DynamicResource m_new_collection}"/>
+                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                                 materialDesign:HintAssist.Hint="{DynamicResource m_new_collection_hint}"
+                                                 materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
+                                                 Foreground="{DynamicResource text_color}"
+                                                 Margin="0 0 0 15"
+                                                 Text="{Binding NewCollectionName}"/>
+                                        <ListBox ItemsSource="{Binding LoadedBooks}"
+                                                 SelectionChanged="ListBox_SelectionChanged"
+                                                 Foreground="{DynamicResource text_color}"
+                                                 Margin="0 0 0 15"
+                                                 DisplayMemberPath="Name"
+                                                 SelectionMode="Multiple"/>
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Style="{DynamicResource ReedBooksRaisedButton}"
+                                                    HorizontalAlignment="Left"
+                                                    Command="{Binding CreateCollectionCommand}"
+                                                    CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                                    Content="{DynamicResource m_create_collection}"/>
+                                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Right"
+                                                    Foreground="{DynamicResource accent_color}"
+                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Content="{DynamicResource rd_cancel}"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </controls:ButtonWithImage.CommandParameter>
+                            </controls:ButtonWithImage>
+                        </StackPanel>
                 </Expander>
                 <!--#endregion-->
             </StackPanel>
@@ -305,5 +349,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
+        </materialDesign:DialogHost>
+        
     </Grid>
 </Window>

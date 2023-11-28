@@ -1,13 +1,16 @@
 ﻿using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
+using ReedBooks.Models.Collection;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
@@ -94,6 +97,28 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private string _newCollectionName;
+        public string NewCollectionName
+        {
+            get => _newCollectionName;
+            set
+            {
+                _newCollectionName = value;
+                OnPropertyChanged(nameof(NewCollectionName));
+            }
+        }
+
+        private ObservableCollection<Book> _selectedCollectionBooks;
+        public ObservableCollection<Book> SelectedCollectionBooks
+        {
+            get => _selectedCollectionBooks;
+            set
+            {
+                _selectedCollectionBooks = value;
+                OnPropertyChanged(nameof(SelectedCollectionBooks));
+            }
+        }
+
         public ICommand HandleFileDropCommand { get; }
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
@@ -107,6 +132,7 @@ namespace ReedBooks.ViewModels
         public ICommand SortByNameDescendingCommand { get; }
         public ICommand SortByLastReadingDateCommand { get; }
         public ICommand SortByLastReadingDateDescendingCommand { get; }
+        public ICommand CreateCollectionCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -123,6 +149,7 @@ namespace ReedBooks.ViewModels
             SortByNameDescendingCommand = new RelayCommand(obj => SortByNameDescending());
             SortByLastReadingDateCommand = new RelayCommand(obj => SortByLastReadingDate());
             SortByLastReadingDateDescendingCommand = new RelayCommand(obj => SortByLastReadingDateDescending());
+            CreateCollectionCommand = new RelayCommand(obj => CreateCollection());
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
@@ -138,9 +165,11 @@ namespace ReedBooks.ViewModels
             RecentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.LastReadingAt != DateTime.MinValue)
                 .OrderByDescending(b => b.BoundDiary.LastReadingAt)
                 .Take(Settings.Default.RecentBooksNumberDisplaying));
+
+            SelectedCollectionBooks = new ObservableCollection<Book>();
         }
 
-        private async void HandleFileDrop(object param)
+        public async void HandleFileDrop(object param)
         {
             var e = (DragEventArgs)param;
 
@@ -165,7 +194,7 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private void ChangeSidePanelVisibility()
+        public void ChangeSidePanelVisibility()
         {
             switch (SidePanelVisibility)
             {
@@ -183,7 +212,7 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private void SwitchToTab(object param)
+        public void SwitchToTab(object param)
         {
             SelectedTab = Convert.ToInt32(param);
         }
@@ -260,6 +289,15 @@ namespace ReedBooks.ViewModels
         public void SortByLastReadingDateDescending()
         {
             SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderBy(b => b.BoundDiary?.LastReadingAt));
+        }
+
+        public async void CreateCollection()
+        {
+            var collection = new Collection();
+
+            foreach (var book in SelectedCollectionBooks) collection.LinkedBooks.Add(book.Guid);
+
+            await App.ApplicationContext.AddEntityAsync(collection);
         }
     }
 }
