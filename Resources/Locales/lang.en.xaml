@@ -15,10 +15,17 @@
     <v:String x:Key="m_current">Current</v:String>
     <v:String x:Key="m_last_reading_at">Last Reading Date</v:String>
     <v:String x:Key="m_name">Name</v:String>
+    <v:String x:Key="m_no_current">You haven't opened any books in the last few days.</v:String>
     <v:String x:Key="m_recent">Recent</v:String>
-    <v:String x:Key="m_no_elements">No elements added yet</v:String>
+    <v:String x:Key="m_no_recent">No recently opened books.</v:String>
+    <v:String x:Key="m_no_elements">No elements added yet.</v:String>
     <v:String x:Key="m_load_book">Load Book</v:String>
-    <v:String x:Key="m_search_hint">Start typing the book name...</v:String>
+    <v:String x:Key="m_search_hint">Start typing the book title...</v:String>
+    <v:String x:Key="m_sort">Sort:</v:String>
+    <v:String x:Key="m_sort_by_name_a-z">By Book Title (A-Z)</v:String>
+    <v:String x:Key="m_sort_by_name_z-a">By Book Title (Z-A)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date">By Last Reading Date (recent first)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date_descending">By Last Reading Date (oldest first)</v:String>
     <v:String x:Key="m_genre">Genre:</v:String>
     <v:String x:Key="m_chapters_count">Number of Chapters:</v:String>
     <v:String x:Key="m_read">Read</v:String>
@@ -27,27 +34,35 @@
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Reading Mode</v:String>
     <v:String x:Key="r_mark_as_read">Mark as Read</v:String>
-    <v:String x:Key="r_mark_as_read_hint">Clicking the button in the "End of Reading" section in the reader's diary will set today's date</v:String>
+    <v:String x:Key="r_mark_as_read_hint">Clicking this button will set today's date in the "End of Reading" section in the reader's diary.</v:String>
     <v:String x:Key="r_end_of_read_dialog_header">Congratulations!</v:String>
-    <v:String x:Key="r_end_of_read_dialog_content">Congratulations on finishing the book, and we invite you to go to the reader's diary to rate it.</v:String>
-    <v:String x:Key="r_open_reading_diary">Go</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">Congratulations on finishing the book! Feel free to go to your reader's diary to rate it.</v:String>
+    <v:String x:Key="r_open_reading_diary">Go to Diary</v:String>
     <v:String x:Key="r_stay">Stay</v:String>
-    <v:String x:Key="r_temporarily_out_of_service">This part of the application is currently not available</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">This part of the application is currently not available.</v:String>
     <!--#endregion-->
 
     <!--#region Settings window-->
     <v:String x:Key="h_settings_window">ReedBooks - Settings</v:String>
     <v:String x:Key="s_interface_header">Interface</v:String>
+    <v:String x:Key="s_language_label">Application Language</v:String>
+    <v:String x:Key="s_language_hint">This setting only changes the language of the interface. Book author names and content remain untranslated.</v:String>
+    <v:String x:Key="s_theme_label">Theme</v:String>
+    <v:String x:Key="s_theme_hint">Switch between the default light theme and the dark theme.</v:String>
+    <v:String x:Key="s_personalization_header">Personalization</v:String>
+    <v:String x:Key="s_current_counted_days_label">Counted Days for Current</v:String>
+    <v:String x:Key="s_current_counted_days_hint">Set the period (in days) from the last book opening, during which it will appear in the "Current" tab.</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_label">Number of Displayed Books in "Recent"</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_hint">Set the number of books to be displayed in the "Recent" tab (up to 255).</v:String>
+    <v:String x:Key="s_start_tab_label">Open at Launch</v:String>
+    <v:String x:Key="s_start_tab_hint">Set the default tab opened when launching the application.</v:String>
     <v:String x:Key="s_storage_management_header">Storage Management</v:String>
     <v:String x:Key="s_delete_all_books_label">Delete All Books</v:String>
-    <v:String x:Key="s_delete_all_books_hint">Clicking the button will delete all books loaded into the application.</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Clicking this button will delete all books loaded into the application.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Delete Unused Files</v:String>
-    <v:String x:Key="s_delete_unused_files_hint">When deleting books from the application, some of their files continue to be stored in directories. Total size of unused files:</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">When books are deleted, some of their files may still be stored in directories. Total size of unused files:</v:String>
     <v:String x:Key="s_delete">Delete</v:String>
-    <v:String x:Key="s_language_label">Application Language</v:String>
-    <v:String x:Key="s_language_hint">This setting only changes the language of the interface. Author names and their content are not localized.</v:String>
-    <v:String x:Key="s_theme_label">Theme</v:String>
-    <v:String x:Key="s_theme_hint">Changes the application theme to light (default) or dark.</v:String>
+
     <v:String x:Key="s_save">Save</v:String>
     <!--#endregion-->
 
@@ -63,22 +78,24 @@
     <v:String x:Key="rd_chapters_count_label">Number of Chapters:</v:String>
     <v:String x:Key="rd_genre_label">Genre:</v:String>
     <v:String x:Key="rd_genre_hint">Enter the genre name...</v:String>
-    <v:String x:Key="rd_begin_reading_at">Start of Reading:</v:String>
+    <v:String x:Key="rd_begin_reading_at">Start Reading:</v:String>
+    <v:String x:Key="rd_reading_not_beginned">Reading not started</v:String>
     <v:String x:Key="rd_end_reading_at">End of Reading:</v:String>
-    <v:String x:Key="rd_reading_is_over">Is the book finished?</v:String>
+    <v:String x:Key="rd_reading_not_ended">Reading not finished</v:String>
+    <v:String x:Key="rd_reading_is_over">Book finished?</v:String>
     <v:String x:Key="rd_arithmetic_average">Overall Rating:</v:String>
     <v:String x:Key="rd_my_emotions">My Emotions</v:String>
     <v:String x:Key="rd_start">At the beginning of the book</v:String>
     <v:String x:Key="rd_middle">In the middle of the book</v:String>
     <v:String x:Key="rd_end">At the end of the book</v:String>
-    <v:String x:Key="rd_assessment">Assessment</v:String>
+    <v:String x:Key="rd_assessment">Rating</v:String>
     <v:String x:Key="rd_plot_originality">Plot Originality</v:String>
     <v:String x:Key="rd_characters">Characters</v:String>
     <v:String x:Key="rd_world_inside_book">World Inside the Book</v:String>
     <v:String x:Key="rd_love_line">Love Line</v:String>
     <v:String x:Key="rd_humor">Humor</v:String>
     <v:String x:Key="rd_meaning_fulness">Meaningfulness</v:String>
-    <v:String x:Key="rd_plot_brief_retelling_hint">This is a place to write a brief summary. Or for your notes.</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">This is a place to write a brief retelling or your notes.</v:String>
     <v:String x:Key="rd_quotes">Quotes</v:String>
     <v:String x:Key="rd_add_quote">Add</v:String>
     <v:String x:Key="rd_add_quote_header">Add Quote</v:String>
@@ -95,11 +112,12 @@
     <v:String x:Key="megabytes">MB</v:String>
 
     <v:String x:Key="dialog_settings_title">Restart Required</v:String>
-    <v:String x:Key="dialog_settings_content">To apply the settings, the application needs to be restarted. Do you want to do it now?</v:String>
+    <v:String x:Key="dialog_settings_content">To apply the changes made in the settings, the application needs to be restarted. Do you want to do it now?</v:String>
 
     <v:String x:Key="dialog_error_title">Error</v:String>
-    <v:String x:Key="dialog_fatal_error_content">The application will stop because an error has occurred:</v:String>
+    <v:String x:Key="dialog_fatal_error_content">The application will be paused because an error occurred:</v:String>
     <v:String x:Key="dialog_null_quote_content">Cannot add an empty quote!</v:String>
+    <v:String x:Key="dialog_not_epub_content">This file is not in epub format.</v:String>
 
     <v:String x:Key="dialog_delete_book_title">Delete Book</v:String>
     <v:String x:Key="dialog_delete_book_content">Are you sure you want to delete this book?</v:String>
@@ -115,7 +133,7 @@
     <v:String x:Key="genre_love_story">Love Story</v:String>
     <v:String x:Key="genre_thriller">Thriller</v:String>
     <v:String x:Key="genre_prose">Prose</v:String>
-    <v:String x:Key="genre_foreign_classics">Foreign Classics</v:String>
+    <v:String x:Key="genre_classics">Classics</v:String>
     <v:String x:Key="genre_folklore">Folklore</v:String>
     <!--#endregion-->
 </ResourceDictionary>
