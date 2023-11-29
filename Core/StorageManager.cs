@@ -34,6 +34,9 @@ namespace ReedBooks.Core
             }
         }
 
+        /// <summary>
+        /// Deletes all files no longer used by the program
+        /// </summary>
         public void DeleteUnusedFiles()
         {
             foreach (var cover in Directory.GetFiles($"{Directory.GetCurrentDirectory()}{COVERS_DIRECTORY}"))
@@ -49,6 +52,9 @@ namespace ReedBooks.Core
             }
         }
 
+        /// <summary>
+        /// Deletes all books loaded into the database
+        /// </summary>
         public async void DeleteAllBooks()
         {
             App.ApplicationContext.RemoveRange(App.ApplicationContext.Books);

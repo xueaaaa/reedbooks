@@ -37,5 +37,10 @@ namespace ReedBooks.Views
                 ((MainWindowViewModel)DataContext).SelectedCollectionBooks.Add((Book)item);
             }
         }
+
+        private void IconButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel)DataContext).DeleteCollectionCommand.Execute(((Button)sender).CommandParameter);
+        }
     }
 }

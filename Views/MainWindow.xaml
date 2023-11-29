@@ -19,7 +19,8 @@
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
-        <materialDesign:DialogHost DialogContentUniformCornerRadius="20"
+        <materialDesign:DialogHost Identifier="Dialog"
+                                   DialogContentUniformCornerRadius="20"
                                    CloseOnClickAway="True"
                                    DialogBackground="{DynamicResource container_background_color}">
             <Grid>
@@ -111,9 +112,74 @@
                 <Expander Style="{DynamicResource MainMenuExpander}" 
                           Header="{DynamicResource m_my_collections_collection}">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Foreground="{DynamicResource hint_color}"
-                                   Text="{DynamicResource m_no_elements}"/>
-                        <Separator/>
+                            <ItemsControl ItemsSource="{Binding LoadedCollections}">
+                                <ItemsControl.Template>
+                                    <ControlTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                            <ItemsPresenter/>
+                                            <TextBlock Foreground="{DynamicResource hint_color}"
+                                                       Text="{DynamicResource m_no_elements}"
+                                                       Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </ItemsControl.Template>
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{DynamicResource HintedButton}"
+                                                Content="{Binding Name}"
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                            <Button.CommandParameter>
+                                                <StackPanel Style="{DynamicResource DialogPanel}"
+                                                            MinWidth="300">
+                                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                                               Foreground="{DynamicResource accent_color}"
+                                                               Margin="0 0 0 20"
+                                                               Text="{Binding Name}"/>
+
+                                                    <TextBlock Text="{DynamicResource m_added_books}"
+                                                               Foreground="{DynamicResource text_color}"/>
+
+                                                    <ListBox ItemsSource="{Binding RepresentedAsBook}"
+                                                             Margin="0 0 0 15">
+                                                        <ListBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Button Style="{DynamicResource HintedButton}"
+                                                                        Content="{Binding Name}"
+                                                                        Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                        CommandParameter="{Binding}"/>
+                                                            </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                    </ListBox>
+
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <controls:IconButton Style="{DynamicResource MaterialDesignIconButton}"
+                                                                             HorizontalAlignment="Left"
+                                                                             Click="IconButton_Click"
+                                                                             CommandParameter="{Binding Guid}"
+                                                                             Source="/Resources/Icons/delete.png"/>
+
+                                                        <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                                Grid.Column="1"
+                                                                HorizontalAlignment="Right"
+                                                                Foreground="{DynamicResource accent_color}"
+                                                                Content="{DynamicResource rd_cancel}"/>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Button.CommandParameter>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        
+                            <Separator/>
+                        
                         <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
                                                   Source="/Resources/Icons/add.png"
                                                   Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
@@ -158,7 +224,7 @@
                                     </StackPanel>
                                 </controls:ButtonWithImage.CommandParameter>
                             </controls:ButtonWithImage>
-                        </StackPanel>
+                    </StackPanel>
                 </Expander>
                 <!--#endregion-->
             </StackPanel>

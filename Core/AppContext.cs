@@ -3,6 +3,7 @@ using ReedBooks.Models.Assessment;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
 using ReedBooks.Models.Diary;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReedBooks.Core
@@ -111,6 +112,12 @@ namespace ReedBooks.Core
                 .HasOne(d => d.EmotionalAssessment)
                 .WithOne()
                 .HasForeignKey<EmotionalAssessment>(e => e.Guid);
+
+            modelBuilder.Entity<Collection>()
+                .Property(c => c.LinkedBooks)
+                .HasConversion(
+                v => string.Join(",", v.ToArray()),
+                v => v.Split(',').ToList());
         }
     }
 }

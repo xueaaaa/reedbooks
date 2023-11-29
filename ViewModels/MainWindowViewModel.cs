@@ -1,7 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using MaterialDesignThemes.Wpf;
+using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
+using ReedBooks.Models.Diary;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
@@ -97,6 +99,18 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ObservableCollection<Collection> _loadedCollections;
+        public ObservableCollection<Collection> LoadedCollections
+        {
+            get => _loadedCollections;
+            set
+            {
+                _loadedCollections = value;
+                OnPropertyChanged(nameof(LoadedCollections));
+            }
+        }
+
+
         private string _newCollectionName;
         public string NewCollectionName
         {
@@ -133,6 +147,7 @@ namespace ReedBooks.ViewModels
         public ICommand SortByLastReadingDateCommand { get; }
         public ICommand SortByLastReadingDateDescendingCommand { get; }
         public ICommand CreateCollectionCommand { get; }
+        public ICommand DeleteCollectionCommand { get; }
 
         public MainWindowViewModel()
         {
@@ -150,9 +165,11 @@ namespace ReedBooks.ViewModels
             SortByLastReadingDateCommand = new RelayCommand(obj => SortByLastReadingDate());
             SortByLastReadingDateDescendingCommand = new RelayCommand(obj => SortByLastReadingDateDescending());
             CreateCollectionCommand = new RelayCommand(obj => CreateCollection());
+            DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
+            LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
             SelectedTab = Settings.Default.DefaultTab;
 
@@ -293,11 +310,29 @@ namespace ReedBooks.ViewModels
 
         public async void CreateCollection()
         {
-            var collection = new Collection();
+            if(SelectedCollectionBooks.Count == 0)
+            {
+                var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
+                    Application.Current.Resources["dialog_null_collection_content"].ToString());
+                dW.ShowDialog();
+                return;
+            }
 
-            foreach (var book in SelectedCollectionBooks) collection.LinkedBooks.Add(book.Guid);
+            var collection = await Collection.Create(NewCollectionName, SelectedCollectionBooks.Select(b => b.Guid).ToList());
+            LoadedCollections.Add(collection);
 
-            await App.ApplicationContext.AddEntityAsync(collection);
+            SelectedCollectionBooks = null;
+            NewCollectionName = string.Empty;
+            DialogHost.Close("Dialog");
+        }
+
+        public async void DeleteCollection(object param)
+        {
+            Collection toDelete = await App.ApplicationContext.FindAsync<Collection>(param);
+            LoadedCollections.Remove(toDelete);
+            await App.ApplicationContext.RemoveEntityAsync(toDelete);
+
+            DialogHost.Close("Dialog");
         }
     }
 }
