@@ -211,7 +211,7 @@
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\DateToVisibilityConverter.cs" />
     <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
-    <Compile Include="Core\AppContext.cs" />
+    <Compile Include="Models\Database\AppContext.cs" />
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
@@ -220,6 +220,8 @@
     <Compile Include="Models\Book\Book.cs" />
     <Compile Include="Models\Assessment\BookAssessment.cs" />
     <Compile Include="Models\Collection\Collection.cs" />
+    <Compile Include="Models\Database\DatabaseObject.cs" />
+    <Compile Include="Models\Database\DependentDatabaseObject.cs" />
     <Compile Include="Models\Diary\Diary.cs" />
     <Compile Include="Models\Assessment\EmotionalAssessment.cs" />
     <Compile Include="Models\Diary\Quote.cs" />

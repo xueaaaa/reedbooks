@@ -1,4 +1,4 @@
-﻿using ReedBooks.Core;
+﻿using ReedBooks.Models.Database;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,22 +12,8 @@ namespace ReedBooks.Models.Collection
     /// <summary>
     /// A collection of uploaded books
     /// </summary>
-    public class Collection : ObservableObject, IEnumerable
+    public class Collection : DatabaseObject, IEnumerable
     {
-        private Guid _guid;
-        [Key] public Guid Guid
-        {
-            get => _guid;
-            set
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            }
-        }
-
         private string _name;
         /// <summary>
         /// Name of collection
@@ -46,7 +32,7 @@ namespace ReedBooks.Models.Collection
         /// <summary>
         /// Books added to the collection (their identifiers)
         /// </summary>
-        public List<string> LinkedBooks
+        [NotMapped] public List<string> LinkedBooks
         {
             get => _linkedBooks;
             set
@@ -74,28 +60,15 @@ namespace ReedBooks.Models.Collection
 
         public IEnumerator GetEnumerator() => _linkedBooks.GetEnumerator();
 
-        public Collection(string name)
+        public Collection() { }
+            
+        public Collection(string name, List<Guid> books)
         {
-            Guid guid = Guid.NewGuid();
             _linkedBooks = new List<string>();
             Name = name;
-        }
+            foreach (var item in books) LinkedBooks.Add(item.ToString());
 
-        /// <summary>
-        /// Creates a collection, adds it to the database, and returns the created instance
-        /// </summary>
-        /// <param name="name">Name of collection</param>
-        /// <param name="books">List of books guid</param>
-        /// <returns>Collection</returns>
-        public static async Task<Collection> Create(string name, List<Guid> books)
-        {
-            var collection = new Collection(name);
-
-            foreach (var item in books) collection.LinkedBooks.Add(item.ToString());
-
-            await App.ApplicationContext.AddEntityAsync(collection);
-
-            return collection;
+            Create();
         }
     }
 }

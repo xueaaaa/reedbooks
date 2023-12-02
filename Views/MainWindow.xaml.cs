@@ -32,6 +32,8 @@ namespace ReedBooks.Views
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ((MainWindowViewModel)DataContext).SelectedCollectionBooks = new ObservableCollection<Book>();
+
             foreach (var item in ((ListBox)sender).SelectedItems)
             {
                 ((MainWindowViewModel)DataContext).SelectedCollectionBooks.Add((Book)item);

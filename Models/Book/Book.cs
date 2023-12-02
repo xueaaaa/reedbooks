@@ -1,10 +1,10 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Models.Database;
 using ReedBooks.Models.Diary;
 using ReedBooks.Views.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,22 +19,8 @@ using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace ReedBooks.Models.Book
 {
-    public class Book : ObservableObject
+    public class Book : DatabaseObject
     {
-        private Guid _guid;
-        [Key] public Guid Guid 
-        { 
-            get => _guid; 
-            set 
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            } 
-        }
-
         private ReadingDiary _boundDiary;
         public ReadingDiary BoundDiary 
         { 
@@ -44,7 +30,7 @@ namespace ReedBooks.Models.Book
                 if (value != null)
                 {
                     _boundDiary = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(BoundDiary));
                 }
             }
@@ -59,7 +45,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _name = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -74,7 +60,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _author = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(Author));
                 }
             }
@@ -89,7 +75,7 @@ namespace ReedBooks.Models.Book
                 if (value >= 0)
                 {
                     _chaptersCount = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(ChaptersCount));
                 }
             }
@@ -104,7 +90,7 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _genre = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(Genre));
                 }
             }
@@ -119,7 +105,7 @@ namespace ReedBooks.Models.Book
                 if (value != null)
                 {
                     _linkToOrigin = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(LinkToOrigin));
                 }
             }
@@ -134,42 +120,69 @@ namespace ReedBooks.Models.Book
                 if(value != null)
                 {
                     _linkToCover = value;
-                    App.ApplicationContext.UpdateEntity(this);
+                    Update();
                     OnPropertyChanged(nameof(LinkToCover));
                 }
             }
         }
 
-        /// <summary>
-        /// Creates and returns an instance of a book from an external .epub file
-        /// </summary>
-        /// <param name="path">Path to .epub file</param>
-        /// <returns></returns>
-        public async static Task<Book> Create(string path)
-        {
-            Book book = new Book();
-            book._boundDiary = new ReadingDiary();
-            book._guid = Guid.NewGuid();
-            path = MoveToInternalFolder(path, book.Guid.ToString());
-            book._linkToOrigin = path;
+        public Book() 
+        { 
+            
+        }
 
-            EpubBook epubBook = await EpubReader.ReadBookAsync(path);
+        public Book(string path)
+        {
+            Create();
+            _boundDiary = new ReadingDiary();
+
+            path = MoveToInternalFolder(path, Guid.ToString());
+            _linkToOrigin = path;
+
+            EpubBook epubBook = EpubReader.ReadBook(path);
 
             using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
             {
                 Bitmap bitmap = new Bitmap(stream);
-                string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{book.Guid}.png";
+                string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{Guid}.png";
                 bitmap.Save(bitmapPath);
-                book._linkToCover = bitmapPath;
+                _linkToCover = bitmapPath;
             }
 
-            book._author = epubBook.Author;
-            book._name = epubBook.Title;
-            book._chaptersCount = epubBook.Content.Html.Local.Count;
+            _author = epubBook.Author;
+            _name = epubBook.Title;
+            _chaptersCount = epubBook.Content.Html.Local.Count;
 
-            await App.ApplicationContext.AddEntityAsync(book);
+            Update();
+        }
 
-            return book;
+        /// <summary>
+        /// Reads all book records from the database and returns them as an ObservableCollection
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<ObservableCollection<Book>> ReadAll()
+        {
+            var books = App.ApplicationContext.Books.Local.ToObservableCollection();
+
+            foreach (var book in books)
+            {
+                if (book != null)
+                {
+                    await App.ApplicationContext.Entry(book)
+                          .Reference(b => b.BoundDiary)
+                          .LoadAsync();
+
+                    await App.ApplicationContext.Entry(book.BoundDiary)
+                          .Reference(d => d.EmotionalAssessment)
+                          .LoadAsync();
+
+                    await App.ApplicationContext.Entry(book.BoundDiary)
+                          .Reference(d => d.BookAssessment)
+                          .LoadAsync();
+                }
+            }
+
+            return books;
         }
 
         /// <summary>
@@ -223,54 +236,6 @@ namespace ReedBooks.Models.Book
         {
             BoundDiary.EndReadingAt = DateTime.Now;
             BoundDiary.ReadingIsOver = true;
-        }
-
-        /// <summary>
-        /// Saves a record of the current object to the local database
-        /// </summary>
-        public async Task<int> Save()
-        {
-            App.ApplicationContext.Books.Update(this);
-            return await App.ApplicationContext.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Reads all book records from the database and returns them as an ObservableCollection
-        /// </summary>
-        /// <returns></returns>
-        public static ObservableCollection<Book> ReadAll()
-        {
-            var books = App.ApplicationContext.Books.Local.ToObservableCollection();
-
-            foreach (var book in books)
-            {
-                if (book != null)
-                {
-                    App.ApplicationContext.Entry(book)
-                        .Reference(b => b.BoundDiary)
-                        .Load();
-
-                    App.ApplicationContext.Entry(book.BoundDiary)
-                        .Reference(d => d.EmotionalAssessment)
-                        .Load();
-
-                    App.ApplicationContext.Entry(book.BoundDiary)
-                        .Reference(d => d.BookAssessment)
-                        .Load();
-                }
-            }
-
-            return books;
-        }
-
-        /// <summary>
-        /// Removes a record of a book from the database as well as its ebup original from the application catalog.
-        /// Does not remove the book cover.
-        /// </summary>
-        public async void Delete()
-        {
-            await App.ApplicationContext.RemoveEntityAsync(this);
-            Image.FromFile(LinkToCover).Dispose();
         }
 
         /// <summary>

@@ -3,10 +3,7 @@ using ReedBooks.Core;
 using ReedBooks.Models.Assessment;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
-using ReedBooks.Properties;
 using ReedBooks.Views;
-using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -126,8 +123,8 @@ namespace ReedBooks.ViewModels
             if (toAdd.Data != null && toAdd.Data != string.Empty)
             {
                 Book.BoundDiary.Quotes.Add(toAdd);
-                await App.ApplicationContext.AddEntityAsync(toAdd);
-                DialogHost.Close("Dialog");
+                await toAdd.CreateAsync();
+                DialogHost.Close("ReadingDiaryDialog");
             }
             else
                 new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(), Application.Current.Resources["dialog_null_quote_content"].ToString())
@@ -139,6 +136,7 @@ namespace ReedBooks.ViewModels
             Quote toDelete = await App.ApplicationContext.FindAsync<Quote>(param);
             Book.BoundDiary.Quotes.Remove(toDelete);
             await App.ApplicationContext.RemoveEntityAsync(toDelete);
+            DialogHost.Close("ReadingDiaryDialog");
         }
     }
 }

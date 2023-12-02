@@ -1,29 +1,12 @@
-﻿using ReedBooks.Core;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using ReedBooks.Models.Database;
 
 namespace ReedBooks.Models.Assessment
 {
     /// <summary>
     /// A class for evaluating a book on emotional feelings
     /// </summary>
-    public class EmotionalAssessment : ObservableObject
+    public class EmotionalAssessment : DatabaseObject
     {
-        private Guid _guid;
-        [Key]
-        public Guid Guid
-        {
-            get => _guid;
-            set
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            }
-        }
-
         private Emote _start;
         /// <summary>
         /// Evaluation at the beginning of the book
@@ -34,7 +17,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _start = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(Start));
             }
         }
@@ -49,7 +32,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _middle = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(Middle));
             }
         }
@@ -64,14 +47,9 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _end = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(End));
             }
-        }
-
-        public EmotionalAssessment()
-        {
-            Guid = Guid.NewGuid();
         }
     }
 }

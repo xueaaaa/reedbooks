@@ -20,7 +20,7 @@
         <converters:MinDateToVisibilityConverter x:Key="MinDateToVisibilityConverter"/>
     </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
-        <materialDesign:DialogHost Identifier="Dialog"
+        <materialDesign:DialogHost Identifier="ReadingDiaryDialog"
                                    DialogContentUniformCornerRadius="20"
                                    CloseOnClickAway="True"
                                    DialogBackground="{DynamicResource container_background_color}">

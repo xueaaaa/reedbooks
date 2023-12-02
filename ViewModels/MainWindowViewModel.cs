@@ -3,22 +3,20 @@ using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
-using ReedBooks.Models.Diary;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
 {
     public class MainWindowViewModel : ObservableObject
     {
+        #region Properties
         public delegate void BooksListChanged();
 
         private Visibility _sidePanelVisibility;
@@ -132,7 +130,9 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(SelectedCollectionBooks));
             }
         }
+        #endregion
 
+        #region Commands
         public ICommand HandleFileDropCommand { get; }
         public ICommand ChangeSidePanelVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
@@ -148,6 +148,7 @@ namespace ReedBooks.ViewModels
         public ICommand SortByLastReadingDateDescendingCommand { get; }
         public ICommand CreateCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
+        #endregion
 
         public MainWindowViewModel()
         {
@@ -168,7 +169,7 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
-            LoadedBooks = new ObservableCollection<Book>(Book.ReadAll());
+            LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
             SelectedTab = Settings.Default.DefaultTab;
@@ -186,17 +187,17 @@ namespace ReedBooks.ViewModels
             SelectedCollectionBooks = new ObservableCollection<Book>();
         }
 
-        public async void HandleFileDrop(object param)
+        public void HandleFileDrop(object param)
         {
             var e = (DragEventArgs)param;
 
-            if(e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
                 foreach (string file in files)
                 {
-                    if(Path.GetExtension(file) != ".epub")
+                    if (Path.GetExtension(file) != ".epub")
                     {
                         var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
                             Application.Current.Resources["dialog_not_epub_content"].ToString());
@@ -205,7 +206,7 @@ namespace ReedBooks.ViewModels
                         return;
                     }
 
-                    var book = await Book.Create(file);
+                    var book = new Book(file);
                     LoadedBooks.Add(book);
                 }
             }
@@ -234,7 +235,7 @@ namespace ReedBooks.ViewModels
             SelectedTab = Convert.ToInt32(param);
         }
 
-        public async void LoadFile()
+        public void LoadFile()
         {
             var ofd = new OpenFileDialog();
             ofd.Filter = "Epub-files (.epub)|*.epub";
@@ -242,12 +243,12 @@ namespace ReedBooks.ViewModels
             if (ofd.ShowDialog() == true)
             {
                 var filePath = ofd.FileName;
-                Book book = await Book.Create(filePath);
+                Book book = new Book(filePath);
                 LoadedBooks.Add(book);
             }
         }
 
-        public void DeleteBook(object param)
+        public async void DeleteBook(object param)
         {
             var dialog = new DialogWindow(Application.Current.Resources["dialog_delete_book_title"].ToString(), 
                 Application.Current.Resources["dialog_delete_book_content"].ToString());
@@ -257,7 +258,7 @@ namespace ReedBooks.ViewModels
                 var guid = (Guid)param;
                 var book = LoadedBooks.Where(b => b.Guid == guid).First();
                 LoadedBooks.Remove(book);
-                book.Delete();
+                await book.RemoveAsync();
             }
         }
 
@@ -308,7 +309,7 @@ namespace ReedBooks.ViewModels
             SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderBy(b => b.BoundDiary?.LastReadingAt));
         }
 
-        public async void CreateCollection()
+        public void CreateCollection()
         {
             if(SelectedCollectionBooks.Count == 0)
             {
@@ -318,12 +319,12 @@ namespace ReedBooks.ViewModels
                 return;
             }
 
-            var collection = await Collection.Create(NewCollectionName, SelectedCollectionBooks.Select(b => b.Guid).ToList());
+            var collection = new Collection(NewCollectionName, SelectedCollectionBooks.Select(b => b.Guid).ToList());
             LoadedCollections.Add(collection);
 
-            SelectedCollectionBooks = null;
+            SelectedCollectionBooks = new ObservableCollection<Book>();
             NewCollectionName = string.Empty;
-            DialogHost.Close("Dialog");
+            DialogHost.Close("MainWindowDialog");
         }
 
         public async void DeleteCollection(object param)
@@ -332,7 +333,7 @@ namespace ReedBooks.ViewModels
             LoadedCollections.Remove(toDelete);
             await App.ApplicationContext.RemoveEntityAsync(toDelete);
 
-            DialogHost.Close("Dialog");
+            DialogHost.Close("MainWindowDialog");
         }
     }
 }

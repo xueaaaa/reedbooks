@@ -1,4 +1,4 @@
-﻿using ReedBooks.Core;
+﻿using ReedBooks.Models.Database;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,7 +7,7 @@ namespace ReedBooks.Models.Assessment
     /// <summary>
     /// A class for evaluating a book based on the parameters
     /// </summary>
-    public class BookAssessment : ObservableObject
+    public class BookAssessment : DatabaseObject
     {
         private const ushort ASSESMENTS_TOTAL_NUMBER = 6;
 
@@ -17,21 +17,6 @@ namespace ReedBooks.Models.Assessment
         /// </summary>
         public event AssessmentChangedEventHandler AssessmentChanged;
 
-        private Guid _guid;
-        [Key]
-        public Guid Guid
-        {
-            get => _guid;
-            set
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            }
-        }
-
         private double _plotOriginality;
         [Range(1, 5)] public double PlotOriginality
         {
@@ -39,7 +24,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _plotOriginality = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(PlotOriginality));
             }
@@ -52,7 +37,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _characters = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(Characters));
             }
@@ -65,7 +50,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _worldInsideBook = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(WorldInsideBook));
             }
@@ -78,7 +63,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _loveLine = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(LoveLine));
             }
@@ -91,7 +76,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _humor = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(Humor));
             }
@@ -104,7 +89,7 @@ namespace ReedBooks.Models.Assessment
             set
             {
                 _meaningFulness = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 AssessmentChanged();
                 OnPropertyChanged(nameof(MeaningFulness));
             }
@@ -120,7 +105,6 @@ namespace ReedBooks.Models.Assessment
 
         public BookAssessment()
         {
-            Guid = Guid.NewGuid();
             AssessmentChanged += OnAssessmentChanged;
         }
 

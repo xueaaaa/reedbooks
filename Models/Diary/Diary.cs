@@ -1,30 +1,12 @@
-﻿using ReedBooks.Core;
-using ReedBooks.Models.Assessment;
+﻿using ReedBooks.Models.Assessment;
+using ReedBooks.Models.Database;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace ReedBooks.Models.Diary
 {
-    public class ReadingDiary : ObservableObject
+    public class ReadingDiary : DatabaseObject
     {
-        private Guid _guid;
-        [Key]
-        public Guid Guid
-        {
-            get => _guid;
-            set
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            }
-        }
-
         private DateTime _beginReadingAt;
         public DateTime BeginReadingAt
         {
@@ -44,7 +26,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _endReadingAt = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(EndReadingAt));
             }
         }
@@ -56,7 +38,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _lastReadingAt = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(LastReadingAt));
             }
         }
@@ -68,7 +50,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _emotionalAssessment = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(EmotionalAssessment));
             }
         }
@@ -80,7 +62,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _bookAssessment = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(BookAssessment));
             }
         }
@@ -92,7 +74,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _plotBriefRetelling = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(PlotBriefRetelling));
             }
         }
@@ -104,13 +86,13 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _readingIsOver = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(ReadingIsOver));
             }
         }
 
         private ObservableCollection<Quote> _quotes;
-        [NotMapped] public ObservableCollection<Quote> Quotes
+        public ObservableCollection<Quote> Quotes
         {
             get => _quotes;
             set
@@ -122,19 +104,10 @@ namespace ReedBooks.Models.Diary
 
         public ReadingDiary()
         {
-            Quotes = new ObservableCollection<Quote>(App.ApplicationContext.Quotes.Where(q => q.DiaryGuid == this.Guid));
-        }
-
-        public static ReadingDiary Create()
-        {
-            var diary = new ReadingDiary();
-            diary._guid = Guid.NewGuid();
-            diary._emotionalAssessment = new EmotionalAssessment();
-            diary._bookAssessment = new BookAssessment();
-            diary._quotes = new ObservableCollection<Quote>();
-            diary._readingIsOver = false;
-
-            return diary;
+            _emotionalAssessment = new EmotionalAssessment();
+            _bookAssessment = new BookAssessment();
+            _quotes = new ObservableCollection<Quote>();
+            _readingIsOver = false;
         }
 
         public void SetLastReadingDate()

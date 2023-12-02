@@ -19,7 +19,7 @@
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
     </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
-        <materialDesign:DialogHost Identifier="Dialog"
+        <materialDesign:DialogHost Identifier="MainWindowDialog"
                                    DialogContentUniformCornerRadius="20"
                                    CloseOnClickAway="True"
                                    DialogBackground="{DynamicResource container_background_color}">

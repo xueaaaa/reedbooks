@@ -1,39 +1,10 @@
-﻿using ReedBooks.Core;
+﻿using ReedBooks.Models.Database;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace ReedBooks.Models.Diary
 {
-    public class Quote : ObservableObject
+    public class Quote : DependentDatabaseObject
     {
-        private Guid _guid;
-        [Key] public Guid Guid
-        {
-            get => _guid;
-            set
-            {
-                if (value != null)
-                {
-                    _guid = value;
-                    OnPropertyChanged(nameof(Guid));
-                }
-            }
-        }
-
-        private Guid _diaryGuid;
-        public Guid DiaryGuid
-        {
-            get => _diaryGuid;
-            set
-            {
-                if (value != null)
-                {
-                    _diaryGuid = value;
-                    OnPropertyChanged(nameof(DiaryGuid));
-                }
-            }
-        }
-
         private string _data;
         public string Data
         {
@@ -41,7 +12,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _data = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(Data));
             }
         }
@@ -53,7 +24,7 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _author = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(Author));
             }
         }
@@ -65,9 +36,14 @@ namespace ReedBooks.Models.Diary
             set
             {
                 _locationInBook = value;
-                App.ApplicationContext.UpdateEntity(this);
+                Update();
                 OnPropertyChanged(nameof(LocationInBook));
             }
+        }
+
+        public Quote()
+        {
+            Guid = new Guid();
         }
 
         public Quote(string data, Guid diaryGuid)
