@@ -20,11 +20,10 @@ namespace ReedBooks
         
         public App()
         {
-            ApplicationContext = new AppContext();
-
             StorageManager = new StorageManager();
-
             StorageManager.EnsureCreated();
+
+            ApplicationContext = new AppContext();
 
             Localizator.AddLang(new CultureInfo("ru"));
             Localizator.AddLang(new CultureInfo("en"));
