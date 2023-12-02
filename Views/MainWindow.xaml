@@ -45,7 +45,8 @@
                     <Button Style="{DynamicResource HintedButton}" 
                             VerticalAlignment="Center"
                             HorizontalAlignment="Right"
-                            Content="{DynamicResource m_edit}" />
+                            Content="{DynamicResource m_edit}" 
+                            Command="{Binding ChangeCollectionActionsVisibilityCommand}"/>
                     
                     <controls:IconButton Source="/Resources/Icons/settings.png"
                                          HorizontalAlignment="Right"

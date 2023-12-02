@@ -19,54 +19,69 @@
 
     <ItemsControl.ItemTemplate>
         <DataTemplate>
-            <Button Style="{DynamicResource HintedButton}"
-                    Content="{Binding Name}"
-                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                <Button.CommandParameter>
-                    <StackPanel Style="{DynamicResource DialogPanel}"
-                                MinWidth="300">
-                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                   Foreground="{DynamicResource accent_color}"
-                                   Margin="0 0 0 20"
-                                   Text="{Binding Name}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                </Grid.RowDefinitions>
 
-                        <TextBlock Text="{DynamicResource m_added_books}"
-                                   Foreground="{DynamicResource text_color}"/>
+                <Button Style="{DynamicResource HintedButton}"
+                        Grid.Column="0"
+                        Content="{Binding Name}"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                    <Button.CommandParameter>
+                        <StackPanel Style="{DynamicResource DialogPanel}"
+                                    MinWidth="300">
+                            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                       Foreground="{DynamicResource accent_color}"
+                                       Margin="0 0 0 20"
+                                       Text="{Binding Name}"/>
 
-                        <ListBox ItemsSource="{Binding RepresentedAsBook}"
-                                 Margin="0 0 0 15">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Style="{DynamicResource HintedButton}"
-                                            Content="{Binding Name}"
-                                            Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                            CommandParameter="{Binding}"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            <TextBlock Text="{DynamicResource m_added_books}"
+                                       Foreground="{DynamicResource text_color}"/>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                            <ListBox ItemsSource="{Binding RepresentedAsBook}"
+                                     Margin="0 0 0 15">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Style="{DynamicResource HintedButton}"
+                                                Content="{Binding Name}"
+                                                Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}"/>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
 
-                            <controls:IconButton Style="{DynamicResource MaterialDesignIconButton}"
-                                                 HorizontalAlignment="Left"
-                                                 Click="IconButton_Click"
-                                                 CommandParameter="{Binding Guid}"
-                                                 Source="/Resources/Icons/delete.png"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Right"
-                                    Foreground="{DynamicResource accent_color}"
-                                    Content="{DynamicResource rd_cancel}"/>
-                        </Grid>
-                    </StackPanel>
-                </Button.CommandParameter>
-            </Button>
+                                <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        Foreground="{DynamicResource accent_color}"
+                                        Content="{DynamicResource rd_cancel}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Button.CommandParameter>
+                </Button>
+
+                <StackPanel Grid.Column="1"
+                            Visibility="{Binding DataContext.CollectionActionsVisibility, RelativeSource={RelativeSource AncestorType=Window}}"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <controls:IconButton Source="/Resources/Icons/edit.png"
+                                         Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                         CommandParameter="{Binding}"/>
+
+                    <controls:IconButton Source="/Resources/Icons/delete.png"
+                                         Command="{Binding DataContext.DeleteCollectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                         CommandParameter="{Binding Guid}"/>
+                </StackPanel>
+            </Grid>
         </DataTemplate>
     </ItemsControl.ItemTemplate>
 </ItemsControl>

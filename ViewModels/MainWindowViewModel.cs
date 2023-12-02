@@ -32,6 +32,18 @@ namespace ReedBooks.ViewModels
                 }
             }
         }
+
+        private Visibility _collectionActionsVisibility;
+        public Visibility CollectionActionsVisibility
+        {
+            get => _collectionActionsVisibility;
+            set
+            {
+                _collectionActionsVisibility = value;
+                OnPropertyChanged(nameof(CollectionActionsVisibility));
+            }
+        }
+
         private GridLength _sidePanelColumnLength;
         public GridLength SidePanelColumnLength
         {
@@ -135,6 +147,7 @@ namespace ReedBooks.ViewModels
         #region Commands
         public ICommand HandleFileDropCommand { get; }
         public ICommand ChangeSidePanelVisibilityCommand { get; }
+        public ICommand ChangeCollectionActionsVisibilityCommand { get; }
         public ICommand SwitchToTabCommand { get; }
         public ICommand LoadFileCommand { get; }
         public ICommand DeleteBookCommand { get; }
@@ -154,6 +167,7 @@ namespace ReedBooks.ViewModels
         {
             HandleFileDropCommand = new RelayCommand(obj => HandleFileDrop(obj));
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
+            ChangeCollectionActionsVisibilityCommand = new RelayCommand(obj => ChangeCollectionActionsVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
             LoadFileCommand = new RelayCommand(obj => LoadFile());
             DeleteBookCommand = new RelayCommand(obj => DeleteBook(obj));
@@ -169,6 +183,7 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
+            CollectionActionsVisibility = Visibility.Hidden;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
@@ -226,6 +241,22 @@ namespace ReedBooks.ViewModels
                     break;
                 default:
                     SidePanelVisibility = Visibility.Visible;
+                    break;
+            }
+        }
+
+        public void ChangeCollectionActionsVisibility()
+        {
+            switch (CollectionActionsVisibility)
+            {
+                case Visibility.Visible:
+                    CollectionActionsVisibility = Visibility.Hidden;
+                    break;
+                case Visibility.Hidden:
+                    CollectionActionsVisibility = Visibility.Visible;
+                    break;
+                default:
+                    CollectionActionsVisibility = Visibility.Visible;
                     break;
             }
         }
@@ -333,7 +364,8 @@ namespace ReedBooks.ViewModels
             LoadedCollections.Remove(toDelete);
             await App.ApplicationContext.RemoveEntityAsync(toDelete);
 
-            DialogHost.Close("MainWindowDialog");
+            if(DialogHost.IsDialogOpen("MainWindowDialog")) 
+                DialogHost.Close("MainWindowDialog");
         }
     }
 }
