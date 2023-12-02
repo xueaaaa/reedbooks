@@ -362,7 +362,7 @@ namespace ReedBooks.ViewModels
         {
             Collection toDelete = await App.ApplicationContext.FindAsync<Collection>(param);
             LoadedCollections.Remove(toDelete);
-            await App.ApplicationContext.RemoveEntityAsync(toDelete);
+            await toDelete.RemoveAsync();
 
             if(DialogHost.IsDialogOpen("MainWindowDialog")) 
                 DialogHost.Close("MainWindowDialog");

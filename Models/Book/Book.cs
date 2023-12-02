@@ -134,7 +134,7 @@ namespace ReedBooks.Models.Book
         public Book(string path)
         {
             Create();
-            _boundDiary = new ReadingDiary();
+            _boundDiary = new ReadingDiary(Guid);
 
             path = MoveToInternalFolder(path, Guid.ToString());
             _linkToOrigin = path;

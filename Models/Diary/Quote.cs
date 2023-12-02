@@ -43,12 +43,12 @@ namespace ReedBooks.Models.Diary
 
         public Quote()
         {
-            Guid = new Guid();
+            Guid = Guid.NewGuid();
         }
 
-        public Quote(string data, Guid diaryGuid)
+        public Quote(string data, Guid diaryGuid) : this()
         {
-            Guid = Guid.NewGuid();
+            TargetGuid = diaryGuid;
             _data = data;
         }
 

@@ -1,11 +1,12 @@
 ﻿using ReedBooks.Models.Database;
+using System;
 
 namespace ReedBooks.Models.Assessment
 {
     /// <summary>
     /// A class for evaluating a book on emotional feelings
     /// </summary>
-    public class EmotionalAssessment : DatabaseObject
+    public class EmotionalAssessment : DependentDatabaseObject
     {
         private Emote _start;
         /// <summary>
@@ -50,6 +51,17 @@ namespace ReedBooks.Models.Assessment
                 Update();
                 OnPropertyChanged(nameof(End));
             }
+        }
+
+        public EmotionalAssessment()
+        {
+            
+        }
+
+        public EmotionalAssessment(Guid diaryGuid) 
+        {
+            TargetGuid = diaryGuid;
+            Create();
         }
     }
 }

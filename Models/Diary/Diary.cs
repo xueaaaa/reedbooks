@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace ReedBooks.Models.Diary
 {
-    public class ReadingDiary : DatabaseObject
+    public class ReadingDiary : DependentDatabaseObject
     {
         private DateTime _beginReadingAt;
         public DateTime BeginReadingAt
@@ -104,8 +104,15 @@ namespace ReedBooks.Models.Diary
 
         public ReadingDiary()
         {
-            _emotionalAssessment = new EmotionalAssessment();
-            _bookAssessment = new BookAssessment();
+            
+        }
+
+        public ReadingDiary(Guid bookGuid) : this()
+        {
+            TargetGuid = bookGuid;
+            Create();
+            _emotionalAssessment = new EmotionalAssessment(Guid);
+            _bookAssessment = new BookAssessment(Guid);
             _quotes = new ObservableCollection<Quote>();
             _readingIsOver = false;
         }

@@ -7,7 +7,7 @@ namespace ReedBooks.Models.Assessment
     /// <summary>
     /// A class for evaluating a book based on the parameters
     /// </summary>
-    public class BookAssessment : DatabaseObject
+    public class BookAssessment : DependentDatabaseObject
     {
         private const ushort ASSESMENTS_TOTAL_NUMBER = 6;
 
@@ -106,6 +106,12 @@ namespace ReedBooks.Models.Assessment
         public BookAssessment()
         {
             AssessmentChanged += OnAssessmentChanged;
+        }
+
+        public BookAssessment(Guid diaryGuid) : this()
+        {
+            TargetGuid = diaryGuid;
+            Create();
         }
 
         /// <summary>

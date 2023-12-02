@@ -105,17 +105,17 @@ namespace ReedBooks.Core
             modelBuilder.Entity<Book>()
                 .HasOne(b => b.BoundDiary)
                 .WithOne()
-                .HasForeignKey<ReadingDiary>(d => d.Guid);
+                .HasForeignKey<ReadingDiary>(d => d.TargetGuid);
 
             modelBuilder.Entity<ReadingDiary>()
                 .HasOne(d => d.BookAssessment)
                 .WithOne()
-                .HasForeignKey<BookAssessment>(b => b.Guid);
+                .HasForeignKey<BookAssessment>(b => b.TargetGuid);
 
             modelBuilder.Entity<ReadingDiary>()
                 .HasOne(d => d.EmotionalAssessment)
                 .WithOne()
-                .HasForeignKey<EmotionalAssessment>(e => e.Guid);
+                .HasForeignKey<EmotionalAssessment>(e => e.TargetGuid);
 
             modelBuilder.Entity<ReadingDiary>()
                 .HasMany(d => d.Quotes)
