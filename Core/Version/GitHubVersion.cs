@@ -10,6 +10,10 @@ namespace ReedBooks.Core.Version
         private const string GITHUB_REPOSITORY_OWNER = "xueaaaa";
 
         /// <summary>
+        /// Version as string
+        /// </summary>
+        public string Name { get; private set; }
+        /// <summary>
         /// Release Notes
         /// </summary>
         public string Body { get; private set; }
@@ -36,6 +40,7 @@ namespace ReedBooks.Core.Version
             Patch = Convert.ToByte(versionParts[2]);
             Revision = Convert.ToByte(versionParts[3]);
 
+            Name = latestRelease.Name;
             Body = latestRelease.Body;
             PublishedAt = latestRelease.PublishedAt;
             Assets = latestRelease.Assets;

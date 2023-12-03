@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Core.Version;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
@@ -62,6 +63,13 @@ namespace ReedBooks
             base.OnStartup(e);
 
             DispatcherUnhandledException += App_DispatcherUnhandledException;
+
+            var updater = new Updater();
+            if(updater.CheckForUpdates())
+            {
+                var uW = new UpdateWindow();
+                uW.ShowDialog();
+            }
 
             // Gets the set language from settings and checks it for null
             // If the received language is null, the value of the default language is assigned

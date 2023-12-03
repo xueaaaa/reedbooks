@@ -39,6 +39,14 @@
     <v:String x:Key="ec_edit_collection">Редактирование коллекции</v:String>
     <v:String x:Key="ec_edit_collection_button">Изменить</v:String>
     <!--#endregion-->
+    
+    <!--#region Update window-->
+    <v:String x:Key="u_header">Новая версия</v:String>
+    <v:String x:Key="u_whats_new">Что нового:</v:String>
+    <v:String x:Key="u_published_at">Выпущено:</v:String>
+    <v:String x:Key="u_update">Обновить</v:String>
+    <v:String x:Key="u_not_now">Не сейчас</v:String>
+    <!--#endregion-->
 
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
