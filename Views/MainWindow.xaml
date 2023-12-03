@@ -128,11 +128,11 @@
                                                    Margin="0 0 0 20"
                                                    Text="{DynamicResource m_new_collection}"/>
                                         <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                                 materialDesign:HintAssist.Hint="{DynamicResource m_new_collection_hint}"
+                                                 materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
                                                  materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
                                                  Foreground="{DynamicResource text_color}"
                                                  Margin="0 0 0 15"
-                                                 Text="{Binding NewCollectionName}"/>
+                                                 Text="{Binding CollectionName}"/>
                                         <ListBox ItemsSource="{Binding LoadedBooks}"
                                                  SelectionChanged="ListBox_SelectionChanged"
                                                  Foreground="{DynamicResource text_color}"
@@ -149,7 +149,6 @@
                                             <Button Style="{DynamicResource ReedBooksRaisedButton}"
                                                     HorizontalAlignment="Left"
                                                     Command="{Binding CreateCollectionCommand}"
-                                                    CommandParameter="{Binding SelectedItems, RelativeSource={RelativeSource AncestorType=ListBox}}"
                                                     Content="{DynamicResource m_create_collection}"/>
                                             <Button Style="{DynamicResource MaterialDesignFlatButton}"
                                                     Grid.Column="1"

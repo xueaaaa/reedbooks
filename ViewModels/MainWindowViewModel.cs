@@ -121,14 +121,14 @@ namespace ReedBooks.ViewModels
         }
 
 
-        private string _newCollectionName;
-        public string NewCollectionName
+        private string _collectionName;
+        public string CollectionName
         {
-            get => _newCollectionName;
+            get => _collectionName;
             set
             {
-                _newCollectionName = value;
-                OnPropertyChanged(nameof(NewCollectionName));
+                _collectionName = value;
+                OnPropertyChanged(nameof(CollectionName));
             }
         }
 
@@ -160,6 +160,7 @@ namespace ReedBooks.ViewModels
         public ICommand SortByLastReadingDateCommand { get; }
         public ICommand SortByLastReadingDateDescendingCommand { get; }
         public ICommand CreateCollectionCommand { get; }
+        public ICommand EditCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
         #endregion
 
@@ -180,10 +181,11 @@ namespace ReedBooks.ViewModels
             SortByLastReadingDateCommand = new RelayCommand(obj => SortByLastReadingDate());
             SortByLastReadingDateDescendingCommand = new RelayCommand(obj => SortByLastReadingDateDescending());
             CreateCollectionCommand = new RelayCommand(obj => CreateCollection());
+            EditCollectionCommand = new RelayCommand(obj => EditCollection(obj));
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
-            CollectionActionsVisibility = Visibility.Hidden;
+            CollectionActionsVisibility = Visibility.Visible;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
@@ -342,7 +344,7 @@ namespace ReedBooks.ViewModels
 
         public void CreateCollection()
         {
-            if(SelectedCollectionBooks.Count == 0)
+            if(SelectedCollectionBooks.Count == 0 || CollectionName == string.Empty)
             {
                 var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
                     Application.Current.Resources["dialog_null_collection_content"].ToString());
@@ -350,12 +352,18 @@ namespace ReedBooks.ViewModels
                 return;
             }
 
-            var collection = new Collection(NewCollectionName, SelectedCollectionBooks.Select(b => b.Guid).ToList());
+            var collection = new Collection(CollectionName, SelectedCollectionBooks.Select(b => b.Guid).ToList());
             LoadedCollections.Add(collection);
 
             SelectedCollectionBooks = new ObservableCollection<Book>();
-            NewCollectionName = string.Empty;
+            CollectionName = string.Empty;
             DialogHost.Close("MainWindowDialog");
+        }
+
+        public void EditCollection(object param)
+        {
+            var eCW = new EditCollectionWindow((Collection)param, LoadedBooks);
+            eCW.ShowDialog();
         }
 
         public async void DeleteCollection(object param)

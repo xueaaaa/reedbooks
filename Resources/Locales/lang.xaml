@@ -12,7 +12,7 @@
     <v:String x:Key="m_readers_diary_collection">Читательский дневник</v:String>
     <v:String x:Key="m_my_collections_collection">Мои коллекции</v:String>
     <v:String x:Key="m_new_collection">Новая коллекция</v:String>
-    <v:String x:Key="m_new_collection_hint">Название коллекции...</v:String>
+    <v:String x:Key="m_collection_name_hint">Название коллекции...</v:String>
     <v:String x:Key="m_create_collection">Создать коллекцию</v:String>
     <v:String x:Key="m_added_books">Добавленные книги:</v:String>
     <v:String x:Key="m_current">Текущие</v:String>
@@ -32,6 +32,12 @@
     <v:String x:Key="m_genre">Жанр:</v:String>
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_read">Читать</v:String>
+    <!--#endregion-->
+    
+    <!--#region Edit collection window-->
+    <v:String x:Key="h_edit_collection_window">ReedBooks - Редактирование коллекции</v:String>
+    <v:String x:Key="ec_edit_collection">Редактирование коллекции</v:String>
+    <v:String x:Key="ec_edit_collection_button">Изменить</v:String>
     <!--#endregion-->
 
     <!--#region Reading window -->

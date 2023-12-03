@@ -46,6 +46,10 @@ namespace ReedBooks.Models.Database
         {
             return App.ApplicationContext.UpdateEntity(this);
         }
+        public virtual async Task<int> UpdateAsync()
+        {
+            return await App.ApplicationContext.UpdateEntityAsync(this);
+        }
 
         /// <summary>
         /// Deletes the database record associated with the current object key

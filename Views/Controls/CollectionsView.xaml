@@ -74,7 +74,7 @@
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
                     <controls:IconButton Source="/Resources/Icons/edit.png"
-                                         Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                         Command="{Binding DataContext.EditCollectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                          CommandParameter="{Binding}"/>
 
                     <controls:IconButton Source="/Resources/Icons/delete.png"

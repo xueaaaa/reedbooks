@@ -107,7 +107,7 @@ namespace ReedBooks.Models.Diary
             
         }
 
-        public ReadingDiary(Guid bookGuid) : this()
+        public ReadingDiary(Guid bookGuid)
         {
             TargetGuid = bookGuid;
             Create();

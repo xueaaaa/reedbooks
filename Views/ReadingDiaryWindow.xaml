@@ -46,7 +46,8 @@
                                     Grid.ColumnSpan="2">
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
                                        HorizontalAlignment="Center"
-                                       Text="{Binding Book.Name}"/>
+                                       Text="{Binding Book.Name}"
+                                       TextWrapping="Wrap"/>
 							<Separator/>
 						</StackPanel>
 						<Image Style="{DynamicResource DiaryCoverImage}"

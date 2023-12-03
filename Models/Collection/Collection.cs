@@ -38,6 +38,7 @@ namespace ReedBooks.Models.Collection
             set
             {
                 _linkedBooks = value;
+                OnPropertyChanged(nameof(RepresentedAsBook));
                 OnPropertyChanged(nameof(LinkedBooks));
             }
         }
