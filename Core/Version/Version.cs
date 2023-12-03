@@ -1,14 +1,10 @@
-﻿using Octokit;
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace ReedBooks.Core.Version
 {
-    public struct Version
+    public class Version
     {
-        private const string GITHUB_REPOSITORY_NAME = "ReedBooks";
-        private const string GITHUB_REPOSITORY_OWNER = "xueaaaa";
-
         /// <summary>
         /// Program version recorded in Assembly
         /// </summary>
@@ -20,8 +16,13 @@ namespace ReedBooks.Core.Version
                     .GetName()
                     .Version
                     .ToString();
+                var versionParts = version.Split ('.');
+                if (versionParts.Length != 4) throw new ArgumentException("This string does not represents a version");
 
-                return new Version(version);
+                return new Version(Convert.ToByte(versionParts[0]),
+                    Convert.ToByte(versionParts[1]),
+                    Convert.ToByte(versionParts[2]),
+                    Convert.ToByte(versionParts[3]));
             }
         }
 
@@ -42,38 +43,12 @@ namespace ReedBooks.Core.Version
         /// </summary>
         public byte Revision;
 
-        public Version(byte major, byte minor = 0, byte patch = 0, byte revision = 0)
+        public Version(byte major = 0, byte minor = 0, byte patch = 0, byte revision = 0)
         {
             Major = major;
             Minor = minor;
             Patch = patch;
             Revision = revision;
-        }
-
-        public Version(string stringVersion)
-        {
-            var versionParts = stringVersion.Split('.');
-            if (versionParts.Length != 4) this = new Version(0);
-
-            Major = Convert.ToByte(versionParts[0]);
-            Minor = Convert.ToByte(versionParts[1]);
-            Patch = Convert.ToByte(versionParts[2]);
-            Revision = Convert.ToByte(versionParts[3]);
-        }
-
-        /// <summary>
-        /// Gets the latest version of the program from GitHub
-        /// </summary>
-        /// <returns>Version</returns>
-        public static Version GetFromGitHub()
-        {
-            var github = new GitHubClient(new ProductHeaderValue(GITHUB_REPOSITORY_NAME));
-            var tags = github.Repository.GetAllTags(GITHUB_REPOSITORY_OWNER, GITHUB_REPOSITORY_NAME).Result;
-            var latestTag = tags[tags.Count - 1];
-            var versionAsStr = latestTag.Name;
-            var version = new Version(versionAsStr);
-
-            return version;
         }
 
         public static bool operator >(Version a, Version b)
