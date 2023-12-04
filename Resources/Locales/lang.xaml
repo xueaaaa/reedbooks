@@ -136,25 +136,25 @@
     <v:String x:Key="dialog_error_title">Ошибка</v:String>
     <v:String x:Key="dialog_fatal_error_content">Работа приложения будет приостановлена, потому что произошла ошибка:</v:String>
     <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
-    <v:String x:Key="dialog_not_epub_content">Данный файл не является форматом epub.</v:String>
-    <v:String x:Key="dialog_null_collection_content">Невозможно создать пустую коллекцию!</v:String>
+    <v:String x:Key="dialog_not_epub_content">Diese Datei ist nicht im epub-Format.</v:String>
+    <v:String x:Key="dialog_null_collection_content">Kann keine leere Sammlung erstellen!"</v:String>
 
-    <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>
-    <v:String x:Key="dialog_delete_book_content">Вы уверены, что хотите удалить эту книгу?</v:String>
+    <v:String x:Key="dialog_delete_book_title">Das Buch löschen</v:String>
+    <v:String x:Key="dialogue_delete_book_content">Sind Sie sicher, dass Sie dieses Buch löschen wollen?"</v:String>
 
-    <v:String x:Key="dialog_delete_all_books_title">Удаление всех книг</v:String>
-    <v:String x:Key="dialog_delete_all_books_content">Вы уверены, что хотите удалить все книги? Это действие нельзя будет отменить.</v:String>
+    <v:String x:Key="dialog_delete_all_books_title">Lösche alle Bücher</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Sind Sie sicher, dass Sie alle Bücher löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.</v:String>
 
-    <v:String x:Key="genre_fantasy">Фантастика</v:String>
-    <v:String x:Key="genre_detective">Детектив</v:String>
-    <v:String x:Key="genre_horror">Хоррор</v:String>
-    <v:String x:Key="genre_adventure">Приключения</v:String>
-    <v:String x:Key="genre_poetry">Поэзия</v:String>
-    <v:String x:Key="genre_love_story">Любовный роман</v:String>
-    <v:String x:Key="genre_thriller">Триллер</v:String>
-    <v:String x:Key="genre_prose">Проза</v:String>
-    <v:String x:Key="genre_foreign_classics">Зарубежная классика</v:String>
-    <v:String x:Key="genre_locale_country_classics">Русская классика</v:String>
-    <v:String x:Key="genre_folklore">Фольклор</v:String>
+    <v:String x:Key="genre_fantasy">Fantasy</v:String>
+    <v:String x:Key="genre_detective">Detective</v:String>
+    <v:String x:Key="genre_horror">Horror</v:String>
+    <v:String x:Key="genre_adventure">Abenteuer</v:String>
+    <v:String x:Key="genre_poetry">Lyrik</v:String>
+    <v:String x:Key="genre_love_story">Liebesgeschichte</v:String>
+    <v:String x:Key="genre_thriller">Thriller</v:String>
+    <v:String x:Key="genre_prose">Prosa</v:String>
+    <v:String x:Key="genre_foreign_classics">Ausländische Klassiker</v:String>
+    <v:String x:Key="genre_locale_country_classics">Deutsche Klassiker</v:String>
+    <v:String x:Key="genre_folklore">Folklore</v:String>
     <!--#endregion-->
 </ResourceDictionary>

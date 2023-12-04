@@ -12,129 +12,128 @@
     <v:String x:Key="m_readers_diary_collection">Lesertagebuch</v:String>
     <v:String x:Key="m_my_collections_collection">Meine Sammlungen</v:String>
     <v:String x:Key="m_new_collection">Neue Sammlung</v:String>
-    <v:String x:Key="m_current">Aktuell</v:String>
-    <v:String x:Key="m_last_reading_at">Letztes Lesedatum</v:String>
+    <v:String x:Key="m_collection_name_hint">Name der Sammlung...</v:String>
+    <v:String x:Key="m_create_collection">Sammlung erstellen</v:String>
+    <v:String x:Key="m_added_books">Hinzugefügte Bücher:</v:String>
+    <v:String x:Key="m_current">Aktuelle</v:String>
+    <v:String x:Key="m_last_reading_at">Letztes Lese-Datum</v:String>
     <v:String x:Key="m_name">Name</v:String>
-    <v:String x:Key="m_no_current">Du hast in den letzten Tagen kein Buch geöffnet.</v:String>
-    <v:String x:Key="m_recent">Kürzlich</v:String>
-    <v:String x:Key="m_no_recent">Keine kürzlich geöffneten Bücher.</v:String>
-    <v:String x:Key="m_no_elements">Noch keine Elemente hinzugefügt.</v:String>
-    <v:String x:Key="m_load_book">Buch Laden</v:String>
-    <v:String x:Key="m_search_hint">Gib den Buchtitel ein...</v:String>
+    <v:String x:Key="m_no_current">In den letzten Tagen wurde kein Buch geöffnet.</v:String>
+    <v:String x:Key="m_recent">Neueste</v:String>
+    <v:String x:Key="m_no_recent">Keine kürzlich geöffneten Bücher</v:String>
+    <v:String x:Key="m_no_elements">Es wurde noch kein Element hinzugefügt</v:String>
+    <v:String x:Key="m_load_book">Buch laden</v:String>
+    <v:String x:Key="m_search_hint">Beginne den Buchtitel einzugeben...</v:String>
     <v:String x:Key="m_sort">Sortieren:</v:String>
-    <v:String x:Key="m_sort_by_name_a-z">Nach Buchtitel (A-Z)</v:String>
-    <v:String x:Key="m_sort_by_name_z-a">Nach Buchtitel (Z-A)</v:String>
-    <v:String x:Key="m_sort_by_last_reading_date">Nach letztem Lesedatum (neuestes zuerst)</v:String>
-    <v:String x:Key="m_sort_by_last_reading_date_descending">Nach letztem Lesedatum (ältestes zuerst)</v:String>
+    <v:String x:Key="m_sort_by_name_a-z">Nach Buchtitel sortieren (A-Z)</v:String>
+    <v:String x:Key="m_sort_by_name_z-a">Nach Buchtitel sortieren (Z-A)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date">Nach letztem Lesedatum sortieren (neuestes zuerst)</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date_descending">Nach letztem Lesedatum sortieren (ältestes zuerst)</v:String>
     <v:String x:Key="m_genre">Genre:</v:String>
     <v:String x:Key="m_chapters_count">Anzahl der Kapitel:</v:String>
     <v:String x:Key="m_read">Lesen</v:String>
     <!--#endregion-->
 
-    <!--#region Lese-Fenster -->
-    <v:String x:Key="h_reading_window">ReedBooks - Lesemodus</v:String>
-    <v:String x:Key="r_mark_as_read">Als gelesen markieren</v:String>
-    <v:String x:Key="r_mark_as_read_hint">Durch Klicken auf die Schaltfläche wird das heutige Datum im Lesertagebuch unter "Ende des Lesens" eingetragen.</v:String>
-    <v:String x:Key="r_end_of_read_dialog_header">Herzlichen Glückwunsch!</v:String>
-    <v:String x:Key="r_end_of_read_dialog_content">Herzlichen Glückwunsch zum Beenden des Buches! Wir laden Sie ein, Ihr Lesertagebuch zu öffnen und das Buch zu bewerten.</v:String>
-    <v:String x:Key="r_open_reading_diary">Öffnen</v:String>
-    <v:String x:Key="r_stay">Verbleiben</v:String>
-    <v:String x:Key="r_temporarily_out_of_service">Dieser Teil der Anwendung funktioniert derzeit nicht.</v:String>
+    <!--#region Fenster zur Bearbeitung der Sammlung -->
+    <v:String x:Key="h_edit_collection_window">ReedBooks - Sammlung bearbeiten</v:String>
+    <v:String x:Key="ec_edit_collection">Sammlung bearbeiten</v:String>
+    <v:String x:Key="ec_edit_collection_button">Bearbeiten</v:String>
     <!--#endregion-->
 
-    <!--#region Einstellungs-Fenster -->
+    <!--#region Update-Fenster -->
+    <v:String x:Key="u_header">Neue Version</v:String>
+    <v:String x:Key="u_whats_new">Was ist neu:</v:String>
+    <v:String x:Key="u_description_limitations">Detaillierte Informationen zum Update sind nur auf Russisch verfügbar</v:String>
+    <v:String x:Key="u_published_at">Veröffentlicht am:</v:String>
+    <v:String x:Key="u_update">Aktualisieren</v:String>
+    <v:String x:Key="u_not_now">Nicht jetzt</v:String>
+    <!--#endregion-->
+
+    <!--#region Lesefenster -->
+    <v:String x:Key="h_reading_window">ReedBooks - Lesemodus</v:String>
+    <v:String x:Key="r_mark_as_read">Als gelesen markieren</v:String>
+    <v:String x:Key="r_mark_as_read_hint">Durch Klicken auf die Schaltfläche wird das heutige Datum im Abschnitt "Ende des Lesens" im Lesertagebuch festgelegt.</v:String>
+    <v:String x:Key="r_end_of_read_dialog_header">Herzlichen Glückwunsch!</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">Herzlichen Glückwunsch zum Beenden des Buches! Fühlen Sie sich frei, zum Lesertagebuch zu gehen, um es zu bewerten.</v:String>
+    <v:String x:Key="r_open_reading_diary">Gehe zu</v:String>
+    <v:String x:Key="r_stay">Verbleiben</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">Dieser Teil der Anwendung funktioniert derzeit nicht</v:String>
+    <!--#endregion-->
+
+    <!--#region Einstellungsfenster -->
     <v:String x:Key="h_settings_window">ReedBooks - Einstellungen</v:String>
-    <v:String x:Key="s_interface_header">Benutzeroberfläche</v:String>
+    <v:String x:Key="s_interface_header">Schnittstelle</v:String>
     <v:String x:Key="s_language_label">Anwendungssprache</v:String>
-    <v:String x:Key="s_language_hint">Diese Einstellung ändert nur die Sprache der Benutzeroberfläche. Die Namen der Buchautoren und der Inhalt bleiben unübersetzt.</v:String>
-    <v:String x:Key="s_theme_label">Thema</v:String>
-    <v:String x:Key="s_theme_hint">Wechseln Sie zwischen dem Standard-Lichtthema und dem Dunkelthema.</v:String>
+    <v:String x:Key="s_language_hint">Diese Einstellung ändert nur die Sprache der Benutzeroberfläche. Die Namen der Autoren und der Inhalt der Bücher werden nicht übersetzt.</v:String>
+    <v:String x:Key="s_theme_label">Design</v:String>
+    <v:String x:Key="s_theme_hint">Wechseln Sie zwischen dem hellen (Standard) und dem dunklen Design.</v:String>
     <v:String x:Key="s_personalization_header">Personalisierung</v:String>
-    <v:String x:Key="s_current_counted_days_label">Gezählte Tage für Aktuell</v:String>
-    <v:String x:Key="s_current_counted_days_hint">Legen Sie den Zeitraum (in Tagen) seit dem letzten Öffnen des Buches fest, während dem es im Tab "Aktuell" angezeigt wird.</v:String>
-    <v:String x:Key="s_recent_books_number_displaying_label">Anzahl der angezeigten Bücher in "Kürzlich"</v:String>
-    <v:String x:Key="s_recent_books_number_displaying_hint">Legen Sie die Anzahl der in der Registerkarte "Kürzlich" angezeigten Bücher fest (bis zu 255).</v:String>
+    <v:String x:Key="s_current_counted_days_label">Tage für Aktuelle berücksichtigen</v:String>
+    <v:String x:Key="s_current_counted_days_hint">Diese Einstellung legt den Zeitraum (in Tagen) seit der letzten Buchöffnung fest, während dem es in der Registerkarte "Aktuelle" angezeigt wird.</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_label">Anzahl der in "Neueste" angezeigten Bücher</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_hint">Diese Einstellung legt die Anzahl der in der Registerkarte "Neueste" angezeigten Bücher fest (bis zu 255).</v:String>
     <v:String x:Key="s_start_tab_label">Beim Start öffnen</v:String>
-    <v:String x:Key="s_start_tab_hint">Legen Sie die Standardregisterkarte fest, die beim Starten der Anwendung geöffnet wird.</v:String>
+    <v:String x:Key="s_start_tab_hint">Diese Einstellung legt die Registerkarte der Anwendung fest, die standardmäßig geöffnet wird.</v:String>
     <v:String x:Key="s_storage_management_header">Speicherverwaltung</v:String>
     <v:String x:Key="s_delete_all_books_label">Alle Bücher löschen</v:String>
-    <v:String x:Key="s_delete_all_books_hint">Durch Klicken auf diese Schaltfläche werden alle in die Anwendung geladenen Bücher gelöscht.</v:String>
+    <v:String x:Key="s_delete_all_books_hint">Durch Klicken auf die Schaltfläche werden alle in der Anwendung geladenen Bücher gelöscht.</v:String>
     <v:String x:Key="s_delete_unused_files_label">Nicht verwendete Dateien löschen</v:String>
-    <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern können einige Dateien immer noch in Verzeichnissen gespeichert sein. Gesamtgröße nicht verwendeter Dateien:</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern aus der Anwendung können einige ihrer Dateien in den Verzeichnissen verbleiben. Gesamtgröße der nicht verwendeten Dateien:</v:String>
     <v:String x:Key="s_delete">Löschen</v:String>
 
     <v:String x:Key="s_save">Speichern</v:String>
+    <v:String x:Key="s_installed_version">Installierte Version:</v:String>
     <!--#endregion-->
 
     <!--#region Dialogfenster -->
     <v:String x:Key="h_dialog_window">ReedBooks - Dialog</v:String>
-    <v:String x:Key="d_acept_button">OK</v:String>
+    <v:String x:Key="d_acept_button">Akzeptieren</v:String>
     <v:String x:Key="d_refuse_button">Abbrechen</v:String>
     <!--#endregion-->
 
-    <!--#region Lesertagebuch-Fenster -->
-    <v:String x:Key="h_reading_diary_window">ReedBooks - Lesertagebuch</v:String>
+    <!--#region Lesetagebuchfenster -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - Lesetagebuch</v:String>
     <v:String x:Key="rd_author_label">Autor:</v:String>
     <v:String x:Key="rd_chapters_count_label">Anzahl der Kapitel:</v:String>
     <v:String x:Key="rd_genre_label">Genre:</v:String>
     <v:String x:Key="rd_genre_hint">Gib den Genre-Namen ein...</v:String>
-    <v:String x:Key="rd_begin_reading_at">Lesen beginnen:</v:String>
-    <v:String x:Key="rd_reading_not_beginned">Lesen noch nicht begonnen</v:String>
-    <v:String x:Key="rd_end_reading_at">Lesen beendet am:</v:String>
-    <v:String x:Key="rd_reading_not_ended">Lesen noch nicht beendet</v:String>
-    <v:String x:Key="rd_reading_is_over">Buch beendet?</v:String>
-    <v:String x:Key="rd_arithmetic_average">Gesamtbewertung:</v:String>
+    <v:String x:Key="rd_begin_reading_at">Lesestart:</v:String>
+    <v:String x:Key="rd_reading_not_beginned">Das Lesen hat noch nicht begonnen</v:String>
+    <v:String x:Key="rd_end_reading_at">Lesefinish:</v:String>
+    <v:String x:Key="rd_reading_not_ended">Das Lesen ist noch nicht abgeschlossen</v:String>
+    <v:String x:Key="rd_reading_is_over">Hast du das Buch beendet?</v:String>
+    <v:String x:Key="rd_arithmetic_average">Allgemeine Bewertung:</v:String>
     <v:String x:Key="rd_my_emotions">Meine Emotionen</v:String>
     <v:String x:Key="rd_start">Am Anfang des Buches</v:String>
     <v:String x:Key="rd_middle">In der Mitte des Buches</v:String>
     <v:String x:Key="rd_end">Am Ende des Buches</v:String>
     <v:String x:Key="rd_assessment">Bewertung</v:String>
-    <v:String x:Key="rd_plot_originality">Handlungsoriginalität</v:String>
+    <v:String x:Key="rd_plot_originality">Originalität der Handlung</v:String>
     <v:String x:Key="rd_characters">Charaktere</v:String>
     <v:String x:Key="rd_world_inside_book">Welt im Buch</v:String>
-    <v:String x:Key="rd_love_line">Liebeslinie</v:String>
+    <v:String x:Key="rd_love_line">Liebesgeschichte</v:String>
     <v:String x:Key="rd_humor">Humor</v:String>
     <v:String x:Key="rd_meaning_fulness">Bedeutsamkeit</v:String>
-    <v:String x:Key="rd_plot_brief_retelling_hint">Hier kannst du eine kurze Nacherzählung oder deine Notizen schreiben.</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">Dies ist ein Platz für eine kurze Zusammenfassung oder deine Notizen.</v:String>
     <v:String x:Key="rd_quotes">Zitate</v:String>
     <v:String x:Key="rd_add_quote">Hinzufügen</v:String>
     <v:String x:Key="rd_add_quote_header">Zitat hinzufügen</v:String>
-    <v:String x:Key="rd_quote_data_hint">Gib den Zitattext ein...</v:String>
-    <v:String x:Key="rd_quote_author_hint">Gib den Zitatautor ein...</v:String>
-    <v:String x:Key="rd_quote_location_hint">Gib die Zitatstelle im Buch an (z.B. Kapitel, Seite, etc.)...</v:String>
+    <v:String x:Key="rd_quote_data_hint">Gib den Text des Zitats ein...</v:String>
+    <v:String x:Key="rd_quote_author_hint">Gib den Autor des Zitats ein...</v:String>
+    <v:String x:Key="rd_quote_location_hint">Gib den Ort des Zitats im Buch ein (z. B. Kapitel, Seite, etc.)...</v:String>
     <v:String x:Key="rd_cancel">Schließen</v:String>
     <!--#endregion-->
 
-    <!--#region BESONDERE ZEICHENFOLGEN -->
-    <v:String x:Key="theme_light">Licht</v:String>
+    <!--#region SPEZIALZEICHEN -->
+    <v:String x:Key="theme_light">Hell</v:String>
     <v:String x:Key="theme_dark">Dunkel</v:String>
 
     <v:String x:Key="megabytes">MB</v:String>
 
     <v:String x:Key="dialog_settings_title">Neustart erforderlich</v:String>
-    <v:String x:Key="dialog_settings_content">Um die vorgenommenen Änderungen in den Einstellungen zu übernehmen, muss die Anwendung neu gestartet werden. Möchten Sie dies jetzt tun?</v:String>
+    <v:String x:Key="dialog_settings_content">Um die Änderungen zu übernehmen, muss die Anwendung neu gestartet werden. Möchten Sie dies jetzt tun?</v:String>
 
     <v:String x:Key="dialog_error_title">Fehler</v:String>
-    <v:String x:Key="dialog_fatal_error_content">Die Anwendung wird angehalten, da ein Fehler aufgetreten ist:</v:String>
-    <v:String x:Key="dialog_null_quote_content">Kann kein leeres Zitat hinzufügen!</v:String>
-    <v:String x:Key="dialog_not_epub_content">Diese Datei ist nicht im EPUB-Format.</v:String>
-
-    <v:String x:Key="dialog_delete_book_title">Buch löschen</v:String>
-    <v:String x:Key="dialog_delete_book_content">Sind Sie sicher, dass Sie dieses Buch löschen möchten?</v:String>
-
-    <v:String x:Key="dialog_delete_all_books_title">Alle Bücher löschen</v:String>
-    <v:String x:Key="dialog_delete_all_books_content">Sind Sie sicher, dass Sie alle Bücher löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</v:String>
-
-    <v:String x:Key="genre_fantasy">Fantasy</v:String>
-    <v:String x:Key="genre_detective">Detektiv</v:String>
-    <v:String x:Key="genre_horror">Horror</v:String>
-    <v:String x:Key="genre_adventure">Abenteuer</v:String>
-    <v:String x:Key="genre_poetry">Poesie</v:String>
-    <v:String x:Key="genre_love_story">Liebesgeschichte</v:String>
-    <v:String x:Key="genre_thriller">Thriller</v:String>
-    <v:String x:Key="genre_prose">Prosa</v:String>
-    <v:String x:Key="genre_foreign_classics">Ausländische Klassiker</v:String>
-    <v:String x:Key="genre_locale_country_classics">Deutsche Klassiker</v:String>
-    <v:String x:Key="genre_folklore">Folklore</v:String>
-    <!--#endregion-->
-</ResourceDictionary>
+    <v:String x:Key="dialog_fatal_error_content">Die Anwendung wird aufgrund eines Fehlers gestoppt:</v:String>
+    <v:String x:Key="dialog_null_quote_content">Ein leeres Zitat kann nicht hinzugefügt werden!</v:String>
+    <v:String x:Key="dialog_not_epub_content">Diese Datei ist
