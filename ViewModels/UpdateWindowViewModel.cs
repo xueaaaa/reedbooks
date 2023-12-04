@@ -1,5 +1,8 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Core.Version;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
@@ -55,6 +58,13 @@ namespace ReedBooks.ViewModels
             Version = new GitHubVersion();
             Updater = new Updater();
             Updater.WebForDownloading.DownloadProgressChanged += WebForDownloading_DownloadProgressChanged;
+            Updater.WebForDownloading.DownloadFileCompleted += WebForDownloading_DownloadFileCompleted;
+        }
+
+        private void WebForDownloading_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            Process.Start($"{Directory.GetCurrentDirectory()}\\updater.exe", Updater.UPDATE_FILE_PATH);
+            Process.GetCurrentProcess().Kill(); 
         }
 
         private void Update()

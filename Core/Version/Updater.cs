@@ -8,7 +8,7 @@ namespace ReedBooks.Core.Version
     public class Updater
     {
         private const string UPDATE_FILE_NAME = "ReedBooks.zip";
-        private readonly string UPDATE_FILE_PATH = $"{Directory.GetCurrentDirectory()}\\{UPDATE_FILE_NAME}";
+        public readonly string UPDATE_FILE_PATH = $"{Directory.GetCurrentDirectory()}\\{UPDATE_FILE_NAME}";
 
         private GitHubVersion _currentVersion;
         private Version _localVersion;
