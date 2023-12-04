@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
 using ReedBooks.Core;
+using ReedBooks.Core.Version;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
 using ReedBooks.Properties;

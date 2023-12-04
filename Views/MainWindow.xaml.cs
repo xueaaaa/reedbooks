@@ -1,6 +1,6 @@
-﻿using ReedBooks.Models.Book;
+﻿using ReedBooks.Core.Version;
+using ReedBooks.Models.Book;
 using ReedBooks.ViewModels;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +13,13 @@ namespace ReedBooks.Views
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
+
+            var updater = new Updater();
+            if (updater.CheckForUpdates())
+            {
+                var uW = new UpdateWindow();
+                uW.ShowDialog();
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

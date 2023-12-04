@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
         WindowStyle="None"
+        MaxWidth="500"
         ResizeMode="NoResize">
     <Window.DataContext>
         <local:UpdateWindowViewModel/>
@@ -28,6 +29,10 @@
                            Text="{DynamicResource u_whats_new}"/>
                 <TextBlock Style="{DynamicResource PropertyValue}"
                            Text="{Binding Version.Body}"
+                           TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                           Foreground="{DynamicResource accent_color}"
+                           Text="{DynamicResource u_description_limitations}"
                            TextWrapping="Wrap"/>
 
                 <StackPanel Margin="0 15 0 0"
