@@ -68,5 +68,10 @@ namespace ReedBooks.Core.Version
             else if (a.Revision < b.Revision) return true;
             else return false;
         }
+
+        public override string ToString()
+        {
+            return $"{Major}.{Minor}.{Patch}.{Revision}";
+        }
     }
 }

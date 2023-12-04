@@ -141,14 +141,21 @@
                         <!--#endregion-->
                     </StackPanel>
 
-                    <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
-                                              Grid.Row="1"
-                                              Margin="10"
-                                              HorizontalAlignment="Center"
-                                              VerticalAlignment="Bottom"
-                                              Command="{Binding SaveCommand}"
-                                              Source="/Resources/Icons/save.png"
-                                              Text="{DynamicResource s_save}"/>
+                    <StackPanel Grid.Row="1">
+                        <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
+                                                  Grid.Row="1"
+                                                  Margin="10"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Bottom"
+                                                  Command="{Binding SaveCommand}"
+                                                  Source="/Resources/Icons/save.png"
+                                                  Text="{DynamicResource s_save}"/>
+                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                                   HorizontalAlignment="Center"
+                                   Margin="0 5 0 0"
+                                   Foreground="{DynamicResource accent_color}"
+                                   Text="{Binding InstalledVersionLabel}"/>
+                    </StackPanel>
                 </Grid>
             </ScrollViewer>
         </Border>

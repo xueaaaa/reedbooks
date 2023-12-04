@@ -82,6 +82,7 @@
     <v:String x:Key="s_delete">Удалить</v:String>
 
     <v:String x:Key="s_save">Сохранить</v:String>
+    <v:String x:Key="s_installed_version">Установленная версия:</v:String>
     <!--#endregion-->
     
     <!--#region Dialog window -->

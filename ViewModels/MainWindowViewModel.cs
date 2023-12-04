@@ -186,7 +186,7 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
-            CollectionActionsVisibility = Visibility.Visible;
+            CollectionActionsVisibility = Visibility.Hidden;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;

@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Core.Version;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using Version = ReedBooks.Core.Version.Version;
 
 namespace ReedBooks.ViewModels
 {
@@ -161,9 +163,19 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        public Version InstalledVersion
+        {
+            get => Version.Local;
+        }
+
         public string DeleteUnusedFilesHint
         {
             get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
+        }
+
+        public string InstalledVersionLabel
+        {
+            get => $"{Application.Current.Resources["s_installed_version"]} {InstalledVersion}";
         }
 
         public ICommand SaveCommand { get; }
