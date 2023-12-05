@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
-    
+
     <!--#region Main window -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
     <v:String x:Key="m_edit">Править</v:String>
@@ -33,13 +33,13 @@
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_read">Читать</v:String>
     <!--#endregion-->
-    
+
     <!--#region Edit collection window-->
     <v:String x:Key="h_edit_collection_window">ReedBooks - Редактирование коллекции</v:String>
     <v:String x:Key="ec_edit_collection">Редактирование коллекции</v:String>
     <v:String x:Key="ec_edit_collection_button">Изменить</v:String>
     <!--#endregion-->
-    
+
     <!--#region Update window-->
     <v:String x:Key="u_header">Новая версия</v:String>
     <v:String x:Key="u_whats_new">Что нового:</v:String>
@@ -48,7 +48,6 @@
     <v:String x:Key="u_update">Обновить</v:String>
     <v:String x:Key="u_not_now">Не сейчас</v:String>
     <!--#endregion-->
-
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
     <v:String x:Key="r_mark_as_read">Отметить прочитанной</v:String>
@@ -59,7 +58,6 @@
     <v:String x:Key="r_stay">Остаться</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
-
     <!--#region Settings window-->
     <v:String x:Key="h_settings_window">ReedBooks - Настройки</v:String>
     <v:String x:Key="s_interface_header">Интерфейс</v:String>
@@ -84,13 +82,13 @@
     <v:String x:Key="s_save">Сохранить</v:String>
     <v:String x:Key="s_installed_version">Установленная версия:</v:String>
     <!--#endregion-->
-    
+
     <!--#region Dialog window -->
     <v:String x:Key="h_dialog_window">ReedBooks - Диалог</v:String>
     <v:String x:Key="d_acept_button">ОК</v:String>
     <v:String x:Key="d_refuse_button">Отмена</v:String>
     <!--#endregion-->
-    
+
     <!--#region Reading Diary window -->
     <v:String x:Key="h_reading_diary_window">ReedBooks - Читательский дневник</v:String>
     <v:String x:Key="rd_author_label">Автор:</v:String>
@@ -123,38 +121,31 @@
     <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
     <v:String x:Key="rd_cancel">Закрыть</v:String>
     <!--#endregion-->
-
     <!--#region SPECIAL STRINGS -->
     <v:String x:Key="theme_light">Светлая</v:String>
     <v:String x:Key="theme_dark">Тёмная</v:String>
-
     <v:String x:Key="megabytes">МБ</v:String>
-
     <v:String x:Key="dialog_settings_title">Требуется перезагрузка</v:String>
     <v:String x:Key="dialog_settings_content">Для вступления установленных настроек в силу необходимо перезагрузить приложение. Вы хотите сделать это сейчас?</v:String>
-
     <v:String x:Key="dialog_error_title">Ошибка</v:String>
     <v:String x:Key="dialog_fatal_error_content">Работа приложения будет приостановлена, потому что произошла ошибка:</v:String>
     <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
-    <v:String x:Key="dialog_not_epub_content">Diese Datei ist nicht im epub-Format.</v:String>
-    <v:String x:Key="dialog_null_collection_content">Kann keine leere Sammlung erstellen!"</v:String>
-
-    <v:String x:Key="dialog_delete_book_title">Das Buch löschen</v:String>
-    <v:String x:Key="dialogue_delete_book_content">Sind Sie sicher, dass Sie dieses Buch löschen wollen?"</v:String>
-
-    <v:String x:Key="dialog_delete_all_books_title">Lösche alle Bücher</v:String>
-    <v:String x:Key="dialog_delete_all_books_content">Sind Sie sicher, dass Sie alle Bücher löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.</v:String>
-
-    <v:String x:Key="genre_fantasy">Fantasy</v:String>
-    <v:String x:Key="genre_detective">Detective</v:String>
-    <v:String x:Key="genre_horror">Horror</v:String>
-    <v:String x:Key="genre_adventure">Abenteuer</v:String>
-    <v:String x:Key="genre_poetry">Lyrik</v:String>
-    <v:String x:Key="genre_love_story">Liebesgeschichte</v:String>
-    <v:String x:Key="genre_thriller">Thriller</v:String>
-    <v:String x:Key="genre_prose">Prosa</v:String>
-    <v:String x:Key="genre_foreign_classics">Ausländische Klassiker</v:String>
-    <v:String x:Key="genre_locale_country_classics">Deutsche Klassiker</v:String>
-    <v:String x:Key="genre_folklore">Folklore</v:String>
+    <v:String x:Key="dialog_not_epub_content">Данный файл не является форматом epub.</v:String>
+    <v:String x:Key="dialog_null_collection_content">Невозможно создать пустую коллекцию!</v:String>
+    <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>
+    <v:String x:Key="dialog_delete_book_content">Вы уверены, что хотите удалить эту книгу?</v:String>
+    <v:String x:Key="dialog_delete_all_books_title">Удаление всех книг</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">Вы уверены, что хотите удалить все книги? Это действие нельзя будет отменить.</v:String>
+    <v:String x:Key="genre_fantasy">Фантастика</v:String>
+    <v:String x:Key="genre_detective">Детектив</v:String>
+    <v:String x:Key="genre_horror">Хоррор</v:String>
+    <v:String x:Key="genre_adventure">Приключения</v:String>
+    <v:String x:Key="genre_poetry">Поэзия</v:String>
+    <v:String x:Key="genre_love_story">Любовный роман</v:String>
+    <v:String x:Key="genre_thriller">Триллер</v:String>
+    <v:String x:Key="genre_prose">Проза</v:String>
+    <v:String x:Key="genre_foreign_classics">Зарубежная классика</v:String>
+    <v:String x:Key="genre_locale_country_classics">Русская классика</v:String>
+    <v:String x:Key="genre_folklore">Фольклор</v:String>
     <!--#endregion-->
 </ResourceDictionary>
