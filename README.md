@@ -34,7 +34,7 @@ ReedBooks - программа для чтения книг и ведения ч
 - Фильтрация загруженных книг (по названию и последней дате прочтения);
 - Автообновление.
 ### Установка
-Перейдите по [этой](https://github.com/xueaaaa/reedbooks/releases/latest) ссылке и загрузите _ReedBooks.zip_. Распакуйте скачанный архив в любую директорию на компьютере. Все готово! Программа будет обновляться автоматически.
+Перейдите по [этой](https://github.com/xueaaaa/reedbooks/releases/latest) ссылке и загрузите _ReedBooks.zip_. Распакуйте скачанный архив в любую директорию на компьютере. Программа будет обновляться автоматически.
 ### Поддерживаемые платформы
 Использование .NET Framework 4.8 и WPF накладывает некоторые ограничения на список платформ, где может быть запущена программа. Ниже приведена таблица соответствия:
 | Платформа               | Возможен ли запуск? |
@@ -61,7 +61,7 @@ The following features are available in the ![](https://img.shields.io/github/v/
 - Filtering of downloaded books (by title and last date of reading);
 - Auto-update.
 ### Installation
-Follow [this](https://github.com/xueaaaa/reedbooks/releases/latest) link and download _ReedBooks.zip_. Unzip the downloaded archive to any directory on your computer. You're all set! The program will be updated automatically.
+Follow [this](https://github.com/xueaaaa/reedbooks/releases/latest) link and download _ReedBooks.zip_. Unzip the downloaded archive to any directory on your computer. The program will be updated automatically.
 ### Supported platforms
 Using .NET Framework 4.8 and WPF imposes some restrictions on the list of platforms where the program can be run. Below is the table of conformity:
 | Platform | Can the program be run |
