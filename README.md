@@ -1,4 +1,6 @@
 # reedbooks
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxueaaaa%2Freedbooks.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxueaaaa%2Freedbooks?ref=badge_shield)
+
 # Общие сведения
 | Название                | ReedBooks                                                                                                       |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -35,3 +37,7 @@
    6. Смысловая нагрузка
 5. textbox для написания краткого пересказа сюжета;
 6. textbox для написания цитат из книги.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxueaaaa%2Freedbooks.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxueaaaa%2Freedbooks?ref=badge_large)
