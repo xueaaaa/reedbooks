@@ -5,11 +5,14 @@
     <!--#region Hauptfenster -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
     <v:String x:Key="m_edit">Bearbeiten</v:String>
+    <v:String x:Key="m_edit_hint">Schaltflächen zur Sammlungssteuerung ein-/ausblenden</v:String>
+    <v:String x:Key="m_hide_panel_button_hint">Menü ein-/ausblenden</v:String>
     <v:String x:Key="m_books">Bücher</v:String>
     <v:String x:Key="m_reading_now">Aktuell Lesen</v:String>
     <v:String x:Key="m_all_books">Alle Bücher</v:String>
     <v:String x:Key="m_search">Suchen</v:String>
     <v:String x:Key="m_readers_diary_collection">Lesertagebuch</v:String>
+    <v:String x:Key="m_readers_diary_button_hint">Verknüpftes Lesetagebuch öffnen</v:String>
     <v:String x:Key="m_my_collections_collection">Meine Sammlungen</v:String>
     <v:String x:Key="m_new_collection">Neue Sammlung</v:String>
     <v:String x:Key="m_collection_name_hint">Name der Sammlung...</v:String>

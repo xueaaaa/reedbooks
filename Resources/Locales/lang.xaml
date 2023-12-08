@@ -5,11 +5,14 @@
     <!--#region Main window -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
     <v:String x:Key="m_edit">Править</v:String>
+    <v:String x:Key="m_edit_hint">Показать/скрыть кнопки управления коллекциями</v:String>
+    <v:String x:Key="m_hide_panel_button_hint">Показать/скрыть меню</v:String>
     <v:String x:Key="m_books">Книги</v:String>
     <v:String x:Key="m_reading_now">Читаю сейчас</v:String>
     <v:String x:Key="m_all_books">Все книги</v:String>
     <v:String x:Key="m_search">Поиск</v:String>
     <v:String x:Key="m_readers_diary_collection">Читательский дневник</v:String>
+    <v:String x:Key="m_readers_diary_button_hint">Открыть связанный читательский дневник</v:String>
     <v:String x:Key="m_my_collections_collection">Мои коллекции</v:String>
     <v:String x:Key="m_new_collection">Новая коллекция</v:String>
     <v:String x:Key="m_collection_name_hint">Название коллекции...</v:String>

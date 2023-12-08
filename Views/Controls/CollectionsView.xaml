@@ -47,7 +47,8 @@
                                         <Button Style="{DynamicResource HintedButton}"
                                                 Content="{Binding Name}"
                                                 Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}"/>
+                                                CommandParameter="{Binding}"
+                                                ToolTip="{DynamicResource m_read}"/>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
