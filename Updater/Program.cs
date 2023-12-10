@@ -21,11 +21,12 @@ else
         {
             var zip = new ZipArchive(sr, ZipArchiveMode.Read);
             zip.ExtractToDirectory(Directory.GetCurrentDirectory(), true);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Update succesfully installed!");
-            Console.WriteLine("Now you can close this window and run the program.");
         }
+
+        File.Delete(args[0]);
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Update succesfully installed!");
+        Console.WriteLine("Now you can close this window and run the program.");
     }
     catch(Exception ex)
     {
