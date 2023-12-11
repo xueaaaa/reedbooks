@@ -1,0 +1,41 @@
+﻿<StackPanel x:Class="ReedBooks.Views.Controls.EmotionalAssessmentControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
+            Name="StackPanel"
+            mc:Ignorable="d">
+    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+               Text="{Binding ElementName=StackPanel, Path=Header}"/>
+
+    <StackPanel Margin="10"
+                Orientation="Horizontal">
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.Sadness}">
+            <materialDesign:PackIcon Kind="EmoticonCryOutline" />
+        </RadioButton>
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.Amazement}">
+            <materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+        </RadioButton>
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.Indifference}">
+            <materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+        </RadioButton>
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.Interesting}">
+            <materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+        </RadioButton>
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.Happyness}">
+            <materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+        </RadioButton>
+    </StackPanel>
+</StackPanel>

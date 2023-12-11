@@ -270,6 +270,9 @@
     <Compile Include="Views\Controls\CollectionsView.xaml.cs">
       <DependentUpon>CollectionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\EmotionalAssessmentControl.xaml.cs">
+      <DependentUpon>EmotionalAssessmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
@@ -415,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\CollectionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\EmotionalAssessmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
