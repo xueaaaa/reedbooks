@@ -173,11 +173,6 @@ namespace ReedBooks.ViewModels
             get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
         }
 
-        public string InstalledVersionLabel
-        {
-            get => $"{Application.Current.Resources["s_installed_version"]} {InstalledVersion}";
-        }
-
         public ICommand SaveCommand { get; }
         public ICommand DeleteUnusedFilesCommand { get; }
         public ICommand DeleteAllBooksCommand { get; }

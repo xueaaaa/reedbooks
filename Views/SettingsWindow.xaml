@@ -15,149 +15,182 @@
         <Border CornerRadius="{DynamicResource CornerRadius}"
                 Margin="30"
                 Background="{DynamicResource container_background_color}">
-            <ScrollViewer>
-                <Grid Margin="40">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <ScrollViewer Grid.Row="0">
+                    <Grid Margin="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0">
-                        <!--#region Interface settings-->
-                        <Expander Background="{DynamicResource container_background_color}"
-                                  Margin="0 0 0 30"
-                                  IsExpanded="True">
-                            <Expander.Header>
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                           FontWeight="Bold"
-                                           Text="{DynamicResource s_interface_header}"/>
-                            </Expander.Header>
+                        <StackPanel Grid.Row="0">
+                            <!--#region Interface settings-->
+                            <Expander Background="{DynamicResource container_background_color}"
+                                      Margin="0 0 0 30"
+                                      IsExpanded="True">
+                                <Expander.Header>
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                               FontWeight="Bold"
+                                               Text="{DynamicResource s_interface_header}"/>
+                                </Expander.Header>
 
-                            <StackPanel>
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_language_label}"
-                                                            ParameterHint="{DynamicResource s_language_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <ComboBox Focusable="False"
-                                                  ItemsSource="{Binding Languages}"
-                                                  SelectedItem="{Binding SelectedLanguage}"
-                                                  DisplayMemberPath="DisplayName"
-                                                  SelectedValuePath="Tag"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
+                                <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_language_label}"
+                                                                ParameterHint="{DynamicResource s_language_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <ComboBox Focusable="False"
+                                                      ItemsSource="{Binding Languages}"
+                                                      SelectedItem="{Binding SelectedLanguage}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Tag"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
 
-                                <Separator Margin="10"/>
+                                    <Separator Margin="10"/>
 
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
-                                                            ParameterHint="{DynamicResource s_theme_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <ComboBox Focusable="False"
-                                                  ItemsSource="{Binding Themes}"
-                                                  SelectedItem="{Binding SelectedTheme}"
-                                                  DisplayMemberPath="DisplayName"
-                                                  SelectedValuePath="Tag"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
-                            </StackPanel>
-                        </Expander>
-                        <!--#endregion-->
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
+                                                                ParameterHint="{DynamicResource s_theme_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <ComboBox Focusable="False"
+                                                      ItemsSource="{Binding Themes}"
+                                                      SelectedItem="{Binding SelectedTheme}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Tag"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
 
-                        <Expander Background="{DynamicResource container_background_color}"
-                                  Margin="0 0 0 30"
-                                  IsExpanded="True">
-                            <Expander.Header>
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                           FontWeight="Bold"
-                                           Text="{DynamicResource s_personalization_header}"/>
-                            </Expander.Header>
+                            <!--#region Personalization settings-->
+                            <Expander Background="{DynamicResource container_background_color}"
+                                      Margin="0 0 0 30"
+                                      IsExpanded="False">
+                                <Expander.Header>
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                               FontWeight="Bold"
+                                               Text="{DynamicResource s_personalization_header}"/>
+                                </Expander.Header>
 
-                            <StackPanel>
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_current_counted_days_label}"
-                                                            ParameterHint="{DynamicResource s_current_counted_days_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <TextBox Text="{Binding SelectedCurrentCountedDays}"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
+                                <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_current_counted_days_label}"
+                                                                ParameterHint="{DynamicResource s_current_counted_days_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <TextBox Text="{Binding SelectedCurrentCountedDays}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
 
-                                <Separator Margin="10"/>
+                                    <Separator Margin="10"/>
 
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_recent_books_number_displaying_label}"
-                                                            ParameterHint="{DynamicResource s_recent_books_number_displaying_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <TextBox Text="{Binding RecentBookNumberDisplaying}"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_recent_books_number_displaying_label}"
+                                                                ParameterHint="{DynamicResource s_recent_books_number_displaying_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <TextBox Text="{Binding RecentBookNumberDisplaying}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
 
-                                <Separator Margin="10"/>
+                                    <Separator Margin="10"/>
 
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_start_tab_label}"
-                                                            ParameterHint="{DynamicResource s_start_tab_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <ComboBox Focusable="False"
-                                                  ItemsSource="{Binding Tabs}"
-                                                  SelectedItem="{Binding SelectedTab}"
-                                                  DisplayMemberPath="DisplayName"
-                                                  SelectedValuePath="Tag"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
-                            </StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_start_tab_label}"
+                                                                ParameterHint="{DynamicResource s_start_tab_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <ComboBox Focusable="False"
+                                                      ItemsSource="{Binding Tabs}"
+                                                      SelectedItem="{Binding SelectedTab}"
+                                                      DisplayMemberPath="DisplayName"
+                                                      SelectedValuePath="Tag"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
 
-                        </Expander>
+                            <!--#region Story management settings-->
+                            <Expander Background="{DynamicResource container_background_color}"
+                                      Margin="0 0 0 30"
+                                      IsExpanded="False">
+                                <Expander.Header>
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                               FontWeight="Bold"
+                                               Text="{DynamicResource s_storage_management_header}"/>
+                                </Expander.Header>
 
-                        <!--#region Story management settings-->
-                        <Expander Background="{DynamicResource container_background_color}"
-                                  IsExpanded="False">
-                            <Expander.Header>
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                           FontWeight="Bold"
-                                           Text="{DynamicResource s_storage_management_header}"/>
-                            </Expander.Header>
+                                <StackPanel Orientation="Vertical">
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_delete_unused_files_label}"
+                                                                ParameterHint="{Binding DeleteUnusedFilesHint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                    Foreground="OrangeRed"
+                                                    BorderBrush="OrangeRed"
+                                                    Content="{DynamicResource s_delete}"
+                                                    Command="{Binding DeleteUnusedFilesCommand}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
 
-                            <StackPanel Orientation="Vertical">
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_delete_unused_files_label}"
-                                                            ParameterHint="{Binding DeleteUnusedFilesHint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                                Foreground="OrangeRed"
-                                                BorderBrush="OrangeRed"
-                                                Content="{DynamicResource s_delete}"
-                                                Command="{Binding DeleteUnusedFilesCommand}"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
+                                    <Separator Margin="10"/>
 
-                                <Separator Margin="10"/>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_delete_all_books_label}"
+                                                                ParameterHint="{DynamicResource s_delete_all_books_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
+                                                    Foreground="OrangeRed"
+                                                    BorderBrush="OrangeRed"
+                                                    Content="{DynamicResource s_delete}"
+                                                    Command="{Binding DeleteAllBooksCommand}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
+                            
+                            <!--#region Versions settings-->
+                            <Expander Background="{DynamicResource container_background_color}"
+                                      IsExpanded="False">
+                                <Expander.Header>
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                               FontWeight="Bold"
+                                               Text="{DynamicResource s_version_header}"/>
+                                </Expander.Header>
 
-                                <controls:SettingsParameter ParameterName="{DynamicResource s_delete_all_books_label}"
-                                                            ParameterHint="{DynamicResource s_delete_all_books_hint}">
-                                    <controls:SettingsParameter.ValueSelector>
-                                        <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                                Foreground="OrangeRed"
-                                                BorderBrush="OrangeRed"
-                                                Content="{DynamicResource s_delete}"
-                                                Command="{Binding DeleteAllBooksCommand}"/>
-                                    </controls:SettingsParameter.ValueSelector>
-                                </controls:SettingsParameter>
-                            </StackPanel>
-                        </Expander>
-                        <!--#endregion-->
-                    </StackPanel>
+                                <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_update_automatically_label}"
+                                                                ParameterHint="{DynamicResource s_update_automatically_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <CheckBox HorizontalAlignment="Right"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
 
-                    <StackPanel Grid.Row="1">
-                        <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
-                                                  Grid.Row="1"
-                                                  Margin="10"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Bottom"
-                                                  Command="{Binding SaveCommand}"
-                                                  Source="/Resources/Icons/save.png"
-                                                  Text="{DynamicResource s_save}"/>
-                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
-                                   HorizontalAlignment="Center"
-                                   Margin="0 5 0 0"
-                                   Foreground="{DynamicResource accent_color}"
-                                   Text="{Binding InstalledVersionLabel}"/>
-                    </StackPanel>
-                </Grid>
-            </ScrollViewer>
+                                    <Separator Margin="10"/>
+
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_installed_version_label}"
+                                                                ParameterHint="{DynamicResource s_installed_version_label}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <TextBlock Foreground="{DynamicResource accent_color}"
+                                                       HorizontalAlignment="Right"
+                                                       Text="{Binding InstalledVersion}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+
+                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
+                                          Grid.Row="1"
+                                          Margin="20"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Bottom"
+                                          Command="{Binding SaveCommand}"
+                                          Source="/Resources/Icons/save.png"
+                                          Text="{DynamicResource s_save}"/>
+            </Grid>
         </Border>
     </Grid>
 </Window>

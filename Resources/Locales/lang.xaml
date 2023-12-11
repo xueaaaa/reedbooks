@@ -51,6 +51,7 @@
     <v:String x:Key="u_update">Обновить</v:String>
     <v:String x:Key="u_not_now">Не сейчас</v:String>
     <!--#endregion-->
+    
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
     <v:String x:Key="r_mark_as_read">Отметить прочитанной</v:String>
@@ -61,6 +62,7 @@
     <v:String x:Key="r_stay">Остаться</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
+    
     <!--#region Settings window-->
     <v:String x:Key="h_settings_window">ReedBooks - Настройки</v:String>
     <v:String x:Key="s_interface_header">Интерфейс</v:String>
@@ -81,9 +83,12 @@
     <v:String x:Key="s_delete_unused_files_label">Удалить неиспользуемые файлы</v:String>
     <v:String x:Key="s_delete_unused_files_hint">При удалении книг из приложения некоторые их файлы продолжают храниться в директориях. Суммарный размер неиспользуемых файлов:</v:String>
     <v:String x:Key="s_delete">Удалить</v:String>
+    <v:String x:Key="s_version_header">Актуальность и обновления</v:String>
+    <v:String x:Key="s_update_automatically_label">Обновлять автоматически</v:String>
+    <v:String x:Key="s_update_automatically_hint">Не спрашивать разрешения на установку при обнаружении нового обновления.</v:String>
+    <v:String x:Key="s_installed_version_label">Установленная версия</v:String>
 
     <v:String x:Key="s_save">Сохранить</v:String>
-    <v:String x:Key="s_installed_version">Установленная версия:</v:String>
     <!--#endregion-->
 
     <!--#region Dialog window -->
@@ -124,6 +129,7 @@
     <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
     <v:String x:Key="rd_cancel">Закрыть</v:String>
     <!--#endregion-->
+    
     <!--#region SPECIAL STRINGS -->
     <v:String x:Key="theme_light">Светлая</v:String>
     <v:String x:Key="theme_dark">Тёмная</v:String>
