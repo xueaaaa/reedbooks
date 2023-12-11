@@ -83,9 +83,12 @@
     <v:String x:Key="s_delete_unused_files_label">Eliminar archivos no utilizados</v:String>
     <v:String x:Key="s_delete_unused_files_hint">Al eliminar libros de la aplicación, algunos de sus archivos pueden permanecer en los directorios. Tamaño total de los archivos no utilizados:</v:String>
     <v:String x:Key="s_delete">Eliminar</v:String>
+    <v:String x:Key="s_version_header">Relevancia y Actualizaciones</v:String>
+    <v:String x:Key="s_update_automatically_label">Actualizar automáticamente</v:String>
+    <v:String x:Key="s_update_automatically_hint">No pedir permiso para instalar cuando se detecta una nueva actualización.</v:String>
+    <v:String x:Key="s_installed_version_label">Versión instalada</v:String>
 
     <v:String x:Key="s_save">Guardar</v:String>
-    <v:String x:Key="s_installed_version">Versión instalada:</v:String>
     <!--#endregion-->
 
     <!--#region Ventana de diálogo -->
@@ -110,6 +113,11 @@
     <v:String x:Key="rd_start">Al principio del libro</v:String>
     <v:String x:Key="rd_middle">En medio del libro</v:String>
     <v:String x:Key="rd_end">Al final del libro</v:String>
+    <v:String x:Key="rd_sadness">Tristeza</v:String>
+    <v:String x:Key="rd_amazement">Asombro</v:String>
+    <v:String x:Key="rd_indifference">Indiferencia</v:String>
+    <v:String x:Key="rd_interesting">Interés</v:String>
+    <v:String x:Key="rd_happiness">Felicidad</v:String>
     <v:String x:Key="rd_assessment">Calificación</v:String>
     <v:String x:Key="rd_plot_originality">Originalidad del argumento</v:String>
     <v:String x:Key="rd_characters">Personajes</v:String>

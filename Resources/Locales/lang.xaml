@@ -113,6 +113,11 @@
     <v:String x:Key="rd_start">В начале книги</v:String>
     <v:String x:Key="rd_middle">В середине книги</v:String>
     <v:String x:Key="rd_end">В конце книги</v:String>
+    <v:String x:Key="rd_sadness">Грусть</v:String>
+    <v:String x:Key="rd_amazement">Удивление</v:String>
+    <v:String x:Key="rd_indifference">Безразличие</v:String>
+    <v:String x:Key="rd_interesting">Заинтересованность</v:String>
+    <v:String x:Key="rd_happyness">Счастье</v:String>
     <v:String x:Key="rd_assessment">Оценка</v:String>
     <v:String x:Key="rd_plot_originality">Оригинальность сюжета</v:String>
     <v:String x:Key="rd_characters">Персонажи</v:String>

@@ -22,7 +22,8 @@
                      Name="First"
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Sadness}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
-                     CommandParameter="{x:Static e:Emote.Sadness}">
+                     CommandParameter="{x:Static e:Emote.Sadness}"
+                     ToolTip="{DynamicResource rd_sadness}">
             <materialDesign:PackIcon Kind="EmoticonCryOutline"
                                      Foreground="{Binding IsChecked, ElementName=First, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
@@ -30,7 +31,8 @@
                      Name="Second"
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Amazement}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
-                     CommandParameter="{x:Static e:Emote.Amazement}">
+                     CommandParameter="{x:Static e:Emote.Amazement}"
+                     ToolTip="{DynamicResource rd_amazement}">
             <materialDesign:PackIcon Kind="EmoticonFrownOutline"
                                      Foreground="{Binding IsChecked,ElementName=Second, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
@@ -38,7 +40,8 @@
                      Name="Third"
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Indifference}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
-                     CommandParameter="{x:Static e:Emote.Indifference}">
+                     CommandParameter="{x:Static e:Emote.Indifference}"
+                     ToolTip="{DynamicResource rd_indifference}">
             <materialDesign:PackIcon Kind="EmoticonNeutralOutline"
                                      Foreground="{Binding IsChecked, ElementName=Third, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
@@ -46,7 +49,8 @@
                      Name="Fourth"
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Interesting}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
-                     CommandParameter="{x:Static e:Emote.Interesting}">
+                     CommandParameter="{x:Static e:Emote.Interesting}"
+                     ToolTip="{DynamicResource rd_interesting}">
             <materialDesign:PackIcon Kind="FaceManShimmerOutline"
                                      Foreground="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
@@ -54,7 +58,8 @@
                      Name="Fifth"
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Happyness}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
-                     CommandParameter="{x:Static e:Emote.Happyness}">
+                     CommandParameter="{x:Static e:Emote.Happyness}"
+                     ToolTip="{DynamicResource rd_happyness}">
             <materialDesign:PackIcon Kind="EmoticonExcitedOutline"
                                      Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>

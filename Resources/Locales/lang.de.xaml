@@ -83,9 +83,12 @@
     <v:String x:Key="s_delete_unused_files_label">Nicht verwendete Dateien löschen</v:String>
     <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern aus der Anwendung können einige ihrer Dateien in den Verzeichnissen verbleiben. Gesamtgröße der nicht verwendeten Dateien:</v:String>
     <v:String x:Key="s_delete">Löschen</v:String>
+    <v:String x:Key="s_version_header">Aktualität und Aktualisierungen</v:String>
+    <v:String x:Key="s_update_automatically_label">Automatisch aktualisieren</v:String>
+    <v:String x:Key="s_update_automatically_hint">Keine Erlaubnis zur Installation bei Erkennung eines neuen Updates anfordern.</v:String>
+    <v:String x:Key="s_installed_version_label">Installierte Version</v:String>
 
     <v:String x:Key="s_save">Speichern</v:String>
-    <v:String x:Key="s_installed_version">Installierte Version:</v:String>
     <!--#endregion-->
 
     <!--#region Dialogfenster -->
@@ -110,6 +113,11 @@
     <v:String x:Key="rd_start">Am Anfang des Buches</v:String>
     <v:String x:Key="rd_middle">In der Mitte des Buches</v:String>
     <v:String x:Key="rd_end">Am Ende des Buches</v:String>
+    <v:String x:Key="rd_sadness">Traurigkeit</v:String>
+    <v:String x:Key="rd_amazement">Erstaunen</v:String>
+    <v:String x:Key="rd_indifference">Gleichgültigkeit</v:String>
+    <v:String x:Key="rd_interesting">Interesse</v:String>
+    <v:String x:Key="rd_happiness">Glück</v:String>
     <v:String x:Key="rd_assessment">Bewertung</v:String>
     <v:String x:Key="rd_plot_originality">Originalität der Handlung</v:String>
     <v:String x:Key="rd_characters">Charaktere</v:String>
