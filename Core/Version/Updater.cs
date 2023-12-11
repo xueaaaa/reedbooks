@@ -34,7 +34,6 @@ namespace ReedBooks.Core.Version
 
         public void InstallUpdate()
         {
-            if(File.Exists(UPDATE_FILE_PATH)) File.Delete(UPDATE_FILE_PATH);
             WebForDownloading.DownloadFileAsync(new Uri(_currentVersion.Assets
                 .Where(a => a.Name == UPDATE_FILE_NAME)
                 .First().BrowserDownloadUrl), 

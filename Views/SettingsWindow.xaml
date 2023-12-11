@@ -161,7 +161,8 @@
                                     <controls:SettingsParameter ParameterName="{DynamicResource s_update_automatically_label}"
                                                                 ParameterHint="{DynamicResource s_update_automatically_hint}">
                                         <controls:SettingsParameter.ValueSelector>
-                                            <CheckBox HorizontalAlignment="Right"/>
+                                            <CheckBox HorizontalAlignment="Right"
+                                                      IsChecked="{Binding UpdateAutomatically}"/>
                                         </controls:SettingsParameter.ValueSelector>
                                     </controls:SettingsParameter>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReedBooks.Core.Version;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -73,6 +74,8 @@ namespace ReedBooks.Core
                 Directory.CreateDirectory(coversPath);
             if (!Directory.Exists(epubsPath))
                 Directory.CreateDirectory(epubsPath);
+
+            if (File.Exists(App.Updater.UPDATE_FILE_PATH)) File.Delete(App.Updater.UPDATE_FILE_PATH);
         }
     }
 }

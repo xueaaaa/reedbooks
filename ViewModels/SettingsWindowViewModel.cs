@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using Version = ReedBooks.Core.Version.Version;
@@ -163,6 +164,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _updateAutomatically;
+        public bool UpdateAutomatically
+        {
+            get => _updateAutomatically;
+            set
+            {
+                _updateAutomatically = value;
+                OnPropertyChanged(nameof(UpdateAutomatically));
+            }
+        }
+
         public Version InstalledVersion
         {
             get => Version.Local;
@@ -197,6 +209,7 @@ namespace ReedBooks.ViewModels
             if (_selectedCurrentCountedDays != 0) Properties.Settings.Default.CurrentCountedDays = _selectedCurrentCountedDays;
             if (_recentBooksNumberDisplaying != 0) Properties.Settings.Default.RecentBooksNumberDisplaying = _recentBooksNumberDisplaying;
             if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
+            Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
 
             Properties.Settings.Default.Save();
 

@@ -24,7 +24,6 @@ else
             zip.ExtractToDirectory(Directory.GetCurrentDirectory(), true);
         }
 
-        File.Delete(args[0]);
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("Update succesfully installed!");
 

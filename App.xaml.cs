@@ -18,10 +18,12 @@ namespace ReedBooks
 
         public static AppContext ApplicationContext { get; private set; }
         public static StorageManager StorageManager { get; private set; }
+        public static Updater Updater { get; private set; }
         
         public App()
         {
             StorageManager = new StorageManager();
+            Updater = new Updater();    
             StorageManager.EnsureCreated();
 
             ApplicationContext = new AppContext();

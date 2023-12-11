@@ -56,9 +56,11 @@ namespace ReedBooks.ViewModels
             UpdateCommand = new RelayCommand(obj => Update());
 
             Version = new GitHubVersion();
-            Updater = new Updater();
+            Updater = App.Updater;
             Updater.WebForDownloading.DownloadProgressChanged += WebForDownloading_DownloadProgressChanged;
             Updater.WebForDownloading.DownloadFileCompleted += WebForDownloading_DownloadFileCompleted;
+
+            if (Properties.Settings.Default.UpdateAutomatically) Update();
         }
 
         private void WebForDownloading_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

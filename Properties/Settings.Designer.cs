@@ -91,5 +91,17 @@ namespace ReedBooks.Properties {
                 this["DefaultTab"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UpdateAutomatically {
+            get {
+                return ((bool)(this["UpdateAutomatically"]));
+            }
+            set {
+                this["UpdateAutomatically"] = value;
+            }
+        }
     }
 }

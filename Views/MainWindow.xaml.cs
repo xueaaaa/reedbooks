@@ -1,5 +1,4 @@
-﻿using ReedBooks.Core.Version;
-using ReedBooks.Models.Book;
+﻿using ReedBooks.Models.Book;
 using ReedBooks.ViewModels;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -14,8 +13,7 @@ namespace ReedBooks.Views
             InitializeComponent();
             DataContext = new MainWindowViewModel();
 
-            var updater = new Updater();
-            if (updater.CheckForUpdates())
+            if (App.Updater.CheckForUpdates())
             {
                 var uW = new UpdateWindow();
                 uW.ShowDialog();
