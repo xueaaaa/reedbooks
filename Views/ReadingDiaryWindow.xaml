@@ -355,12 +355,36 @@
                                                     Margin="10">
                                                 <Button.CommandParameter>
                                                     <StackPanel Style="{DynamicResource DialogPanel}">
-                                                        <TextBlock Text="{Binding Data}"
-                                                                   Foreground="{DynamicResource text_color}"
-                                                                   TextWrapping="Wrap"
-                                                                   Margin="0 0 0 7"/>
+                                                        <Grid Margin="10">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <materialDesign:PackIcon Grid.Column="0"
+                                                                                     Width="32"
+                                                                                     Height="32"
+                                                                                     Foreground="{DynamicResource accent_color}"
+                                                                                     Kind="FormatQuoteOpenOutline" />
+
+                                                            <TextBlock Grid.Column="1"
+                                                                       Margin="7"
+                                                                       Text="{Binding Data}"
+                                                                       Foreground="{DynamicResource text_color}"
+                                                                       TextWrapping="Wrap"/>
+
+                                                            <materialDesign:PackIcon Grid.Column="2"
+                                                                                     VerticalAlignment="Bottom"
+                                                                                     Width="32"
+                                                                                     Height="32"
+                                                                                     Foreground="{DynamicResource accent_color}"
+                                                                                     Kind="FormatQuoteCloseOutline" />
+                                                        </Grid>
+                                                        
+                                                        
                                                         <TextBlock Text="{Binding Author}"
-                                                                   Foreground="{DynamicResource text_color}"
+                                                                   Foreground="{DynamicResource accent_color}"
                                                                    Style="{DynamicResource MaterialDesignBody2TextBlock}"/>
                                                         <TextBlock Text="{Binding LocationInBook}"
                                                                    Style="{DynamicResource MaterialDesignCaptionTextBlock}"
