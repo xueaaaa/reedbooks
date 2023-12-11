@@ -5,37 +5,58 @@
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
+            xmlns:converters="clr-namespace:ReedBooks.Converters"
             Name="StackPanel"
             mc:Ignorable="d">
+    <StackPanel.Resources>
+        <converters:BoolToColorConverter x:Key="boolToColorConverter"/>
+        <converters:EmoteToBoolConverter x:Key="emoteToBoolConverter"/>
+    </StackPanel.Resources>
+    
     <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                Text="{Binding ElementName=StackPanel, Path=Header}"/>
 
     <StackPanel Margin="10"
                 Orientation="Horizontal">
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Name="First"
+                     IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Sadness}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Sadness}">
-            <materialDesign:PackIcon Kind="EmoticonCryOutline" />
+            <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                                     Foreground="{Binding IsChecked, ElementName=First, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Name="Second"
+                     IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Amazement}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Amazement}">
-            <materialDesign:PackIcon Kind="EmoticonFrownOutline" />
+            <materialDesign:PackIcon Kind="EmoticonFrownOutline"
+                                     Foreground="{Binding IsChecked,ElementName=Second, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Name="Third"
+                     IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Indifference}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Indifference}">
-            <materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
+            <materialDesign:PackIcon Kind="EmoticonNeutralOutline"
+                                     Foreground="{Binding IsChecked, ElementName=Third, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Name="Fourth"
+                     IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Interesting}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Interesting}">
-            <materialDesign:PackIcon Kind="FaceManShimmerOutline" />
+            <materialDesign:PackIcon Kind="FaceManShimmerOutline"
+                                     Foreground="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Name="Fifth"
+                     IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Happyness}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Happyness}">
-            <materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
+            <materialDesign:PackIcon Kind="EmoticonExcitedOutline"
+                                     Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
         </RadioButton>
     </StackPanel>
 </StackPanel>

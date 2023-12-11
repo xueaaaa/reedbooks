@@ -107,121 +107,30 @@
                             </StackPanel>
                         </StackPanel>
 
-                        <Grid Grid.Column="0"
-                              Grid.Row="2">
-                            <StackPanel Margin="20"
-                                        IsEnabled="False">
-                                <StackPanel.Effect>
-                                <BlurEffect Radius="30"/>
-                            </StackPanel.Effect>
-							    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                        <StackPanel Margin="20"
+                                    Grid.Row="2">
+                            <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                            Text="{DynamicResource rd_my_emotions}"
                                            TextWrapping="Wrap"/>
-							    <Separator/>
-							<!--#region At Start -->
-							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                       Text="{DynamicResource rd_start}"/>
-							<StackPanel Margin="10"
-                                        Orientation="Horizontal">
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetBeginEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Sadness}">
-									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetBeginEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Amazement}">
-									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetBeginEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Indifference}">
-									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetBeginEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Interesting}">
-									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetBeginEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Happyness}">
-									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
-								</RadioButton>
-							</StackPanel>
-							<!--#endregion-->
-							<!--#region At Middle -->
-							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                       Text="{DynamicResource rd_middle}"/>
-							<StackPanel Margin="10"
-                                        Orientation="Horizontal">
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetMiddleEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Sadness}">
-									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetMiddleEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Amazement}">
-									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetMiddleEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Indifference}">
-									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetMiddleEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Interesting}">
-									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetMiddleEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Happyness}">
-									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
-								</RadioButton>
-							</StackPanel>
-							<!--#endregion-->
-							<!--#region At End -->
-							<TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                       Text="{DynamicResource rd_end}"/>
-							<StackPanel Margin="10"
-                                        Orientation="Horizontal">
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetEndEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Sadness}">
-									<materialDesign:PackIcon Kind="EmoticonCryOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetEndEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Amazement}">
-									<materialDesign:PackIcon Kind="EmoticonFrownOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetEndEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Indifference}">
-									<materialDesign:PackIcon Kind="EmoticonNeutralOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetEndEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Interesting}">
-									<materialDesign:PackIcon Kind="FaceManShimmerOutline" />
-								</RadioButton>
-								<RadioButton Style="{DynamicResource MaterialDesignIconButton}"
-                                             Command="{Binding SetEndEmoteCommand}"
-                                             CommandParameter="{x:Static e:Emote.Happyness}">
-									<materialDesign:PackIcon Kind="EmoticonExcitedOutline" />
-								</RadioButton>
-							</StackPanel>
-							<!--#endregion-->
-						</StackPanel>
-                            <TextBlock Text="{DynamicResource r_temporarily_out_of_service}"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource hint_color}"/>
-                        </Grid>
-						
-						<StackPanel Grid.Column="1"
+                            <Separator/>
+                            <!--#region At Start -->
+                            <controls:EmotionalAssessmentControl Header="{DynamicResource rd_start}"
+                                                                 SetEmoteCommand="{Binding SetBeginEmoteCommand}"
+                                                                 Emote="{Binding Book.BoundDiary.EmotionalAssessment.Start}"/>
+                            <!--#endregion-->
+                            <!--#region At Middle -->
+                            <controls:EmotionalAssessmentControl Header="{DynamicResource rd_middle}"
+                                                                 SetEmoteCommand="{Binding SetMiddleEmoteCommand}"
+                                                                 Emote="{Binding Book.BoundDiary.EmotionalAssessment.Middle}"/>
+                            <!--#endregion-->
+                            <!--#region At End -->
+                            <controls:EmotionalAssessmentControl Header="{DynamicResource rd_end}"
+                                                                 SetEmoteCommand="{Binding SetEndEmoteCommand}"
+                                                                 Emote="{Binding Book.BoundDiary.EmotionalAssessment.End}"/>
+                            <!--#endregion-->
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"
                                     Grid.Row="2"
                                     Margin="20">
 							<TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"

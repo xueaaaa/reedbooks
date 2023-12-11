@@ -232,6 +232,8 @@
     </Compile>
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\DateToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToColorConverter.cs" />
+    <Compile Include="Converters\EmoteToBoolConverter.cs" />
     <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
     <Compile Include="Core\Version\GitHubVersion.cs" />
     <Compile Include="Core\Version\Updater.cs" />
