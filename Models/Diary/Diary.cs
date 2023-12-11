@@ -104,7 +104,7 @@ namespace ReedBooks.Models.Diary
 
         public ReadingDiary()
         {
-            
+            _quotes = new ObservableCollection<Quote>();
         }
 
         public ReadingDiary(Guid bookGuid)

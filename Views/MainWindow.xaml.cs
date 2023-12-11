@@ -13,11 +13,15 @@ namespace ReedBooks.Views
             InitializeComponent();
             DataContext = new MainWindowViewModel();
 
+            #if DEBUG
+            new DialogWindow("Режим отладки", "Приложение запущено в режиме отладки. Автообновление недоступно.").Show();
+            #else
             if (App.Updater.CheckForUpdates())
             {
                 var uW = new UpdateWindow();
                 uW.ShowDialog();
             }
+            #endif
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
