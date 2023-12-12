@@ -9,7 +9,7 @@ namespace ReedBooks.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool val) return val ? Application.Current.Resources["hint_color"] : Application.Current.Resources["accent_color"];
+            if (value is bool val) return val ? Application.Current.Resources["text_color"] : Application.Current.Resources["hint_color"];
             return Application.Current.Resources["accent_color"];
         }
 

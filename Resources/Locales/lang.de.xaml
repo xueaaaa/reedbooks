@@ -146,7 +146,7 @@
 
     <v:String x:Key="dialog_error_title">Fehler</v:String>
     <v:String x:Key="dialog_fatal_error_content">Die Anwendung wird aufgrund eines Fehlers gestoppt:</v:String>
-    <v:String x:Key="dialog_null_quote_content">Ein leeres Zitat kann nicht hinzugefügt werden!</v:String>
+    <v:String x:Key="dialog_null_quote_content">Ich kann kein Zitat ohne Inhalt oder Autor hinzufügen!</v:String>
     <v:String x:Key="dialog_not_epub_content">Diese Datei ist nicht im epub-Format.</v:String>
     <v:String x:Key="dialog_null_collection_content">Kann keine leere Sammlung erstellen!"</v:String>
 

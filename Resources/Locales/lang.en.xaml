@@ -146,7 +146,7 @@
 
     <v:String x:Key="dialog_error_title">Error</v:String>
     <v:String x:Key="dialog_fatal_error_content">The application will be paused because an error occurred:</v:String>
-    <v:String x:Key="dialog_null_quote_content">Cannot add an empty quote!</v:String>
+    <v:String x:Key="dialog_null_quote_content">Cannot add a quote without content or author!</v:String>
     <v:String x:Key="dialog_not_epub_content">This file is not in the epub format.</v:String>
     <v:String x:Key="dialog_null_collection_content">Cannot create an empty collection!</v:String>
 

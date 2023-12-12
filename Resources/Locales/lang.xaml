@@ -143,7 +143,7 @@
     <v:String x:Key="dialog_settings_content">Для вступления установленных настроек в силу необходимо перезагрузить приложение. Вы хотите сделать это сейчас?</v:String>
     <v:String x:Key="dialog_error_title">Ошибка</v:String>
     <v:String x:Key="dialog_fatal_error_content">Работа приложения будет приостановлена, потому что произошла ошибка:</v:String>
-    <v:String x:Key="dialog_null_quote_content">Невозможно добавить пустую цитату!</v:String>
+    <v:String x:Key="dialog_null_quote_content">Невозможно добавить цитату без содержания или автора!</v:String>
     <v:String x:Key="dialog_not_epub_content">Данный файл не является форматом epub.</v:String>
     <v:String x:Key="dialog_null_collection_content">Невозможно создать пустую коллекцию!</v:String>
     <v:String x:Key="dialog_delete_book_title">Удаление книги</v:String>

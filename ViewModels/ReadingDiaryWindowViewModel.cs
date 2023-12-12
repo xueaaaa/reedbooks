@@ -81,6 +81,10 @@ namespace ReedBooks.ViewModels
             SetEndEmoteCommand = new RelayCommand(obj => SetEndEmote(obj));
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
             DeleteQuoteCommand = new RelayCommand(obj => DeleteQuote(obj));
+
+            QuoteData = string.Empty;
+            QuoteAuthor = string.Empty;
+            QuoteLocation = string.Empty;
         }
 
         public ReadingDiaryWindowViewModel(Book book) : this()
@@ -120,10 +124,13 @@ namespace ReedBooks.ViewModels
         {
             Quote toAdd = new Quote(QuoteData, Book.BoundDiary.Guid, QuoteAuthor, QuoteLocation);
 
-            if (toAdd.Data != null && toAdd.Data != string.Empty)
+            if (toAdd.Author != string.Empty && toAdd.Author != string.Empty)
             {
                 Book.BoundDiary.Quotes.Add(toAdd);
                 await toAdd.CreateAsync();
+                QuoteData = string.Empty;
+                QuoteAuthor = string.Empty;
+                QuoteLocation = string.Empty;
                 DialogHost.Close("ReadingDiaryDialog");
             }
             else
