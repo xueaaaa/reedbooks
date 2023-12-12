@@ -156,6 +156,15 @@ namespace ReedBooks.Models.Book
             Update();
         }
 
+        public override Task<int> RemoveAsync()
+        {
+            var collections = App.ApplicationContext.Collections.Where(c => c.LinkedBooks.Contains(this.Guid.ToString())).ToList();
+            foreach (var item in collections)
+                item.RemoveBook(this.Guid);
+
+            return base.RemoveAsync();
+        }
+
         /// <summary>
         /// Reads all book records from the database and returns them as an ObservableCollection
         /// </summary>

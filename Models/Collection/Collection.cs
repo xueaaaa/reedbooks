@@ -3,9 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Threading.Tasks;
 
 namespace ReedBooks.Models.Collection
 {
@@ -70,6 +68,12 @@ namespace ReedBooks.Models.Collection
             foreach (var item in books) LinkedBooks.Add(item.ToString());
 
             Create();
+        }
+
+        public async void RemoveBook(Guid guid)
+        {
+            LinkedBooks.Remove(guid.ToString());
+            await UpdateAsync();
         }
     }
 }

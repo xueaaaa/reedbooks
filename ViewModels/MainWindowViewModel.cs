@@ -291,6 +291,8 @@ namespace ReedBooks.ViewModels
                 var guid = (Guid)param;
                 var book = LoadedBooks.Where(b => b.Guid == guid).First();
                 LoadedBooks.Remove(book);
+                var containsThisBook = LoadedCollections.Where(c => c.RepresentedAsBook.Contains(book)).ToList();
+
                 await book.RemoveAsync();
             }
         }

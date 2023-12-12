@@ -60,6 +60,8 @@ namespace ReedBooks.ViewModels
         public EditCollectionViewModel()
         {
             EditCollectionCommand = new RelayCommand(obj => EditCollection());
+
+            SelectedCollectionBooks = new ObservableCollection<Book>();
         }
 
         public EditCollectionViewModel(Collection collection, ObservableCollection<Book> loadedBooks) : this()

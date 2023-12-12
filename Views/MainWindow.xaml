@@ -144,21 +144,22 @@
                                         <controls:ButtonWithImage.CommandParameter>
                                             <StackPanel Style="{DynamicResource DialogPanel}">
                                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                                   Foreground="{DynamicResource text_color}"
-                                                   Margin="0 0 0 20"
-                                                   Text="{DynamicResource m_new_collection}"/>
+                                                           Foreground="{DynamicResource text_color}"
+                                                           Margin="0 0 0 20"
+                                                           Text="{DynamicResource m_new_collection}"/>
                                                 <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                                 materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
-                                                 materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
-                                                 Foreground="{DynamicResource text_color}"
-                                                 Margin="0 0 0 15"
-                                                 Text="{Binding CollectionName}"/>
+                                                         materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
+                                                         materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
+                                                         Foreground="{DynamicResource text_color}"
+                                                         Margin="0 0 0 15"
+                                                         Text="{Binding CollectionName}"/>
                                                 <ListBox ItemsSource="{Binding LoadedBooks}"
-                                                 SelectionChanged="ListBox_SelectionChanged"
-                                                 Foreground="{DynamicResource text_color}"
-                                                 Margin="0 0 0 15"
-                                                 DisplayMemberPath="Name"
-                                                 SelectionMode="Multiple"/>
+                                                         MaxHeight="600"
+                                                         SelectionChanged="ListBox_SelectionChanged"
+                                                         Foreground="{DynamicResource text_color}"
+                                                         Margin="0 0 0 15"
+                                                         DisplayMemberPath="Name"
+                                                         SelectionMode="Multiple"/>
 
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
@@ -167,15 +168,15 @@
                                                     </Grid.ColumnDefinitions>
 
                                                     <Button Style="{DynamicResource ReedBooksRaisedButton}"
-                                                    HorizontalAlignment="Left"
-                                                    Command="{Binding CreateCollectionCommand}"
-                                                    Content="{DynamicResource m_create_collection}"/>
+                                                            HorizontalAlignment="Left"
+                                                            Command="{Binding CreateCollectionCommand}"
+                                                            Content="{DynamicResource m_create_collection}"/>
                                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                    Grid.Column="1"
-                                                    HorizontalAlignment="Right"
-                                                    Foreground="{DynamicResource accent_color}"
-                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                    Content="{DynamicResource rd_cancel}"/>
+                                                            Grid.Column="1"
+                                                            HorizontalAlignment="Right"
+                                                            Foreground="{DynamicResource accent_color}"
+                                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                            Content="{DynamicResource rd_cancel}"/>
                                                 </Grid>
                                             </StackPanel>
                                         </controls:ButtonWithImage.CommandParameter>
