@@ -11,8 +11,8 @@
             <StackPanel Orientation="Vertical">
                 <ItemsPresenter/>
                 <TextBlock Foreground="{DynamicResource hint_color}"
-                       Text="{DynamicResource m_no_elements}"
-                       Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                           Text="{DynamicResource m_no_elements}"
+                           Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
             </StackPanel>
         </ControlTemplate>
     </ItemsControl.Template>

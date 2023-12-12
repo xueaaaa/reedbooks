@@ -31,331 +31,348 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Hide panel button -->
-            <controls:IconButton Grid.ColumnSpan="2"
+                <controls:IconButton Grid.ColumnSpan="2"
                                  Style="{DynamicResource HidePanelButton}" 
                                  Source="/Resources/Icons/hide_bar.png"
                                  Command="{Binding ChangeSidePanelVisibilityCommand}"
                                  ToolTip="{DynamicResource m_hide_panel_button_hint}"/>
-            
-            <StackPanel Grid.Column="0"
-                        Visibility="{Binding SidePanelVisibility}"
-                        Background="{DynamicResource container_background_color}" 
-                        Orientation="Vertical">
-                <!--#region Top panel-->
-                <StackPanel Orientation="Vertical"
-                            Margin="10">
-                    <Button Style="{DynamicResource HintedButton}" 
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Right"
-                            Content="{DynamicResource m_edit}" 
-                            Command="{Binding ChangeCollectionActionsVisibilityCommand}"
-                            ToolTip="{DynamicResource m_edit_hint}"/>
+
+                <Grid Grid.Column="0"
+                      Visibility="{Binding SidePanelVisibility}"
+                      Background="{DynamicResource container_background_color}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     
-                    <controls:IconButton Source="/Resources/Icons/settings.png"
-                                         HorizontalAlignment="Right"
-                                         Command="{Binding OpenSettingsCommand}"/>
-                </StackPanel>
-                <!--#endregion-->
+                    <!--#region Top panel-->
+                    <StackPanel Grid.Row="0"
+                                Orientation="Vertical"
+                                Margin="10">
+                        <Button Style="{DynamicResource HintedButton}" 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Content="{DynamicResource m_edit}" 
+                                Command="{Binding ChangeCollectionActionsVisibilityCommand}"
+                                ToolTip="{DynamicResource m_edit_hint}"/>
 
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                           FontWeight="DemiBold"
-                           Margin="10"
-                           Text="{DynamicResource m_books}"/>
+                        <controls:IconButton Source="/Resources/Icons/settings.png"
+                                            HorizontalAlignment="Right"
+                                            Command="{Binding OpenSettingsCommand}"/>
+                    </StackPanel>
+                    <!--#endregion-->
 
-                <!--#region Main menu buttons -->
-                <StackPanel Margin="10">
-                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
-                                              Source="/Resources/Icons/book.png"
-                                              Text="{DynamicResource m_reading_now}"
-                                              Command="{Binding SwitchToTabCommand}"
-                                              CommandParameter="0"/>
+                    <TextBlock Grid.Row="1"
+                               Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                               FontWeight="DemiBold"
+                               Margin="10"
+                               Text="{DynamicResource m_books}"/>
 
-                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
-                                              Source="/Resources/Icons/all_books.png"
-                                              Text="{DynamicResource m_all_books}"
-                                              Command="{Binding SwitchToTabCommand}"
-                                              CommandParameter="1"/>
+                    <!--#region Main menu buttons -->
+                    <StackPanel Grid.Row="2"
+                                Margin="10">
+                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                                          Source="/Resources/Icons/book.png"
+                                                          Text="{DynamicResource m_reading_now}"
+                                                          Command="{Binding SwitchToTabCommand}"
+                                                          CommandParameter="0"/>
 
-                    <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
-                                              Source="/Resources/Icons/search.png"
-                                              Text="{DynamicResource m_search}"
-                                              Command="{Binding SwitchToTabCommand}"
-                                              CommandParameter="2"/>
-                </StackPanel>
-                <!--#endregion-->
+                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                                          Source="/Resources/Icons/all_books.png"
+                                                          Text="{DynamicResource m_all_books}"
+                                                          Command="{Binding SwitchToTabCommand}"
+                                                          CommandParameter="1"/>
 
-                <!--#region Readers diary expander-->
-                <Expander Style="{DynamicResource MainMenuExpander}" 
-                          Header="{DynamicResource m_readers_diary_collection}">
-                    <ItemsControl ItemsSource="{Binding LoadedBooks}">
-                        <ItemsControl.Template>
-                            <ControlTemplate>
+                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                                          Source="/Resources/Icons/search.png"
+                                                          Text="{DynamicResource m_search}"
+                                                          Command="{Binding SwitchToTabCommand}"
+                                                          CommandParameter="2"/>
+                            </StackPanel>
+                    <!--#endregion-->
+
+                    <ScrollViewer Grid.Row="3"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel>
+                            <!--#region Readers diary expander-->
+                            <Expander Style="{DynamicResource MainMenuExpander}" 
+                              Header="{DynamicResource m_readers_diary_collection}">
+                                <ItemsControl ItemsSource="{Binding LoadedBooks}">
+                                    <ItemsControl.Template>
+                                        <ControlTemplate>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                                <StackPanel Orientation="Vertical">
+                                                    <ItemsPresenter/>
+                                                    <TextBlock Foreground="{DynamicResource hint_color}"
+                                                       Text="{DynamicResource m_no_elements}"
+                                                       Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                                </StackPanel>
+                                            </ScrollViewer>
+
+                                        </ControlTemplate>
+                                    </ItemsControl.Template>
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Style="{DynamicResource HintedButton}"
+                                            Content="{Binding Name}"
+                                            ToolTip="{DynamicResource m_readers_diary_button_hint}"
+                                            Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                            <!--#endregion-->
+
+                            <!--#region Collections expander-->
+                            <Expander Style="{DynamicResource MainMenuExpander}" 
+                                      Header="{DynamicResource m_my_collections_collection}">
                                 <StackPanel Orientation="Vertical">
-                                    <ItemsPresenter/>
-                                    <TextBlock Foreground="{DynamicResource hint_color}"
-                                               Text="{DynamicResource m_no_elements}"
-                                               Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </ItemsControl.Template>
+                                    <controls:CollectionsView ItemsSource="{Binding LoadedCollections}"/>
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Style="{DynamicResource HintedButton}"
-                                        Content="{Binding Name}"
-                                        ToolTip="{DynamicResource m_readers_diary_button_hint}"
-                                        Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                        CommandParameter="{Binding}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                                    <Separator/>
 
-                </Expander>
-                <!--#endregion-->
-
-                <!--#region Collections expander-->
-                <Expander Style="{DynamicResource MainMenuExpander}" 
-                          Header="{DynamicResource m_my_collections_collection}">
-                    <StackPanel Orientation="Vertical">
-                            <controls:CollectionsView ItemsSource="{Binding LoadedCollections}"/>
-
-                            <Separator/>
-                        
-                        <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
-                                                  Source="/Resources/Icons/add.png"
-                                                  Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                                  Text="{DynamicResource m_new_collection}">
-                                <controls:ButtonWithImage.CommandParameter>
-                                    <StackPanel Style="{DynamicResource DialogPanel}">
-                                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                    <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                                      Source="/Resources/Icons/add.png"
+                                                      Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                      Text="{DynamicResource m_new_collection}">
+                                        <controls:ButtonWithImage.CommandParameter>
+                                            <StackPanel Style="{DynamicResource DialogPanel}">
+                                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                                    Foreground="{DynamicResource text_color}"
                                                    Margin="0 0 0 20"
                                                    Text="{DynamicResource m_new_collection}"/>
-                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                                <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                                  materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
                                                  materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
                                                  Foreground="{DynamicResource text_color}"
                                                  Margin="0 0 0 15"
                                                  Text="{Binding CollectionName}"/>
-                                        <ListBox ItemsSource="{Binding LoadedBooks}"
+                                                <ListBox ItemsSource="{Binding LoadedBooks}"
                                                  SelectionChanged="ListBox_SelectionChanged"
                                                  Foreground="{DynamicResource text_color}"
                                                  Margin="0 0 0 15"
                                                  DisplayMemberPath="Name"
                                                  SelectionMode="Multiple"/>
 
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
 
-                                            <Button Style="{DynamicResource ReedBooksRaisedButton}"
+                                                    <Button Style="{DynamicResource ReedBooksRaisedButton}"
                                                     HorizontalAlignment="Left"
                                                     Command="{Binding CreateCollectionCommand}"
                                                     Content="{DynamicResource m_create_collection}"/>
-                                            <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
                                                     Grid.Column="1"
                                                     HorizontalAlignment="Right"
                                                     Foreground="{DynamicResource accent_color}"
                                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                     Content="{DynamicResource rd_cancel}"/>
-                                        </Grid>
-                                    </StackPanel>
-                                </controls:ButtonWithImage.CommandParameter>
-                            </controls:ButtonWithImage>
-                    </StackPanel>
-                </Expander>
-                <!--#endregion-->
-            </StackPanel>
-
-            <TabControl Style="{DynamicResource MainTabControl}"
+                                                </Grid>
+                                            </StackPanel>
+                                        </controls:ButtonWithImage.CommandParameter>
+                                    </controls:ButtonWithImage>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+                
+                <TabControl Style="{DynamicResource MainTabControl}"
                         Grid.Column="1"
                         SelectedIndex="{Binding SelectedTab}">
-                <!--#region Reading Now Tab-->
-                <TabItem>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                    <!--#region Reading Now Tab-->
+                    <TabItem>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                    Margin="30"
                                    Text="{DynamicResource m_reading_now}"/>
-                        <Separator Margin="30 0 30 0"/>
-                        <Grid Margin="30 0 0 30">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                            <Separator Margin="30 0 30 0"/>
+                            <Grid Margin="30 0 0 30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                            <!--#region Current reding-->
-                            <StackPanel Grid.Column="0"
+                                <!--#region Current reding-->
+                                <StackPanel Grid.Column="0"
                                         Margin="0 10 10 0"
                                         Orientation="Vertical">
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                            Text="{DynamicResource m_current}"/>
-                                
-                                <ListView Style="{DynamicResource MaterialDesignListView}"
+
+                                    <ListView Style="{DynamicResource MaterialDesignListView}"
                                           Name="CurrentListView"
                                           Foreground="{DynamicResource text_color}"
                                           ItemsSource="{Binding CurrentBooks}"
                                           SelectionChanged="ListView_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                    <TextBlock Text="{DynamicResource m_last_reading_at}"
                                                            Foreground="{DynamicResource accent_color}"/>
-                                            </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                <TextBlock Text="{DynamicResource m_name}"
+                                                </GridViewColumn>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                    <TextBlock Text="{DynamicResource m_name}"
                                                            Foreground="{DynamicResource accent_color}"/>
-                                            </GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
 
-                                <TextBlock Foreground="{DynamicResource hint_color}"
+                                    <TextBlock Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource m_no_current}"
                                            TextWrapping="Wrap"
                                            Visibility="{Binding Items.Count, ElementName=CurrentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
-                            </StackPanel>
-                            <!--#endregion-->
-                            
-                            <!--#region Recently readed-->
-                            <StackPanel Grid.Column="1"
-                                        Orientation="Vertical"
-                                        Margin="0 10 30 0">
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
-                                           Text="{DynamicResource m_recent}"/>
+                                </StackPanel>
+                                <!--#endregion-->
 
-                                <ListView Style="{DynamicResource MaterialDesignListView}"
-                                          Name="RecentListView"
+                                <!--#region Recently readed-->
+                                <StackPanel Grid.Column="1"
+                                            Orientation="Vertical"
+                                            Margin="0 10 30 0">
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                               Text="{DynamicResource m_recent}"/>
+
+                                    <ListView Style="{DynamicResource MaterialDesignListView}"
+                                              Name="RecentListView"
                                           Foreground="{DynamicResource text_color}"
                                           ItemsSource="{Binding RecentBooks}"
                                           SelectionChanged="ListView_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                    <TextBlock Text="{DynamicResource m_last_reading_at}"
                                                            Foreground="{DynamicResource accent_color}"/>
-                                            </GridViewColumn>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                <TextBlock Text="{DynamicResource m_name}"
+                                                </GridViewColumn>
+                                                <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                    <TextBlock Text="{DynamicResource m_name}"
                                                            Foreground="{DynamicResource accent_color}"/>
-                                            </GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
 
-                                <TextBlock Foreground="{DynamicResource hint_color}"
+                                    <TextBlock Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource m_no_recent}"
                                            TextWrapping="Wrap"
                                            Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
-                            </StackPanel>
-                            <!--#endregion-->
-                        </Grid>
-                    </StackPanel>
-                </TabItem>
-                <!--#endregion-->
-                
-                <TabItem>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                                </StackPanel>
+                                <!--#endregion-->
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+                    <!--#endregion-->
 
-                        <StackPanel Grid.Row="0"
+                    <TabItem>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
-                            <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
                                                       Width="300"
                                                       Command="{Binding LoadFileCommand}"
                                                       Source="/Resources/Icons/add.png"
                                                       Text="{DynamicResource m_load_book}"/>
-                            <Separator/>
-                        </StackPanel>
+                                <Separator/>
+                            </StackPanel>
 
-                        <ScrollViewer Style="{DynamicResource BookScrollViewer}">
-                            <ItemsControl Grid.Row="1"
+                            <ScrollViewer Style="{DynamicResource BookScrollViewer}">
+                                <ItemsControl Grid.Row="1"
                                           ItemsSource="{Binding LoadedBooks}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <controls:BookCard Book="{Binding}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </Grid>
-                </TabItem>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:BookCard Book="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
 
-                <TabItem>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                    <TabItem>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0"
+                            <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
-                            <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
                                      TextChanged="TextBox_TextChanged"/>
 
-                            <StackPanel Orientation="Horizontal"
+                                <StackPanel Orientation="Horizontal"
                                         Margin="0 7 0 0">
-                                <TextBlock Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"
+                                    <TextBlock Style="{DynamicResource MaterialDesignSubtitle2TextBlock}"
                                            VerticalAlignment="Center"
                                            Foreground="{DynamicResource hint_color}"
                                            Text="{DynamicResource m_sort}"/>
 
-                                <StackPanel Orientation="Horizontal"
+                                    <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center"
                                             Margin="10 0 0 0">
-                                    <controls:SortButton Icon="SortAlphabeticalAscending"
+                                        <controls:SortButton Icon="SortAlphabeticalAscending"
                                                          Margin="0 0 7 0"
                                                          Command="{Binding SortByNameCommand}"
                                                          ToolTip="{DynamicResource m_sort_by_name_a-z}"/>
 
-                                    <controls:SortButton Icon="SortAlphabeticalDescending"
+                                        <controls:SortButton Icon="SortAlphabeticalDescending"
                                                          Command="{Binding SortByNameDescendingCommand}"
                                                          ToolTip="{DynamicResource m_sort_by_name_z-a}"/>
 
-                                    <controls:SortButton Icon="SortCalendarAscending"
+                                        <controls:SortButton Icon="SortCalendarAscending"
                                                          Margin="20 0 7 0"
                                                          Command="{Binding SortByLastReadingDateCommand}"
                                                          ToolTip="{DynamicResource m_sort_by_last_reading_date}"/>
 
-                                    <controls:SortButton Icon="SortCalendarDescending"
+                                        <controls:SortButton Icon="SortCalendarDescending"
                                                          Command="{Binding SortByLastReadingDateDescendingCommand}"
                                                          ToolTip="{DynamicResource m_sort_by_last_reading_date_descending}"/>
+                                    </StackPanel>
                                 </StackPanel>
+
+                                <Separator Margin="0 10 0 0"/>
                             </StackPanel>
 
-                            <Separator Margin="0 10 0 0"/>
-                        </StackPanel>
-
-                        <ScrollViewer Style="{DynamicResource BookScrollViewer}">
-                            <ItemsControl Grid.Row="1"
+                            <ScrollViewer Style="{DynamicResource BookScrollViewer}">
+                                <ItemsControl Grid.Row="1"
                                           ItemsSource="{Binding SearchedBooks}">
-                                <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                        <controls:BookCard Book="{Binding}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </ScrollViewer>
-                    </Grid>
-                </TabItem>
-            </TabControl>
-        </Grid>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:BookCard Book="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Style="{DynamicResource BookWrapPanel}"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </Grid>
         </materialDesign:DialogHost>
-        
     </Grid>
 </Window>
