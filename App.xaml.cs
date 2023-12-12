@@ -91,7 +91,8 @@ namespace ReedBooks
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             var dialog = new DialogWindow(Current.Resources["dialog_error_title"].ToString(),
-                Current.Resources["dialog_fatal_error_content"].ToString() + ' ' + e.Exception.Message);
+                Current.Resources["dialog_fatal_error_content"].ToString() + ' ' + e.Exception.Message,
+                Visibility.Hidden);
             dialog.ShowDialog();
             e.Handled = true;
         }

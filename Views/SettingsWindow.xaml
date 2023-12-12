@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_settings_window}" Width="800">
     <Window.DataContext>
         <local:SettingsWindowViewModel/>

@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using System.Windows;
 
 namespace ReedBooks.ViewModels
 {
@@ -26,14 +27,14 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private bool _dialogResult;
-        public bool DialogResult
+        private Visibility _showCancel;
+        public Visibility ShowCancel
         {
-            get => _dialogResult;
+            get => _showCancel;
             set
             {
-                _dialogResult = value;
-                OnPropertyChanged(nameof(DialogResult));
+                _showCancel = value;
+                OnPropertyChanged(nameof(ShowCancel));
             }
         }
 
@@ -42,10 +43,11 @@ namespace ReedBooks.ViewModels
 
         }
 
-        public DialogWindowViewModel(string title, string content) 
+        public DialogWindowViewModel(string title, string content, Visibility showCancel) 
         {
             Title = title;
             Content = content;
+            ShowCancel = showCancel;
         }
     }
 }

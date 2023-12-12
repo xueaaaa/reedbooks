@@ -134,7 +134,8 @@ namespace ReedBooks.ViewModels
                 DialogHost.Close("ReadingDiaryDialog");
             }
             else
-                new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(), Application.Current.Resources["dialog_null_quote_content"].ToString())
+                new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(), 
+                    Application.Current.Resources["dialog_null_quote_content"].ToString(), Visibility.Hidden)
                     .ShowDialog();
         }
 

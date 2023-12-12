@@ -10,6 +10,7 @@
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         mc:Ignorable="d"
         AllowDrop="True"
+        WindowStartupLocation="CenterScreen"
         Drop="Window_Drop"
         Title="{DynamicResource h_main_window}" Height="600" Width="1000">
     <Window.DataContext>

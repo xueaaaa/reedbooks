@@ -4,12 +4,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
         SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_dialog_window}" MaxHeight="400" MaxWidth="600">
     <Window.DataContext>
         <local:DialogWindowViewModel/>
@@ -42,6 +42,7 @@
                             Click="Button_Click"
                             Content="{DynamicResource d_acept_button}"/>
                     <Button Style="{StaticResource ReedBooksOutlinedButton}"
+                            Visibility="{Binding ShowCancel}"
                             DockPanel.Dock="Right"
                             HorizontalAlignment="Right"
                             IsCancel="True"

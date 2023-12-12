@@ -217,7 +217,7 @@ namespace ReedBooks.ViewModels
                     if (Path.GetExtension(file) != ".epub")
                     {
                         var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
-                            Application.Current.Resources["dialog_not_epub_content"].ToString());
+                            Application.Current.Resources["dialog_not_epub_content"].ToString(), Visibility.Hidden);
                         dW.ShowDialog();
 
                         return;
@@ -347,7 +347,7 @@ namespace ReedBooks.ViewModels
             if(SelectedCollectionBooks.Count == 0 || CollectionName == string.Empty)
             {
                 var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
-                    Application.Current.Resources["dialog_null_collection_content"].ToString());
+                    Application.Current.Resources["dialog_null_collection_content"].ToString(), Visibility.Hidden);
                 dW.ShowDialog();
                 return;
             }

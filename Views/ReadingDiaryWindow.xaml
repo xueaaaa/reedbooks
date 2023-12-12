@@ -10,6 +10,7 @@
         xmlns:converters="clr-namespace:ReedBooks.Converters"
         mc:Ignorable="d"
         MinWidth="800"
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_diary_window}">
 	<Window.DataContext>
 		<local:ReadingDiaryWindowViewModel/>

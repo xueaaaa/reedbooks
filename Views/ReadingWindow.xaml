@@ -8,6 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
     <Window.DataContext>
         <local:ReadingWindowViewModel/>

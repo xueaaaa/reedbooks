@@ -8,6 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_edit_collection_window}" ResizeMode="CanResize" WindowStyle="ToolWindow">
     <Window.DataContext>
         <local:EditCollectionViewModel/>

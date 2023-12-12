@@ -84,7 +84,7 @@ namespace ReedBooks.ViewModels
             await Collection.UpdateAsync();
 
             var dW = new DialogWindow(Application.Current.Resources["dialog_success_title"].ToString(),
-                    Application.Current.Resources["dialog_success_content"].ToString());
+                    Application.Current.Resources["dialog_success_content"].ToString(), Visibility.Hidden);
                 dW.ShowDialog();
         }
     }
