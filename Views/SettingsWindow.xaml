@@ -145,6 +145,17 @@
                                                     Command="{Binding DeleteAllBooksCommand}"/>
                                         </controls:SettingsParameter.ValueSelector>
                                     </controls:SettingsParameter>
+
+                                    <Separator Margin="10"/>
+
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_summary_size_label}"
+                                                                ParameterHint="{DynamicResource s_summary_size_label}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <TextBlock Foreground="{DynamicResource accent_color}"
+                                                       HorizontalAlignment="Right"
+                                                       Text="{Binding SummarySizeString}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
                                 </StackPanel>
                             </Expander>
                             <!--#endregion-->

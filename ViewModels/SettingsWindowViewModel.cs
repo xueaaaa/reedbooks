@@ -1,11 +1,9 @@
 ﻿using ReedBooks.Core;
-using ReedBooks.Core.Version;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using Version = ReedBooks.Core.Version.Version;
@@ -180,6 +178,11 @@ namespace ReedBooks.ViewModels
             get => Version.Local;
         }
 
+        public string SummarySizeString
+        {
+            get => $"~{Math.Round(App.StorageManager.SummarySize, 1)} {Application.Current.Resources["megabytes"]}";
+        }
+
         public string DeleteUnusedFilesHint
         {
             get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
@@ -223,6 +226,7 @@ namespace ReedBooks.ViewModels
         {
             App.StorageManager.DeleteUnusedFiles();
             OnPropertyChanged(nameof(DeleteUnusedFilesHint));
+            OnPropertyChanged(nameof(SummarySizeString));
         }
 
         public void DeleteAllBooks()

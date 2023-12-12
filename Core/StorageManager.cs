@@ -36,6 +36,22 @@ namespace ReedBooks.Core
         }
 
         /// <summary>
+        /// Returns the amount of memory occupied by the program, in MB
+        /// </summary>
+        public double SummarySize
+        {
+            get
+            {
+                double size = 0;
+
+                foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory()))
+                    size += (new FileInfo(file).Length) / Math.Pow(1024, 2);
+
+                return size;
+            }
+        }
+
+        /// <summary>
         /// Deletes all files no longer used by the program
         /// </summary>
         public void DeleteUnusedFiles()
@@ -59,6 +75,7 @@ namespace ReedBooks.Core
         public async void DeleteAllBooks()
         {
             App.ApplicationContext.RemoveRange(App.ApplicationContext.Books);
+            App.ApplicationContext.RemoveRange(App.ApplicationContext.Collections);
             await App.ApplicationContext.SaveChangesAsync();
         }
 
