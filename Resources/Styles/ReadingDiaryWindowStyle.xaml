@@ -24,6 +24,7 @@
         <Setter Property="Max" Value="5"/>
         <Setter Property="ValueIncrements" Value="0.5"/>
         <Setter Property="Background" Value="{DynamicResource hint_color}"/>
+        <Setter Property="IsPreviewValueEnabled" Value="True"/>
     </Style>
 
     <Style x:Key="DialogPanel"

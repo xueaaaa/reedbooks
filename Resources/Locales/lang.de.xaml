@@ -34,6 +34,7 @@
     <v:String x:Key="m_sort_by_last_reading_date_descending">Nach letztem Lesedatum sortieren (ältestes zuerst)</v:String>
     <v:String x:Key="m_genre">Genre:</v:String>
     <v:String x:Key="m_chapters_count">Anzahl der Kapitel:</v:String>
+    <v:String x:Key="m_your_rating">Ihre Bewertung:</v:String>
     <v:String x:Key="m_read">Lesen</v:String>
     <!--#endregion-->
 
@@ -156,6 +157,9 @@
 
     <v:String x:Key="dialog_delete_all_books_title">Lösche alle Bücher</v:String>
     <v:String x:Key="dialog_delete_all_books_content">Sind Sie sicher, dass Sie alle Bücher löschen wollen? Diese Aktion kann nicht rückgängig gemacht werden.</v:String>
+
+    <v:String x:Key="dialog_success_title">Erfolgreich!</v:String>
+    <v:String x:Key="dialog_success_content">Erfolgreich.</v:String>
 
     <v:String x:Key="genre_fantasy">Fantasy</v:String>
     <v:String x:Key="genre_detective">Detective</v:String>

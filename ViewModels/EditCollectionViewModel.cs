@@ -73,15 +73,19 @@ namespace ReedBooks.ViewModels
         {
             if (SelectedCollectionBooks.Count == 0 || CollectionName == string.Empty)
             {
-                var dW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
+                var eDW = new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
                     Application.Current.Resources["dialog_null_collection_content"].ToString());
-                dW.ShowDialog();
+                eDW.ShowDialog();
                 return;
             }
 
             Collection.Name = CollectionName;
             Collection.LinkedBooks = SelectedCollectionBooks.Select(c => c.Guid.ToString()).ToList();
             await Collection.UpdateAsync();
+
+            var dW = new DialogWindow(Application.Current.Resources["dialog_success_title"].ToString(),
+                    Application.Current.Resources["dialog_success_content"].ToString());
+                dW.ShowDialog();
         }
     }
 }

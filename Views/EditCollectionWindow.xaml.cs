@@ -13,6 +13,9 @@ namespace ReedBooks.Views
         {
             InitializeComponent();
             DataContext = new EditCollectionViewModel(collection, loadedBooks);
+
+            foreach (var item in collection.RepresentedAsBook)
+                ListBox.SelectedItems.Add(item);
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

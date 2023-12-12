@@ -29,6 +29,8 @@
                          Text="{Binding CollectionName}"/>
 
                 <ListBox ItemsSource="{Binding LoadedBooks}"
+                         Name="ListBox"
+                         Foreground="{DynamicResource text_color}"
                          SelectionChanged="ListBox_SelectionChanged"
                          DisplayMemberPath="Name"
                          SelectionMode="Multiple"/>

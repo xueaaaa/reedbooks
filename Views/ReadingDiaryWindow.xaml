@@ -8,7 +8,6 @@
 	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:converters="clr-namespace:ReedBooks.Converters"
-	    xmlns:e="clr-namespace:ReedBooks.Models.Assessment"
         mc:Ignorable="d"
         MinWidth="800"
         Title="{DynamicResource h_reading_diary_window}">

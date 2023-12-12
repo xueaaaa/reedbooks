@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:ReedBooks.Views.Controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Name="Card"
         CornerRadius="{DynamicResource CornerRadius}"
         Width="300"
@@ -48,6 +49,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <!--#region Properties Titles-->
@@ -59,6 +61,10 @@
                            Grid.Column="0"
                            Grid.Row="1"
                            Text="{DynamicResource m_chapters_count}"/>
+                <TextBlock Style="{DynamicResource PropertyTitle}"
+                           Grid.Column="0"
+                           Grid.Row="2"
+                           Text="{DynamicResource m_your_rating}"/>
                 <!--#endregion-->
 
                 <!--#region Properties Values-->
@@ -73,8 +79,14 @@
                            Grid.Row="1"
                            HorizontalAlignment="Left"
                            Text="{Binding ElementName=Card, Path=Book.ChaptersCount}"/>
+                <materialDesign:RatingBar Grid.Column="1"
+                                          Grid.Row="2"
+                                          HorizontalAlignment="Left"
+                                          IsReadOnly="True"
+                                          Value="{Binding ElementName=Card, Path=Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
+                                          Background="{DynamicResource hint_color}"/>
                 <!--#endregion-->
-            </Grid>
+                </Grid>
         </StackPanel>
 
         <Grid Grid.Row="2"
