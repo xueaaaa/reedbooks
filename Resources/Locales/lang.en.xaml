@@ -84,6 +84,7 @@
     <v:String x:Key="s_delete_unused_files_label">Delete Unused Files</v:String>
     <v:String x:Key="s_delete_unused_files_hint">When books are deleted from the application, some of their files may still remain in directories. Total size of unused files:</v:String>
     <v:String x:Key="s_delete">Delete</v:String>
+    <v:String x:Key="s_summary_size_label">ReedBooks occupies space on the computer in total</v:String>
     <v:String x:Key="s_version_header">Relevance and Updates</v:String>
     <v:String x:Key="s_update_automatically_label">Update Automatically</v:String>
     <v:String x:Key="s_update_automatically_hint">Do not ask for permission to install when a new update is detected.</v:String>

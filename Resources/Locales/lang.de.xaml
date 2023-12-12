@@ -84,6 +84,7 @@
     <v:String x:Key="s_delete_unused_files_label">Nicht verwendete Dateien löschen</v:String>
     <v:String x:Key="s_delete_unused_files_hint">Beim Löschen von Büchern aus der Anwendung können einige ihrer Dateien in den Verzeichnissen verbleiben. Gesamtgröße der nicht verwendeten Dateien:</v:String>
     <v:String x:Key="s_delete">Löschen</v:String>
+    <v:String x:Key="s_summary_size_label">Insgesamt belegt ReedBooks Platz auf dem Computer</v:String>
     <v:String x:Key="s_version_header">Aktualität und Aktualisierungen</v:String>
     <v:String x:Key="s_update_automatically_label">Automatisch aktualisieren</v:String>
     <v:String x:Key="s_update_automatically_hint">Keine Erlaubnis zur Installation bei Erkennung eines neuen Updates anfordern.</v:String>

@@ -51,22 +51,28 @@ namespace ReedBooks.Core.Version
             Revision = revision;
         }
 
-        public static bool operator >(Version a, Version b)
+        public int CompareTo(Version other)
         {
-            if (a.Major > b.Major) return true;
-            else if (a.Minor > b.Minor) return true;
-            else if(a.Patch > b.Patch) return true;
-            else if(a.Revision > b.Revision) return true;
-            else return false;
+            if (Major != other.Major)
+                return Major.CompareTo(other.Major);
+
+            if (Minor != other.Minor)
+                return Minor.CompareTo(other.Minor);
+
+            if (Patch != other.Patch)
+                return Patch.CompareTo(other.Patch);
+
+            return Revision.CompareTo(other.Revision);
         }
 
-        public static bool operator <(Version a, Version b)
+        public static bool operator >(Version version1, Version version2)
         {
-            if (a.Major < b.Major) return true;
-            else if (a.Minor < b.Minor) return true;
-            else if (a.Patch < b.Patch) return true;
-            else if (a.Revision < b.Revision) return true;
-            else return false;
+            return version1.CompareTo(version2) > 0;
+        }
+
+        public static bool operator <(Version version1, Version version2)
+        {
+            return version1.CompareTo(version2) < 0;
         }
 
         public override string ToString()

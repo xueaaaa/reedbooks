@@ -28,7 +28,7 @@ namespace ReedBooks.Core.Version
         /// <returns>true if there is a newer version, false otherwise</returns>
         public bool CheckForUpdates()
         {
-            if (_localVersion < _currentVersion) return true;
+            if (_currentVersion > _localVersion) return true;
             else return false;
         }
 
