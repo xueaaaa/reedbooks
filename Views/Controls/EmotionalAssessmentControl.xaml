@@ -59,9 +59,22 @@
                      IsChecked="{Binding ElementName=StackPanel, Path=Emote, Converter={StaticResource emoteToBoolConverter}, ConverterParameter={x:Static e:Emote.Happyness}}"
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Happyness}"
-                     ToolTip="{DynamicResource rd_happyness}">
+                     ToolTip="{DynamicResource rd_happiness}">
             <materialDesign:PackIcon Kind="EmoticonExcitedOutline"
                                      Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
+        </RadioButton>
+
+        <Rectangle Margin="5"
+                   VerticalAlignment="Stretch" 
+                   Fill="{DynamicResource hint_color}" 
+                   Width="0.5"/>
+
+        <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
+                     Foreground="{DynamicResource accent_color}"
+                     Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
+                     CommandParameter="{x:Static e:Emote.None}"
+                     ToolTip="{DynamicResource rd_reset_emotion}">
+            <materialDesign:PackIcon Kind="Reload"/>
         </RadioButton>
     </StackPanel>
 </StackPanel>

@@ -117,7 +117,8 @@
     <v:String x:Key="rd_amazement">Удивление</v:String>
     <v:String x:Key="rd_indifference">Безразличие</v:String>
     <v:String x:Key="rd_interesting">Заинтересованность</v:String>
-    <v:String x:Key="rd_happyness">Счастье</v:String>
+    <v:String x:Key="rd_happiness">Счастье</v:String>
+    <v:String x:Key="rd_reset_emotion">Сбросить выбранное</v:String>
     <v:String x:Key="rd_assessment">Оценка</v:String>
     <v:String x:Key="rd_plot_originality">Оригинальность сюжета</v:String>
     <v:String x:Key="rd_characters">Персонажи</v:String>

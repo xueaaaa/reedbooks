@@ -118,6 +118,7 @@
     <v:String x:Key="rd_indifference">Gleichgültigkeit</v:String>
     <v:String x:Key="rd_interesting">Interesse</v:String>
     <v:String x:Key="rd_happiness">Glück</v:String>
+    <v:String x:Key="rd_reset_emotion">Ausgewählte zurücksetzen</v:String>
     <v:String x:Key="rd_assessment">Bewertung</v:String>
     <v:String x:Key="rd_plot_originality">Originalität der Handlung</v:String>
     <v:String x:Key="rd_characters">Charaktere</v:String>

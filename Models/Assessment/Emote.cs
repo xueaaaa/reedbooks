@@ -2,6 +2,7 @@
 {
     public enum Emote
     {
+        None,
         Sadness,
         Amazement,
         Indifference,

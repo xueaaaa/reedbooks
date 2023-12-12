@@ -118,6 +118,7 @@
     <v:String x:Key="rd_indifference">Indiferencia</v:String>
     <v:String x:Key="rd_interesting">Interés</v:String>
     <v:String x:Key="rd_happiness">Felicidad</v:String>
+    <v:String x:Key="rd_reset_emotion">Reiniciar seleccionado</v:String>
     <v:String x:Key="rd_assessment">Calificación</v:String>
     <v:String x:Key="rd_plot_originality">Originalidad del argumento</v:String>
     <v:String x:Key="rd_characters">Personajes</v:String>
