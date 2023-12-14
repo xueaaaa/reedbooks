@@ -22,6 +22,9 @@ namespace ReedBooks
         
         public App()
         {
+            SplashScreen splashScreen = new SplashScreen("\\Resources\\splash.png");
+            splashScreen.Show(true);
+
             StorageManager = new StorageManager();
             Updater = new Updater();    
             StorageManager.EnsureCreated();
