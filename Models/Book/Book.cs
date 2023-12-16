@@ -198,24 +198,12 @@ namespace ReedBooks.Models.Book
         /// Loads a chapter from epub
         /// </summary>
         /// <param name="contentFilePath">Title of the chapter's html file</param>
-        /// <returns>FlowDocument containing the formatted text of the chapter</returns>
-        public FlowDocument LoadChapter(string contentFilePath)
+        /// <returns>HtmlPanel containing the formatted text of the chapter</returns>
+        public string LoadChapter(string contentFilePath)
         {
             var book = GetEpub();
             var content = book.ReadingOrder.Where(c => c.FilePath == contentFilePath).First();
-            var html = new HtmlPanel();
-            html.Text = content.Content;
-
-            var background = (Color)ColorConverter.ConvertFromString(Application.Current.Resources["book_background_color"].ToString());
-            html.Background = new SolidColorBrush(background);
-
-            html.PreviewMouseDown += (sender, e) => e.Handled = true;
-
-            var uiContainer = new BlockUIContainer(html);
-            var flowDoc = new FlowDocument();
-            flowDoc.Blocks.Add(uiContainer);
-
-            return flowDoc;
+            return content.Content;
         }
 
         /// <summary>
@@ -239,6 +227,11 @@ namespace ReedBooks.Models.Book
         public void SetStartReadingDate()
         {
             if (BoundDiary.BeginReadingAt == DateTime.MinValue) BoundDiary.BeginReadingAt = DateTime.Now;
+        }
+
+        public void SetLastReadingDate()
+        {
+            BoundDiary.LastReadingAt = DateTime.Now;
         }
 
         public void MarkAsRead()

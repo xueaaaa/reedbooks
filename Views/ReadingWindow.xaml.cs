@@ -1,6 +1,7 @@
 ﻿using ReedBooks.Models.Book;
 using ReedBooks.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ReedBooks.Views
 {
@@ -12,7 +13,12 @@ namespace ReedBooks.Views
 
             DataContext = new ReadingWindowViewModel(readingBook);
             readingBook.SetStartReadingDate();
-            readingBook.BoundDiary.SetLastReadingDate();
+            readingBook.SetLastReadingDate();
+        }
+
+        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ((ReadingWindowViewModel)DataContext).ScrollOffset = e.VerticalOffset;
         }
     }
 }

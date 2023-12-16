@@ -7,6 +7,7 @@
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
+        xmlns:htmlPanel="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
@@ -73,11 +74,14 @@
                 </Grid>
 
                 <GridSplitter Grid.Column="1"
-                          Style="{DynamicResource ReedBooksGridSplitter}"/>
+                              Style="{DynamicResource ReedBooksGridSplitter}"/>
 
-                <FlowDocumentScrollViewer Grid.Column="2"
-                                      IsToolBarVisible="True"
-                                      Document="{Binding SelectedFlowDocument}"/>
+                <ScrollViewer Grid.Column="2"
+                              VerticalScrollBarVisibility="Auto"
+                              ScrollChanged="ScrollViewer_ScrollChanged">
+                    <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
+                                         Background="{DynamicResource book_background_color}"/>
+                </ScrollViewer>
             </Grid>
         </materialDesign:DialogHost>
     </Grid>

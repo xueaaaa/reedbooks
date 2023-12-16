@@ -116,10 +116,5 @@ namespace ReedBooks.Models.Diary
             _quotes = new ObservableCollection<Quote>();
             _readingIsOver = false;
         }
-
-        public void SetLastReadingDate()
-        {
-            LastReadingAt = DateTime.Now;
-        }
     }
 }

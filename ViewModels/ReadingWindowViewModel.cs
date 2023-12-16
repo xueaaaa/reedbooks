@@ -4,7 +4,6 @@ using ReedBooks.Models.Book;
 using ReedBooks.Views;
 using ReedBooks.Views.Controls;
 using System.Collections.Generic;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
@@ -22,17 +21,28 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private FlowDocument _selectedFlowDocument;
-        public FlowDocument SelectedFlowDocument
+        private string _selectedChapterHtml;
+        public string SelectedChapterHtml
         {
-            get => _selectedFlowDocument;
+            get => _selectedChapterHtml;
             set
             {
                 if(value != null)
                 {
-                    _selectedFlowDocument = value;
-                    OnPropertyChanged(nameof(SelectedFlowDocument));
+                    _selectedChapterHtml = value;
+                    OnPropertyChanged(nameof(SelectedChapterHtml));
                 }
+            }
+        }
+
+        private double _scrollOffset;
+        public double ScrollOffset
+        {
+            get => _scrollOffset;
+            set
+            {
+                _scrollOffset = value;
+                OnPropertyChanged(nameof(ScrollOffset));
             }
         }
 
@@ -67,7 +77,7 @@ namespace ReedBooks.ViewModels
         public void MoveToAnotherDocument(object param)
         {
             var document = Book.LoadChapter(param.ToString());
-            SelectedFlowDocument = document;
+            SelectedChapterHtml = document;
         }
 
         public void MarkAsRead(object param)
