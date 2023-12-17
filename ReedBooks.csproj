@@ -235,6 +235,8 @@
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Converters\EmoteToBoolConverter.cs" />
     <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
+    <Compile Include="Core\Theme\Theme.cs" />
+    <Compile Include="Core\Theme\ThemeController.cs" />
     <Compile Include="Core\Version\GitHubVersion.cs" />
     <Compile Include="Core\Version\Updater.cs" />
     <Compile Include="Core\Version\Version.cs" />

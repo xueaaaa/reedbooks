@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Core.Theme;
 using ReedBooks.Core.Version;
 using ReedBooks.Properties;
 using ReedBooks.Views;
@@ -19,6 +20,7 @@ namespace ReedBooks
         public static AppContext ApplicationContext { get; private set; }
         public static StorageManager StorageManager { get; private set; }
         public static Updater Updater { get; private set; }
+        public static ThemeController ThemeController { get; private set; }
         
         public App()
         {
@@ -27,6 +29,7 @@ namespace ReedBooks
 
             StorageManager = new StorageManager();
             Updater = new Updater();    
+            ThemeController = new ThemeController();
             StorageManager.EnsureCreated();
 
             ApplicationContext = new AppContext();
