@@ -263,9 +263,6 @@
     <Compile Include="Views\Controls\BookCard.xaml.cs">
       <DependentUpon>BookCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\BookView.xaml.cs">
-      <DependentUpon>BookView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\ButtonWithImage.xaml.cs">
       <DependentUpon>ButtonWithImage.xaml</DependentUpon>
     </Compile>
@@ -411,10 +408,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\BookCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\BookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

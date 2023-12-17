@@ -22,7 +22,8 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-                <ScrollViewer Grid.Row="0">
+                <ScrollViewer Grid.Row="0"
+                              VerticalScrollBarVisibility="Auto">
                     <Grid Margin="40">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -195,7 +196,7 @@
                     </Grid>
                 </ScrollViewer>
 
-                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignRaisedButton}"
+                <controls:ButtonWithImage Style="{DynamicResource ReedBooksRaisedButton}"
                                           Grid.Row="1"
                                           Margin="20"
                                           HorizontalAlignment="Center"
