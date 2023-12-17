@@ -139,8 +139,8 @@
     <!--#endregion-->
 
     <!--#region SPECIAL STRINGS -->
-    <v:String x:Key="theme_light">Light</v:String>
-    <v:String x:Key="theme_dark">Dark</v:String>
+    <v:String x:Key="light">Light</v:String>
+    <v:String x:Key="dark">Dark</v:String>
 
     <v:String x:Key="megabytes">MB</v:String>
 

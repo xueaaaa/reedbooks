@@ -63,15 +63,15 @@ namespace ReedBooks.ViewModels
 
                     var lightTheme = new SettingsParameterViewModel
                     {
-                        DisplayName = Application.Current.Resources[App.LIGHT_THEME_NAME].ToString(),
-                        Tag = App.LIGHT_THEME_NAME
+                        DisplayName = Application.Current.Resources["light"].ToString(),
+                        Tag = "light"
                     };
                     themes.Add(lightTheme);
 
                     var darkTheme = new SettingsParameterViewModel
                     {
-                        DisplayName = Application.Current.Resources[App.DARK_THEME_NAME].ToString(),
-                        Tag = App.DARK_THEME_NAME
+                        DisplayName = Application.Current.Resources["dark"].ToString(),
+                        Tag = "dark"
                     };
                     themes.Add(darkTheme);
 

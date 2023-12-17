@@ -5,6 +5,7 @@ using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
@@ -14,9 +15,6 @@ namespace ReedBooks
 {
     public partial class App : Application
     {
-        public const string LIGHT_THEME_NAME = "theme_light";
-        public const string DARK_THEME_NAME = "theme_dark";
-
         public static AppContext ApplicationContext { get; private set; }
         public static StorageManager StorageManager { get; private set; }
         public static Updater Updater { get; private set; }
@@ -50,7 +48,7 @@ namespace ReedBooks
             var old = Current.Resources.MergedDictionaries.Where(a => a.Source.OriginalString.EndsWith("theme.xaml")).First();
             Current.Resources.MergedDictionaries.Remove(old);
             ResourceDictionary ne = new ResourceDictionary();
-            ne.Source = new Uri($"Resources/Themes/{themeName}.theme.xaml", UriKind.Relative);
+            ne.Source = new Uri($"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\{themeName}.theme.xaml", UriKind.Absolute);
             Current.Resources.MergedDictionaries.Add(ne);
         }
 
@@ -82,10 +80,10 @@ namespace ReedBooks
             var theme = Settings.Default.Theme;
             switch (theme)
             {
-                case LIGHT_THEME_NAME:
+                case "light":
                     ChangeTheme("light");
                     break;
-                case DARK_THEME_NAME:
+                case "dark":
                     ChangeTheme("dark");
                     break;
                 default:

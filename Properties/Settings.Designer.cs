@@ -37,7 +37,7 @@ namespace ReedBooks.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("theme_light")]
+        [global::System.Configuration.DefaultSettingValueAttribute("light")]
         public string Theme {
             get {
                 return ((string)(this["Theme"]));

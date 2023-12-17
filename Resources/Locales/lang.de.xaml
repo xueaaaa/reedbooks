@@ -139,8 +139,8 @@
     <!--#endregion-->
 
     <!--#region SPEZIALZEICHEN -->
-    <v:String x:Key="theme_light">Hell</v:String>
-    <v:String x:Key="theme_dark">Dunkel</v:String>
+    <v:String x:Key="light">Hell</v:String>
+    <v:String x:Key="dark">Dunkel</v:String>
 
     <v:String x:Key="megabytes">MB</v:String>
 
