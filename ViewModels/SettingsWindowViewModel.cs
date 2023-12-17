@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Core.Theme;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -57,28 +58,12 @@ namespace ReedBooks.ViewModels
         {
             get
             {
-                if (_themes == null)
-                {
-                    var themes = new ObservableCollection<SettingsParameterViewModel>();
-
-                    var lightTheme = new SettingsParameterViewModel
-                    {
-                        DisplayName = Application.Current.Resources["light"].ToString(),
-                        Tag = "light"
-                    };
-                    themes.Add(lightTheme);
-
-                    var darkTheme = new SettingsParameterViewModel
-                    {
-                        DisplayName = Application.Current.Resources["dark"].ToString(),
-                        Tag = "dark"
-                    };
-                    themes.Add(darkTheme);
-
-                    _themes = themes;
-                }
-                
                 return _themes;
+            }
+            set 
+            {
+                _themes = value;
+                OnPropertyChanged(nameof(Themes));
             }
         }
 
@@ -120,28 +105,6 @@ namespace ReedBooks.ViewModels
         {
             get
             {
-                if (_tabs == null)
-                {
-                    _tabs = new ObservableCollection<SettingsParameterViewModel>
-                    {
-                        new SettingsParameterViewModel
-                        {
-                            DisplayName = Application.Current.Resources["m_reading_now"].ToString(),
-                            Tag = "0"
-                        },
-                        new SettingsParameterViewModel
-                        {
-                            DisplayName = Application.Current.Resources["m_all_books"].ToString(),
-                            Tag = "1"
-                        },
-                        new SettingsParameterViewModel
-                        {
-                            DisplayName = Application.Current.Resources["m_search"].ToString(),
-                            Tag = "2"
-                        }
-                    };
-                }
-
                 return _tabs;
             }
             set
@@ -198,28 +161,39 @@ namespace ReedBooks.ViewModels
             DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
             DeleteAllBooksCommand = new RelayCommand(obj => DeleteAllBooks());
 
+            Themes = App.ThemeController.LoadInternal();
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
-            SelectedTab = Tabs.Where(t => t.Tag == Convert.ToString(Properties.Settings.Default.DefaultTab)).First();
+            ReloadTabs();
         }
 
         public void Save()
         {
-            if (_selectedLanguage != null) Properties.Settings.Default.Language = new CultureInfo(_selectedLanguage.Tag);
-            if (_selectedTheme != null) Properties.Settings.Default.Theme = _selectedTheme.Tag;
+            if (_selectedLanguage != null) 
+            {
+                var info = new CultureInfo(_selectedLanguage.Tag);
+                Properties.Settings.Default.Language = info;
+                Localizator.CurrentLanguage = info;
+            }
+            if (_selectedTheme != null) 
+            { 
+                Properties.Settings.Default.Theme = _selectedTheme.Tag;
+                App.ThemeController.ChangeTheme(_selectedTheme.Tag);
+            }
             if (_selectedCurrentCountedDays != 0) Properties.Settings.Default.CurrentCountedDays = _selectedCurrentCountedDays;
             if (_recentBooksNumberDisplaying != 0) Properties.Settings.Default.RecentBooksNumberDisplaying = _recentBooksNumberDisplaying;
             if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
 
+            Themes = App.ThemeController.LoadInternal();
+            SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
+            ReloadTabs();
+            OnPropertyChanged(nameof(SummarySizeString));
+            OnPropertyChanged(nameof(DeleteUnusedFilesHint));
+
             Properties.Settings.Default.Save();
-
-            var dW = new DialogWindow(Application.Current.Resources["dialog_settings_title"].ToString(),
-                Application.Current.Resources["dialog_settings_content"].ToString());
-
-            if (dW.ShowDialog() == true) App.Restart();
         }
 
         public void DeleteUnusedFiles()
@@ -239,6 +213,30 @@ namespace ReedBooks.ViewModels
                 App.StorageManager.DeleteAllBooks();
                 App.Restart();
             }
+        }
+
+        private void ReloadTabs()
+        {
+            Tabs = new ObservableCollection<SettingsParameterViewModel>
+            {
+                new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["m_reading_now"].ToString(),
+                    Tag = "0"
+                },
+                new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["m_all_books"].ToString(),
+                    Tag = "1"
+                },
+                new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["m_search"].ToString(),
+                    Tag = "2"
+                }
+            };
+
+            SelectedTab = Tabs.Where(t => t.Tag == Convert.ToString(Properties.Settings.Default.DefaultTab)).First();
         }
     }
 }

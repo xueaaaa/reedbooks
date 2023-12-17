@@ -40,7 +40,7 @@ namespace ReedBooks.Core
                 Thread.CurrentThread.CurrentUICulture = value;
                 ResourceDictionary dictionary = new ResourceDictionary();
 
-                if(value == Properties.Settings.Default.DefaultLanguage)
+                if(value.TwoLetterISOLanguageName == Properties.Settings.Default.DefaultLanguage.TwoLetterISOLanguageName)
                     dictionary.Source = new Uri("Resources/Locales/lang.xaml", UriKind.Relative);
                 else
                     dictionary.Source = new Uri($"Resources/Locales/lang.{value.Name}.xaml", UriKind.Relative);

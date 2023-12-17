@@ -5,8 +5,6 @@ using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using AppContext = ReedBooks.Core.AppContext;
@@ -19,14 +17,14 @@ namespace ReedBooks
         public static StorageManager StorageManager { get; private set; }
         public static Updater Updater { get; private set; }
         public static ThemeController ThemeController { get; private set; }
-        
+
         public App()
         {
             SplashScreen splashScreen = new SplashScreen("\\Resources\\splash.png");
             splashScreen.Show(true);
 
             StorageManager = new StorageManager();
-            Updater = new Updater();    
+            Updater = new Updater();
             ThemeController = new ThemeController();
             StorageManager.EnsureCreated();
 
@@ -37,19 +35,6 @@ namespace ReedBooks
             Localizator.AddLang(new CultureInfo("es-ES"));
             Localizator.AddLang(new CultureInfo("de"));
             Localizator.LanguageChanged += App_LanguageChanged;
-        }
-
-        /// <summary>
-        /// Changes the color theme of the application
-        /// </summary>
-        /// <param name="themeName">Theme name ("light" or "dark")</param>
-        public void ChangeTheme(string themeName)
-        {
-            var old = Current.Resources.MergedDictionaries.Where(a => a.Source.OriginalString.EndsWith("theme.xaml")).First();
-            Current.Resources.MergedDictionaries.Remove(old);
-            ResourceDictionary ne = new ResourceDictionary();
-            ne.Source = new Uri($"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\{themeName}.theme.xaml", UriKind.Absolute);
-            Current.Resources.MergedDictionaries.Add(ne);
         }
 
         public static void Restart()
@@ -78,18 +63,7 @@ namespace ReedBooks
                 lang;
 
             var theme = Settings.Default.Theme;
-            switch (theme)
-            {
-                case "light":
-                    ChangeTheme("light");
-                    break;
-                case "dark":
-                    ChangeTheme("dark");
-                    break;
-                default:
-                    ChangeTheme("light");
-                    break;
-            }
+            ThemeController.ChangeTheme(theme);
         }
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
