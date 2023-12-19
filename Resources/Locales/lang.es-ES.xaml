@@ -71,6 +71,7 @@
     <v:String x:Key="s_language_hint">Esta configuración solo cambia el idioma de la interfaz. Los nombres de los autores y el contenido de los libros no se traducen.</v:String>
     <v:String x:Key="s_theme_label">Tema</v:String>
     <v:String x:Key="s_theme_hint">Cambiar entre temas claro (predeterminado) y oscuro.</v:String>
+    <v:String x:Key="s_theme_load_custom">Cargar...</v:String>
     <v:String x:Key="s_personalization_header">Personalización</v:String>
     <v:String x:Key="s_current_counted_days_label">Días a tener en cuenta para los actuales</v:String>
     <v:String x:Key="s_current_counted_days_hint">Esta configuración establece el período (en días) desde la última apertura del libro durante el cual se mostrará en la pestaña "Actuales".</v:String>

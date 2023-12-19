@@ -58,11 +58,21 @@
                                     <controls:SettingsParameter ParameterName="{DynamicResource s_theme_label}"
                                                                 ParameterHint="{DynamicResource s_theme_hint}">
                                         <controls:SettingsParameter.ValueSelector>
-                                            <ComboBox Focusable="False"
-                                                      ItemsSource="{Binding Themes}"
-                                                      SelectedItem="{Binding SelectedTheme}"
-                                                      DisplayMemberPath="DisplayName"
-                                                      SelectedValuePath="Tag"/>
+                                            <StackPanel>
+                                                <ComboBox Focusable="False"
+                                                          ItemsSource="{Binding Themes}"
+                                                          SelectedItem="{Binding SelectedTheme}"
+                                                          DisplayMemberPath="DisplayName"
+                                                          SelectedValuePath="Tag"/>
+
+                                                <Separator Margin="5"/>
+
+                                                <controls:ButtonWithImage Style="{DynamicResource ReedBooksOutlinedButton}"
+                                                                          Command="{Binding LoadThemeCommand}"
+                                                                          Source="/Resources/Icons/add.png"
+                                                                          TextStyle="{DynamicResource MaterialDesignCaptionTextBlock}"
+                                                                          Text="{DynamicResource s_theme_load_custom}"/>
+                                            </StackPanel>
                                         </controls:SettingsParameter.ValueSelector>
                                     </controls:SettingsParameter>
                                 </StackPanel>

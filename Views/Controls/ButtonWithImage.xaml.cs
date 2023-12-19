@@ -10,6 +10,8 @@ namespace ReedBooks.Views.Controls
             DependencyProperty.Register("Source", typeof(ImageSource), typeof(ButtonWithImage));
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(ButtonWithImage));
+        public static readonly DependencyProperty TextStyleProperty =
+            DependencyProperty.Register("TextStyle", typeof(Style), typeof(ButtonWithImage));  
 
         public ImageSource Source
         {
@@ -21,6 +23,12 @@ namespace ReedBooks.Views.Controls
         {
             get => (string)GetValue(TextProperty);
             set => SetValue(TextProperty, value);
+        }
+
+        public Style TextStyle
+        {
+            get => (Style)GetValue(TextStyleProperty);
+            set => SetValue(TextStyleProperty, value);
         }
 
         public ButtonWithImage()

@@ -1,5 +1,5 @@
-﻿using ReedBooks.Core;
-using ReedBooks.Core.Theme;
+﻿using Microsoft.Win32;
+using ReedBooks.Core;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -151,22 +151,41 @@ namespace ReedBooks.ViewModels
             get => $"{Application.Current.Resources["s_delete_unused_files_hint"]} {Math.Round(App.StorageManager.UnusedFilesSize, 1)} {Application.Current.Resources["megabytes"]}";
         }
 
+        public ICommand LoadThemeCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteUnusedFilesCommand { get; }
         public ICommand DeleteAllBooksCommand { get; }
 
         public SettingsWindowViewModel()
         {
+            LoadThemeCommand = new RelayCommand(obj => LoadTheme());
             SaveCommand = new RelayCommand(obj => Save());
             DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
             DeleteAllBooksCommand = new RelayCommand(obj => DeleteAllBooks());
 
             Themes = App.ThemeController.Load();
+            App.ThemeController.OnLoadedThemesChanged += () => {
+                Themes = App.ThemeController.Load();
+                SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
+            };
+
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
             ReloadTabs();
+        }
+
+        public void LoadTheme()
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "ReedBooks Theme (.rbtheme)|*.rbtheme";
+
+            if (ofd.ShowDialog() == true)
+            {
+                var filePath = ofd.FileName;
+                App.ThemeController.AddNew(filePath);
+            }
         }
 
         public void Save()

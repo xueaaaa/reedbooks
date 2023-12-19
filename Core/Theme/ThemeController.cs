@@ -12,8 +12,11 @@ namespace ReedBooks.Core.Theme
 {
     public class ThemeController : ObservableObject
     {
-        public static readonly string THEMES_PATH = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\";
+        public static readonly string THEMES_DIRECTORY = $"{Directory.GetCurrentDirectory()}\\resources\\themes\\";
         public static readonly string[] STANDART_THEME_NAMES = { "light", "dark" };
+
+        public delegate void LoadedThemesChangedEventHandler();
+        public event LoadedThemesChangedEventHandler OnLoadedThemesChanged;
 
         private List<Theme> _loadedThemes;
         public List<Theme> LoadedThemes
@@ -30,7 +33,7 @@ namespace ReedBooks.Core.Theme
         {
             LoadedThemes = new List<Theme>();
 
-            foreach (var item in Directory.GetFiles(THEMES_PATH))
+            foreach (var item in Directory.GetFiles(THEMES_DIRECTORY))
             {
                 if (Path.GetExtension(item) != ".rbtheme") continue;
 
@@ -52,9 +55,19 @@ namespace ReedBooks.Core.Theme
             if(STANDART_THEME_NAMES.Contains(themeName))
                 ne.Source = new Uri($"Resources\\Themes\\{themeName}.theme.xaml", UriKind.Relative);
             else
-                ne.Source = new Uri($"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\{themeName}.theme.xaml", UriKind.Absolute);
+                ne.Source = new Uri($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml", UriKind.Absolute);
 
             Application.Current.Resources.MergedDictionaries.Add(ne);
+        }
+
+        public void AddNew(string originPath)
+        {
+            string newPath = $"{THEMES_DIRECTORY}{Path.GetFileName(originPath)}";
+            File.Move(originPath, newPath);
+
+            Theme theme = Open(newPath);
+            LoadedThemes.Add(theme);
+            OnLoadedThemesChanged?.Invoke();
         }
 
         public static Theme Open(string path)
@@ -64,7 +77,7 @@ namespace ReedBooks.Core.Theme
                 Theme theme = new Theme();
 
                 ZipEntry e = zip["info.json"];
-                string tempPath = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\temp\\";
+                string tempPath = $"{THEMES_DIRECTORY}\\temp\\";
                 e.Extract(tempPath, ExtractExistingFileAction.OverwriteSilently);
 
                 using (StreamReader stream = new StreamReader($"{tempPath}\\{e.FileName}"))
@@ -72,7 +85,7 @@ namespace ReedBooks.Core.Theme
                     theme = JsonSerializer.Deserialize<Theme>(stream.ReadToEnd());
 
                     ZipEntry e1 = zip[$"{theme.Name}.theme.xaml"];
-                    string xamlPath = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\";
+                    string xamlPath = $"{THEMES_DIRECTORY}";
                     if(!File.Exists($"{xamlPath}\\{e1.FileName}"))
                         e1.Extract(xamlPath, ExtractExistingFileAction.OverwriteSilently);
 

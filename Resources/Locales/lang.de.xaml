@@ -71,6 +71,7 @@
     <v:String x:Key="s_language_hint">Diese Einstellung ändert nur die Sprache der Benutzeroberfläche. Die Namen der Autoren und der Inhalt der Bücher werden nicht übersetzt.</v:String>
     <v:String x:Key="s_theme_label">Design</v:String>
     <v:String x:Key="s_theme_hint">Wechseln Sie zwischen dem hellen (Standard) und dem dunklen Design.</v:String>
+    <v:String x:Key="s_theme_load_custom">Laden...</v:String>
     <v:String x:Key="s_personalization_header">Personalisierung</v:String>
     <v:String x:Key="s_current_counted_days_label">Tage für Aktuelle berücksichtigen</v:String>
     <v:String x:Key="s_current_counted_days_hint">Diese Einstellung legt den Zeitraum (in Tagen) seit der letzten Buchöffnung fest, während dem es in der Registerkarte "Aktuelle" angezeigt wird.</v:String>
