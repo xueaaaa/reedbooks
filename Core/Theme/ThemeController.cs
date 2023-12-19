@@ -84,7 +84,33 @@ namespace ReedBooks.Core.Theme
             }
         }
 
-        public ObservableCollection<SettingsParameterViewModel> LoadStandart()
+        public ObservableCollection<SettingsParameterViewModel> Load()
+        {
+            var standart = LoadStandart();
+            var custom = LoadCustom();
+
+            return new ObservableCollection<SettingsParameterViewModel>(standart.Concat(custom));
+        }
+
+        private ObservableCollection<SettingsParameterViewModel> LoadCustom()
+        {
+            var themes = new ObservableCollection<SettingsParameterViewModel>();
+
+            foreach (var theme in LoadedThemes)
+            {
+                var sTheme = new SettingsParameterViewModel
+                {
+                    DisplayName = $"{theme.DisplayName} ({theme.Author})",
+                    Tag = theme.Name
+                };
+
+                themes.Add(sTheme);
+            }
+
+            return themes;
+        }
+
+        private ObservableCollection<SettingsParameterViewModel> LoadStandart()
         {
             var themes = new ObservableCollection<SettingsParameterViewModel>();
 
