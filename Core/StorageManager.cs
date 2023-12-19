@@ -42,13 +42,21 @@ namespace ReedBooks.Core
         {
             get
             {
-                double size = 0;
-
-                foreach (var file in Directory.GetFiles(Directory.GetCurrentDirectory()))
-                    size += (new FileInfo(file).Length) / Math.Pow(1024, 2);
-
-                return size;
+                return GetFromDirectory(Directory.GetCurrentDirectory());
             }
+        }
+
+        public double GetFromDirectory(string path)
+        {
+            double size = 0;
+
+            foreach (var directory in Directory.GetDirectories(path))
+                size += GetFromDirectory(directory);
+
+            foreach (var file in Directory.GetFiles(path))
+                size += (new FileInfo(file).Length) / Math.Pow(1024, 2);
+
+            return size;
         }
 
         /// <summary>
