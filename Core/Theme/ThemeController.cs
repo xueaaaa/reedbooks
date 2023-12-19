@@ -52,7 +52,13 @@ namespace ReedBooks.Core.Theme
             Application.Current.Resources.MergedDictionaries.Remove(old);
             ResourceDictionary ne = new ResourceDictionary();
 
-            if(STANDART_THEME_NAMES.Contains(themeName))
+            if (!File.Exists($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml"))
+            {
+                ne.Source = new Uri($"Resources\\Themes\\light.theme.xaml", UriKind.Relative);
+                Properties.Settings.Default.Theme = "light";
+                Properties.Settings.Default.Save();
+            }
+            else if (STANDART_THEME_NAMES.Contains(themeName))
                 ne.Source = new Uri($"Resources\\Themes\\{themeName}.theme.xaml", UriKind.Relative);
             else
                 ne.Source = new Uri($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml", UriKind.Absolute);

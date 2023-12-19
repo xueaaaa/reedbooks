@@ -61,6 +61,7 @@
     <v:String x:Key="r_end_of_read_dialog_content">¡Felicidades por terminar el libro! Siéntete libre de ir al diario del lector para valorarlo.</v:String>
     <v:String x:Key="r_open_reading_diary">Ir</v:String>
     <v:String x:Key="r_stay">Permanecer</v:String>
+    <v:String x:Key="r_add_quote">Añadir una cita...</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Esta parte de la aplicación no está operativa en este momento</v:String>
     <!--#endregion-->
 

@@ -61,6 +61,7 @@
     <v:String x:Key="r_end_of_read_dialog_content">Congratulations on finishing the book! Feel free to go to the reader's diary to rate it.</v:String>
     <v:String x:Key="r_open_reading_diary">Go</v:String>
     <v:String x:Key="r_stay">Stay</v:String>
+    <v:String x:Key="r_add_quote">Add a quote...</v:String>
     <v:String x:Key="r_temporarily_out_of_service">This part of the application is currently not operational</v:String>
     <!--#endregion-->
 

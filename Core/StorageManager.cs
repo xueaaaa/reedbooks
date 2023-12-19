@@ -1,5 +1,4 @@
-﻿using ReedBooks.Core.Version;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 

@@ -61,6 +61,7 @@
     <v:String x:Key="r_end_of_read_dialog_content">Поздравляем с прочтением книги и предлагаем вам перейти в читательский дневник, чтобы оценить ее.</v:String>
     <v:String x:Key="r_open_reading_diary">Перейти</v:String>
     <v:String x:Key="r_stay">Остаться</v:String>
+    <v:String x:Key="r_add_quote">Добавить цитату...</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
     
