@@ -161,7 +161,7 @@ namespace ReedBooks.ViewModels
             DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
             DeleteAllBooksCommand = new RelayCommand(obj => DeleteAllBooks());
 
-            Themes = App.ThemeController.LoadInternal();
+            Themes = App.ThemeController.LoadStandart();
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
@@ -187,7 +187,7 @@ namespace ReedBooks.ViewModels
             if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
 
-            Themes = App.ThemeController.LoadInternal();
+            Themes = App.ThemeController.LoadStandart();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             ReloadTabs();
             OnPropertyChanged(nameof(SummarySizeString));

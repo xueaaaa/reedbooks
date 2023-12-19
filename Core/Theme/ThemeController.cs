@@ -1,16 +1,19 @@
-﻿using ReedBooks.ViewModels;
+﻿using Ionic.Zip;
+using ReedBooks.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 
 namespace ReedBooks.Core.Theme
 {
     public class ThemeController : ObservableObject
     {
-        public static readonly string THEMES_PATH = $"{Directory.GetCurrentDirectory()}/Resources/Themes/";
+        public static readonly string THEMES_PATH = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\";
+        public static readonly string[] STANDART_THEME_NAMES = { "light", "dark" };
 
         private List<Theme> _loadedThemes;
         public List<Theme> LoadedThemes
@@ -29,7 +32,9 @@ namespace ReedBooks.Core.Theme
 
             foreach (var item in Directory.GetFiles(THEMES_PATH))
             {
-                Theme theme = new Theme("", item);
+                if (Path.GetExtension(item) != ".rbtheme") continue;
+
+                Theme theme = Open(item);
                 LoadedThemes.Add(theme);
             }
         }
@@ -43,27 +48,56 @@ namespace ReedBooks.Core.Theme
             var old = Application.Current.Resources.MergedDictionaries.Where(a => a.Source != null && a.Source.OriginalString.EndsWith("theme.xaml")).First();
             Application.Current.Resources.MergedDictionaries.Remove(old);
             ResourceDictionary ne = new ResourceDictionary();
-            ne.Source = new Uri($"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\{themeName}.theme.xaml", UriKind.Absolute);
+
+            if(STANDART_THEME_NAMES.Contains(themeName))
+                ne.Source = new Uri($"Resources\\Themes\\{themeName}.theme.xaml", UriKind.Relative);
+            else
+                ne.Source = new Uri($"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\{themeName}.theme.xaml", UriKind.Absolute);
+
             Application.Current.Resources.MergedDictionaries.Add(ne);
         }
 
-        public ObservableCollection<SettingsParameterViewModel> LoadInternal()
+        public static Theme Open(string path)
+        {
+            using (ZipFile zip = ZipFile.Read(path))
+            {
+                Theme theme = new Theme();
+
+                ZipEntry e = zip["info.json"];
+                string tempPath = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\temp\\";
+                e.Extract(tempPath, ExtractExistingFileAction.OverwriteSilently);
+
+                using (StreamReader stream = new StreamReader($"{tempPath}\\{e.FileName}"))
+                {
+                    theme = JsonSerializer.Deserialize<Theme>(stream.ReadToEnd());
+
+                    ZipEntry e1 = zip[$"{theme.Name}.theme.xaml"];
+                    string xamlPath = $"{Directory.GetCurrentDirectory()}\\Resources\\Themes\\";
+                    if(!File.Exists($"{xamlPath}\\{e1.FileName}"))
+                        e1.Extract(xamlPath, ExtractExistingFileAction.OverwriteSilently);
+
+                    theme.FilePath = $"{xamlPath}\\{e1.FileName}";
+                }
+
+                File.Delete($"{tempPath}\\{e.FileName}");
+                return theme;
+            }
+        }
+
+        public ObservableCollection<SettingsParameterViewModel> LoadStandart()
         {
             var themes = new ObservableCollection<SettingsParameterViewModel>();
 
-            var lightTheme = new SettingsParameterViewModel
+            foreach (var item in STANDART_THEME_NAMES)
             {
-                DisplayName = Application.Current.Resources["light"].ToString(),
-                Tag = "light"
-            };
-            themes.Add(lightTheme);
+                var theme = new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources[item].ToString(),
+                    Tag = item
+                };
 
-            var darkTheme = new SettingsParameterViewModel
-            {
-                DisplayName = Application.Current.Resources["dark"].ToString(),
-                Tag = "dark"
-            };
-            themes.Add(darkTheme);
+                themes.Add(theme);
+            }
 
             return themes;
         }
