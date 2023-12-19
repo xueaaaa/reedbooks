@@ -15,6 +15,7 @@ namespace ReedBooks.Core
         public DbSet<EmotionalAssessment> EmotionalAssessments { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Collection> Collections { get; set; }
+        public DbSet<Position> Positions { get; set; }
 
         public AppContext()
         {
@@ -24,6 +25,7 @@ namespace ReedBooks.Core
             EmotionalAssessments.Load();
             Quotes.Load();
             Collections.Load();
+            Positions.Load();
         }
 
         /// <summary>
@@ -111,6 +113,11 @@ namespace ReedBooks.Core
                 .HasOne(d => d.BookAssessment)
                 .WithOne()
                 .HasForeignKey<BookAssessment>(b => b.TargetGuid);
+
+            modelBuilder.Entity<Book>()
+                .HasOne(b => b.LastReadingPosition)
+                .WithOne()
+                .HasForeignKey<Position>(p => p.TargetGuid);
 
             modelBuilder.Entity<ReadingDiary>()
                 .HasOne(d => d.EmotionalAssessment)

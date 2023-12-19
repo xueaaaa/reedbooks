@@ -8,6 +8,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:htmlPanel="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
+        Closing="Window_Closing"
+        Loaded="Window_Loaded"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
@@ -32,8 +34,8 @@
                     </Grid.RowDefinitions>
 
                     <controls:ChaptersView Grid.Row="0"
-                                       Navigation="{Binding Navigation}"
-                                       OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
+                                           Navigation="{Binding Navigation}"
+                                           OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
 
                     <controls:ButtonWithImage Style="{DynamicResource MarkAsReadButton}"
                                               Command="{Binding MarkAsReadCommand}"
@@ -77,10 +79,12 @@
                               Style="{DynamicResource ReedBooksGridSplitter}"/>
 
                 <ScrollViewer Grid.Column="2"
+                              Name="ScrollViewer"
                               Background="{DynamicResource accent_color}"
                               VerticalScrollBarVisibility="Auto"
                               ScrollChanged="ScrollViewer_ScrollChanged">
                     <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
+                                         Margin="10"
                                          Background="{DynamicResource book_background_color}"/>
                 </ScrollViewer>
             </Grid>

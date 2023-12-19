@@ -70,7 +70,7 @@
     <v:String x:Key="s_language_label">Application Language</v:String>
     <v:String x:Key="s_language_hint">This setting only changes the interface language. Author names and book content remain untranslated.</v:String>
     <v:String x:Key="s_theme_label">Theme</v:String>
-    <v:String x:Key="s_theme_hint">Switch between light (default) and dark themes.</v:String>
+    <v:String x:Key="s_theme_hint">Changes the color scheme of the application.</v:String>
     <v:String x:Key="s_theme_load_custom">Load...</v:String>
     <v:String x:Key="s_personalization_header">Personalization</v:String>
     <v:String x:Key="s_current_counted_days_label">Days to Count for Current</v:String>

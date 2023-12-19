@@ -244,6 +244,7 @@
     <Compile Include="Core\Version\GitHubVersion.cs" />
     <Compile Include="Core\Version\Updater.cs" />
     <Compile Include="Core\Version\Version.cs" />
+    <Compile Include="Models\Book\Position.cs" />
     <Compile Include="Models\Database\AppContext.cs" />
     <Compile Include="Core\Localizator.cs" />
     <Compile Include="Core\ObservableObject.cs" />

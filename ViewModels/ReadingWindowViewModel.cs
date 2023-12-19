@@ -4,6 +4,7 @@ using ReedBooks.Models.Book;
 using ReedBooks.Views;
 using ReedBooks.Views.Controls;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
@@ -57,26 +58,44 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private NavigationItem _currentNavigation;
+        public NavigationItem CurrentNavigation
+        {
+            get => _currentNavigation;
+            set
+            {
+                _currentNavigation = value;
+                OnPropertyChanged(nameof(CurrentNavigation));
+            }
+        }
+
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
+        public ICommand OnWindowClosingCommand { get; }
 
         public ReadingWindowViewModel()
         {
             MoveToAnotherDocumentCommand = new RelayCommand(obj => MoveToAnotherDocument(obj));
             MarkAsReadCommand = new RelayCommand(obj => MarkAsRead(obj));
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary());
+            OnWindowClosingCommand = new RelayCommand(obj => OnWindowClosing());
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
         {
             Book = readingBook;
             Navigation = Book.LoadNavigation();
+
+            if(Book.LastReadingPosition != null)
+                MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
         }
 
         public void MoveToAnotherDocument(object param)
         {
-            var document = Book.LoadChapter(param.ToString());
+            var nav = param as NavigationItem;
+            CurrentNavigation = nav;
+            var document = Book.LoadChapter(nav.Link);
             SelectedChapterHtml = document;
         }
 
@@ -90,6 +109,17 @@ namespace ReedBooks.ViewModels
         {
             ReadingDiaryWindow rDW = new ReadingDiaryWindow(Book);
             rDW.Show();
+        }
+
+        public void OnWindowClosing()
+        {
+            Book.LastReadingPosition = new Position(Book.Guid, CurrentNavigation.Link, ScrollOffset);
+        }
+
+        public double OnWindowLoaded()
+        {
+            if (Book.LastReadingPosition != null) return Book.LastReadingPosition.Offset;
+            return 0;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace ReedBooks.Views.Controls
 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            object param = (Control.SelectedItem as NavigationItem).Link;
+            object param = Control.SelectedItem as NavigationItem;
             OnSelectedItemChanged.Execute(param);
         }
     }

@@ -20,5 +20,15 @@ namespace ReedBooks.Views
         {
             ((ReadingWindowViewModel)DataContext).ScrollOffset = e.VerticalOffset;
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            ((ReadingWindowViewModel)DataContext).OnWindowClosing();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(((ReadingWindowViewModel)DataContext).OnWindowLoaded());
+        }
     }
 }

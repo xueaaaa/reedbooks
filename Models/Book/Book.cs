@@ -9,13 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Media;
-using TheArtOfDev.HtmlRenderer.WPF;
 using VersOne.Epub;
-using Color = System.Windows.Media.Color;
-using ColorConverter = System.Windows.Media.ColorConverter;
 
 namespace ReedBooks.Models.Book
 {
@@ -126,6 +120,17 @@ namespace ReedBooks.Models.Book
             }
         }
 
+        private Position _lastReadingPosition;
+        public Position LastReadingPosition
+        {
+            get => _lastReadingPosition;
+            set
+            {
+                _lastReadingPosition = value;
+                OnPropertyChanged(nameof(LastReadingPosition));
+            }
+        }
+
         public Book() 
         { 
             
@@ -180,6 +185,10 @@ namespace ReedBooks.Models.Book
                     await App.ApplicationContext.Entry(book)
                           .Reference(b => b.BoundDiary)
                           .LoadAsync();
+
+                    await App.ApplicationContext.Entry(book)
+                        .Reference(b => b.LastReadingPosition)
+                        .LoadAsync();
 
                     await App.ApplicationContext.Entry(book.BoundDiary)
                           .Reference(d => d.EmotionalAssessment)

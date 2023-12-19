@@ -1,44 +1,41 @@
 ﻿using ReedBooks.Models.Database;
-using ReedBooks.Views.Controls;
 using System;
 
 namespace ReedBooks.Models.Book
 {
     public class Position : DependentDatabaseObject
     {
-        private NavigationItem _chapter;
-        public NavigationItem Chapter
+        private string _link;
+        public string Link
         {
-            get => _chapter;
+            get => _link;
             set
             {
-                _chapter = value;
-                OnPropertyChanged(nameof(Chapter));
+                _link = value;
+                OnPropertyChanged(nameof(Link));
             }
         }
 
-        private double _verticalOffset;
-        public double VerticalOffset
+        private double _offset;
+        public double Offset
         {
-            get => _verticalOffset;
+            get => _offset;
             set
             {
-                _verticalOffset = value;
-                OnPropertyChanged(nameof(VerticalOffset));
+                _offset = value;
+                OnPropertyChanged(nameof(Offset));
             }
         }
 
-        public Position()
-        {
-            
-        }
+        public Position() { }
 
-        public Position(Guid targetGuid, NavigationItem chapter, double verticalOffset) : this()
+        public Position(Guid bookGuid, string link, double offset)
         {
-            Guid = new Guid();
-            TargetGuid = targetGuid;
-            Chapter = chapter;
-            VerticalOffset = verticalOffset;
+            TargetGuid = bookGuid;
+            Link = link;
+            Offset = offset;
+
+            Create();
         }
     }
 }
