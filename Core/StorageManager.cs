@@ -93,11 +93,17 @@ namespace ReedBooks.Core
         {
             var coversPath = $"{Directory.GetCurrentDirectory()}{COVERS_DIRECTORY}";
             var epubsPath = $"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}";
+            var resourcesPath = $"{Directory.GetCurrentDirectory()}\\resources";
+            var themesPath = $"{resourcesPath}\\themes";
 
             if (!Directory.Exists(coversPath))
                 Directory.CreateDirectory(coversPath);
             if (!Directory.Exists(epubsPath))
                 Directory.CreateDirectory(epubsPath);
+            if (!Directory.Exists(resourcesPath))
+                Directory.CreateDirectory(resourcesPath);
+            if (!Directory.Exists(themesPath))
+                Directory.CreateDirectory(themesPath);
 
             if (File.Exists(App.Updater.UPDATE_FILE_PATH)) File.Delete(App.Updater.UPDATE_FILE_PATH);
         }

@@ -25,8 +25,8 @@ namespace ReedBooks
 
             StorageManager = new StorageManager();
             Updater = new Updater();
-            ThemeController = new ThemeController();
             StorageManager.EnsureCreated();
+            ThemeController = new ThemeController();
 
             ApplicationContext = new AppContext();
 
