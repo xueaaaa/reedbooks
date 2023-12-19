@@ -2,9 +2,15 @@
 
 namespace ReedBooks.Core.Theme
 {
+    /// <summary>
+    /// ReedBooks theme
+    /// </summary>
     public class Theme : ObservableObject
     {
         private string _name;
+        /// <summary>
+        /// The internal name of the theme (must match the name of the resource file up to .theme.xaml)
+        /// </summary>
         [JsonPropertyName("name")]
         public string Name
         {
@@ -17,6 +23,9 @@ namespace ReedBooks.Core.Theme
         }
 
         private string _displayName;
+        /// <summary>
+        /// Displayed theme title (in one language only)
+        /// </summary>
         [JsonPropertyName("display")]
         public string DisplayName
         {
@@ -29,6 +38,9 @@ namespace ReedBooks.Core.Theme
         }
 
         private string _author;
+        /// <summary>
+        /// Author of the theme (indicated in brackets next to the theme title)
+        /// </summary>
         [JsonPropertyName("author")]
         public string Author
         {
@@ -41,6 +53,9 @@ namespace ReedBooks.Core.Theme
         }
 
         private string _filePath;
+        /// <summary>
+        /// Resource file path
+        /// </summary>
         public string FilePath
         {
             get => _filePath;

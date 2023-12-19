@@ -60,6 +60,11 @@ namespace ReedBooks.Core.Theme
             Application.Current.Resources.MergedDictionaries.Add(ne);
         }
 
+        /// <summary>
+        /// Downloads the ReedBooks theme file to the local theme folder and adds the theme to the list of downloaded themes.
+        /// Notifies sub users on OnLoadedThemesChanged about adding a new theme
+        /// </summary>
+        /// <param name="originPath">Original file path</param>
         public void AddNew(string originPath)
         {
             string newPath = $"{THEMES_DIRECTORY}{Path.GetFileName(originPath)}";
@@ -70,6 +75,11 @@ namespace ReedBooks.Core.Theme
             OnLoadedThemesChanged?.Invoke();
         }
 
+        /// <summary>
+        /// Extracts the theme resources (if not unpacked) and returns an instance of the theme with the metadata specified in the theme file
+        /// </summary>
+        /// <param name="path">(Local) path to the theme file</param>
+        /// <returns>An instance of the theme with the metadata specified in the theme file</returns>
         public static Theme Open(string path)
         {
             using (ZipFile zip = ZipFile.Read(path))
@@ -97,7 +107,11 @@ namespace ReedBooks.Core.Theme
             }
         }
 
-        public ObservableCollection<SettingsParameterViewModel> Load()
+        /// <summary>
+        /// (For SettingsWindowViewModel only)
+        /// Converts LoadedThemes from LoadedThemes to SettingsParameterViewModel
+        /// </summary>
+        internal ObservableCollection<SettingsParameterViewModel> Load()
         {
             var standart = LoadStandart();
             var custom = LoadCustom();
