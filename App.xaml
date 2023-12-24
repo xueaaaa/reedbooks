@@ -11,8 +11,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <materialDesign:CustomColorTheme BaseTheme="Light"
-                                                 PrimaryColor="#807d77"
-                                                 SecondaryColor="#616161"/>
+                                                 PrimaryColor="{StaticResource accent_color_1}"
+                                                 SecondaryColor="{StaticResource hint_color_1}"/>
                 <ResourceDictionary Source="Resources/Styles/GeneralStyles.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/MainWindowStyle.xaml"/>
                 <ResourceDictionary Source="Resources/Styles/ReadingWindowStyle.xaml"/>

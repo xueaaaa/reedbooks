@@ -1,4 +1,5 @@
 ﻿using Ionic.Zip;
+using MaterialDesignThemes.Wpf;
 using ReedBooks.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ReedBooks.Core.Theme
 {
@@ -52,7 +54,7 @@ namespace ReedBooks.Core.Theme
             Application.Current.Resources.MergedDictionaries.Remove(old);
             ResourceDictionary ne = new ResourceDictionary();
 
-            if (!File.Exists($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml"))
+            if (!File.Exists($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml") && !STANDART_THEME_NAMES.Contains(themeName))
             {
                 ne.Source = new Uri($"Resources\\Themes\\light.theme.xaml", UriKind.Relative);
                 Properties.Settings.Default.Theme = "light";
@@ -64,6 +66,16 @@ namespace ReedBooks.Core.Theme
                 ne.Source = new Uri($"{THEMES_DIRECTORY}\\{themeName}.theme.xaml", UriKind.Absolute);
 
             Application.Current.Resources.MergedDictionaries.Add(ne);
+
+            var paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+            Color accent = (Color)ColorConverter.ConvertFromString(ne["accent_color"].ToString());
+            Color hint = (Color)ColorConverter.ConvertFromString(ne["hint_color"].ToString());
+
+            theme.SetPrimaryColor(accent);
+            theme.SetSecondaryColor(hint);
+
+            paletteHelper.SetTheme(theme);
         }
 
         /// <summary>
