@@ -6,24 +6,28 @@
         xmlns:local="clr-namespace:ReedBooks.Views.Controls"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Name="Card"
+        Height="200"
         CornerRadius="{DynamicResource CornerRadius}"
-        Width="300"
         Margin="10"
         Background="{DynamicResource container_background_color}"
         mc:Ignorable="d">
     <Grid Width="{Binding ElementName=Card, Path=Width}"
           Height="{Binding ElementName=Card, Path=Height}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0"
+        <Image Grid.Column="0"
+               Grid.RowSpan="2"
                Margin="20"
                Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
 
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Column="1"
                     Margin="10"
                     Orientation="Vertical">
             <TextBlock Text="{Binding ElementName=Card, Path=Book.Name}"
@@ -89,7 +93,8 @@
                 </Grid>
         </StackPanel>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Column="1"
+              Grid.Row="1"
               Margin="10"
               VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
