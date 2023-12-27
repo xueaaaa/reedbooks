@@ -34,6 +34,7 @@
     <v:String x:Key="m_genre">Жанр:</v:String>
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_your_rating">Ваша оценка:</v:String>
+    <v:String x:Key="m_book_readed">Книга прочитана</v:String>
     <v:String x:Key="m_read">Читать</v:String>
     <v:String x:Key="m_delete">Удалить</v:String>
     <!--#endregion-->

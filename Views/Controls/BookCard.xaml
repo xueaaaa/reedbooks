@@ -4,13 +4,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:ReedBooks.Views.Controls"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Name="Card"
-        Height="200"
+        Height="220"
         CornerRadius="{DynamicResource CornerRadius}"
         Margin="10"
         Background="{DynamicResource container_background_color}"
         mc:Ignorable="d">
+    <Border.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Border.Resources>
+    
     <Grid Width="{Binding ElementName=Card, Path=Width}"
           Height="{Binding ElementName=Card, Path=Height}">
         <Grid.RowDefinitions>
@@ -91,6 +96,11 @@
                                           Background="{DynamicResource hint_color}"/>
                 <!--#endregion-->
                 </Grid>
+
+            <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                       Foreground="{DynamicResource accent_color}"
+                       Visibility="{Binding ElementName=Card, Path=Book.BoundDiary.ReadingIsOver, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="{DynamicResource m_book_readed}"/>
         </StackPanel>
 
         <Grid Grid.Column="1"
