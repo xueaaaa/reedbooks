@@ -138,9 +138,9 @@
                                     <Separator/>
 
                                     <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
-                                                      Source="/Resources/Icons/add.png"
-                                                      Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                                      Text="{DynamicResource m_new_collection}">
+                                                              Source="/Resources/Icons/add.png"
+                                                              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                              Text="{DynamicResource m_new_collection}">
                                         <controls:ButtonWithImage.CommandParameter>
                                             <StackPanel Style="{DynamicResource DialogPanel}">
                                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"

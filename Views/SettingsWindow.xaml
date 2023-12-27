@@ -137,8 +137,8 @@
                                                                 ParameterHint="{Binding DeleteUnusedFilesHint}">
                                         <controls:SettingsParameter.ValueSelector>
                                             <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                                    Foreground="OrangeRed"
-                                                    BorderBrush="OrangeRed"
+                                                    Foreground="{DynamicResource danger_color}"
+                                                    BorderBrush="{DynamicResource danger_color}"
                                                     Content="{DynamicResource s_delete}"
                                                     Command="{Binding DeleteUnusedFilesCommand}"/>
                                         </controls:SettingsParameter.ValueSelector>
@@ -150,8 +150,8 @@
                                                                 ParameterHint="{DynamicResource s_delete_all_books_hint}">
                                         <controls:SettingsParameter.ValueSelector>
                                             <Button Style="{DynamicResource MaterialDesignOutlinedButton}"
-                                                    Foreground="OrangeRed"
-                                                    BorderBrush="OrangeRed"
+                                                    Foreground="{DynamicResource danger_color}"
+                                                    BorderBrush="{DynamicResource danger_color}"
                                                     Content="{DynamicResource s_delete}"
                                                     Command="{Binding DeleteAllBooksCommand}"/>
                                         </controls:SettingsParameter.ValueSelector>

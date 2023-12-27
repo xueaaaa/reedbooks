@@ -111,15 +111,27 @@
 
             <StackPanel Grid.Column="1"
                         HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <local:IconButton Source="/Resources/Icons/book.png"
-                                  Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                  CommandParameter="{Binding}"
-                                  ToolTip="{DynamicResource m_readers_diary_button_hint}"/>
-
-                <local:IconButton Source="/Resources/Icons/delete.png"
-                                  Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                  CommandParameter="{Binding Guid}"/>
+                        VerticalAlignment="Center">
+                <materialDesign:PopupBox Foreground="{DynamicResource accent_color}"
+                                         Padding="0"
+                                         PopupUniformCornerRadius="20">
+                    <Grid Background="{DynamicResource container_background_color}"
+                          MaxWidth="300">
+                        <StackPanel Margin="10">
+                            <local:ActionButton Source="BookOpenVariant"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_readers_diary_collection}"
+                                                Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}"/>
+                            <Separator Margin="3"/>
+                            <local:ActionButton Source="DeleteOutline"
+                                                Color="{DynamicResource danger_color}"
+                                                Text="{DynamicResource m_delete}"
+                                                Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding Guid}"/>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
     </Grid>

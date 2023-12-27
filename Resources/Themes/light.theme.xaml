@@ -9,4 +9,5 @@
     <SolidColorBrush x:Key="accent_color">#807d77</SolidColorBrush>
     <SolidColorBrush x:Key="text_color">#000000</SolidColorBrush>
     <SolidColorBrush x:Key="hint_color">#616161</SolidColorBrush>
+    <SolidColorBrush x:Key="danger_color">OrangeRed</SolidColorBrush>
 </ResourceDictionary>
