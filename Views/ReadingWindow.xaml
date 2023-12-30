@@ -67,34 +67,26 @@
                                               Text="{DynamicResource r_mark_as_read}"
                                               ToolTip="{DynamicResource r_mark_as_read_hint}">
                         <controls:ButtonWithImage.CommandParameter>
-                            <StackPanel Style="{DynamicResource DialogPanel}">
-                                <TextBlock Style="{DynamicResource MaterialDesignHeadline4TextBlock}"
-                                           Foreground="{DynamicResource text_color}"
-                                           Text="{DynamicResource r_end_of_read_dialog_header}"/>
-                                <Separator Margin="0 0 0 15"/>
-                                <TextBlock Foreground="{DynamicResource text_color}"
-                                           Margin="0 0 0 15"
-                                           TextWrapping="Wrap"
-                                           Text="{DynamicResource r_end_of_read_dialog_content}"/>
+                            <controls:InWindowDialog Header="{DynamicResource r_end_of_read_dialog_header}">
+                                <controls:InWindowDialog.Content>
+                                    <TextBlock Foreground="{DynamicResource text_color}"
+                                               TextWrapping="Wrap"
+                                               Text="{DynamicResource r_end_of_read_dialog_content}"/>
+                                </controls:InWindowDialog.Content>
 
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-
+                                <controls:InWindowDialog.LeftSideFooter>
                                     <Button Style="{DynamicResource ReedBooksRaisedButton}"
-                                            HorizontalAlignment="Left"
                                             Command="{Binding OpenReadingDiaryCommand}"
                                             Content="{DynamicResource r_open_reading_diary}"/>
+                                </controls:InWindowDialog.LeftSideFooter>
+
+                                <controls:InWindowDialog.RightSideFooter>
                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                            Grid.Column="1"
-                                            HorizontalAlignment="Right"
                                             Foreground="{DynamicResource accent_color}"
                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             Content="{DynamicResource r_stay}"/>
-                                </Grid>
-                            </StackPanel>
+                                </controls:InWindowDialog.RightSideFooter>
+                            </controls:InWindowDialog>
                         </controls:ButtonWithImage.CommandParameter>
                     </controls:ButtonWithImage>
 
@@ -107,45 +99,38 @@
                                 Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                 Foreground="{DynamicResource accent_color}">
                             <Button.CommandParameter>
-                                <StackPanel Style="{DynamicResource DialogPanel}">
-                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                               Foreground="{DynamicResource text_color}"
-                                               Margin="0 0 0 20"
-                                               Text="{DynamicResource rd_add_quote_header}"/>
-                                    <TextBox Style="{DynamicResource MultilineTextBox}"
-                                             materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
-                                             materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
-                                             Margin="0 0 0 15"
-                                             Text="{Binding QuoteData}"/>
-                                    <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
-                                             materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
-                                             Foreground="{DynamicResource text_color}"
-                                             Margin="0 0 0 15"
-                                             Text="{Binding QuoteAuthor}"/>
-                                    <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
-                                             materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
-                                             Margin="0 0 0 15"
-                                             Foreground="{DynamicResource text_color}"
-                                             Text="{Binding QuoteLocation}"/>
+                                <controls:InWindowDialog Header="{DynamicResource rd_add_quote_header}">
+                                    <controls:InWindowDialog.Content>
+                                        <StackPanel>
+                                            <TextBox Style="{DynamicResource MultilineTextBox}"
+                                                     materialDesign:HintAssist.Hint="{DynamicResource rd_quote_data_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
+                                                     Margin="0 0 0 15"
+                                                     Text="{Binding QuoteData}"/>
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
+                                                     Margin="0 0 0 15"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Text="{Binding QuoteAuthor}"/>
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
+                                                     materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
+                                                     Text="{Binding QuoteLocation}"/>
+                                        </StackPanel>
+                                    </controls:InWindowDialog.Content>
 
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-
+                                    <controls:InWindowDialog.LeftSideFooter>
                                         <Button Style="{DynamicResource ReedBooksRaisedButton}"
-                                                HorizontalAlignment="Left"
                                                 Command="{Binding AddQuoteCommand}"
                                                 Content="{DynamicResource rd_add_quote}"/>
+                                    </controls:InWindowDialog.LeftSideFooter>
+
+                                    <controls:InWindowDialog.RightSideFooter>
                                         <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                Grid.Column="1"
-                                                HorizontalAlignment="Right"
                                                 Foreground="{DynamicResource accent_color}"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="{DynamicResource rd_cancel}"/>
-                                    </Grid>
-                                </StackPanel>
+                                    </controls:InWindowDialog.RightSideFooter>
+                                </controls:InWindowDialog>
                             </Button.CommandParameter>
 
                             <materialDesign:PackIcon Kind="FormatQuoteCloseOutline"/>

@@ -36,7 +36,15 @@
     <v:String x:Key="m_your_rating">Ваша оценка:</v:String>
     <v:String x:Key="m_book_readed">Книга прочитана</v:String>
     <v:String x:Key="m_read">Читать</v:String>
+    <v:String x:Key="m_information">Информация о книге</v:String>
+    <v:String x:Key="m_share">Поделиться...</v:String>
     <v:String x:Key="m_delete">Удалить</v:String>
+    <v:String x:Key="m_not_stated">не указано</v:String>
+    <v:String x:Key="m_authors">Авторы:</v:String>
+    <v:String x:Key="m_publishers">Издатели:</v:String>
+    <v:String x:Key="m_rights">Права:</v:String>
+    <v:String x:Key="m_language">Язык:</v:String>
+    <v:String x:Key="m_description">Описание:</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->
@@ -131,7 +139,7 @@
     <v:String x:Key="rd_love_line">Любовная линия</v:String>
     <v:String x:Key="rd_humor">Юмор</v:String>
     <v:String x:Key="rd_meaning_fulness">Смысловая нагрузка</v:String>
-    <v:String x:Key="rd_plot_brief_retelling_hint">Это место для написания краткого пересказа. Или для ваших заметок.</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">Здесь вы можете оставить свои заметки или написать свои впечатления от прочтения.</v:String>
     <v:String x:Key="rd_quotes">Цитаты</v:String>
     <v:String x:Key="rd_add_quote">Добавить</v:String>
     <v:String x:Key="rd_add_quote_header">Добавление цитаты</v:String>
@@ -164,6 +172,9 @@
 
     <v:String x:Key="dialog_success_title">Успешно!</v:String>
     <v:String x:Key="dialog_success_content">Заданное действие выполнено успешно.</v:String>
+
+    <v:String x:Key="dialog_share_file_title">Совместный файл создан</v:String>
+    <v:String x:Key="dialog_share_file_content">Совместный файл успешно создан. Его получатель сможет загрузить книгу в своё приложение ReedBooks. По нажатию на ОК вы переместитесь в папку с созданным совместным файлом.</v:String>
     
     <v:String x:Key="genre_fantasy">Фантастика</v:String>
     <v:String x:Key="genre_detective">Детектив</v:String>

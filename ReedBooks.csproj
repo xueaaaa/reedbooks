@@ -239,7 +239,9 @@
     <Compile Include="Converters\DateToVisibilityConverter.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Converters\EmoteToBoolConverter.cs" />
+    <Compile Include="Converters\LangCodeToNameConverter.cs" />
     <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
+    <Compile Include="Converters\StringCollectionToStringConverter.cs" />
     <Compile Include="Core\Theme\Theme.cs" />
     <Compile Include="Core\Theme\ThemeController.cs" />
     <Compile Include="Core\Version\GitHubVersion.cs" />
@@ -288,6 +290,9 @@
     </Compile>
     <Compile Include="Views\Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InWindowDialog.xaml.cs">
+      <DependentUpon>InWindowDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\NavigationItem.xaml.cs">
       <DependentUpon>NavigationItem.xaml</DependentUpon>
@@ -447,6 +452,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\IconButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\InWindowDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

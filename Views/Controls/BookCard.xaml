@@ -7,13 +7,16 @@
         xmlns:converters="clr-namespace:ReedBooks.Converters"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Name="Card"
-        Height="220"
+        MaxHeight="240"
+        MaxWidth="400"
         CornerRadius="{DynamicResource CornerRadius}"
         Margin="10"
         Background="{DynamicResource container_background_color}"
         mc:Ignorable="d">
     <Border.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:StringCollectionToStringConverter x:Key="StringCollectionToStringConverter"/>
+        <converters:LangCodeToNameConverter x:Key="LangCodeToNameConverter"/>
     </Border.Resources>
     
     <Grid Width="{Binding ElementName=Card, Path=Width}"
@@ -123,17 +126,108 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
                 <materialDesign:PopupBox Foreground="{DynamicResource accent_color}"
+                                         DataContext="{Binding ElementName=Card, Path=Book}"
                                          Padding="0"
                                          PopupUniformCornerRadius="20">
                     <Grid Background="{DynamicResource container_background_color}"
                           MaxWidth="300">
                         <StackPanel Margin="10">
+                            <local:ActionButton Source="InformationOutline"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_information}"
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                <local:ActionButton.CommandParameter>
+                                    <local:InWindowDialog Header="{DynamicResource m_information}">
+                                        <local:InWindowDialog.Content>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+
+                                                <!--#region Properties-->
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="0"
+                                                           Text="{DynamicResource m_authors}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="1"
+                                                           Text="{DynamicResource m_publishers}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="2"
+                                                           Text="{DynamicResource m_rights}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0" 
+                                                           Grid.Row="3"
+                                                           Text="{DynamicResource m_language}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0" 
+                                                           Grid.Row="4"
+                                                           Text="{DynamicResource m_description}"/>
+                                                <!--#endregion-->
+                                                
+                                                <!--#region Values-->
+                                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                                           Grid.Column="1"
+                                                           Grid.Row="0"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.AuthorList, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                                           Grid.Column="1"
+                                                           Grid.Row="1"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Metadata.Publishers, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.Column="1"
+                                                           Grid.Row="2"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Metadata.Rights, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.Column="1"
+                                                           Grid.Row="3"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Language, Converter={StaticResource LangCodeToNameConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.ColumnSpan="2"
+                                                           Grid.Row="5"
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding Origin.Description}"
+                                                           TextWrapping="Wrap"/>
+                                                <!--#endregion-->
+                                            </Grid>                                         
+                                        </local:InWindowDialog.Content>
+                                    </local:InWindowDialog>
+                                </local:ActionButton.CommandParameter>
+                            </local:ActionButton>
+                            
                             <local:ActionButton Source="BookOpenVariant"
                                                 Color="{DynamicResource text_color}"
                                                 Text="{DynamicResource m_readers_diary_collection}"
                                                 Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
+                            
+                            <local:ActionButton Source="Share"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_share}"
+                                                Command="{Binding DataContext.ShareCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}"/>
+                            
                             <Separator Margin="3"/>
+                            
                             <local:ActionButton Source="DeleteOutline"
                                                 Color="{DynamicResource danger_color}"
                                                 Text="{DynamicResource m_delete}"

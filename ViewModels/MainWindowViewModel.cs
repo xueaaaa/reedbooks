@@ -7,6 +7,7 @@ using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -162,6 +163,8 @@ namespace ReedBooks.ViewModels
         public ICommand CreateCollectionCommand { get; }
         public ICommand EditCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
+
+        public ICommand ShareCommand { get; }
         #endregion
 
         public MainWindowViewModel()
@@ -183,6 +186,7 @@ namespace ReedBooks.ViewModels
             CreateCollectionCommand = new RelayCommand(obj => CreateCollection());
             EditCollectionCommand = new RelayCommand(obj => EditCollection(obj));
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
+            ShareCommand = new RelayCommand(obj => Share(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
@@ -271,11 +275,12 @@ namespace ReedBooks.ViewModels
         public void LoadFile()
         {
             var ofd = new OpenFileDialog();
-            ofd.Filter = "Epub-files (.epub)|*.epub";
+            ofd.Filter = "Epub-files (*.epub)|*.epub";
 
             if (ofd.ShowDialog() == true)
             {
                 var filePath = ofd.FileName;
+
                 Book book = new Book(filePath);
                 LoadedBooks.Add(book);
             }
@@ -376,6 +381,17 @@ namespace ReedBooks.ViewModels
 
             if(DialogHost.IsDialogOpen("MainWindowDialog")) 
                 DialogHost.Close("MainWindowDialog");
+        }
+
+        public void Share(object param)
+        {
+            var book = (Book)param;
+            string path = book.Share();
+
+            var dialog = new DialogWindow(Application.Current.Resources["dialog_share_file_title"].ToString(),
+                Application.Current.Resources["dialog_share_file_content"].ToString(), Visibility.Visible);
+
+            if (dialog.ShowDialog() == true) Process.Start("explorer.exe", Path.GetDirectoryName(path));
         }
     }
 }

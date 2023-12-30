@@ -8,6 +8,7 @@ namespace ReedBooks.Core
     {
         public const string COVERS_DIRECTORY = "\\covers\\";
         public const string EPUBS_DIRECTORY = "\\epubs\\";
+        public const string SHARED_DIRECTORY = "\\share\\";
 
         /// <summary>
         /// Returns the size of unused (of which there are no records in the database) files, in MB
@@ -95,6 +96,7 @@ namespace ReedBooks.Core
             var epubsPath = $"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}";
             var resourcesPath = $"{Directory.GetCurrentDirectory()}\\resources";
             var themesPath = $"{resourcesPath}\\themes";
+            var sharedPath = $"{Directory.GetCurrentDirectory()}{SHARED_DIRECTORY}";
 
             if (!Directory.Exists(coversPath))
                 Directory.CreateDirectory(coversPath);
@@ -104,6 +106,8 @@ namespace ReedBooks.Core
                 Directory.CreateDirectory(resourcesPath);
             if (!Directory.Exists(themesPath))
                 Directory.CreateDirectory(themesPath);
+            if(!Directory.Exists(SHARED_DIRECTORY))
+                Directory.CreateDirectory(sharedPath);
 
             if (File.Exists(App.Updater.UPDATE_FILE_PATH)) File.Delete(App.Updater.UPDATE_FILE_PATH);
         }
