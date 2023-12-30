@@ -5,6 +5,7 @@ using ReedBooks.Views.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -120,6 +121,11 @@ namespace ReedBooks.Models.Book
             }
         }
 
+        [NotMapped] public EpubBook Origin
+        {
+            get => EpubReader.ReadBook(LinkToOrigin);
+        }
+
         private Position _lastReadingPosition;
         public Position LastReadingPosition
         {
@@ -146,13 +152,17 @@ namespace ReedBooks.Models.Book
 
             EpubBook epubBook = EpubReader.ReadBook(path);
 
-            using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
+            if(epubBook.CoverImage != null)
             {
-                Bitmap bitmap = new Bitmap(stream);
-                string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{Guid}.png";
-                bitmap.Save(bitmapPath);
-                _linkToCover = bitmapPath;
+                using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
+                {
+                    Bitmap bitmap = new Bitmap(stream);
+                    string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{Guid}.png";
+                    bitmap.Save(bitmapPath);
+                    _linkToCover = bitmapPath;
+                }
             }
+            
 
             _author = epubBook.Author;
             _name = epubBook.Title;
@@ -168,6 +178,14 @@ namespace ReedBooks.Models.Book
                 item.RemoveBook(this.Guid);
 
             return base.RemoveAsync();
+        }
+
+        public string Share()
+        {
+            string dest = $"{Directory.GetCurrentDirectory()}{StorageManager.SHARED_DIRECTORY}{Name}.epub";
+            File.Copy(LinkToOrigin, dest, true);
+
+            return dest;
         }
 
         /// <summary>

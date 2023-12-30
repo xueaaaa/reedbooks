@@ -32,10 +32,10 @@
 
                 <!-- Hide panel button -->
                 <controls:IconButton Grid.ColumnSpan="2"
-                                 Style="{DynamicResource HidePanelButton}" 
-                                 Source="/Resources/Icons/hide_bar.png"
-                                 Command="{Binding ChangeSidePanelVisibilityCommand}"
-                                 ToolTip="{DynamicResource m_hide_panel_button_hint}"/>
+                                     Style="{DynamicResource HidePanelButton}" 
+                                     Source="/Resources/Icons/hide_bar.png"
+                                     Command="{Binding ChangeSidePanelVisibilityCommand}"
+                                     ToolTip="{DynamicResource m_hide_panel_button_hint}"/>
 
                 <Grid Grid.Column="0"
                       Visibility="{Binding SidePanelVisibility}"
@@ -138,47 +138,41 @@
                                     <Separator/>
 
                                     <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
-                                                      Source="/Resources/Icons/add.png"
-                                                      Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                                      Text="{DynamicResource m_new_collection}">
+                                                              Source="/Resources/Icons/add.png"
+                                                              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                              Text="{DynamicResource m_new_collection}">
                                         <controls:ButtonWithImage.CommandParameter>
-                                            <StackPanel Style="{DynamicResource DialogPanel}">
-                                                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
-                                                           Foreground="{DynamicResource text_color}"
-                                                           Margin="0 0 0 20"
-                                                           Text="{DynamicResource m_new_collection}"/>
-                                                <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                                         materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
-                                                         materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
-                                                         Foreground="{DynamicResource text_color}"
-                                                         Margin="0 0 0 15"
-                                                         Text="{Binding CollectionName}"/>
-                                                <ListBox ItemsSource="{Binding LoadedBooks}"
-                                                         MaxHeight="600"
-                                                         SelectionChanged="ListBox_SelectionChanged"
-                                                         Foreground="{DynamicResource text_color}"
-                                                         Margin="0 0 0 15"
-                                                         DisplayMemberPath="Name"
-                                                         SelectionMode="Multiple"/>
+                                            <controls:InWindowDialog Header="{DynamicResource m_new_collection}">
+                                                <controls:InWindowDialog.Content>
+                                                    <StackPanel>
+                                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                                                 materialDesign:HintAssist.Hint="{DynamicResource m_collection_name_hint}"
+                                                                 materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"    
+                                                                 Foreground="{DynamicResource text_color}"
+                                                                 Margin="0 0 0 15"
+                                                                 Text="{Binding CollectionName}"/>
+                                                        <ListBox ItemsSource="{Binding LoadedBooks}"
+                                                                 DisplayMemberPath="Name"
+                                                                 MaxHeight="600"
+                                                                 SelectionChanged="ListBox_SelectionChanged"
+                                                                 Foreground="{DynamicResource text_color}"
+                                                                 SelectionMode="Multiple"/>
+                                                    </StackPanel>
+                                                </controls:InWindowDialog.Content>
 
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-
+                                                <controls:InWindowDialog.LeftSideFooter>
                                                     <Button Style="{DynamicResource ReedBooksRaisedButton}"
-                                                            HorizontalAlignment="Left"
                                                             Command="{Binding CreateCollectionCommand}"
                                                             Content="{DynamicResource m_create_collection}"/>
+                                                </controls:InWindowDialog.LeftSideFooter>
+
+                                                <controls:InWindowDialog.RightSideFooter>
                                                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                                            Grid.Column="1"
-                                                            HorizontalAlignment="Right"
                                                             Foreground="{DynamicResource accent_color}"
                                                             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                             Content="{DynamicResource rd_cancel}"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                </controls:InWindowDialog.RightSideFooter>
+                                            </controls:InWindowDialog>
                                         </controls:ButtonWithImage.CommandParameter>
                                     </controls:ButtonWithImage>
                                 </StackPanel>
@@ -246,9 +240,9 @@
 
                                     <ListView Style="{DynamicResource MaterialDesignListView}"
                                               Name="RecentListView"
-                                          Foreground="{DynamicResource text_color}"
-                                          ItemsSource="{Binding RecentBooks}"
-                                          SelectionChanged="ListView_SelectionChanged">
+                                              Foreground="{DynamicResource text_color}"
+                                              ItemsSource="{Binding RecentBooks}"
+                                              SelectionChanged="ListView_SelectionChanged">
                                         <ListView.View>
                                             <GridView>
                                                 <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">

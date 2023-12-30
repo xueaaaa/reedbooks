@@ -4,26 +4,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:ReedBooks.Views.Controls"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Name="Card"
+        MaxHeight="240"
+        MaxWidth="400"
         CornerRadius="{DynamicResource CornerRadius}"
-        Width="300"
         Margin="10"
         Background="{DynamicResource container_background_color}"
         mc:Ignorable="d">
+    <Border.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:StringCollectionToStringConverter x:Key="StringCollectionToStringConverter"/>
+        <converters:LangCodeToNameConverter x:Key="LangCodeToNameConverter"/>
+    </Border.Resources>
+    
     <Grid Width="{Binding ElementName=Card, Path=Width}"
           Height="{Binding ElementName=Card, Path=Height}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0"
+        <Image Grid.Column="0"
+               Grid.RowSpan="2"
                Margin="20"
                Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
 
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Column="1"
                     Margin="10"
                     Orientation="Vertical">
             <TextBlock Text="{Binding ElementName=Card, Path=Book.Name}"
@@ -87,9 +99,15 @@
                                           Background="{DynamicResource hint_color}"/>
                 <!--#endregion-->
                 </Grid>
+
+            <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                       Foreground="{DynamicResource accent_color}"
+                       Visibility="{Binding ElementName=Card, Path=Book.BoundDiary.ReadingIsOver, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="{DynamicResource m_book_readed}"/>
         </StackPanel>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Column="1"
+              Grid.Row="1"
               Margin="10"
               VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
@@ -106,15 +124,118 @@
 
             <StackPanel Grid.Column="1"
                         HorizontalAlignment="Right"
-                        Orientation="Horizontal">
-                <local:IconButton Source="/Resources/Icons/book.png"
-                                  Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                  CommandParameter="{Binding}"
-                                  ToolTip="{DynamicResource m_readers_diary_button_hint}"/>
+                        VerticalAlignment="Center">
+                <materialDesign:PopupBox Foreground="{DynamicResource accent_color}"
+                                         DataContext="{Binding ElementName=Card, Path=Book}"
+                                         Padding="0"
+                                         PopupUniformCornerRadius="20">
+                    <Grid Background="{DynamicResource container_background_color}"
+                          MaxWidth="300">
+                        <StackPanel Margin="10">
+                            <local:ActionButton Source="InformationOutline"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_information}"
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                <local:ActionButton.CommandParameter>
+                                    <local:InWindowDialog Header="{DynamicResource m_information}">
+                                        <local:InWindowDialog.Content>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
 
-                <local:IconButton Source="/Resources/Icons/delete.png"
-                                  Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                  CommandParameter="{Binding Guid}"/>
+                                                <!--#region Properties-->
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="0"
+                                                           Text="{DynamicResource m_authors}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="1"
+                                                           Text="{DynamicResource m_publishers}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0"
+                                                           Grid.Row="2"
+                                                           Text="{DynamicResource m_rights}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0" 
+                                                           Grid.Row="3"
+                                                           Text="{DynamicResource m_language}"/>
+                                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                                           Grid.Column="0" 
+                                                           Grid.Row="4"
+                                                           Text="{DynamicResource m_description}"/>
+                                                <!--#endregion-->
+                                                
+                                                <!--#region Values-->
+                                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                                           Grid.Column="1"
+                                                           Grid.Row="0"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.AuthorList, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                                           Grid.Column="1"
+                                                           Grid.Row="1"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Metadata.Publishers, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.Column="1"
+                                                           Grid.Row="2"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Metadata.Rights, Converter={StaticResource StringCollectionToStringConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.Column="1"
+                                                           Grid.Row="3"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding Origin.Schema.Package.Language, Converter={StaticResource LangCodeToNameConverter}}"
+                                                           TextWrapping="Wrap"/>
+                                                <TextBlock Style="{DynamicResource PropertyValue}"                                                           
+                                                           Grid.ColumnSpan="2"
+                                                           Grid.Row="5"
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding Origin.Description}"
+                                                           TextWrapping="Wrap"/>
+                                                <!--#endregion-->
+                                            </Grid>                                         
+                                        </local:InWindowDialog.Content>
+                                    </local:InWindowDialog>
+                                </local:ActionButton.CommandParameter>
+                            </local:ActionButton>
+                            
+                            <local:ActionButton Source="BookOpenVariant"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_readers_diary_collection}"
+                                                Command="{Binding DataContext.OpenReadingDiaryCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}"/>
+                            
+                            <local:ActionButton Source="Share"
+                                                Color="{DynamicResource text_color}"
+                                                Text="{DynamicResource m_share}"
+                                                Command="{Binding DataContext.ShareCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding}"/>
+                            
+                            <Separator Margin="3"/>
+                            
+                            <local:ActionButton Source="DeleteOutline"
+                                                Color="{DynamicResource danger_color}"
+                                                Text="{DynamicResource m_delete}"
+                                                Command="{Binding DataContext.DeleteBookCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                CommandParameter="{Binding Guid}"/>
+                        </StackPanel>
+                    </Grid>
+                </materialDesign:PopupBox>
             </StackPanel>
         </Grid>
     </Grid>
