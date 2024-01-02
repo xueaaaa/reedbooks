@@ -130,6 +130,28 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _previousEnabled;
+        public bool PreviousEnabled
+        {
+            get => _previousEnabled;
+            set
+            {
+                _previousEnabled = value;
+                OnPropertyChanged(nameof(PreviousEnabled));
+            }
+        }
+
+        private bool _nextEnabled;
+        public bool NextEnabled
+        {
+            get => _nextEnabled;
+            set
+            {
+                _nextEnabled = value;
+                OnPropertyChanged(nameof(NextEnabled));
+            }
+        }
+
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
@@ -152,8 +174,8 @@ namespace ReedBooks.ViewModels
             Book = readingBook;
             Navigation = Book.LoadNavigation();
 
-            if(Book.LastReadingPosition != null)
-                MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
+            //if(Book.LastReadingPosition != null)
+               // MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
         }
 
         public void MoveToAnotherDocument(object param)
@@ -161,16 +183,10 @@ namespace ReedBooks.ViewModels
             var nav = param as NavigationItem;
 
             CurrentNavigation = nav;
-            foreach (var item in Navigation)
-            {
-                PreviousNavigation = LookFor(item, -1);
-                if (PreviousNavigation != null) break;
-            }
-            foreach (var item in Navigation)
-            {
-                NextNavigation = LookFor(item, +1);
-                if (NextNavigation != null) break;
-            }
+            LookFor(nav, Navigation);
+
+            PreviousEnabled = PreviousNavigation != null;
+            NextEnabled = NextNavigation != null;
 
             if (nav != null)
             {
@@ -180,40 +196,40 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private NavigationItem LookFor(NavigationItem nav, sbyte incrementValue = -1)
+        private void LookFor(NavigationItem nav, List<NavigationItem> collection, List<NavigationItem> previousCollection = null)
         {
             NavigationItem previous = null;
-            if (nav.Header == CurrentNavigation.Header)
-            {
-                int index = Navigation.IndexOf(CurrentNavigation);
-                if (index <= 0 && incrementValue < 0) return null;
+            NavigationItem next = null;
 
-                previous = Navigation[index + incrementValue];
-            }
-
-            if (nav.ItemsSource != null)
+            foreach (var item in collection)
             {
-                foreach (NavigationItem item in nav.ItemsSource)
+                if (nav.Header == item.Header)
                 {
-                    if (item.Header == CurrentNavigation.Header)
+                    int index = collection.IndexOf(nav);
+
+                    if (index - 1 > (-1))
+                        previous = collection[index - 1];
+                    else if (previousCollection != null)
                     {
-                        int index = Navigation.IndexOf(CurrentNavigation);
-                        previous = Navigation[index + incrementValue];
-                        break;
+                        NavigationItem previousItem = previousCollection.Where(c => (c.ItemsSource != null) && (c.ItemsSource as List<NavigationItem>).Contains(item)).First();
+                        previous = previousCollection[previousCollection.IndexOf(previousItem)];
                     }
 
-                    if (item.ItemsSource != null)
+                    if (index + 1 < collection.Count && item.ItemsSource == null)
+                        next = collection[index + 1];
+                    else if (item.ItemsSource != null) next = ((List<NavigationItem>)item.ItemsSource)[0];
+
+                    if (previous != null || next != null)
                     {
-                        foreach (var item1 in item.ItemsSource)
-                        {
-                            previous = LookFor(nav, incrementValue);
-                            if (previous != null) break;
-                        }
+                        PreviousNavigation = previous;
+                        NextNavigation = next;
+                        return;
                     }
                 }
-            }
 
-            return previous;
+                if (item.ItemsSource != null)
+                    LookFor(nav, (List<NavigationItem>)item.ItemsSource, collection);
+            }
         }
 
         public void MarkAsRead(object param)

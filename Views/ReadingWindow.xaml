@@ -106,6 +106,7 @@
                                              Width="25"
                                              Height="25"
                                              Margin="0 0 5 0"
+                                             IsEnabled="{Binding PreviousEnabled}"
                                              ToolTip="{DynamicResource r_previous_chapter}"
                                              Command="{Binding MoveToAnotherDocumentCommand}"
                                              CommandParameter="{Binding PreviousNavigation}"/>
@@ -113,6 +114,7 @@
                         <controls:IconButton Source="SkipNext"
                                              Width="25"
                                              Height="25"
+                                             IsEnabled="{Binding NextEnabled}"
                                              ToolTip="{DynamicResource r_next_chapter}"
                                              Command="{Binding MoveToAnotherDocumentCommand}"
                                              CommandParameter="{Binding NextNavigation}"/>
