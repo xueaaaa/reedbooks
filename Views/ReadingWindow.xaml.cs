@@ -11,6 +11,12 @@ namespace ReedBooks.Views
         {
             InitializeComponent();
 
+            ((ReadingWindowViewModel)DataContext).ChapterChanged += () =>
+            {
+                ScrollViewer.ScrollToHome();
+                ChaptetsView.ViewSelectedItem = ((ReadingWindowViewModel)DataContext).CurrentNavigation;
+            };
+
             DataContext = new ReadingWindowViewModel(readingBook);
             readingBook.SetStartReadingDate();
             readingBook.SetLastReadingDate();

@@ -24,6 +24,20 @@ namespace ReedBooks.Views.Controls
             set => SetValue(SelectedItemChangedProperty, value);
         }
 
+        public NavigationItem ViewSelectedItem
+        {
+            get => Control.SelectedItem as NavigationItem;
+            set
+            {
+                int index = Control.Items.IndexOf(value);
+                if (index != -1)
+                {
+                    var item = Control.Items[index];
+                    (item as TreeViewItem).IsSelected = true;
+                }
+            }
+        }
+
         public ChaptersView()
         {
             InitializeComponent();

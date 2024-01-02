@@ -1,17 +1,17 @@
-﻿using System.Windows;
+﻿using MaterialDesignThemes.Wpf;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace ReedBooks.Views.Controls
 {
     public partial class IconButton : Button
     {
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(ImageSource), typeof(IconButton));
+            DependencyProperty.Register("Source", typeof(PackIconKind), typeof(IconButton));
 
-        public ImageSource Source
+        public PackIconKind Source
         {
-            get => (ImageSource)GetValue(SourceProperty);
+            get => (PackIconKind)GetValue(SourceProperty);
             set => SetValue(SourceProperty, value);
         }
 

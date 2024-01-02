@@ -14,6 +14,8 @@ namespace ReedBooks.Views.Controls
             set => SetValue(LinkProperty, value);
         }
 
+        public NavigationItem BoundTo { get; set; }
+
         public NavigationItem()
         {
             InitializeComponent();

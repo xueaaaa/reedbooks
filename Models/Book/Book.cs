@@ -296,6 +296,7 @@ namespace ReedBooks.Models.Book
                 foreach (var nestedItem in item.NestedItems)
                 {
                     var i = LoadNavigationItem(nestedItem);
+                    i.BoundTo = navigationItem;
                     nestedItems.Add(i);
                 }
 

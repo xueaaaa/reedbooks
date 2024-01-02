@@ -33,7 +33,7 @@
                 <!-- Hide panel button -->
                 <controls:IconButton Grid.ColumnSpan="2"
                                      Style="{DynamicResource HidePanelButton}" 
-                                     Source="/Resources/Icons/hide_bar.png"
+                                     Source="EyeOffOutline"
                                      Command="{Binding ChangeSidePanelVisibilityCommand}"
                                      ToolTip="{DynamicResource m_hide_panel_button_hint}"/>
 
@@ -58,9 +58,9 @@
                                 Command="{Binding ChangeCollectionActionsVisibilityCommand}"
                                 ToolTip="{DynamicResource m_edit_hint}"/>
 
-                        <controls:IconButton Source="/Resources/Icons/settings.png"
-                                            HorizontalAlignment="Right"
-                                            Command="{Binding OpenSettingsCommand}"/>
+                        <controls:IconButton Source="Settings"
+                                             HorizontalAlignment="Right"
+                                             Command="{Binding OpenSettingsCommand}"/>
                     </StackPanel>
                     <!--#endregion-->
 
@@ -247,20 +247,20 @@
                                             <GridView>
                                                 <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
                                                     <TextBlock Text="{DynamicResource m_last_reading_at}"
-                                                           Foreground="{DynamicResource accent_color}"/>
+                                                               Foreground="{DynamicResource accent_color}"/>
                                                 </GridViewColumn>
                                                 <GridViewColumn DisplayMemberBinding="{Binding Name}">
                                                     <TextBlock Text="{DynamicResource m_name}"
-                                                           Foreground="{DynamicResource accent_color}"/>
+                                                               Foreground="{DynamicResource accent_color}"/>
                                                 </GridViewColumn>
                                             </GridView>
                                         </ListView.View>
                                     </ListView>
 
                                     <TextBlock Foreground="{DynamicResource hint_color}"
-                                           Text="{DynamicResource m_no_recent}"
-                                           TextWrapping="Wrap"
-                                           Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                               Text="{DynamicResource m_no_recent}"
+                                               TextWrapping="Wrap"
+                                               Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
                                 </StackPanel>
                                 <!--#endregion-->
                             </Grid>
@@ -278,10 +278,10 @@
                             <StackPanel Grid.Row="0"
                                     Margin="10 0 10 0">
                                 <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
-                                                      Width="300"
-                                                      Command="{Binding LoadFileCommand}"
-                                                      Source="/Resources/Icons/add.png"
-                                                      Text="{DynamicResource m_load_book}"/>
+                                                          Width="300"
+                                                          Command="{Binding LoadFileCommand}"
+                                                          Source="/Resources/Icons/add.png"
+                                                          Text="{DynamicResource m_load_book}"/>
                                 <Separator/>
                             </StackPanel>
 

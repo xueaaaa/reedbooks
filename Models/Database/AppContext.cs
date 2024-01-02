@@ -19,7 +19,8 @@ namespace ReedBooks.Core
 
         public AppContext()
         {
-            Database.EnsureCreated();
+            Database.Migrate();
+
             Books.Load();
             BookAssessments.Load();
             EmotionalAssessments.Load();

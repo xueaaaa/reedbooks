@@ -75,11 +75,11 @@
                             Visibility="{Binding DataContext.CollectionActionsVisibility, RelativeSource={RelativeSource AncestorType=Window}}"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
-                    <controls:IconButton Source="/Resources/Icons/edit.png"
+                    <controls:IconButton Source="EditOutline"
                                          Command="{Binding DataContext.EditCollectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                          CommandParameter="{Binding}"/>
 
-                    <controls:IconButton Source="/Resources/Icons/delete.png"
+                    <controls:IconButton Source="DeleteOutline"
                                          Command="{Binding DataContext.DeleteCollectionCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                          CommandParameter="{Binding Guid}"/>
                 </StackPanel>

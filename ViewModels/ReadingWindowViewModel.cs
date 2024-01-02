@@ -4,19 +4,19 @@ using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
 using ReedBooks.Views;
 using ReedBooks.Views.Controls;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace ReedBooks.ViewModels
 {
     public class ReadingWindowViewModel : ObservableObject
     {
+        public delegate void SelectedChapterChanged();
+        public event SelectedChapterChanged ChapterChanged;
+
         private Book _book;
         public Book Book
         {
@@ -64,6 +64,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private NavigationItem _previousNavigation;
+        public NavigationItem PreviousNavigation
+        {
+            get => _previousNavigation;
+            set
+            {
+                _previousNavigation = value;
+                OnPropertyChanged(nameof(PreviousNavigation));
+            }
+        }
+
         private NavigationItem _currentNavigation;
         public NavigationItem CurrentNavigation
         {
@@ -72,6 +83,17 @@ namespace ReedBooks.ViewModels
             {
                 _currentNavigation = value;
                 OnPropertyChanged(nameof(CurrentNavigation));
+            }
+        }
+
+        private NavigationItem _nextNavigation;
+        public NavigationItem NextNavigation
+        {
+            get => _nextNavigation;
+            set
+            {
+                _nextNavigation = value;
+                OnPropertyChanged(nameof(NextNavigation));
             }
         }
 
@@ -113,7 +135,6 @@ namespace ReedBooks.ViewModels
         public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OnWindowClosingCommand { get; }
         public ICommand AddQuoteCommand { get; }
-        public ICommand CreateImageCommand { get; }
 
         public ReadingWindowViewModel()
         {
@@ -122,11 +143,12 @@ namespace ReedBooks.ViewModels
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary());
             OnWindowClosingCommand = new RelayCommand(obj => OnWindowClosing());
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
-            CreateImageCommand = new RelayCommand(obj => CreateImage());
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
         {
+            HtmlPanel html = new HtmlPanel();
+
             Book = readingBook;
             Navigation = Book.LoadNavigation();
 
@@ -139,13 +161,64 @@ namespace ReedBooks.ViewModels
             var nav = param as NavigationItem;
 
             CurrentNavigation = nav;
-            var document = Book.LoadChapter(nav.Link);
-            SelectedChapterHtml = document;
+            foreach (var item in Navigation)
+            {
+                PreviousNavigation = LookFor(item, -1);
+                if (PreviousNavigation != null) break;
+            }
+            foreach (var item in Navigation)
+            {
+                NextNavigation = LookFor(item, +1);
+                if (NextNavigation != null) break;
+            }
+
+            if (nav != null)
+            {
+                var document = Book.LoadChapter(nav.Link);
+                SelectedChapterHtml = document;
+                ChapterChanged?.Invoke();
+            }
+        }
+
+        private NavigationItem LookFor(NavigationItem nav, sbyte incrementValue = -1)
+        {
+            NavigationItem previous = null;
+            if (nav.Header == CurrentNavigation.Header)
+            {
+                int index = Navigation.IndexOf(CurrentNavigation);
+                if (index <= 0 && incrementValue < 0) return null;
+
+                previous = Navigation[index + incrementValue];
+            }
+
+            if (nav.ItemsSource != null)
+            {
+                foreach (NavigationItem item in nav.ItemsSource)
+                {
+                    if (item.Header == CurrentNavigation.Header)
+                    {
+                        int index = Navigation.IndexOf(CurrentNavigation);
+                        previous = Navigation[index + incrementValue];
+                        break;
+                    }
+
+                    if (item.ItemsSource != null)
+                    {
+                        foreach (var item1 in item.ItemsSource)
+                        {
+                            previous = LookFor(nav, incrementValue);
+                            if (previous != null) break;
+                        }
+                    }
+                }
+            }
+
+            return previous;
         }
 
         public void MarkAsRead(object param)
         {
-            DialogHost.Show(param);
+            DialogHost.Show(param, "ReadingDialog");
             Book.MarkAsRead();
         }
 
@@ -182,18 +255,6 @@ namespace ReedBooks.ViewModels
                 new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
                     Application.Current.Resources["dialog_null_quote_content"].ToString(), Visibility.Hidden)
                     .ShowDialog();
-        }
-
-        public void CreateImage()
-        {
-            var image = HtmlRender.RenderToImage(SelectedChapterHtml, new Size(1000, 1000));
-            PngBitmapEncoder encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(image);
-
-            using (FileStream fs = new FileStream($"{Directory.GetCurrentDirectory()}\\scr\\{Book.Name}_{DateTime.Now.ToShortDateString()}.png", FileMode.Create))
-            {
-                encoder.Save(fs);
-            }
         }
     }
 }
