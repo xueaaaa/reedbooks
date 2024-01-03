@@ -50,6 +50,7 @@
                               VerticalScrollBarVisibility="Auto"
                               ScrollChanged="ScrollViewer_ScrollChanged">
                     <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
+                                         Name="HtmlPanel"
                                          Margin="10"
                                          Background="{DynamicResource book_background_color}"/>
                 </ScrollViewer>
@@ -100,6 +101,7 @@
                                              Width="25"
                                              Height="25"
                                              Margin="0 0 15 0"
+                                             IsEnabled="False"
                                              ToolTip="{DynamicResource r_scale_plus}"/>
 
                         <controls:IconButton Source="SkipPrevious"
@@ -123,6 +125,7 @@
                                              Width="25"
                                              Height="25"
                                              Margin="15 0 0 0"
+                                             IsEnabled="False"
                                              ToolTip="{DynamicResource r_scale_minus}"/>
                     </StackPanel>
 
@@ -131,6 +134,8 @@
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center">
                         <controls:IconButton Source="FormatQuoteCloseOutline"
+                                             Width="25"
+                                             Height="25"
                                              ToolTip="{DynamicResource r_add_quote}"
                                              Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                             <controls:IconButton.CommandParameter>
@@ -142,9 +147,10 @@
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
                                                      Margin="0 0 0 15"
                                                      Text="{Binding QuoteData}"/>
-                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
-                                                     Margin="0 0 0 15"
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                     Foreground="{DynamicResource text_color}"
+                                                     Margin="0 0 0 15"
                                                      Text="{Binding QuoteAuthor}"/>
                                             <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
@@ -168,6 +174,16 @@
                                 </controls:InWindowDialog>
                             </controls:IconButton.CommandParameter>
                         </controls:IconButton>
+
+                        <controls:IconButton Source="ArrowCollapseUp"
+                                             Margin="15 0 0 0"
+                                             ToolTip="{DynamicResource r_scroll_to_start}"
+                                             Click="IconButton_Click"/>
+
+                        <controls:IconButton Source="ArrowCollapseDown"
+                                             Margin="5 0 0 0"
+                                             ToolTip="{DynamicResource r_scroll_to_end}"
+                                             Click="IconButton_Click_1"/>
                     </StackPanel>
                 </Grid>
             </Grid>

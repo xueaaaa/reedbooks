@@ -33,7 +33,7 @@
                 <!-- Hide panel button -->
                 <controls:IconButton Grid.ColumnSpan="2"
                                      Style="{DynamicResource HidePanelButton}" 
-                                     Source="EyeOffOutline"
+                                     Source="Menu"
                                      Command="{Binding ChangeSidePanelVisibilityCommand}"
                                      ToolTip="{DynamicResource m_hide_panel_button_hint}"/>
 
@@ -58,7 +58,7 @@
                                 Command="{Binding ChangeCollectionActionsVisibilityCommand}"
                                 ToolTip="{DynamicResource m_edit_hint}"/>
 
-                        <controls:IconButton Source="Settings"
+                        <controls:IconButton Source="SettingsOutline"
                                              HorizontalAlignment="Right"
                                              Command="{Binding OpenSettingsCommand}"/>
                     </StackPanel>

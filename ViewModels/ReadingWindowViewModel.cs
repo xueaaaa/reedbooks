@@ -4,10 +4,14 @@ using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
 using ReedBooks.Views;
 using ReedBooks.Views.Controls;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Resources;
 using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace ReedBooks.ViewModels
@@ -149,9 +153,9 @@ namespace ReedBooks.ViewModels
             {
                 _nextEnabled = value;
                 OnPropertyChanged(nameof(NextEnabled));
-            }
+            }        
         }
-
+        
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
@@ -169,8 +173,6 @@ namespace ReedBooks.ViewModels
 
         public ReadingWindowViewModel(Book readingBook) : this()
         {
-            HtmlPanel html = new HtmlPanel();
-
             Book = readingBook;
             Navigation = Book.LoadNavigation();
 
@@ -246,7 +248,8 @@ namespace ReedBooks.ViewModels
 
         public void OnWindowClosing()
         {
-            Book.LastReadingPosition = new Position(Book.Guid, CurrentNavigation.Link, ScrollOffset);
+            if (CurrentNavigation != null)
+                Book.LastReadingPosition = new Position(Book.Guid, CurrentNavigation.Link, ScrollOffset);
         }
 
         public double OnWindowLoaded()

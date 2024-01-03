@@ -309,7 +309,7 @@
                                                                                  HorizontalAlignment="Left"
                                                                                  Click="Button_Click"
                                                                                  CommandParameter="{Binding Guid}"
-                                                                                 Source="/Resources/Icons/delete.png"/>
+                                                                                 Source="DeleteOutline"/>
 
                                                             <Button Style="{DynamicResource MaterialDesignFlatButton}"
                                                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
@@ -341,9 +341,10 @@
                                                              materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
                                                              Margin="0 0 0 15"
                                                              Text="{Binding QuoteData}"/>
-                                                    <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
-                                                             Margin="0 0 0 15"
+                                                    <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                              materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
+                                                             Foreground="{DynamicResource text_color}"
+                                                             Margin="0 0 0 15"
                                                              Text="{Binding QuoteAuthor}"/>
                                                     <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
                                                              materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"

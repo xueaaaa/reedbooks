@@ -30,10 +30,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0"
-               Grid.RowSpan="2"
-               Margin="20"
-               Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
+        <StackPanel Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Margin="20">
+            <Image Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
+
+            <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                       Foreground="{DynamicResource accent_color}"
+                       Visibility="{Binding ElementName=Card, Path=Book.BoundDiary.ReadingIsOver, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="{DynamicResource m_book_readed}"/>
+        </StackPanel>
 
         <StackPanel Grid.Column="1"
                     Margin="10"
@@ -98,12 +104,7 @@
                                           Value="{Binding ElementName=Card, Path=Book.BoundDiary.BookAssessment.ArithmeticAverage, Mode=OneWay}"
                                           Background="{DynamicResource hint_color}"/>
                 <!--#endregion-->
-                </Grid>
-
-            <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
-                       Foreground="{DynamicResource accent_color}"
-                       Visibility="{Binding ElementName=Card, Path=Book.BoundDiary.ReadingIsOver, Converter={StaticResource BoolToVisibilityConverter}}"
-                       Text="{DynamicResource m_book_readed}"/>
+            </Grid>
         </StackPanel>
 
         <Grid Grid.Column="1"
