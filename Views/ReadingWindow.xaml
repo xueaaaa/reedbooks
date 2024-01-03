@@ -52,7 +52,8 @@
                     <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
                                          Name="HtmlPanel"
                                          Margin="10"
-                                         Background="{DynamicResource book_background_color}"/>
+                                         Background="{DynamicResource book_background_color}"
+                                         LinkClicked="HtmlPanel_LinkClicked"/>
                 </ScrollViewer>
 
                 <Grid Grid.Column="1"
@@ -147,7 +148,7 @@
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"                                                     
                                                      Margin="0 0 0 15"
                                                      Text="{Binding QuoteData}"/>
-                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_location_hint}"
+                                            <TextBox materialDesign:HintAssist.Hint="{DynamicResource rd_quote_author_hint}"
                                                      materialDesign:HintAssist.Foreground="{DynamicResource hint_color}"
                                                      Foreground="{DynamicResource text_color}"
                                                      Margin="0 0 0 15"

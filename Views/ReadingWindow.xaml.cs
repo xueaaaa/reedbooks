@@ -1,16 +1,14 @@
 ﻿using ReedBooks.Models.Book;
 using ReedBooks.ViewModels;
-using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using TheArtOfDev.HtmlRenderer.Core.Entities;
+using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace ReedBooks.Views
 {
     public partial class ReadingWindow : Window
     {
-        private int _currentFontSize = 16;
-
         public ReadingWindow(Book readingBook)
         {
             InitializeComponent();
@@ -51,22 +49,16 @@ namespace ReedBooks.Views
             ScrollViewer.ScrollToEnd();
         }
 
-        private void IconButton_Click_2(object sender, RoutedEventArgs e)
+        private void HtmlPanel_LinkClicked(object sender, RoutedEvenArgs<HtmlLinkClickedEventArgs> args)
         {
-            _currentFontSize += 2;
-            RenderCss(_currentFontSize);
+            ((ReadingWindowViewModel)DataContext).MoveToAnotherDocument(args.Data.Link);
+            args.Handled = true;
         }
 
-        private void IconButton_Click_3(object sender, RoutedEventArgs e)
-        {
-            _currentFontSize -= 2;
-            RenderCss(_currentFontSize);
-        }
-
-        private void RenderCss(int fontSize = 16)
-        {
-            string css = $"*{{color:{ColorConverter.ConvertFromString((string)Application.Current.Resources["text_color"].ToString())};font-size: {fontSize}px;}}";
-            HtmlPanel.BaseStylesheet = css;
-        }
+        //private void RenderCss(int fontSize = 16)
+        //{
+        //    string css = $"*{{color:black;font-size: {fontSize}px;}}";
+        //    HtmlPanel.BaseStylesheet = css;
+        //}
     }
 }

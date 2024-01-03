@@ -182,20 +182,32 @@ namespace ReedBooks.ViewModels
 
         public void MoveToAnotherDocument(object param)
         {
-            var nav = param as NavigationItem;
+            string finalLink = string.Empty;
 
-            CurrentNavigation = nav;
-            LookFor(nav, Navigation);
-
-            PreviousEnabled = PreviousNavigation != null;
-            NextEnabled = NextNavigation != null;
-
-            if (nav != null)
+            if (param is NavigationItem nav)
             {
-                var document = Book.LoadChapter(nav.Link);
-                SelectedChapterHtml = document;
-                ChapterChanged?.Invoke();
+                CurrentNavigation = nav;
+                LookFor(nav, Navigation);
+
+                PreviousEnabled = PreviousNavigation != null;
+                NextEnabled = NextNavigation != null;
+
+                if (nav != null)
+                    finalLink = nav.Link;
             }
+            else if (param is string link)
+            {
+                if (link != string.Empty && link != null)
+                {
+                    finalLink = string.Join(string.Empty, link.Take(link.LastIndexOf('l') + 1));
+                    CurrentNavigation = Navigation.Where(n => n.Link == finalLink).First();
+                }
+            }
+
+            QuoteLocation = CurrentNavigation.Header.ToString();
+            var document = Book.LoadChapter(finalLink);
+            SelectedChapterHtml = document;
+            ChapterChanged?.Invoke();
         }
 
         private void LookFor(NavigationItem nav, List<NavigationItem> collection, List<NavigationItem> previousCollection = null)
@@ -266,8 +278,8 @@ namespace ReedBooks.ViewModels
             {
                 Book.BoundDiary.Quotes.Add(toAdd);
                 await toAdd.CreateAsync();
+                QuoteData = string.Empty;
                 QuoteAuthor = string.Empty;
-                QuoteLocation = string.Empty;
                 DialogHost.Close("ReadingDialog");
             }
             else
