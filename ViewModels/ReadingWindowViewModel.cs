@@ -4,15 +4,11 @@ using ReedBooks.Models.Book;
 using ReedBooks.Models.Diary;
 using ReedBooks.Views;
 using ReedBooks.Views.Controls;
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Resources;
-using TheArtOfDev.HtmlRenderer.WPF;
 
 namespace ReedBooks.ViewModels
 {
@@ -155,12 +151,46 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(NextEnabled));
             }        
         }
+
+        private GridLength _chaptersViewLength = new GridLength(0.3, GridUnitType.Star);
+        public GridLength ChaptersViewLength
+        {
+            get => _chaptersViewLength;
+            set
+            {
+                _chaptersViewLength = value;
+                OnPropertyChanged(nameof(ChaptersViewLength));
+            }
+        }
+
+        private Visibility _splitterVisibility;
+        public Visibility SplitterVisibility
+        {
+            get => _splitterVisibility;
+            set
+            {
+                _splitterVisibility = value;
+                OnPropertyChanged(nameof(SplitterVisibility));
+            }
+        }
+
+        private bool _isClearMode;
+        public bool IsClearMode
+        {
+            get => _isClearMode;
+            set
+            {
+                _isClearMode = value;
+                OnPropertyChanged(nameof(IsClearMode));
+            }
+        }
         
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OnWindowClosingCommand { get; }
         public ICommand AddQuoteCommand { get; }
+        public ICommand ClearModeCommand { get; }
 
         public ReadingWindowViewModel()
         {
@@ -169,6 +199,7 @@ namespace ReedBooks.ViewModels
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary());
             OnWindowClosingCommand = new RelayCommand(obj => OnWindowClosing());
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
+            ClearModeCommand = new RelayCommand(obj => ClearMode());
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
@@ -197,10 +228,15 @@ namespace ReedBooks.ViewModels
             }
             else if (param is string link)
             {
-                if (link != string.Empty && link != null)
+                if (!link.StartsWith("http"))
                 {
                     finalLink = string.Join(string.Empty, link.Take(link.LastIndexOf('l') + 1));
                     CurrentNavigation = Navigation.Where(n => n.Link == finalLink).First();
+                }
+                else
+                {
+                    Process.Start(link);
+                    return;
                 }
             }
 
@@ -286,6 +322,22 @@ namespace ReedBooks.ViewModels
                 new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
                     Application.Current.Resources["dialog_null_quote_content"].ToString(), Visibility.Hidden)
                     .ShowDialog();
+        }
+
+        public void ClearMode()
+        {
+            IsClearMode = !IsClearMode;
+
+            if (IsClearMode)
+            {
+                ChaptersViewLength = new GridLength(0, GridUnitType.Star);
+                SplitterVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ChaptersViewLength = new GridLength(0.3, GridUnitType.Star);
+                SplitterVisibility = Visibility.Visible;
+            }
         }
     }
 }

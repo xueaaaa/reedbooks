@@ -8,11 +8,15 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:htmlPanel="clr-namespace:TheArtOfDev.HtmlRenderer.WPF;assembly=HtmlRenderer.WPF"
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_window}" Height="450" Width="800">
+    <Window.Resources>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+    </Window.Resources>
     <Window.DataContext>
         <local:ReadingWindowViewModel/>
     </Window.DataContext>
@@ -23,7 +27,7 @@
                                    DialogBackground="{DynamicResource container_background_color}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="{Binding ChaptersViewLength}" d:Width="200"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -41,6 +45,7 @@
 
                 <GridSplitter Grid.Column="1"
                               Grid.Row="0"
+                              Visibility="{Binding SplitterVisibility}"
                               Style="{DynamicResource ReedBooksGridSplitter}"/>
 
                 <ScrollViewer Grid.Column="2"
@@ -185,6 +190,12 @@
                                              Margin="5 0 0 0"
                                              ToolTip="{DynamicResource r_scroll_to_end}"
                                              Click="IconButton_Click_1"/>
+
+                        <controls:IconButton Source="Cancel"
+                                             Margin="15 0 0 0"
+                                             ToolTip="{DynamicResource r_clear_mode}"
+                                             Foreground="{Binding IsClearMode, Converter={StaticResource BoolToColorConverter}}"
+                                             Command="{Binding ClearModeCommand}"/>
                     </StackPanel>
                 </Grid>
             </Grid>

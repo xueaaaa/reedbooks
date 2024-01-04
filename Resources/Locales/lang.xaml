@@ -77,6 +77,7 @@
     <v:String x:Key="r_add_quote">Добавить цитату...</v:String>
     <v:String x:Key="r_scroll_to_start">В начало главы</v:String>
     <v:String x:Key="r_scroll_to_end">В конец главы</v:String>
+    <v:String x:Key="r_clear_mode">Чистый режим</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
     
