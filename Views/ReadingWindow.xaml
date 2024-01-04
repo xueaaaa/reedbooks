@@ -48,22 +48,53 @@
                               Visibility="{Binding SplitterVisibility}"
                               Style="{DynamicResource ReedBooksGridSplitter}"/>
 
-                <ScrollViewer Grid.Column="2"
-                              Grid.Row="0"
-                              Name="ScrollViewer"
-                              Background="{DynamicResource accent_color}"
-                              VerticalScrollBarVisibility="Auto"
-                              ScrollChanged="ScrollViewer_ScrollChanged">
-                    <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
-                                         Name="HtmlPanel"
-                                         Margin="10"
-                                         Background="{DynamicResource book_background_color}"
-                                         LinkClicked="HtmlPanel_LinkClicked"/>
-                </ScrollViewer>
+                <Grid Grid.Column="2"
+                      Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="{Binding TopRectangleSize}"/>
+                        <RowDefinition Height="20px"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Style="{DynamicResource ConcentrationRectangle}"
+                               Grid.Row="0"
+                               Visibility="{Binding ConcentrationRectanglesVisibility}"
+                               d:Visibility="Collapsed"
+                               VerticalAlignment="Top"
+                               MouseWheel="Rectangle_MouseWheel_1"/>
+                    <TextBlock Style="{DynamicResource ConcentrationRectangleLabel}"
+                               Grid.Row="0"
+                               Visibility="{Binding ConcentrationHintsVisibility}"
+                               d:Visibility="Collapsed"
+                               Text="{DynamicResource r_line_scroll_hint}"/>
+
+                    <ScrollViewer Grid.RowSpan="3"
+                                  Name="ScrollViewer"
+                                  VerticalScrollBarVisibility="Auto"
+                                  ScrollChanged="ScrollViewer_ScrollChanged"
+                                  Panel.ZIndex="1">
+                        <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
+                                             Name="HtmlPanel"
+                                             Margin="30"
+                                             Background="{DynamicResource book_background_color}"
+                                             LinkClicked="HtmlPanel_LinkClicked"/>
+                    </ScrollViewer>
+                    <Rectangle Style="{DynamicResource ConcentrationRectangle}"
+                               Grid.Row="2"
+                               Visibility="{Binding ConcentrationRectanglesVisibility}"
+                               VerticalAlignment="Bottom"
+                               MouseWheel="Rectangle_MouseWheel"/>
+                    <TextBlock Style="{DynamicResource ConcentrationRectangleLabel}"
+                               Grid.Row="2"
+                               Visibility="{Binding ConcentrationHintsVisibility}"
+                               d:Visibility="Collapsed"
+                               Text="{DynamicResource r_content_scroll_hint}"/>
+                </Grid>
 
                 <Grid Grid.Column="1"
                       Grid.Row="1" 
-                      Grid.ColumnSpan="2">
+                      Grid.ColumnSpan="2"
+                      Background="{DynamicResource container_background_color}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.33*"/>
                         <ColumnDefinition Width="0.33*"/>
@@ -103,13 +134,6 @@
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center">
-                        <controls:IconButton Source="MagnifyPlusOutline"
-                                             Width="25"
-                                             Height="25"
-                                             Margin="0 0 15 0"
-                                             IsEnabled="False"
-                                             ToolTip="{DynamicResource r_scale_plus}"/>
-
                         <controls:IconButton Source="SkipPrevious"
                                              Width="25"
                                              Height="25"
@@ -126,19 +150,13 @@
                                              ToolTip="{DynamicResource r_next_chapter}"
                                              Command="{Binding MoveToAnotherDocumentCommand}"
                                              CommandParameter="{Binding NextNavigation}"/>
-
-                        <controls:IconButton Source="MagnifyMinusOutline"
-                                             Width="25"
-                                             Height="25"
-                                             Margin="15 0 0 0"
-                                             IsEnabled="False"
-                                             ToolTip="{DynamicResource r_scale_minus}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2"
+                                Margin="0 0 10 0"
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
+                                HorizontalAlignment="Right">
                         <controls:IconButton Source="FormatQuoteCloseOutline"
                                              Width="25"
                                              Height="25"
@@ -182,20 +200,26 @@
                         </controls:IconButton>
 
                         <controls:IconButton Source="ArrowCollapseUp"
-                                             Margin="15 0 0 0"
+                                             Margin="20 0 0 0"
                                              ToolTip="{DynamicResource r_scroll_to_start}"
                                              Click="IconButton_Click"/>
 
                         <controls:IconButton Source="ArrowCollapseDown"
-                                             Margin="5 0 0 0"
+                                             Margin="10 0 0 0"
                                              ToolTip="{DynamicResource r_scroll_to_end}"
                                              Click="IconButton_Click_1"/>
 
                         <controls:IconButton Source="Cancel"
-                                             Margin="15 0 0 0"
+                                             Margin="20 0 0 0"
                                              ToolTip="{DynamicResource r_clear_mode}"
                                              Foreground="{Binding IsClearMode, Converter={StaticResource BoolToColorConverter}}"
                                              Command="{Binding ClearModeCommand}"/>
+
+                        <controls:IconButton Source="LineScan"
+                                             Margin="10 0 0 0"
+                                             ToolTip="{DynamicResource r_concentration_mode}"
+                                             Foreground="{Binding IsConcentrationMode, Converter={StaticResource BoolToColorConverter}}"
+                                             Command="{Binding ConcentrationModeCommand}"/>
                     </StackPanel>
                 </Grid>
             </Grid>

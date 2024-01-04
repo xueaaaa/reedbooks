@@ -2,6 +2,7 @@
 using ReedBooks.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using TheArtOfDev.HtmlRenderer.Core.Entities;
 using TheArtOfDev.HtmlRenderer.WPF;
 
@@ -53,6 +54,29 @@ namespace ReedBooks.Views
         {
             ((ReadingWindowViewModel)DataContext).MoveToAnotherDocument(args.Data.Link);
             args.Handled = true;
+        }
+
+        private void Rectangle_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + (-e.Delta / 50));
+        }
+
+        private void Rectangle_MouseWheel_1(object sender, MouseWheelEventArgs e)
+        {
+            var vm = (ReadingWindowViewModel)DataContext;
+            double val = vm.TopRectangleSize.Value;
+
+            if(e.Delta < 0)
+            {
+                val += val / 30;
+            } 
+            else
+            {
+                val -= val / 30;
+            }
+
+            var newGridLength = new GridLength(val, GridUnitType.Star);
+            vm.TopRectangleSize = newGridLength;
         }
 
         //private void RenderCss(int fontSize = 16)

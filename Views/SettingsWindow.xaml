@@ -90,6 +90,14 @@
                                 </Expander.Header>
 
                                 <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_show_hints_label}"
+                                                                ParameterHint="{DynamicResource s_show_hints_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <CheckBox HorizontalAlignment="Right"
+                                                      IsChecked="{Binding ShowInteractionHints}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                    
                                     <controls:SettingsParameter ParameterName="{DynamicResource s_current_counted_days_label}"
                                                                 ParameterHint="{DynamicResource s_current_counted_days_hint}">
                                         <controls:SettingsParameter.ValueSelector>

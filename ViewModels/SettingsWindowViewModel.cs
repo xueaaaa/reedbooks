@@ -78,6 +78,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _showInteractionHints;
+        public bool ShowInteractionHints
+        {
+            get => _showInteractionHints;
+            set
+            {
+                _showInteractionHints = value;
+                OnPropertyChanged(nameof(ShowInteractionHints));
+            }
+        }
+
         private ushort _selectedCurrentCountedDays;
         public ushort SelectedCurrentCountedDays
         {
@@ -173,6 +184,8 @@ namespace ReedBooks.ViewModels
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
+            ShowInteractionHints = Properties.Settings.Default.ShowInteractionHints;
+            UpdateAutomatically = Properties.Settings.Default.UpdateAutomatically;
             ReloadTabs();
         }
 
@@ -204,10 +217,12 @@ namespace ReedBooks.ViewModels
             if (_selectedCurrentCountedDays != 0) Properties.Settings.Default.CurrentCountedDays = _selectedCurrentCountedDays;
             if (_recentBooksNumberDisplaying != 0) Properties.Settings.Default.RecentBooksNumberDisplaying = _recentBooksNumberDisplaying;
             if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
+            Properties.Settings.Default.ShowInteractionHints = ShowInteractionHints;
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
 
             Themes = App.ThemeController.Load();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
+            //For apply language settings to these menu labels
             ReloadTabs();
             OnPropertyChanged(nameof(SummarySizeString));
             OnPropertyChanged(nameof(DeleteUnusedFilesHint));

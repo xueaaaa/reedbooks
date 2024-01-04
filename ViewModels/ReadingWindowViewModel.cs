@@ -184,6 +184,52 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(IsClearMode));
             }
         }
+
+        private Visibility _concentrationRectanglesVisibility = Visibility.Collapsed;
+        public Visibility ConcentrationRectanglesVisibility
+        {
+            get => _concentrationRectanglesVisibility;
+            set
+            {
+                _concentrationRectanglesVisibility = value;
+                OnPropertyChanged(nameof(ConcentrationRectanglesVisibility));
+            }
+        }
+
+        private Visibility _concentrationHintsVisibility = Visibility.Collapsed;
+        public Visibility ConcentrationHintsVisibility
+        {
+            get => _concentrationHintsVisibility;
+            set
+            {
+                _concentrationHintsVisibility = value;
+                OnPropertyChanged(nameof(ConcentrationHintsVisibility));
+            }
+        }
+
+        private GridLength _topRectangleSize = new GridLength(0.1, GridUnitType.Star);
+        public GridLength TopRectangleSize
+        {
+            get => _topRectangleSize;
+            set
+            {
+                _topRectangleSize = value;
+                OnPropertyChanged(nameof(TopRectangleSize));
+            }
+        }
+
+
+
+        private bool _isConcentrationMode;
+        public bool IsConcentrationMode
+        {
+            get => _isConcentrationMode;
+            set
+            {
+                _isConcentrationMode = value;
+                OnPropertyChanged(nameof(IsConcentrationMode));
+            }
+        }
         
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
@@ -191,6 +237,7 @@ namespace ReedBooks.ViewModels
         public ICommand OnWindowClosingCommand { get; }
         public ICommand AddQuoteCommand { get; }
         public ICommand ClearModeCommand { get; }
+        public ICommand ConcentrationModeCommand { get; }
 
         public ReadingWindowViewModel()
         {
@@ -200,6 +247,7 @@ namespace ReedBooks.ViewModels
             OnWindowClosingCommand = new RelayCommand(obj => OnWindowClosing());
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
             ClearModeCommand = new RelayCommand(obj => ClearMode());
+            ConcentrationModeCommand = new RelayCommand(obj => ConcentrationMode());
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
@@ -207,8 +255,9 @@ namespace ReedBooks.ViewModels
             Book = readingBook;
             Navigation = Book.LoadNavigation();
 
-            //if(Book.LastReadingPosition != null)
-               // MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
+            if (Book.LastReadingPosition != null) return;
+            // MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
+            else MoveToAnotherDocument(Navigation.First());
         }
 
         public void MoveToAnotherDocument(object param)
@@ -337,6 +386,22 @@ namespace ReedBooks.ViewModels
             {
                 ChaptersViewLength = new GridLength(0.3, GridUnitType.Star);
                 SplitterVisibility = Visibility.Visible;
+            }
+        }
+
+        public void ConcentrationMode()
+        {
+            IsConcentrationMode = !IsConcentrationMode;
+
+            if (IsConcentrationMode)
+            {
+                ConcentrationRectanglesVisibility = Visibility.Visible;
+                if (Properties.Settings.Default.ShowInteractionHints) ConcentrationHintsVisibility = Visibility.Visible;
+            }
+            else 
+            { 
+                ConcentrationRectanglesVisibility = Visibility.Collapsed;
+                ConcentrationHintsVisibility = Visibility.Collapsed;
             }
         }
     }

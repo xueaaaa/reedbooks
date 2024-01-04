@@ -70,14 +70,15 @@
     <v:String x:Key="r_end_of_read_dialog_content">Поздравляем с прочтением книги и предлагаем вам перейти в читательский дневник, чтобы оценить ее.</v:String>
     <v:String x:Key="r_open_reading_diary">Перейти</v:String>
     <v:String x:Key="r_stay">Остаться</v:String>
-    <v:String x:Key="r_scale_plus">Увеличить</v:String>
-    <v:String x:Key="r_scale_minus">Уменьшить</v:String>
     <v:String x:Key="r_previous_chapter">Предыдущая глава</v:String>
     <v:String x:Key="r_next_chapter">Следующая глава</v:String>
     <v:String x:Key="r_add_quote">Добавить цитату...</v:String>
     <v:String x:Key="r_scroll_to_start">В начало главы</v:String>
     <v:String x:Key="r_scroll_to_end">В конец главы</v:String>
     <v:String x:Key="r_clear_mode">Чистый режим</v:String>
+    <v:String x:Key="r_concentration_mode">Режим концентрации</v:String>
+    <v:String x:Key="r_line_scroll_hint">Прокрутите колесо мыши здесь, чтобы сдвинуть линию концентрации выше или ниже.</v:String>
+    <v:String x:Key="r_content_scroll_hint">Прокрутите колесо мыши здесь, чтобы сдвинуть текст открытой главы.</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
     
@@ -90,6 +91,8 @@
     <v:String x:Key="s_theme_hint">Меняет цветовую гамму приложения.</v:String>
     <v:String x:Key="s_theme_load_custom">Загрузить...</v:String>
     <v:String x:Key="s_personalization_header">Персонализация</v:String>
+    <v:String x:Key="s_show_hints_label">Отображение подсказок интерфейса</v:String>
+    <v:String x:Key="s_show_hints_hint">Показывать подсказки при взаимодействии с интерфейсом.</v:String>
     <v:String x:Key="s_current_counted_days_label">Учитываемое количество дней для текущих</v:String>
     <v:String x:Key="s_current_counted_days_hint">Эта настройка устанавливает период (в днях) с последнего открытия книги, в течение которого она будет отображаться во вкладке "Текущие".</v:String>
     <v:String x:Key="s_recent_books_number_displaying_label">Количество отображаемых книг в "Недавнем"</v:String>
