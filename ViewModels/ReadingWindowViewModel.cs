@@ -279,9 +279,21 @@ namespace ReedBooks.ViewModels
             Book = readingBook;
             Navigation = Book.LoadNavigation();
 
-            if (Book.LastReadingPosition != null) return;
-            // MoveToAnotherDocument(Navigation.Where(n => n.Link == Book.LastReadingPosition.Link).First());
+            if (Book.LastReadingPosition != null) LoadLastPosition(Navigation);
             else MoveToAnotherDocument(Navigation.First());
+        }
+
+        private void LoadLastPosition(List<NavigationItem> collection)
+        {
+            foreach (var item in collection)
+            {
+                if (item.Link == Book.LastReadingPosition.Link)
+                {
+                    MoveToAnotherDocument(item);
+                    return;
+                }
+                else if(item.ItemsSource != null) LoadLastPosition((List<NavigationItem>)item.ItemsSource);
+            }
         }
 
         public void MoveToAnotherDocument(object param)
