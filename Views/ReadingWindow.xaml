@@ -96,9 +96,9 @@
                       Grid.ColumnSpan="2"
                       Background="{DynamicResource container_background_color}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.33*"/>
-                        <ColumnDefinition Width="0.33*"/>
-                        <ColumnDefinition Width="0.33*"/>
+                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="0.4*"/>
                     </Grid.ColumnDefinitions>
 
                     <controls:ButtonWithImage Style="{DynamicResource MarkAsReadButton}"
@@ -157,7 +157,13 @@
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right">
+                        <controls:IconButton Source="KeyboardReturn"
+                                             ToolTip="{DynamicResource r_return}"
+                                             IsEnabled="{Binding ReturnEnabled}"
+                                             Command="{Binding ReturnCommand}"/>
+
                         <controls:IconButton Source="FormatQuoteCloseOutline"
+                                             Margin="10 0 0 0"
                                              Width="25"
                                              Height="25"
                                              ToolTip="{DynamicResource r_add_quote}"

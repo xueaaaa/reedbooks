@@ -162,7 +162,6 @@ namespace ReedBooks.Models.Book
                     _linkToCover = bitmapPath;
                 }
             }
-            
 
             _author = epubBook.Author;
             _name = epubBook.Title;

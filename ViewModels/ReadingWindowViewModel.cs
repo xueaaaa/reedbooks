@@ -14,9 +14,10 @@ namespace ReedBooks.ViewModels
 {
     public class ReadingWindowViewModel : ObservableObject
     {
-        public delegate void SelectedChapterChanged();
+        public delegate void SelectedChapterChanged(double offset = 0);
         public event SelectedChapterChanged ChapterChanged;
 
+        #region Properties
         private Book _book;
         public Book Book
         {
@@ -86,6 +87,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private double _offsetReminder;
+        public double OffsetReminder
+        {
+            get => _offsetReminder;
+            set
+            {
+                _offsetReminder = value;
+                OnPropertyChanged(nameof(OffsetReminder));
+            }
+        }
+
         private NavigationItem _nextNavigation;
         public NavigationItem NextNavigation
         {
@@ -141,7 +153,7 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private bool _nextEnabled;
+        private bool _nextEnabled = false;
         public bool NextEnabled
         {
             get => _nextEnabled;
@@ -150,6 +162,17 @@ namespace ReedBooks.ViewModels
                 _nextEnabled = value;
                 OnPropertyChanged(nameof(NextEnabled));
             }        
+        }
+
+        private bool _returnEnabled;
+        public bool ReturnEnabled
+        {
+            get => _returnEnabled;
+            set
+            {
+                _returnEnabled = value;
+                OnPropertyChanged(nameof(ReturnEnabled));
+            }
         }
 
         private GridLength _chaptersViewLength = new GridLength(0.3, GridUnitType.Star);
@@ -218,8 +241,6 @@ namespace ReedBooks.ViewModels
             }
         }
 
-
-
         private bool _isConcentrationMode;
         public bool IsConcentrationMode
         {
@@ -230,11 +251,13 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(IsConcentrationMode));
             }
         }
-        
+        #endregion
+
         public ICommand MoveToAnotherDocumentCommand { get; }
         public ICommand MarkAsReadCommand { get; }
         public ICommand OpenReadingDiaryCommand { get; }
         public ICommand OnWindowClosingCommand { get; }
+        public ICommand ReturnCommand { get; }
         public ICommand AddQuoteCommand { get; }
         public ICommand ClearModeCommand { get; }
         public ICommand ConcentrationModeCommand { get; }
@@ -245,6 +268,7 @@ namespace ReedBooks.ViewModels
             MarkAsReadCommand = new RelayCommand(obj => MarkAsRead(obj));
             OpenReadingDiaryCommand = new RelayCommand(obj => OpenReadingDiary());
             OnWindowClosingCommand = new RelayCommand(obj => OnWindowClosing());
+            ReturnCommand = new RelayCommand(obj => Return());
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
             ClearModeCommand = new RelayCommand(obj => ClearMode());
             ConcentrationModeCommand = new RelayCommand(obj => ConcentrationMode());
@@ -273,14 +297,25 @@ namespace ReedBooks.ViewModels
                 NextEnabled = NextNavigation != null;
 
                 if (nav != null)
+                {
                     finalLink = nav.Link;
+                    ReturnEnabled = false;
+                    var document = Book.LoadChapter(finalLink);
+                    SelectedChapterHtml = document;
+                    ChapterChanged?.Invoke(OffsetReminder);
+                    OffsetReminder = 0;
+                }
             }
             else if (param is string link)
             {
                 if (!link.StartsWith("http"))
                 {
                     finalLink = string.Join(string.Empty, link.Take(link.LastIndexOf('l') + 1));
-                    CurrentNavigation = Navigation.Where(n => n.Link == finalLink).First();
+                    ReturnEnabled = true;
+                    OffsetReminder = ScrollOffset;
+                    var document = Book.LoadChapter(finalLink);
+                    SelectedChapterHtml = document;
+                    ChapterChanged?.Invoke();
                 }
                 else
                 {
@@ -290,9 +325,6 @@ namespace ReedBooks.ViewModels
             }
 
             QuoteLocation = CurrentNavigation.Header.ToString();
-            var document = Book.LoadChapter(finalLink);
-            SelectedChapterHtml = document;
-            ChapterChanged?.Invoke();
         }
 
         private void LookFor(NavigationItem nav, List<NavigationItem> collection, List<NavigationItem> previousCollection = null)
@@ -353,6 +385,11 @@ namespace ReedBooks.ViewModels
         {
             if (Book.LastReadingPosition != null) return Book.LastReadingPosition.Offset;
             return 0;
+        }
+
+        public void Return()
+        {
+            MoveToAnotherDocument(CurrentNavigation);
         }
 
         public async void AddQuote()

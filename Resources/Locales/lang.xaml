@@ -72,6 +72,7 @@
     <v:String x:Key="r_stay">Остаться</v:String>
     <v:String x:Key="r_previous_chapter">Предыдущая глава</v:String>
     <v:String x:Key="r_next_chapter">Следующая глава</v:String>
+    <v:String x:Key="r_return">Вернуться</v:String>
     <v:String x:Key="r_add_quote">Добавить цитату...</v:String>
     <v:String x:Key="r_scroll_to_start">В начало главы</v:String>
     <v:String x:Key="r_scroll_to_end">В конец главы</v:String>

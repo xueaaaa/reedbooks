@@ -18,9 +18,10 @@ namespace ReedBooks.Views
             readingBook.SetStartReadingDate();
             readingBook.SetLastReadingDate();
 
-            ((ReadingWindowViewModel)DataContext).ChapterChanged += () =>
+            ((ReadingWindowViewModel)DataContext).ChapterChanged += (offset) =>
             {
-                ScrollViewer.ScrollToHome();
+                if (offset == 0) ScrollViewer.ScrollToHome();
+                else ScrollViewer.ScrollToVerticalOffset(offset);
                 ChaptetsView.ViewSelectedItem = ((ReadingWindowViewModel)DataContext).CurrentNavigation;
             };
         }
@@ -78,11 +79,5 @@ namespace ReedBooks.Views
             var newGridLength = new GridLength(val, GridUnitType.Star);
             vm.TopRectangleSize = newGridLength;
         }
-
-        //private void RenderCss(int fontSize = 16)
-        //{
-        //    string css = $"*{{color:black;font-size: {fontSize}px;}}";
-        //    HtmlPanel.BaseStylesheet = css;
-        //}
     }
 }

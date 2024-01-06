@@ -173,6 +173,27 @@ ReedBooks позволяет загружать только Epub книги. З
 В последние несколько лет особой популярностью пользуются темные темы для приложений. Они меньше напрягают глаза, а для многих выглядят более эстетично, чем светлые варианты. В ReedBooks также есть светлая (по умолчанию) и темная тема. Пользователи также могут создавать свои собственные темы в формате .rbtheme и делиться ими друг с другом.
 
 ## Решения на языке C# для ключевых функций
+### Чтение epub формата
+
+```csharp
+_boundDiary = new ReadingDiary(Guid);
+_path = MoveToInternalFolder(path, Guid.ToString());
+_linkToOrigin = path;
+
+EpubBook epubBook = EpubReader.ReadBook(path);
+
+using (MemoryStream stream = new MemoryStream(epubBook.CoverImage))
+{
+    Bitmap bitmap = new Bitmap(stream);
+    string bitmapPath = $"{Directory.GetCurrentDirectory()}{StorageManager.COVERS_DIRECTORY}{Guid}.png";
+    bitmap.Save(bitmapPath);
+     _linkToCover = bitmapPath;
+}
+
+_author = epubBook.Author;
+_name = epubBook.Title;
+_chaptersCount = epubBook.Content.Html.Local.Count;
+```
 
 Список литературы:
 
