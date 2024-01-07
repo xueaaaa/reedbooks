@@ -282,7 +282,7 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0"
-                                    Margin="10 0 10 0">
+                                        Margin="10 0 10 0">
                                 <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
                                                           Width="300"
                                                           Command="{Binding LoadFileCommand}"
@@ -317,7 +317,7 @@
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="0"
-                                    Margin="10 0 10 0">
+                                        Margin="10 0 10 0">
                                 <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
                                      TextChanged="TextBox_TextChanged"/>
@@ -374,9 +374,51 @@
                     </TabItem>
 
                     <TabItem>
-                        <StackPanel Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                        </StackPanel>
+                            <StackPanel Margin="10">
+                                <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                           Foreground="{DynamicResource accent_color}"
+                                           HorizontalAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           Text="{DynamicResource m_copyright_warning}"/>
+
+                                <Separator Margin="0 10"/>
+
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center">
+                                    <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                             Name="ShopSearch"
+                                             Margin="0 0 20 0"
+                                             materialDesign:HintAssist.Hint="{DynamicResource m_shop_search_hint}"/>
+
+                                    <Button Style="{DynamicResource ReedBooksOutlinedButton}"
+                                            Content="{DynamicResource m_search}"
+                                            Command="{Binding ShopSearchCommand}"
+                                            CommandParameter="{Binding ElementName=ShopSearch, Path=Text}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <ScrollViewer Grid.Row="1"
+                                          Style="{DynamicResource ShopBookScrollViewer}">
+                                <ItemsControl ItemsSource="{Binding ShopSearchedBooks}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:ShopBookCard Book="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Style="{DynamicResource ShopBookStackPanel}"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>

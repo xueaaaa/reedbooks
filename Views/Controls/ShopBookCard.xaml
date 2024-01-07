@@ -1,0 +1,106 @@
+﻿<Border x:Class="ReedBooks.Views.Controls.ShopBookCard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:converters="clr-namespace:ReedBooks.Converters"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Name="Card"
+        MaxWidth="600"
+        CornerRadius="{DynamicResource CornerRadius}"
+        Margin="10"
+        Background="{DynamicResource container_background_color}"
+        mc:Ignorable="d" >
+    <Border.Resources>
+        <converters:StringCollectionToStringConverter x:Key="StringCollectionToStringConverter"/>
+    </Border.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Source="{Binding ElementName=Card, Path=Book.Cover, Mode=OneWay}"
+               Margin="20"/>
+
+        <StackPanel Grid.Column="1"
+                    Margin="10"
+                    Orientation="Vertical">
+            <TextBlock Text="{Binding ElementName=Card, Path=Book.Name}"
+                       TextWrapping="Wrap"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="{Binding ElementName=Card, Path=Book.Author}"
+                       TextWrapping="Wrap"
+                       FontSize="16"
+                       FontWeight="Light"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 10"
+                       Foreground="{DynamicResource hint_color}"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <!--#region Properties Titles-->
+                <TextBlock Style="{DynamicResource PropertyTitle}"
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           Text="{DynamicResource m_genres}"/>
+                <TextBlock Style="{DynamicResource PropertyTitle}"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           Text="{DynamicResource m_book_year}"/>
+                <TextBlock Style="{DynamicResource PropertyTitle}"
+                           VerticalAlignment="Top"
+                           Grid.Column="0"
+                           Grid.Row="2"
+                           Text="{DynamicResource m_users_rating}"/>
+                <!--#endregion-->
+
+                <!--#region Properties Values-->
+                <TextBlock Style="{DynamicResource PropertyValue}"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding ElementName=Card, Path=Book.Genres, Converter={StaticResource StringCollectionToStringConverter}}"
+                           TextWrapping="Wrap"/>
+                <TextBlock Style="{DynamicResource PropertyValue}"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           Text="{Binding ElementName=Card, Path=Book.Year, Converter={StaticResource StringCollectionToStringConverter}}"/>
+                <StackPanel Grid.Column="1"
+                            Grid.Row="2"
+                            HorizontalAlignment="Left">
+                    <materialDesign:RatingBar IsReadOnly="True"
+                                              Value="{Binding ElementName=Card, Path=Book.Rating, Mode=OneWay}"
+                                              Background="{DynamicResource hint_color}"/>
+                    <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                               Foreground="{DynamicResource hint_color}"
+                               TextWrapping="Wrap">
+                        <Run>(</Run>
+                        <Run Text="{DynamicResource m_rated_users_first}"/>
+                        <Run Foreground="{DynamicResource accent_color}" Text="{Binding ElementName=Card, Path=Book.RatedUsersNumber}"/>
+                        <Run Text="{DynamicResource m_rated_users_second}"/>
+                        <Run>)</Run>
+                    </TextBlock>
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Border>

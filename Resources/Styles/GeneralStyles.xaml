@@ -51,6 +51,7 @@
            TargetType="Button"
            BasedOn="{StaticResource MaterialDesignOutlinedButton}">
         <Setter Property="Foreground" Value="{DynamicResource accent_color}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource accent_color}"/>
     </Style>
 
     <Style x:Key="MultilineTextBox"

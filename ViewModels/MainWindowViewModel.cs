@@ -144,6 +144,17 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(SelectedCollectionBooks));
             }
         }
+
+        private ObservableCollection<ParsedBook> _shopSearchedBooks;
+        public ObservableCollection<ParsedBook> ShopSearchedBooks
+        {
+            get => _shopSearchedBooks;
+            set
+            {
+                _shopSearchedBooks = value;
+                OnPropertyChanged(nameof(ShopSearchedBooks));
+            }
+        }
         #endregion
 
         #region Commands
@@ -165,6 +176,7 @@ namespace ReedBooks.ViewModels
         public ICommand EditCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
         public ICommand ShareCommand { get; }
+        public ICommand ShopSearchCommand { get; }
         #endregion
 
         public MainWindowViewModel()
@@ -187,6 +199,7 @@ namespace ReedBooks.ViewModels
             EditCollectionCommand = new RelayCommand(obj => EditCollection(obj));
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
             ShareCommand = new RelayCommand(obj => Share(obj));
+            ShopSearchCommand = new RelayCommand(obj => ShopSearch(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
@@ -392,6 +405,12 @@ namespace ReedBooks.ViewModels
                 Application.Current.Resources["dialog_share_file_content"].ToString(), Visibility.Visible);
 
             if (dialog.ShowDialog() == true) Process.Start("explorer.exe", Path.GetDirectoryName(path));
+        }
+
+        public async void ShopSearch(object param)
+        {
+            var searched = await new Parser().Parse(param.ToString());
+            ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.Rating).ThenByDescending(b => b.RatedUsersNumber));
         }
     }
 }

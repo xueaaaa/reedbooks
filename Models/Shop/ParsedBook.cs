@@ -39,6 +39,17 @@ namespace ReedBooks.Models.Shop
 			}
 		}
 
+		private int _ratedUsersNumber;
+		public int RatedUsersNumber
+		{
+			get => _ratedUsersNumber;
+			set
+			{
+				_ratedUsersNumber = value;
+				OnPropertyChanged(nameof(RatedUsersNumber));
+			}
+		}
+
 		private ObservableCollection<string> _genres;
 		public ObservableCollection<string> Genres
 		{

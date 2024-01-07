@@ -46,6 +46,13 @@
     <v:String x:Key="m_rights">Права:</v:String>
     <v:String x:Key="m_language">Язык:</v:String>
     <v:String x:Key="m_description">Описание:</v:String>
+    <v:String x:Key="m_copyright_warning">Все материалы на этой вкладке взяты с сайта topliba.com. ReedBooks не является правообладателем представленного контента.</v:String>
+    <v:String x:Key="m_shop_search_hint">Введите название книги...</v:String>
+    <v:String x:Key="m_genres">Жанры:</v:String>
+    <v:String x:Key="m_book_year">Год выпуска:</v:String>
+    <v:String x:Key="m_users_rating">Оценка пользователей:</v:String>
+    <v:String x:Key="m_rated_users_first">на основании </v:String>
+    <v:String x:Key="m_rated_users_second"> оценок пользователей</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->
