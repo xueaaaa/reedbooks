@@ -7,6 +7,8 @@ namespace ReedBooks.Views.Controls
     {
         public static readonly DependencyProperty IsLoadingProperty =
             DependencyProperty.Register("IsLoading", typeof(bool), typeof(ShopControl));
+        public static readonly DependencyProperty IsNullProperty =
+            DependencyProperty.Register("IsNull", typeof(bool), typeof(ShopControl));
 
         public bool IsLoading
         {
@@ -14,6 +16,12 @@ namespace ReedBooks.Views.Controls
             set { SetValue(IsLoadingProperty, value); }
         }
 
+        public bool IsNull
+        {
+            get { return (bool)GetValue(IsNullProperty); }
+            set { SetValue(IsNullProperty, value); }
+        }
+        
         public ShopControl()
         {
             InitializeComponent();

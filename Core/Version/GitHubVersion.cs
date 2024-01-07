@@ -28,22 +28,25 @@ namespace ReedBooks.Core.Version
 
         public GitHubVersion() 
         {
-            var github = new GitHubClient(new ProductHeaderValue(GITHUB_REPOSITORY_NAME));
-            var latestRelease = github.Repository.Release.GetLatest(GITHUB_REPOSITORY_OWNER, GITHUB_REPOSITORY_NAME).Result;
-            
-            var versionAsStr = latestRelease.Name;
-            var versionParts = versionAsStr.Split('.');
-            if (versionParts.Length != 4) throw new ArgumentException("This string does not represents a version");
+            if (App.IsInternetConnected)
+            {
+                var github = new GitHubClient(new ProductHeaderValue(GITHUB_REPOSITORY_NAME));
+                var latestRelease = github.Repository.Release.GetLatest(GITHUB_REPOSITORY_OWNER, GITHUB_REPOSITORY_NAME).Result;
 
-            Major = Convert.ToByte(versionParts[0]);
-            Minor = Convert.ToByte(versionParts[1]);
-            Patch = Convert.ToByte(versionParts[2]);
-            Revision = Convert.ToByte(versionParts[3]);
+                var versionAsStr = latestRelease.Name;
+                var versionParts = versionAsStr.Split('.');
+                if (versionParts.Length != 4) throw new ArgumentException("This string does not represents a version");
 
-            Name = latestRelease.Name;
-            Body = latestRelease.Body;
-            PublishedAt = latestRelease.PublishedAt;
-            Assets = latestRelease.Assets;
+                Major = Convert.ToByte(versionParts[0]);
+                Minor = Convert.ToByte(versionParts[1]);
+                Patch = Convert.ToByte(versionParts[2]);
+                Revision = Convert.ToByte(versionParts[3]);
+
+                Name = latestRelease.Name;
+                Body = latestRelease.Body;
+                PublishedAt = latestRelease.PublishedAt;
+                Assets = latestRelease.Assets;
+            }
         }
     }
 }

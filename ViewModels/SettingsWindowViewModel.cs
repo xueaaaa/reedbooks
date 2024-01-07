@@ -267,6 +267,11 @@ namespace ReedBooks.ViewModels
                 {
                     DisplayName = Application.Current.Resources["m_search"].ToString(),
                     Tag = "2"
+                },
+                new SettingsParameterViewModel
+                {
+                    DisplayName = Application.Current.Resources["m_books_shop"].ToString(),
+                    Tag = "3"
                 }
             };
 

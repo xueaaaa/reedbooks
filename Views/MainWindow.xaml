@@ -350,7 +350,6 @@
                                                          ToolTip="{DynamicResource m_sort_by_last_reading_date_descending}"/>
                                     </StackPanel>
                                 </StackPanel>
-
                                 <Separator Margin="0 10 0 0"/>
                             </StackPanel>
 
@@ -374,39 +373,47 @@
 
                     <TabItem>
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                            <Grid Visibility="{Binding IsInternetConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                            <StackPanel Margin="10">
-                                <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                <StackPanel Margin="10">
+                                    <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
                                            Foreground="{DynamicResource accent_color}"
                                            HorizontalAlignment="Center"
                                            TextWrapping="Wrap"
                                            Text="{DynamicResource m_copyright_warning}"/>
 
-                                <Separator Margin="0 10"/>
+                                    <Separator Margin="0 10"/>
 
-                                <StackPanel Orientation="Horizontal"
+                                    <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
-                                    <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                        <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                              Name="ShopSearch"
                                              Margin="0 0 20 0"
                                              materialDesign:HintAssist.Hint="{DynamicResource m_shop_search_hint}"/>
 
-                                    <Button Style="{DynamicResource ReedBooksOutlinedButton}"
+                                        <Button Style="{DynamicResource ReedBooksOutlinedButton}"
                                             Content="{DynamicResource m_search}"
                                             Command="{Binding ShopSearchCommand}"
                                             CommandParameter="{Binding ElementName=ShopSearch, Path=Text}"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
 
-                            <ScrollViewer Grid.Row="1"
+                                <ScrollViewer Grid.Row="1"
                                           Style="{DynamicResource ShopBookScrollViewer}">
-                                <controls:ShopControl ItemsSource="{Binding ShopSearchedBooks}"
-                                                      IsLoading="{Binding IsLoading}"/>
-                            </ScrollViewer>
+                                    <controls:ShopControl ItemsSource="{Binding ShopSearchedBooks}"
+                                                          IsLoading="{Binding IsLoading}"
+                                                          IsNull="{Binding IsNull}"/>
+                                </ScrollViewer>
+                            </Grid>
+
+                            <TextBlock Visibility="{Binding IsInternetNotConnected, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Text="{DynamicResource m_internet_not_connected}"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

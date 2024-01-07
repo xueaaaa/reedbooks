@@ -167,6 +167,32 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(IsLoading));
             }
         }
+
+        private bool _isNull = true;
+        public bool IsNull
+        {
+            get => _isNull;
+            set
+            {
+                _isNull = value;
+                OnPropertyChanged(nameof(IsNull));
+            }
+        }
+
+        public bool IsInternetConnected
+        {
+            get => App.IsInternetConnected;
+        }
+
+        public bool IsInternetNotConnected
+        {
+            get => !IsInternetConnected;
+        }
+
+        public int BlurRadius
+        {
+            get => IsInternetConnected ? 0 : 10;
+        }
         #endregion
 
         #region Commands
@@ -423,10 +449,13 @@ namespace ReedBooks.ViewModels
 
         public async void ShopSearch(object param)
         {
+            IsNull = false;
+            ShopSearchedBooks = new ObservableCollection<ParsedBook>();
             IsLoading = true;
             var searched = await new Parser().Parse(param.ToString());
-            ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber));
             IsLoading = false;
+            if (searched != null) ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber));
+            else IsNull = true;
         }
 
         public void Download(object param)

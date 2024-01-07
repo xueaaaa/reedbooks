@@ -5,6 +5,7 @@ using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
 using System.Globalization;
+using System.Net;
 using System.Windows;
 using System.Windows.Threading;
 using AppContext = ReedBooks.Core.AppContext;
@@ -17,6 +18,25 @@ namespace ReedBooks
         public static StorageManager StorageManager { get; private set; }
         public static Updater Updater { get; private set; }
         public static ThemeController ThemeController { get; private set; }
+
+        public static bool IsInternetConnected
+        {
+            get
+            {
+                try
+                {
+                    using (var client = new WebClient())
+                    using (var stream = client.OpenRead("http://www.google.com"))
+                    {
+                        return true;
+                    }
+                }
+                catch (WebException)
+                {
+                    return false;
+                }
+            }
+        }
 
         public App()
         {

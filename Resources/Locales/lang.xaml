@@ -56,6 +56,8 @@
     <v:String x:Key="m_download">Скачать</v:String>
     <v:String x:Key="m_epub_not_enabled">Данная книга недоступна в Epub формате.</v:String>
     <v:String x:Key="m_please_wait">Обработка полученных данных, пожалуйста, подождите...</v:String>
+    <v:String x:Key="m_internet_not_connected">Подключение к интернету недоступно.</v:String>
+    <v:String x:Key="m_shop_books_not_found">Нет книг для отображения</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->

@@ -49,9 +49,13 @@ namespace ReedBooks.Models.Shop
 
                 book.RatedUsersNumber = rating.GetAttribute("_ratingsnumber") == string.Empty ? 0 : Convert.ToInt32(rating.GetAttribute("_ratingsnumber"));
 
-                var genresRaw = match.GetElementsByClassName("book-genres").First().Children;
-                foreach (var genre in genresRaw)
-                    book.Genres.Add(genre.TextContent.Trim('\n', '\t', ' '));
+                var genresRaw = match.GetElementsByClassName("book-genres");
+                if (genresRaw != null && genresRaw.Count() > 0)
+                {
+                    var genres = match.GetElementsByClassName("book-genres").First().Children;
+                    foreach (var genre in genresRaw)
+                        book.Genres.Add(genre.TextContent.Trim('\n', '\t', ' '));
+                }
 
                 var bookYearElement = match.GetElementsByClassName("book-year");
                 if (bookYearElement != null && bookYearElement.Count() > 0)
