@@ -156,6 +156,17 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(ShopSearchedBooks));
             }
         }
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
         #endregion
 
         #region Commands
@@ -412,8 +423,10 @@ namespace ReedBooks.ViewModels
 
         public async void ShopSearch(object param)
         {
+            IsLoading = true;
             var searched = await new Parser().Parse(param.ToString());
             ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber));
+            IsLoading = false;
         }
 
         public void Download(object param)

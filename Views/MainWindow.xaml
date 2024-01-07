@@ -110,15 +110,14 @@
                                     <ItemsControl.Template>
                                         <ControlTemplate>
                                             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                                  HorizontalScrollBarVisibility="Disabled">
+                                                          HorizontalScrollBarVisibility="Disabled">
                                                 <StackPanel Orientation="Vertical">
                                                     <ItemsPresenter/>
                                                     <TextBlock Foreground="{DynamicResource hint_color}"
-                                                       Text="{DynamicResource m_no_elements}"
-                                                       Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                                               Text="{DynamicResource m_no_elements}"
+                                                               Visibility="{Binding Items.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource CountToVisibilityConverter}}"/>
                                                 </StackPanel>
                                             </ScrollViewer>
-
                                         </ControlTemplate>
                                     </ItemsControl.Template>
 
@@ -405,18 +404,8 @@
 
                             <ScrollViewer Grid.Row="1"
                                           Style="{DynamicResource ShopBookScrollViewer}">
-                                <ItemsControl ItemsSource="{Binding ShopSearchedBooks}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <controls:ShopBookCard Book="{Binding}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Style="{DynamicResource ShopBookStackPanel}"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
+                                <controls:ShopControl ItemsSource="{Binding ShopSearchedBooks}"
+                                                      IsLoading="{Binding IsLoading}"/>
                             </ScrollViewer>
                         </Grid>
                     </TabItem>
