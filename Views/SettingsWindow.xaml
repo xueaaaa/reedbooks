@@ -15,6 +15,7 @@
     <Grid Style="{DynamicResource MainGrid}">
         <Border CornerRadius="{DynamicResource CornerRadius}"
                 Margin="30"
+                MaxWidth="800"
                 Background="{DynamicResource container_background_color}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -132,7 +133,7 @@
                             </Expander>
                             <!--#endregion-->
 
-                            <!--#region Story management settings-->
+                            <!--#region Storage management settings-->
                             <Expander Background="{DynamicResource container_background_color}"
                                       Margin="0 0 0 30"
                                       IsExpanded="False">
@@ -143,6 +144,16 @@
                                 </Expander.Header>
 
                                 <StackPanel Orientation="Vertical">
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_delete_unused_automatically_header}"
+                                                                ParameterHint="{DynamicResource s_delete_unused_automatically_label}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <CheckBox HorizontalAlignment="Right"
+                                                      IsChecked="{Binding DeleteUnusedAutomatically}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+
+                                    <Separator Margin="10"/>
+
                                     <controls:SettingsParameter ParameterName="{DynamicResource s_delete_unused_files_label}"
                                                                 ParameterHint="{Binding DeleteUnusedFilesHint}">
                                         <controls:SettingsParameter.ValueSelector>

@@ -46,6 +46,11 @@ namespace ReedBooks.Core
             }
         }
 
+        public StorageManager()
+        {
+            if (Properties.Settings.Default.DeleteUnusedAutomatically) DeleteUnusedFiles();
+        }
+
         public double GetFromDirectory(string path)
         {
             double size = 0;

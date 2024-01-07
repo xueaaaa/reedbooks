@@ -136,6 +136,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _deleteUnusedAutomatically;
+        public bool DeleteUnusedAutomatically
+        {
+            get => _deleteUnusedAutomatically;
+            set
+            {
+                _deleteUnusedAutomatically = value;
+                OnPropertyChanged(nameof(DeleteUnusedAutomatically));
+            }
+        }
+
         private bool _updateAutomatically;
         public bool UpdateAutomatically
         {
@@ -186,6 +197,7 @@ namespace ReedBooks.ViewModels
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
             ShowInteractionHints = Properties.Settings.Default.ShowInteractionHints;
             UpdateAutomatically = Properties.Settings.Default.UpdateAutomatically;
+            DeleteUnusedAutomatically = Properties.Settings.Default.DeleteUnusedAutomatically;
             ReloadTabs();
         }
 
@@ -219,9 +231,11 @@ namespace ReedBooks.ViewModels
             if (_selectedTab != null) Properties.Settings.Default.DefaultTab = Convert.ToByte(_selectedTab.Tag);
             Properties.Settings.Default.ShowInteractionHints = ShowInteractionHints;
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
+            Properties.Settings.Default.DeleteUnusedAutomatically = DeleteUnusedAutomatically;
 
             Themes = App.ThemeController.Load();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
+
             //For apply language settings to these menu labels
             ReloadTabs();
             OnPropertyChanged(nameof(SummarySizeString));

@@ -115,5 +115,17 @@ namespace ReedBooks.Properties {
                 this["ShowInteractionHints"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DeleteUnusedAutomatically {
+            get {
+                return ((bool)(this["DeleteUnusedAutomatically"]));
+            }
+            set {
+                this["DeleteUnusedAutomatically"] = value;
+            }
+        }
     }
 }

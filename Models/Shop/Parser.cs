@@ -24,7 +24,7 @@ namespace ReedBooks.Models.Shop
 
             var books = new ObservableCollection<ParsedBook>();
 
-            if (matched.Count > 20) matched = matched.Take(20).ToList();
+            if (matched.Count > 10) matched = matched.Take(10).ToList();
             foreach (var match in matched)
             {
                 var book = new ParsedBook();
@@ -32,6 +32,7 @@ namespace ReedBooks.Models.Shop
                 var titleElement = match.GetElementsByClassName("book-title").First();
                 book.Name = titleElement.TextContent.Trim('\n', '\t', ' ');
                 var link = titleElement.GetAttribute("href");
+                book.Link = link;
 
                 var bookIndividualPage = await ConvertToHtml(link);
                 var downloadButtons = bookIndividualPage.QuerySelectorAll("a").Where(elm => elm.ClassName != null && elm.ClassName == "download-btn");
@@ -64,7 +65,7 @@ namespace ReedBooks.Models.Shop
                     book.Year = Convert.ToInt32(year);
                 }
 
-                book.Description = match.GetElementsByClassName("description").First().TextContent.Trim('\n', '\t', ' ');
+                book.Description = bookIndividualPage.GetElementsByClassName("description").First().TextContent.Trim('\n', '\t', ' ');
 
                 book.Cover = match.QuerySelector("img").GetAttribute("data-original");
 

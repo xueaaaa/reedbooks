@@ -6,7 +6,6 @@ namespace ReedBooks.Models.Shop
     public class ParsedBook : ObservableObject
     {
 		private string _name;
-
 		public string Name
 		{
 			get { return _name; }
@@ -92,6 +91,17 @@ namespace ReedBooks.Models.Shop
 			{ 
 				_cover = value;
 				OnPropertyChanged(nameof(Cover));
+			}
+		}
+
+		private string _link;
+		public string Link
+		{
+			get => _link;
+			set
+			{
+				_link = value;
+				OnPropertyChanged(nameof(Link));
 			}
 		}
 

@@ -1,4 +1,5 @@
 ﻿using ReedBooks.Models.Shop;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,6 +19,11 @@ namespace ReedBooks.Views.Controls
         public ShopBookCard()
         {
             InitializeComponent();
+        }
+
+        private void IconButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Book.Link);
         }
     }
 }

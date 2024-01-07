@@ -11,6 +11,8 @@ namespace ReedBooks.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is IEnumerable<string> strings) return string.Join(", ", strings);
+            else if (value is string str) return str;
+            else if(value is int val) return val.ToString();
             return Application.Current.Resources["m_not_stated"].ToString();
         }
 

@@ -318,8 +318,8 @@
                             <StackPanel Grid.Row="0"
                                         Margin="10 0 10 0">
                                 <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-                                     materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
-                                     TextChanged="TextBox_TextChanged"/>
+                                         materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
+                                         TextChanged="TextBox_TextChanged"/>
 
                                 <StackPanel Orientation="Horizontal"
                                         Margin="0 7 0 0">

@@ -358,6 +358,8 @@ namespace ReedBooks.ViewModels
         public void Search(object param)
         {
             var namePart = (string)param;
+
+            if (namePart.Length < 3) return;
             SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.ToLower().Contains(namePart.ToLower())).ToList());
         }
 
@@ -454,7 +456,7 @@ namespace ReedBooks.ViewModels
             IsLoading = true;
             var searched = await new Parser().Parse(param.ToString());
             IsLoading = false;
-            if (searched != null) ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber));
+            if (searched != null) ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber).ThenBy(b => b.DownloadEnabled == true));
             else IsNull = true;
         }
 
@@ -462,7 +464,7 @@ namespace ReedBooks.ViewModels
         {
             ParsedBook book = (ParsedBook)param;
             var client = new WebClient();
-            var link = $"{Directory.GetCurrentDirectory()}\\{book.Name}.epub";
+            var link = $"{Directory.GetCurrentDirectory()}{StorageManager.EPUBS_DIRECTORY}{book.Name.Replace(':', '-')}.epub";
             client.DownloadFileAsync(new Uri(book.DownloadLink), link);
 
             client.DownloadFileCompleted += (o, e) =>

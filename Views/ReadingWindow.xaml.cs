@@ -59,7 +59,7 @@ namespace ReedBooks.Views
 
         private void Rectangle_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + (-e.Delta / 50));
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + (-e.Delta / 30));
         }
 
         private void Rectangle_MouseWheel_1(object sender, MouseWheelEventArgs e)

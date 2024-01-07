@@ -34,6 +34,12 @@
         <StackPanel Grid.Column="1"
                     Margin="10"
                     Orientation="Vertical">
+            <controls:IconButton Source="ExternalLink"
+                                 HorizontalAlignment="Right"
+                                 ToolTip="{DynamicResource m_open_external}"
+                                 Foreground="{DynamicResource accent_color}"
+                                 Click="IconButton_Click"/>
+
             <TextBlock Text="{Binding ElementName=Card, Path=Book.Name}"
                        TextWrapping="Wrap"
                        FontSize="20"
@@ -109,7 +115,8 @@
                           Style="{DynamicResource MainMenuExpander}"
                           Header="{DynamicResource m_description}">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                                  VerticalScrollBarVisibility="Auto">
+                                  VerticalScrollBarVisibility="Auto"
+                                  MaxHeight="100">
                         <TextBlock Foreground="{DynamicResource hint_color}"
                                    Text="{Binding ElementName=Card, Path=Book.Description}"
                                    TextWrapping="Wrap"/>

@@ -43,12 +43,12 @@ namespace ReedBooks
             SplashScreen splashScreen = new SplashScreen("\\Resources\\splash.png");
             splashScreen.Show(true);
 
+            ApplicationContext = new AppContext();
+
             StorageManager = new StorageManager();
             Updater = new Updater();
             StorageManager.EnsureCreated();
             ThemeController = new ThemeController();
-
-            ApplicationContext = new AppContext();
 
             Localizator.AddLang(new CultureInfo("ru"));
             Localizator.AddLang(new CultureInfo("en"));
