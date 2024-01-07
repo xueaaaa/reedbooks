@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Input;
 
@@ -177,6 +178,7 @@ namespace ReedBooks.ViewModels
         public ICommand DeleteCollectionCommand { get; }
         public ICommand ShareCommand { get; }
         public ICommand ShopSearchCommand { get; }
+        public ICommand DownloadCommand { get; }
         #endregion
 
         public MainWindowViewModel()
@@ -200,6 +202,7 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
             ShareCommand = new RelayCommand(obj => Share(obj));
             ShopSearchCommand = new RelayCommand(obj => ShopSearch(obj));
+            DownloadCommand = new RelayCommand(obj => Download(obj));   
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
@@ -410,7 +413,21 @@ namespace ReedBooks.ViewModels
         public async void ShopSearch(object param)
         {
             var searched = await new Parser().Parse(param.ToString());
-            ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.Rating).ThenByDescending(b => b.RatedUsersNumber));
+            ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber));
+        }
+
+        public void Download(object param)
+        {
+            ParsedBook book = (ParsedBook)param;
+            var client = new WebClient();
+            var link = $"{Directory.GetCurrentDirectory()}\\{book.Name}.epub";
+            client.DownloadFileAsync(new Uri(book.DownloadLink), link);
+
+            client.DownloadFileCompleted += (o, e) =>
+            {
+                var downloaded = new Book(link);
+                LoadedBooks.Add(downloaded);
+            };
         }
     }
 }

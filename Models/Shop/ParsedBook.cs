@@ -95,6 +95,31 @@ namespace ReedBooks.Models.Shop
 			}
 		}
 
+		private string _downloadLink;
+		public string DownloadLink
+		{
+			get { return _downloadLink; }
+			set 
+			{ 
+				_downloadLink = value; 
+				DownloadEnabled = value == null ? false : true;
+				OnPropertyChanged(nameof(DownloadLink));
+			}
+		}
+
+		private bool _downloadEnabled;
+		public bool DownloadEnabled
+		{
+			get => _downloadEnabled;
+			private set
+			{
+				_downloadEnabled = value;
+				OnPropertyChanged(nameof(DownloadEnabled));
+			}
+		}
+
+		public bool DownloadEnabledReverse { get => !DownloadEnabled; }
+
 
 		public ParsedBook()
 		{

@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:converters="clr-namespace:ReedBooks.Converters"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         Name="Card"
         MaxWidth="600"
         CornerRadius="{DynamicResource CornerRadius}"
@@ -13,6 +14,7 @@
         mc:Ignorable="d" >
     <Border.Resources>
         <converters:StringCollectionToStringConverter x:Key="StringCollectionToStringConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Border.Resources>
     
     <Grid>
@@ -52,6 +54,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -100,7 +103,35 @@
                     </TextBlock>
                 </StackPanel>
                 <!--#endregion-->
+
+                <Expander Grid.Row="3"
+                          Grid.ColumnSpan="2"
+                          Style="{DynamicResource MainMenuExpander}"
+                          Header="{DynamicResource m_description}">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <TextBlock Foreground="{DynamicResource hint_color}"
+                                   Text="{Binding ElementName=Card, Path=Book.Description}"
+                                   TextWrapping="Wrap"/>
+                    </ScrollViewer>
+                </Expander>
             </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Margin="0 10">
+            <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
+                                      Source="/Resources/Icons/download.png"
+                                      Text="{DynamicResource m_download}"
+                                      IsEnabled="{Binding ElementName=Card, Path=Book.DownloadEnabled}"
+                                      Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                      CommandParameter="{Binding ElementName=Card, Path=Book}"/>
+            <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
+                       Foreground="{DynamicResource hint_color}"
+                       Visibility="{Binding ElementName=Card, Path=Book.DownloadEnabledReverse, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="{DynamicResource m_epub_not_enabled}"/>
         </StackPanel>
     </Grid>
 </Border>
