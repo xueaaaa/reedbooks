@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
+using ReedBooks.Models.Shop;
 using ReedBooks.Properties;
 using ReedBooks.Views;
 using System;
@@ -163,7 +164,6 @@ namespace ReedBooks.ViewModels
         public ICommand CreateCollectionCommand { get; }
         public ICommand EditCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
-
         public ICommand ShareCommand { get; }
         #endregion
 
@@ -197,7 +197,7 @@ namespace ReedBooks.ViewModels
 
             CurrentBooks = new ObservableCollection<Book>(LoadedBooks
                 .Where(b => b.BoundDiary.ReadingIsOver != true &&
-                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - Settings.Default.CurrentCountedDays 
+                b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - Settings.Default.CurrentCountedDays
                 && b.BoundDiary.LastReadingAt != DateTime.MinValue)
                 .OrderByDescending(b => b.BoundDiary.LastReadingAt));
 

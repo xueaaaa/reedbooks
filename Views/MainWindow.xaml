@@ -73,24 +73,30 @@
                     <!--#region Main menu buttons -->
                     <StackPanel Grid.Row="2"
                                 Margin="10">
-                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                        <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
                                                           Source="/Resources/Icons/book.png"
                                                           Text="{DynamicResource m_reading_now}"
                                                           Command="{Binding SwitchToTabCommand}"
                                                           CommandParameter="0"/>
 
-                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                        <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
                                                           Source="/Resources/Icons/all_books.png"
                                                           Text="{DynamicResource m_all_books}"
                                                           Command="{Binding SwitchToTabCommand}"
                                                           CommandParameter="1"/>
 
-                                <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                        <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
                                                           Source="/Resources/Icons/search.png"
                                                           Text="{DynamicResource m_search}"
                                                           Command="{Binding SwitchToTabCommand}"
                                                           CommandParameter="2"/>
-                            </StackPanel>
+
+                        <controls:ButtonWithImage Style="{DynamicResource MainMenuButton}"
+                                                  Source="/Resources/Icons/shop.png"
+                                                  Text="{DynamicResource m_books_shop}"
+                                                  Command="{Binding SwitchToTabCommand}"
+                                                  CommandParameter="3"/>
+                    </StackPanel>
                     <!--#endregion-->
 
                     <ScrollViewer Grid.Row="3"
@@ -365,6 +371,12 @@
                                 </ItemsControl>
                             </ScrollViewer>
                         </Grid>
+                    </TabItem>
+
+                    <TabItem>
+                        <StackPanel Margin="10">
+
+                        </StackPanel>
                     </TabItem>
                 </TabControl>
             </Grid>
