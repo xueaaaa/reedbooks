@@ -28,7 +28,11 @@ namespace ReedBooks.Views
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ((ReadingWindowViewModel)DataContext).ScrollOffset = e.VerticalOffset;
+            var ctx = ((ReadingWindowViewModel)DataContext);
+            ctx.ScrollOffset = e.VerticalOffset;
+
+            if (ScrollViewer.ScrollableHeight == 0) ctx.CurrentChapterReadingProgress = 100;
+            else ctx.CurrentChapterReadingProgress = (e.VerticalOffset / (ScrollViewer.ScrollableHeight / 100D));
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

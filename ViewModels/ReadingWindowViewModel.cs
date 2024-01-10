@@ -35,7 +35,7 @@ namespace ReedBooks.ViewModels
             get => _selectedChapterHtml;
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _selectedChapterHtml = value;
                     OnPropertyChanged(nameof(SelectedChapterHtml));
@@ -161,7 +161,7 @@ namespace ReedBooks.ViewModels
             {
                 _nextEnabled = value;
                 OnPropertyChanged(nameof(NextEnabled));
-            }        
+            }
         }
 
         private bool _returnEnabled;
@@ -175,7 +175,7 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private GridLength _chaptersViewLength = new GridLength(0.3, GridUnitType.Star);
+        private GridLength _chaptersViewLength = new GridLength(0.4, GridUnitType.Star);
         public GridLength ChaptersViewLength
         {
             get => _chaptersViewLength;
@@ -251,6 +251,28 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(IsConcentrationMode));
             }
         }
+
+        private double _currentChapterReadingProgress;
+        public double CurrentChapterReadingProgress
+        {
+            get => _currentChapterReadingProgress;
+            set
+            {
+                _currentChapterReadingProgress = value;
+                OnPropertyChanged(nameof(CurrentChapterReadingProgress));
+            }
+        }
+
+        private double _readingProgress;
+        public double ReadingProgress
+        {
+            get => _readingProgress;
+            set
+            {
+                _readingProgress = value;
+                OnPropertyChanged(nameof(ReadingProgress));
+            }
+        }
         #endregion
 
         public ICommand MoveToAnotherDocumentCommand { get; }
@@ -292,7 +314,7 @@ namespace ReedBooks.ViewModels
                     MoveToAnotherDocument(item);
                     return;
                 }
-                else if(item.ItemsSource != null) LoadLastPosition((List<NavigationItem>)item.ItemsSource);
+                else if (item.ItemsSource != null) LoadLastPosition((List<NavigationItem>)item.ItemsSource);
             }
         }
 
@@ -300,23 +322,28 @@ namespace ReedBooks.ViewModels
         {
             string finalLink = string.Empty;
 
-            if (param is NavigationItem nav)
+            if (param is NavigationItem nav && nav != null)
             {
                 CurrentNavigation = nav;
-                LookFor(nav, Navigation);
+                FindAround(nav, Navigation);
 
                 PreviousEnabled = PreviousNavigation != null;
                 NextEnabled = NextNavigation != null;
 
-                if (nav != null)
-                {
-                    finalLink = nav.Link;
-                    ReturnEnabled = false;
-                    var document = Book.LoadChapter(finalLink);
-                    SelectedChapterHtml = document;
-                    ChapterChanged?.Invoke(OffsetReminder);
-                    OffsetReminder = 0;
-                }
+                finalLink = nav.Link;
+
+                CurrentChapterReadingProgress = 0;
+                OffsetReminder = 0;
+                ReturnEnabled = false;
+
+                var document = Book.LoadChapter(finalLink);
+                SelectedChapterHtml = document;
+
+                ChapterChanged?.Invoke(OffsetReminder);
+
+                double pos = LookFor(nav, Navigation);
+                double len = GetCollectionLength(Navigation);
+                ReadingProgress = (pos/len) * 100D;
             }
             else if (param is string link)
             {
@@ -339,14 +366,54 @@ namespace ReedBooks.ViewModels
             QuoteLocation = CurrentNavigation.Header.ToString();
         }
 
-        private void LookFor(NavigationItem nav, List<NavigationItem> collection, List<NavigationItem> previousCollection = null)
+        private int GetCollectionLength(List<NavigationItem> collection)
+        {
+            int count = 0;
+
+            foreach (var item in collection)
+            {
+                if (item.ItemsSource != null) count += GetCollectionLength(item.ItemsSource as List<NavigationItem>);
+                count++;
+            }
+
+            return count; 
+        }
+
+        private int LookFor(NavigationItem item, List<NavigationItem> collection, int position = 0)
+        {
+            foreach (var item1 in collection)
+            {
+                position++;
+
+                if (item1 == item)
+                {
+                    return position; 
+                }
+
+                if (item1.ItemsSource != null)
+                {
+                    int positionInNestedCollection = LookFor(item, item1.ItemsSource as List<NavigationItem>, position + 1);
+
+                    if (positionInNestedCollection != -1)
+                    {
+                        return positionInNestedCollection;
+                    }
+
+                    position += (item1.ItemsSource as List<NavigationItem>).Count;
+                }
+            }
+
+            return -1;
+        }
+
+        private void FindAround(NavigationItem nav, List<NavigationItem> collection, List<NavigationItem> previousCollection = null)
         {
             NavigationItem previous = null;
             NavigationItem next = null;
 
             foreach (var item in collection)
             {
-                if (nav.Header == item.Header)
+                if (nav == item)
                 {
                     int index = collection.IndexOf(nav);
 
@@ -371,7 +438,7 @@ namespace ReedBooks.ViewModels
                 }
 
                 if (item.ItemsSource != null)
-                    LookFor(nav, (List<NavigationItem>)item.ItemsSource, collection);
+                    FindAround(nav, (List<NavigationItem>)item.ItemsSource, collection);
             }
         }
 
