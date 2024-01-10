@@ -82,7 +82,7 @@
                                          Value="{Binding ReadingProgress, Mode=OneWay}"/>
                         </materialDesign:Card>
 
-                        <TextBlock FontSize="16"
+                        <TextBlock FontSize="14"
                                    Foreground="{DynamicResource hint_color}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center">
