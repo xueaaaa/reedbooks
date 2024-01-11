@@ -48,6 +48,7 @@ namespace ReedBooks.Core
 
         public StorageManager()
         {
+            StorageManager.EnsureCreated();
             if (Properties.Settings.Default.DeleteUnusedAutomatically) DeleteUnusedFiles();
         }
 

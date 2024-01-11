@@ -19,7 +19,7 @@ namespace ReedBooks.Core
 
         public AppContext()
         {
-            Database.Migrate();
+            Database.EnsureCreated();
 
             Books.Load();
             BookAssessments.Load();

@@ -4,9 +4,9 @@ using System.IO.Compression;
 Console.BackgroundColor = ConsoleColor.White;
 Console.ForegroundColor = ConsoleColor.Black;
 
-Console.WriteLine("*************************************");
-Console.WriteLine("|    ReedBooks Updater, Standart    |");
-Console.WriteLine("*************************************");
+Console.WriteLine("***************************************");
+Console.WriteLine("|    ReedBooks Updater, Standart 2    |");
+Console.WriteLine("***************************************");
 
 if(args.Length != 1 || args[0] == string.Empty)
 {
@@ -18,6 +18,9 @@ else
 {
     try
     {
+        Console.WriteLine("One second, waiting for ReedBooks to complete its job");
+        Thread.Sleep(1000);
+
         using(var sr = new FileStream(args[0], FileMode.Open))
         {
             var zip = new ZipArchive(sr, ZipArchiveMode.Read);
