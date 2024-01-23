@@ -105,7 +105,7 @@
                         <StackPanel>
                             <!--#region Readers diary expander-->
                             <Expander Style="{DynamicResource MainMenuExpander}" 
-                              Header="{DynamicResource m_readers_diary_collection}">
+                                      Header="{DynamicResource m_readers_diary_collection}">
                                 <ItemsControl ItemsSource="{Binding LoadedBooks}">
                                     <ItemsControl.Template>
                                         <ControlTemplate>
@@ -192,84 +192,94 @@
                         SelectedIndex="{Binding SelectedTab}">
                     <!--#region Reading Now Tab-->
                     <TabItem>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                                   Margin="30"
-                                   Text="{DynamicResource m_reading_now}"/>
-                            <Separator Margin="30 0 30 0"/>
-                            <Grid Margin="30 0 0 30">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
+                        <Grid>
+                            <TextBlock Style="{DynamicResource Caption}"
+                                       Visibility="{Binding HideReadingNow, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                       Text="{DynamicResource m_tab_disabled_by_privacy}"/>
 
-                                <!--#region Current reding-->
-                                <StackPanel Grid.Column="0"
-                                        Margin="0 10 10 0"
-                                        Orientation="Vertical">
-                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
-                                           Text="{DynamicResource m_current}"/>
+                            <StackPanel Orientation="Vertical"
+                                        IsEnabled="{Binding HideReadingNow, Converter={StaticResource InvertBooleanConverter}}">
+                                <StackPanel.Effect>
+                                    <BlurEffect d:Radius="0" Radius="{Binding ReadingNowTabBlurRadius}"/>
+                                </StackPanel.Effect>
+                                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                           Margin="30"
+                                           Text="{DynamicResource m_reading_now}"/>
+                                <Separator Margin="30 0 30 0"/>
+                                <Grid Margin="30 0 0 30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <ListView Style="{DynamicResource MaterialDesignListView}"
-                                          Name="CurrentListView"
-                                          Foreground="{DynamicResource text_color}"
-                                          ItemsSource="{Binding CurrentBooks}"
-                                          SelectionChanged="ListView_SelectionChanged">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                    <TextBlock Text="{DynamicResource m_last_reading_at}"
-                                                           Foreground="{DynamicResource accent_color}"/>
-                                                </GridViewColumn>
-                                                <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                    <TextBlock Text="{DynamicResource m_name}"
-                                                           Foreground="{DynamicResource accent_color}"/>
-                                                </GridViewColumn>
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                    <!--#region Current reding-->
+                                    <StackPanel Grid.Column="0"
+                                                Margin="0 10 10 0"
+                                                Orientation="Vertical">
+                                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                                   Text="{DynamicResource m_current}"/>
 
-                                    <TextBlock Foreground="{DynamicResource hint_color}"
-                                           Text="{DynamicResource m_no_current}"
-                                           TextWrapping="Wrap"
-                                           Visibility="{Binding Items.Count, ElementName=CurrentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
-                                </StackPanel>
-                                <!--#endregion-->
+                                        <ListView Style="{DynamicResource MaterialDesignListView}"
+                                                  Name="CurrentListView"
+                                                  Foreground="{DynamicResource text_color}"
+                                                  ItemsSource="{Binding CurrentBooks}"
+                                                  SelectionChanged="ListView_SelectionChanged">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                        <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                                                   Foreground="{DynamicResource accent_color}"/>
+                                                    </GridViewColumn>
+                                                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                        <TextBlock Text="{DynamicResource m_name}"
+                                                                   Foreground="{DynamicResource accent_color}"/>
+                                                    </GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
 
-                                <!--#region Recently readed-->
-                                <StackPanel Grid.Column="1"
-                                            Orientation="Vertical"
-                                            Margin="0 10 30 0">
-                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
-                                               Text="{DynamicResource m_recent}"/>
+                                        <TextBlock Foreground="{DynamicResource hint_color}"
+                                                   Text="{DynamicResource m_no_current}"
+                                                   TextWrapping="Wrap"
+                                                   Visibility="{Binding Items.Count, ElementName=CurrentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                    </StackPanel>
+                                    <!--#endregion-->
 
-                                    <ListView Style="{DynamicResource MaterialDesignListView}"
-                                              Name="RecentListView"
-                                              Foreground="{DynamicResource text_color}"
-                                              ItemsSource="{Binding RecentBooks}"
-                                              SelectionChanged="ListView_SelectionChanged">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                    <TextBlock Text="{DynamicResource m_last_reading_at}"
-                                                               Foreground="{DynamicResource accent_color}"/>
-                                                </GridViewColumn>
-                                                <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                    <TextBlock Text="{DynamicResource m_name}"
-                                                               Foreground="{DynamicResource accent_color}"/>
-                                                </GridViewColumn>
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                    <!--#region Recently readed-->
+                                    <StackPanel Grid.Column="1"
+                                                Orientation="Vertical"
+                                                Margin="0 10 30 0">
+                                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
+                                                   Text="{DynamicResource m_recent}"/>
 
-                                    <TextBlock Foreground="{DynamicResource hint_color}"
-                                               Text="{DynamicResource m_no_recent}"
-                                               TextWrapping="Wrap"
-                                               Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
-                                </StackPanel>
-                                <!--#endregion-->
-                            </Grid>
-                        </StackPanel>
+                                        <ListView Style="{DynamicResource MaterialDesignListView}"
+                                                  Name="RecentListView"
+                                                  Foreground="{DynamicResource text_color}"
+                                                  ItemsSource="{Binding RecentBooks}"
+                                                  SelectionChanged="ListView_SelectionChanged">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
+                                                        <TextBlock Text="{DynamicResource m_last_reading_at}"
+                                                                   Foreground="{DynamicResource accent_color}"/>
+                                                    </GridViewColumn>
+                                                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
+                                                        <TextBlock Text="{DynamicResource m_name}"
+                                                                   Foreground="{DynamicResource accent_color}"/>
+                                                    </GridViewColumn>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+
+                                        <TextBlock Foreground="{DynamicResource hint_color}"
+                                                   Text="{DynamicResource m_no_recent}"
+                                                   TextWrapping="Wrap"
+                                                   Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                    </StackPanel>
+                                    <!--#endregion-->
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
                     </TabItem>
                     <!--#endregion-->
 
@@ -410,9 +420,8 @@
                                 </ScrollViewer>
                             </Grid>
 
-                            <TextBlock Visibility="{Binding IsInternetNotConnected, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
+                            <TextBlock Style="{DynamicResource Caption}"
+                                       Visibility="{Binding IsInternetNotConnected, Converter={StaticResource BooleanToVisibilityConverter}}"
                                        Text="{DynamicResource m_internet_not_connected}"/>
                         </Grid>
                     </TabItem>

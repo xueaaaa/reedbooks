@@ -113,6 +113,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _hideReadingNow;
+        public bool HideReadingNow
+        {
+            get => _hideReadingNow;
+            set
+            {
+                _hideReadingNow = value;
+                OnPropertyChanged(nameof(HideReadingNow));
+            }
+        }
+
         private ObservableCollection<SettingsParameterViewModel> _tabs;
         public ObservableCollection<SettingsParameterViewModel> Tabs
         {
@@ -217,6 +228,7 @@ namespace ReedBooks.ViewModels
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
             ShowInteractionHints = Properties.Settings.Default.ShowInteractionHints;
+            HideReadingNow = Properties.Settings.Default.HideReadingNow;
             UpdateAutomatically = Properties.Settings.Default.UpdateAutomatically;
             DeleteUnusedAutomatically = Properties.Settings.Default.DeleteUnusedAutomatically;
             ReloadTabs();
@@ -260,6 +272,7 @@ namespace ReedBooks.ViewModels
             Properties.Settings.Default.ShowInteractionHints = ShowInteractionHints;
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
             Properties.Settings.Default.DeleteUnusedAutomatically = DeleteUnusedAutomatically;
+            Properties.Settings.Default.HideReadingNow = HideReadingNow;
 
             Themes = App.ThemeController.Load();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();

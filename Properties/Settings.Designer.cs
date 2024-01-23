@@ -127,5 +127,17 @@ namespace ReedBooks.Properties {
                 this["DeleteUnusedAutomatically"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HideReadingNow {
+            get {
+                return ((bool)(this["HideReadingNow"]));
+            }
+            set {
+                this["HideReadingNow"] = value;
+            }
+        }
     }
 }

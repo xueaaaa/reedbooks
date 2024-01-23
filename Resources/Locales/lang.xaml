@@ -59,6 +59,7 @@
     <v:String x:Key="m_internet_not_connected">Подключение к интернету недоступно.</v:String>
     <v:String x:Key="m_shop_books_not_found">Нет книг для отображения</v:String>
     <v:String x:Key="m_open_external">Открыть на внешнем ресурсе</v:String>
+    <v:String x:Key="m_tab_disabled_by_privacy">Эта вкладка скрыта настройками приватности.</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->
@@ -117,6 +118,9 @@
     <v:String x:Key="s_recent_books_number_displaying_hint">Эта настройка устанавливает количество книг, которые будут отображаться на вкладке "Недавние" (до 255).</v:String>
     <v:String x:Key="s_start_tab_label">Открывать при запуске</v:String>
     <v:String x:Key="s_start_tab_hint">Эта настройка устанавливает вкладку приложения, открываемую по умолчанию.</v:String>
+    <v:String x:Key="s_privacy_header">Приватность</v:String>
+    <v:String x:Key="s_hide_reading_now_label">Скрыть вкладку "Читаю сейчас"</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">Замазать содержимое вкладки "Читаю сейчас".</v:String>
     <v:String x:Key="s_storage_management_header">Управление памятью</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">Удалять неиспользуемые файлы автоматически</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">Проверять директории приложения на наличие неиспользуемых файлов при каждом запуске и автоматически удалять их.</v:String>
@@ -153,6 +157,7 @@
     <v:String x:Key="rd_reading_is_over">Книга прочитана?</v:String>
     <v:String x:Key="rd_arithmetic_average">Общая оценка:</v:String>
     <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
+    <v:String x:Key="rd_selected_emotion">Выбранная эмоция:</v:String>
     <v:String x:Key="rd_start">В начале книги</v:String>
     <v:String x:Key="rd_middle">В середине книги</v:String>
     <v:String x:Key="rd_end">В конце книги</v:String>

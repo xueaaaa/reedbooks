@@ -68,6 +68,23 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(SelectedTab));
             }
         }
+
+        private bool _hideReadingNow;
+        public bool HideReadingNow
+        {
+            get => _hideReadingNow;
+            set
+            {
+                _hideReadingNow = value;
+                OnPropertyChanged(nameof(HideReadingNow));
+            }
+        }
+
+        public int ReadingNowTabBlurRadius
+        {
+            get => HideReadingNow ? 30 : 0;
+        }
+
         private ObservableCollection<Book> _loadedBooks;
         public ObservableCollection<Book> LoadedBooks
         {
@@ -243,11 +260,27 @@ namespace ReedBooks.ViewModels
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
+            HideReadingNow = Settings.Default.HideReadingNow;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
             SelectedTab = Settings.Default.DefaultTab;
 
+            UpdateRecentAndCurrent();
+
+            SelectedCollectionBooks = new ObservableCollection<Book>();
+
+            Settings.Default.PropertyChanged += (o, e) =>
+            {
+                HideReadingNow = Settings.Default.HideReadingNow;
+                OnPropertyChanged(nameof(ReadingNowTabBlurRadius));
+
+                UpdateRecentAndCurrent();
+            };
+        }
+
+        private void UpdateRecentAndCurrent()
+        {
             CurrentBooks = new ObservableCollection<Book>(LoadedBooks
                 .Where(b => b.BoundDiary.ReadingIsOver != true &&
                 b.BoundDiary.LastReadingAt.Day >= DateTime.Now.Day - Settings.Default.CurrentCountedDays
@@ -257,8 +290,6 @@ namespace ReedBooks.ViewModels
             RecentBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.BoundDiary.LastReadingAt != DateTime.MinValue)
                 .OrderByDescending(b => b.BoundDiary.LastReadingAt)
                 .Take(Settings.Default.RecentBooksNumberDisplaying));
-
-            SelectedCollectionBooks = new ObservableCollection<Book>();
         }
 
         public void HandleFileDrop(object param)

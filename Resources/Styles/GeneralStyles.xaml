@@ -64,4 +64,12 @@
         <Setter Property="SpellCheck.IsEnabled" Value="True"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
+
+    <Style x:Key="Caption"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource MaterialDesignCaptionTextBlock}">
+        <Setter Property="Foreground" Value="{DynamicResource hint_color}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>

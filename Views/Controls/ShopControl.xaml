@@ -31,12 +31,12 @@
                                      Foreground="{DynamicResource accent_color}"
                                      Value="0" />
                     </materialDesign:Card>
-                    <TextBlock Text="{DynamicResource m_please_wait}"/>
+                    <TextBlock Style="{DynamicResource Caption}"
+                               Text="{DynamicResource m_please_wait}"/>
                 </StackPanel>
 
-                <TextBlock Visibility="{Binding ElementName=ItemsControl, Path=IsNull, Converter={StaticResource BoolToVisibilityConverter}}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
+                <TextBlock Style="{DynamicResource Caption}"
+                           Visibility="{Binding ElementName=ItemsControl, Path=IsNull, Converter={StaticResource BoolToVisibilityConverter}}"
                            Text="{DynamicResource m_shop_books_not_found}"/>
             </StackPanel>
         </ControlTemplate>

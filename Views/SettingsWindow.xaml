@@ -140,6 +140,28 @@
                                 </StackPanel>
                             </Expander>
                             <!--#endregion-->
+                            
+                            <!--#region Privacy-->
+                            <Expander Background="{DynamicResource container_background_color}"
+                                      Margin="0 0 0 30"
+                                      IsExpanded="False">
+                                <Expander.Header>
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                               FontWeight="Bold"
+                                               Text="{DynamicResource s_privacy_header}"/>
+                                </Expander.Header>
+
+                                <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_hide_reading_now_label}"
+                                                                ParameterHint="{DynamicResource s_hide_reading_now_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <CheckBox HorizontalAlignment="Right"
+                                                      IsChecked="{Binding HideReadingNow}"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                </StackPanel>
+                            </Expander>
+                            <!--#endregion-->
 
                             <!--#region Storage management settings-->
                             <Expander Background="{DynamicResource container_background_color}"
