@@ -43,10 +43,9 @@ namespace ReedBooks
             SplashScreen splashScreen = new SplashScreen("\\Resources\\splash.png");
             splashScreen.Show(true);
 
+            ApplicationContext = new AppContext();
             Updater = new Updater();
             StorageManager = new StorageManager();
-
-            ApplicationContext = new AppContext();
 
             ThemeController = new ThemeController();
 

@@ -107,7 +107,8 @@
     <v:String x:Key="s_language_hint">This setting only changes the language of the interface. Authors' names and book content are not localized.</v:String>
     <v:String x:Key="s_theme_label">Theme</v:String>
     <v:String x:Key="s_theme_hint">Changes the color scheme of the application.</v:String>
-    <v:String x:Key="s_theme_load_custom">Load...</v:String>
+    <v:String x:Key="s_theme_load_custom">Load theme...</v:String>
+    <v:String x:Key="s_theme_delete_custom">Delete theme...</v:String>
     <v:String x:Key="s_personalization_header">Personalization</v:String>
     <v:String x:Key="s_show_hints_label">Show Interface Hints</v:String>
     <v:String x:Key="s_show_hints_hint">Display hints when interacting with the interface.</v:String>
@@ -199,6 +200,9 @@
 
     <v:String x:Key="dialog_delete_all_books_title">Delete All Books</v:String>
     <v:String x:Key="dialog_delete_all_books_content">Are you sure you want to delete all books? This action cannot be undone.</v:String>
+
+    <v:String x:Key="dialog_delete_theme_title">Delete theme</v:String>
+    <v:String x:Key="dialog_delete_theme_content">Are you sure you want to delete the current theme? This action cannot be undone.</v:String>
 
     <v:String x:Key="dialog_success_title">Successful!</v:String>
     <v:String x:Key="dialog_success_content">The specified action was successfully performed.</v:String>

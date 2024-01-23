@@ -35,7 +35,7 @@ else
     catch(Exception ex)
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"ERROR: Error occured while updating {ex.Message}");
+        Console.WriteLine($"ERROR: Error occured while updating [{ex.Message}]");
         Console.ReadLine();
     }
 }

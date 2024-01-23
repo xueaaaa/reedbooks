@@ -13,7 +13,7 @@
         Loaded="Window_Loaded"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="{DynamicResource h_reading_window}" Height="450" Width="800">
+        Title="{DynamicResource h_reading_window}" Height="500" Width="1000">
     <Window.Resources>
         <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
     </Window.Resources>
@@ -66,35 +66,13 @@
                                            Navigation="{Binding Navigation}"
                                            OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
 
-                    <Grid Grid.Row="1"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Bottom"
-                          Margin="5"
-                          ToolTip="{DynamicResource r_reading_progress_hint}">
-                        <materialDesign:Card UniformCornerRadius="50"
-                                             Background="{DynamicResource container_background_color}"
-                                             Width="60"
-                                             Height="60">
-                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
-                                         Width="50"
-                                         Height="50"
-                                         Foreground="{DynamicResource accent_color}"                     
-                                         Value="{Binding ReadingProgress, Mode=OneWay}"/>
-                        </materialDesign:Card>
-
-                        <TextBlock FontSize="14"
-                                   Foreground="{DynamicResource hint_color}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center">
-                            <Run Text="{Binding ReadingProgress, StringFormat=0}"/>                         
-                            <Run Text="%"/>
-                        </TextBlock>
-                    </Grid>
+                    
                 </Grid>
 
                 <GridSplitter Grid.Column="1"
                               Grid.Row="1"
                               Grid.RowSpan="2"
+                              Panel.ZIndex="100"
                               Visibility="{Binding SplitterVisibility}"
                               Style="{DynamicResource ReedBooksGridSplitter}"/>
 
@@ -125,7 +103,7 @@
                                   Panel.ZIndex="1">
                         <htmlPanel:HtmlPanel Text="{Binding SelectedChapterHtml}"
                                              Name="HtmlPanel"
-                                             Margin="30"
+                                             Margin="120 30"
                                              Background="{DynamicResource book_background_color}"
                                              LinkClicked="HtmlPanel_LinkClicked"/>
                     </ScrollViewer>
@@ -146,39 +124,36 @@
                       Grid.ColumnSpan="2"
                       Background="{DynamicResource container_background_color}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.4*"/>
-                        <ColumnDefinition Width="0.2*"/>
-                        <ColumnDefinition Width="0.4*"/>
+                        <ColumnDefinition Width="0.45*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="0.45*"/>
                     </Grid.ColumnDefinitions>
 
-                    <controls:ButtonWithImage Style="{DynamicResource MarkAsReadButton}"
-                                              Command="{Binding MarkAsReadCommand}"
-                                              Source="/Resources/Icons/done.png"
-                                              Text="{DynamicResource r_mark_as_read}"
-                                              ToolTip="{DynamicResource r_mark_as_read_hint}">
-                        <controls:ButtonWithImage.CommandParameter>
-                            <controls:InWindowDialog Header="{DynamicResource r_end_of_read_dialog_header}">
-                                <controls:InWindowDialog.Content>
-                                    <TextBlock Foreground="{DynamicResource text_color}"
-                                               TextWrapping="Wrap"
-                                               Text="{DynamicResource r_end_of_read_dialog_content}"/>
-                                </controls:InWindowDialog.Content>
+                    <Grid HorizontalAlignment="Left"
+                          VerticalAlignment="Bottom"
+                          Margin="10 5"
+                          ToolTip="{DynamicResource r_reading_progress_hint}">
+                        <materialDesign:Card UniformCornerRadius="50"
+                                             Background="{DynamicResource container_background_color}"
+                                             Width="45"
+                                             Height="45">
+                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"
+                                         Width="30"
+                                         Height="30"
+                                         Foreground="{DynamicResource accent_color}"                     
+                                         Value="{Binding ReadingProgress, Mode=OneWay}"/>
+                        </materialDesign:Card>
 
-                                <controls:InWindowDialog.LeftSideFooter>
-                                    <Button Style="{DynamicResource ReedBooksRaisedButton}"
-                                            Command="{Binding OpenReadingDiaryCommand}"
-                                            Content="{DynamicResource r_open_reading_diary}"/>
-                                </controls:InWindowDialog.LeftSideFooter>
-
-                                <controls:InWindowDialog.RightSideFooter>
-                                    <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                                            Foreground="{DynamicResource accent_color}"
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                            Content="{DynamicResource r_stay}"/>
-                                </controls:InWindowDialog.RightSideFooter>
-                            </controls:InWindowDialog>
-                        </controls:ButtonWithImage.CommandParameter>
-                    </controls:ButtonWithImage>
+                        <TextBlock FontSize="9"
+                                   Foreground="{DynamicResource hint_color}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            <Run Text="{Binding ReadingProgress, StringFormat=0}"/>                         
+                            <Run Text="%"/>
+                        </TextBlock>
+                    </Grid>
 
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
@@ -191,7 +166,7 @@
                                              IsEnabled="{Binding PreviousEnabled}"
                                              ToolTip="{DynamicResource r_previous_chapter}"
                                              Command="{Binding MoveToAnotherDocumentCommand}"
-                                             CommandParameter="{Binding PreviousNavigation}"/>
+                                             CommandParameter="{Binding PreviousNavigation}" Cursor="Hand"/>
 
                         <controls:IconButton Source="SkipNext"
                                              Width="25"
@@ -250,6 +225,36 @@
                                                 Foreground="{DynamicResource accent_color}"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="{DynamicResource rd_cancel}"/>
+                                    </controls:InWindowDialog.RightSideFooter>
+                                </controls:InWindowDialog>
+                            </controls:IconButton.CommandParameter>
+                        </controls:IconButton>
+
+                        <controls:IconButton Source="CheckCircleOutline"
+                                             Margin="10 0 0 0"
+                                             Width="20"
+                                             Height="20"
+                                             ToolTip="{DynamicResource r_mark_as_read}"
+                                             Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                            <controls:IconButton.CommandParameter>
+                                <controls:InWindowDialog Header="{DynamicResource r_end_of_read_dialog_header}">
+                                    <controls:InWindowDialog.Content>
+                                        <TextBlock Foreground="{DynamicResource text_color}"
+                                                   TextWrapping="Wrap"
+                                                   Text="{DynamicResource r_end_of_read_dialog_content}"/>
+                                    </controls:InWindowDialog.Content>
+
+                                    <controls:InWindowDialog.LeftSideFooter>
+                                        <Button Style="{DynamicResource ReedBooksRaisedButton}"
+                                                Command="{Binding OpenReadingDiaryCommand}"
+                                                Content="{DynamicResource r_open_reading_diary}"/>
+                                    </controls:InWindowDialog.LeftSideFooter>
+
+                                    <controls:InWindowDialog.RightSideFooter>
+                                        <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                                                Foreground="{DynamicResource accent_color}"
+                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                Content="{DynamicResource r_stay}"/>
                                     </controls:InWindowDialog.RightSideFooter>
                                 </controls:InWindowDialog>
                             </controls:IconButton.CommandParameter>

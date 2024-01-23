@@ -68,11 +68,19 @@
 
                                                 <Separator Margin="5"/>
 
-                                                <controls:ButtonWithImage Style="{DynamicResource ReedBooksOutlinedButton}"
-                                                                          Command="{Binding LoadThemeCommand}"
-                                                                          Source="/Resources/Icons/add.png"
-                                                                          TextStyle="{DynamicResource MaterialDesignCaptionTextBlock}"
-                                                                          Text="{DynamicResource s_theme_load_custom}"/>
+                                                <StackPanel Orientation="Horizontal"
+                                                            Margin="0 5 0 0"
+                                                            HorizontalAlignment="Center" Cursor="">
+                                                    <controls:IconButton Source="DeleteOutline"
+                                                                         Foreground="{DynamicResource danger_color}"
+                                                                         Command="{Binding DeleteThemeCommand}"
+                                                                         ToolTip="{DynamicResource s_theme_delete_custom}"
+                                                                         IsEnabled="{Binding DeleteThemeEnabled}" Cursor="Hand"/>
+                                                    <controls:IconButton Source="Add"
+                                                                         Margin="10 0 0 0"
+                                                                         Command="{Binding LoadThemeCommand}"
+                                                                         ToolTip="{DynamicResource s_theme_load_custom}"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </controls:SettingsParameter.ValueSelector>
                                     </controls:SettingsParameter>

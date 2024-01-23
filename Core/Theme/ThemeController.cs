@@ -18,7 +18,9 @@ namespace ReedBooks.Core.Theme
         public static readonly string[] STANDART_THEME_NAMES = { "light", "dark" };
 
         public delegate void LoadedThemesChangedEventHandler();
+        public delegate void ThemeChanged(string newThemeName);
         public event LoadedThemesChangedEventHandler OnLoadedThemesChanged;
+        public event ThemeChanged OnThemeChanged;
 
         private List<Theme> _loadedThemes;
         public List<Theme> LoadedThemes
@@ -76,6 +78,8 @@ namespace ReedBooks.Core.Theme
             theme.SetSecondaryColor(hint);
 
             paletteHelper.SetTheme(theme);
+
+            OnThemeChanged?.Invoke(themeName);
         }
 
         /// <summary>
@@ -90,6 +94,18 @@ namespace ReedBooks.Core.Theme
 
             Theme theme = Open(newPath);
             LoadedThemes.Add(theme);
+            OnLoadedThemesChanged?.Invoke();
+        }
+
+        public void Remove(string name) 
+        {
+            string rbThemePath = $"{THEMES_DIRECTORY}{name}.rbtheme";
+            string xamlPath = $"{THEMES_DIRECTORY}{name}.theme.xaml";
+
+            File.Delete(rbThemePath);
+            File.Delete(xamlPath);
+
+            ChangeTheme(STANDART_THEME_NAMES[0]);
             OnLoadedThemesChanged?.Invoke();
         }
 

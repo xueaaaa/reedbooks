@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using ReedBooks.Core;
+using ReedBooks.Core.Theme;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Version = ReedBooks.Core.Version.Version;
 
 namespace ReedBooks.ViewModels
@@ -158,6 +160,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private bool _deleteThemeEnabled;
+        public bool DeleteThemeEnabled
+        {
+            get => _deleteThemeEnabled;
+            set
+            {
+                _deleteThemeEnabled = value;
+                OnPropertyChanged(nameof(DeleteThemeEnabled));
+            }
+        }
+
         public Version InstalledVersion
         {
             get => Version.Local;
@@ -174,6 +187,7 @@ namespace ReedBooks.ViewModels
         }
 
         public ICommand LoadThemeCommand { get; }
+        public ICommand DeleteThemeCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteUnusedFilesCommand { get; }
         public ICommand DeleteAllBooksCommand { get; }
@@ -181,6 +195,7 @@ namespace ReedBooks.ViewModels
         public SettingsWindowViewModel()
         {
             LoadThemeCommand = new RelayCommand(obj => LoadTheme());
+            DeleteThemeCommand = new RelayCommand(obj => DeleteTheme());
             SaveCommand = new RelayCommand(obj => Save());
             DeleteUnusedFilesCommand = new RelayCommand(obj => DeleteUnusedFiles());
             DeleteAllBooksCommand = new RelayCommand(obj => DeleteAllBooks());
@@ -190,6 +205,12 @@ namespace ReedBooks.ViewModels
                 Themes = App.ThemeController.Load();
                 SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             };
+            App.ThemeController.OnThemeChanged += (name) => {
+                if (ThemeController.STANDART_THEME_NAMES.Contains(name)) DeleteThemeEnabled = false;
+                else DeleteThemeEnabled = true;
+            };
+            if (ThemeController.STANDART_THEME_NAMES.Contains(Properties.Settings.Default.Theme)) DeleteThemeEnabled = false;
+            else DeleteThemeEnabled = true;
 
             SelectedLanguage = Languages.Where(l => l.Tag == Properties.Settings.Default.Language.Name).First();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
@@ -211,6 +232,13 @@ namespace ReedBooks.ViewModels
                 var filePath = ofd.FileName;
                 App.ThemeController.AddNew(filePath);
             }
+        }
+
+        public void DeleteTheme()
+        {
+            if (new DialogWindow(App.Current.Resources["dialog_delete_theme_title"].ToString(),
+                Application.Current.Resources["dialog_delete_theme_content"].ToString()).ShowDialog() == true)
+                App.ThemeController.Remove(Properties.Settings.Default.Theme);
         }
 
         public void Save()

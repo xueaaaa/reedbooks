@@ -78,8 +78,7 @@
     
     <!--#region Reading window -->
     <v:String x:Key="h_reading_window">ReedBooks - Режим чтения</v:String>
-    <v:String x:Key="r_mark_as_read">Книга прочитана</v:String>
-    <v:String x:Key="r_mark_as_read_hint">По нажатию на кнопку в графе "Конец прочтения" в читательском дневнике будет установлена сегодняшняя дата</v:String>
+    <v:String x:Key="r_mark_as_read">Отметить книгу прочитанной</v:String>
     <v:String x:Key="r_end_of_read_dialog_header">Поздравляем!</v:String>
     <v:String x:Key="r_end_of_read_dialog_content">Поздравляем с прочтением книги и предлагаем вам перейти в читательский дневник, чтобы оценить ее.</v:String>
     <v:String x:Key="r_open_reading_diary">Перейти</v:String>
@@ -107,7 +106,8 @@
     <v:String x:Key="s_language_hint">Эта настройка меняет только язык интерфейса. Имена авторов книг, и их содержание не локализуются.</v:String>
     <v:String x:Key="s_theme_label">Тема</v:String>
     <v:String x:Key="s_theme_hint">Меняет цветовую гамму приложения.</v:String>
-    <v:String x:Key="s_theme_load_custom">Загрузить...</v:String>
+    <v:String x:Key="s_theme_load_custom">Загрузить тему...</v:String>
+    <v:String x:Key="s_theme_delete_custom">Удалить тему...</v:String>
     <v:String x:Key="s_personalization_header">Персонализация</v:String>
     <v:String x:Key="s_show_hints_label">Отображение подсказок интерфейса</v:String>
     <v:String x:Key="s_show_hints_hint">Показывать подсказки при взаимодействии с интерфейсом.</v:String>
@@ -199,6 +199,9 @@
     
     <v:String x:Key="dialog_delete_all_books_title">Удаление всех книг</v:String>
     <v:String x:Key="dialog_delete_all_books_content">Вы уверены, что хотите удалить все книги? Это действие нельзя будет отменить.</v:String>
+
+    <v:String x:Key="dialog_delete_theme_title">Удаление темы</v:String>
+    <v:String x:Key="dialog_delete_theme_content">Вы уверены, что хотите удалить текущую тему? Это действие нельзя будет отменить.</v:String>
 
     <v:String x:Key="dialog_success_title">Успешно!</v:String>
     <v:String x:Key="dialog_success_content">Заданное действие выполнено успешно.</v:String>
