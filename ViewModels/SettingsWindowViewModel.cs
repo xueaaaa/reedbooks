@@ -113,6 +113,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private ushort _timeGoal;
+        public ushort TimeGoal
+        {
+            get => _timeGoal;
+            set
+            {
+                _timeGoal = value;
+                OnPropertyChanged(nameof(TimeGoal));
+            }
+        }
+
         private bool _hideReadingNow;
         public bool HideReadingNow
         {
@@ -227,6 +238,7 @@ namespace ReedBooks.ViewModels
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();
             SelectedCurrentCountedDays = Properties.Settings.Default.CurrentCountedDays;
             RecentBookNumberDisplaying = Properties.Settings.Default.RecentBooksNumberDisplaying;
+            TimeGoal = Properties.Settings.Default.TimeGoal;
             ShowInteractionHints = Properties.Settings.Default.ShowInteractionHints;
             HideReadingNow = Properties.Settings.Default.HideReadingNow;
             UpdateAutomatically = Properties.Settings.Default.UpdateAutomatically;

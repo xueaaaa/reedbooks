@@ -118,6 +118,8 @@
     <v:String x:Key="s_recent_books_number_displaying_hint">Эта настройка устанавливает количество книг, которые будут отображаться на вкладке "Недавние" (до 255).</v:String>
     <v:String x:Key="s_start_tab_label">Открывать при запуске</v:String>
     <v:String x:Key="s_start_tab_hint">Эта настройка устанавливает вкладку приложения, открываемую по умолчанию.</v:String>
+    <v:String x:Key="s_reading_goal_label">Цель чтения</v:String>
+    <v:String x:Key="s_reading_goal_hint">Количество минут, которое вы хотите проводить за чтением в день.</v:String>
     <v:String x:Key="s_privacy_header">Приватность</v:String>
     <v:String x:Key="s_hide_reading_now_label">Скрыть вкладку "Читаю сейчас"</v:String>
     <v:String x:Key="s_hide_reading_now_hint">Замазать содержимое вкладки "Читаю сейчас".</v:String>
