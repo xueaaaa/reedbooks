@@ -12,10 +12,10 @@
         <converters:BoolToColorConverter x:Key="boolToColorConverter"/>
         <converters:EmoteToBoolConverter x:Key="emoteToBoolConverter"/>
     </StackPanel.Resources>
-    
+
     <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                Text="{Binding ElementName=StackPanel, Path=Header}"/>
-
+    
     <StackPanel Margin="10"
                 Orientation="Horizontal">
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
@@ -24,8 +24,12 @@
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Sadness}"
                      ToolTip="{DynamicResource rd_sadness}">
-            <materialDesign:PackIcon Kind="EmoticonCryOutline"
-                                     Foreground="{Binding IsChecked, ElementName=First, Converter={StaticResource boolToColorConverter}}"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                                         Foreground="{Binding IsChecked, ElementName=First, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Style="{DynamicResource EmotionRectangle}"
+                           Visibility="{Binding IsChecked, ElementName=First, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
                      Name="Second"
@@ -33,8 +37,12 @@
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Amazement}"
                      ToolTip="{DynamicResource rd_amazement}">
-            <materialDesign:PackIcon Kind="EmoticonFrownOutline"
-                                     Foreground="{Binding IsChecked,ElementName=Second, Converter={StaticResource boolToColorConverter}}"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                             Foreground="{Binding IsChecked, ElementName=Second, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Style="{DynamicResource EmotionRectangle}"
+                           Visibility="{Binding IsChecked, ElementName=Second, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
                      Name="Third"
@@ -42,8 +50,12 @@
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Indifference}"
                      ToolTip="{DynamicResource rd_indifference}">
-            <materialDesign:PackIcon Kind="EmoticonNeutralOutline"
-                                     Foreground="{Binding IsChecked, ElementName=Third, Converter={StaticResource boolToColorConverter}}"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                             Foreground="{Binding IsChecked, ElementName=Third, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Style="{DynamicResource EmotionRectangle}"
+                           Visibility="{Binding IsChecked, ElementName=Third, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
                      Name="Fourth"
@@ -51,8 +63,12 @@
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Interesting}"
                      ToolTip="{DynamicResource rd_interesting}">
-            <materialDesign:PackIcon Kind="FaceManShimmerOutline"
-                                     Foreground="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource boolToColorConverter}}"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                             Foreground="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Style="{DynamicResource EmotionRectangle}"
+                           Visibility="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
         </RadioButton>
         <RadioButton Style="{DynamicResource MaterialDesignIconButton}"
                      Name="Fifth"
@@ -60,8 +76,12 @@
                      Command="{Binding ElementName=StackPanel, Path=SetEmoteCommand}"
                      CommandParameter="{x:Static e:Emote.Happyness}"
                      ToolTip="{DynamicResource rd_happiness}">
-            <materialDesign:PackIcon Kind="EmoticonExcitedOutline"
-                                     Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
+            <StackPanel>
+                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                             Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
+                <Rectangle Style="{DynamicResource EmotionRectangle}"
+                           Visibility="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </StackPanel>
         </RadioButton>
 
         <Rectangle Margin="5"

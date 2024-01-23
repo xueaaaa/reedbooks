@@ -46,4 +46,13 @@
         <Setter Property="TextTrimming" Value="WordEllipsis"/>
         <Setter Property="Foreground" Value="{DynamicResource text_color}"/>
     </Style>
+
+    <Style x:Key="EmotionRectangle"
+           TargetType="Rectangle">
+        <Setter Property="Height" Value="2"/>
+        <Setter Property="Margin" Value="3 5 3 0"/>
+        <Setter Property="Fill" Value="{DynamicResource accent_color}"/>
+        <Setter Property="RadiusX" Value="2"/>
+        <Setter Property="RadiusY" Value="2"/>
+    </Style>
 </ResourceDictionary>
