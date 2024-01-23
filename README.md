@@ -27,8 +27,10 @@ ReedBooks - программа для чтения книг и ведения ч
 В версии ![](https://img.shields.io/github/v/tag/xueaaaa/reedbooks?label=) доступны следующие возможности:
 - Чтение книг в формате epub;
 - Ведение читательского дневника для каждой загруженной книги;
+- Скачивание книг из встроенного магазина;
+- Различные инструменты для более комфортного чтения;
 - Создание коллекций книг;
-- Отслеживание начала и конца прочтения книги;
+- Отслеживание прогресса прочтения книги;
 - Оценивание книг по пятибальной шкале в различных категориях;
 - Добавление цитат;
 - Фильтрация загруженных книг (по названию и последней дате прочтения);
@@ -54,8 +56,10 @@ ReedBooks is a program for reading books and keeping reading diaries. It is deve
 The following features are available in the ![](https://img.shields.io/github/v/tag/xueaaaa/reedbooks?label=) version:
 - Reading books in epub format;
 - Keep a reading diary for each downloaded book;
-- Create collections of books;
-- Tracking the beginning and end of reading a book;
+- Downloading books from the built-in store;
+- Various tools for a more comfortable reading experience;
+- Create book collections;
+- Tracking the progress of reading a book;
 - Rating books on a five-point scale in various categories;
 - Adding quotes;
 - Filtering of downloaded books (by title and last date of reading);
