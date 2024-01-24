@@ -38,7 +38,7 @@
                      CommandParameter="{x:Static e:Emote.Amazement}"
                      ToolTip="{DynamicResource rd_amazement}">
             <StackPanel>
-                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                <materialDesign:PackIcon Kind="EmoticonFrownOutline"
                              Foreground="{Binding IsChecked, ElementName=Second, Converter={StaticResource boolToColorConverter}}"/>
                 <Rectangle Style="{DynamicResource EmotionRectangle}"
                            Visibility="{Binding IsChecked, ElementName=Second, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -51,7 +51,7 @@
                      CommandParameter="{x:Static e:Emote.Indifference}"
                      ToolTip="{DynamicResource rd_indifference}">
             <StackPanel>
-                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                <materialDesign:PackIcon Kind="EmoticonNeutralOutline"
                              Foreground="{Binding IsChecked, ElementName=Third, Converter={StaticResource boolToColorConverter}}"/>
                 <Rectangle Style="{DynamicResource EmotionRectangle}"
                            Visibility="{Binding IsChecked, ElementName=Third, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -64,7 +64,7 @@
                      CommandParameter="{x:Static e:Emote.Interesting}"
                      ToolTip="{DynamicResource rd_interesting}">
             <StackPanel>
-                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                <materialDesign:PackIcon Kind="FaceManShimmerOutline"
                              Foreground="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource boolToColorConverter}}"/>
                 <Rectangle Style="{DynamicResource EmotionRectangle}"
                            Visibility="{Binding IsChecked, ElementName=Fourth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
@@ -77,7 +77,7 @@
                      CommandParameter="{x:Static e:Emote.Happyness}"
                      ToolTip="{DynamicResource rd_happiness}">
             <StackPanel>
-                <materialDesign:PackIcon Kind="EmoticonCryOutline"
+                <materialDesign:PackIcon Kind="EmoticonExcitedOutline"
                              Foreground="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource boolToColorConverter}}"/>
                 <Rectangle Style="{DynamicResource EmotionRectangle}"
                            Visibility="{Binding IsChecked, ElementName=Fifth, Converter={StaticResource BooleanToVisibilityConverter}}"/>
