@@ -149,7 +149,7 @@
                                                 <RowDefinition/>
                                                 <RowDefinition/>
                                             </Grid.RowDefinitions>
-                                            
+
                                             <TextBlock Style="{DynamicResource PropertyTitle}"
                                                        Text="{DynamicResource r_reading_progress}"/>
                                             <StackPanel Grid.Column="1"
@@ -184,8 +184,6 @@
                                 </controls:InWindowDialog>
                             </controls:IconButton.CommandParameter>
                         </controls:IconButton>
-
-                        
                     </StackPanel>
 
                     <StackPanel Grid.Column="1"

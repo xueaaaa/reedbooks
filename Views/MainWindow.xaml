@@ -245,7 +245,7 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
-                                    <!--#region Current reding-->
+                                    <!--#region Current reading-->
                                     <StackPanel Grid.Column="0"
                                                 Margin="0 10 10 0"
                                                 Orientation="Vertical">
@@ -323,19 +323,25 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Row="0"
-                                        Margin="10 0 10 0">
-                                <controls:ButtonWithImage Style="{DynamicResource MaterialDesignFlatButton}"
-                                                          Width="300"
-                                                          Command="{Binding LoadFileCommand}"
-                                                          Source="/Resources/Icons/add.png"
-                                                          Text="{DynamicResource m_load_book}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="30 30 0 10">
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                               Text="{DynamicResource m_all_books}"/>
+                                    
+                                    <controls:ButtonWithImage Style="{DynamicResource ReedBooksOutlinedButton}"
+                                                              Margin="20 0 0 0"
+                                                              Command="{Binding LoadFileCommand}"
+                                                              Source="/Resources/Icons/add.png"
+                                                              Text="{DynamicResource m_load_book}"/>
+                                </StackPanel>
+                                
                                 <Separator/>
                             </StackPanel>
 
                             <ScrollViewer Style="{DynamicResource BookScrollViewer}">
                                 <ItemsControl Grid.Row="1"
-                                          ItemsSource="{Binding LoadedBooks}">
+                                              ItemsSource="{Binding LoadedBooks}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <controls:BookCard Book="{Binding}"/>
@@ -360,6 +366,10 @@
 
                             <StackPanel Grid.Row="0"
                                         Margin="10 0 10 0">
+                                <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                           Margin="30 30 0 10"
+                                           Text="{DynamicResource m_search}"/>
+                                
                                 <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                          materialDesign:HintAssist.Hint="{DynamicResource m_search_hint}"
                                          TextChanged="TextBox_TextChanged"/>
@@ -416,23 +426,28 @@
 
                     <TabItem>
                         <Grid>
-                            <Grid Visibility="{Binding IsInternetConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Margin="10">
+                                    <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
+                                               Margin="30 20 0 10"
+                                               Text="{DynamicResource m_books_shop}"/>
+
                                     <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
-                                           Foreground="{DynamicResource accent_color}"
-                                           HorizontalAlignment="Center"
-                                           TextWrapping="Wrap"
-                                           Text="{DynamicResource m_copyright_warning}"/>
+                                               Foreground="{DynamicResource accent_color}"
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{DynamicResource m_copyright_warning}"/>
 
                                     <Separator Margin="0 10"/>
 
                                     <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Center">
+                                                HorizontalAlignment="Center"
+                                                Visibility="{Binding IsInternetConnected, Converter={StaticResource BooleanToVisibilityConverter}}">
                                         <TextBox Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                              Name="ShopSearch"
                                              Margin="0 0 20 0"
@@ -448,6 +463,7 @@
                                 <ScrollViewer Grid.Row="1"
                                           Style="{DynamicResource ShopBookScrollViewer}">
                                     <controls:ShopControl ItemsSource="{Binding ShopSearchedBooks}"
+                                                          Visibility="{Binding IsInternetConnected, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                           IsLoading="{Binding IsLoading}"
                                                           IsNull="{Binding IsNull}"/>
                                 </ScrollViewer>
