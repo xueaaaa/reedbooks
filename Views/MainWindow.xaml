@@ -46,6 +46,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     
                     <!--#region Top panel-->
@@ -186,6 +187,11 @@
                             <!--#endregion-->
                         </StackPanel>
                     </ScrollViewer>
+
+                    <TextBlock Grid.Row="4"
+                               Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                               Visibility="{Binding DebugVisibility}"
+                               Foreground="{DynamicResource danger_color}">Debug version. Not designed for mass use. Auto-update is not available.</TextBlock>
                 </Grid>
                 
                 <TabControl Style="{DynamicResource MainTabControl}"
@@ -201,7 +207,7 @@
                             <StackPanel Orientation="Vertical"
                                         IsEnabled="{Binding HideReadingNow, Converter={StaticResource InvertBooleanConverter}}">
                                 <StackPanel.Effect>
-                                    <BlurEffect d:Radius="0" Radius="{Binding ReadingNowTabBlurRadius}"/>
+                                    <BlurEffect d:Radius="-1" Radius="{Binding ReadingNowTabBlurRadius}"/>
                                 </StackPanel.Effect>
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                            Margin="30"
@@ -225,6 +231,7 @@
                                     </StackPanel>
 
                                     <ProgressBar Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                                                 Height="7"
                                                  materialDesign:TransitionAssist.DisableTransitions="True"
                                                  Margin="0 10 0 0"
                                                  Value="{Binding TimeGoal.TimeGoalPercent}"

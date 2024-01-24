@@ -273,6 +273,11 @@ namespace ReedBooks.ViewModels
                 OnPropertyChanged(nameof(ReadingProgress));
             }
         }
+
+        public TimeGoalController TimeGoal
+        {
+            get => App.TimeGoalController;
+        }
         #endregion
 
         public ICommand MoveToAnotherDocumentCommand { get; }

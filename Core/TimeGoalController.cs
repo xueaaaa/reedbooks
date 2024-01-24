@@ -6,7 +6,7 @@ namespace ReedBooks.Core
 {
     public class TimeGoalController : ObservableObject
     {
-        private DispatcherTimer _timer;
+        private DispatcherTimer _globalTimer;
 
         private int _countedMinutes;
         public int CountedMinutes
@@ -23,6 +23,17 @@ namespace ReedBooks.Core
             }
         }
 
+        private int _currentBookCountedMinutes;
+        public int CurrentBookCountedMinutes
+        {
+            get => _currentBookCountedMinutes;
+            set
+            {
+                _currentBookCountedMinutes = value;
+                OnPropertyChanged(nameof(CurrentBookCountedMinutes));
+            }
+        }
+
         private double _timeGoalPercent;
         public double TimeGoalPercent
         {
@@ -36,13 +47,15 @@ namespace ReedBooks.Core
 
         public TimeGoalController()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(60);
-            _timer.Tick += (_, e) =>
+            _globalTimer = new DispatcherTimer();
+            _globalTimer.Interval = TimeSpan.FromSeconds(60);
+            _globalTimer.Tick += (_, e) =>
             {
                 CountedMinutes++;
+                CurrentBookCountedMinutes++;
                 TimeGoalPercent = Math.Round(CountedMinutes / (Settings.Default.TimeGoal / 100D));
             };
+
 
             if (Settings.Default.LastOpenDay.Date != DateTime.Today)
             {
@@ -57,15 +70,14 @@ namespace ReedBooks.Core
 
         public void StartCounter()
         {
-            _timer.Start();
-            OnPropertyChanged(nameof(CountedMinutes));
+            _globalTimer.Start();
         }
 
         public void StopCounter()
         {
-            _timer.Stop();
+            _globalTimer.Stop();
+            CurrentBookCountedMinutes = 0;
             Save();
-            OnPropertyChanged(nameof(CountedMinutes));
         }
         
         public void Save()

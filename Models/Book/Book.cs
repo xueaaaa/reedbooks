@@ -286,6 +286,7 @@ namespace ReedBooks.Models.Book
         {
             var navigationItem = new NavigationItem();
             navigationItem.Header = item.Title;
+            navigationItem.ToolTip = item.Title;
             navigationItem.Link = item.Link.ContentFilePath;
 
             if (item.NestedItems.Count > 0)

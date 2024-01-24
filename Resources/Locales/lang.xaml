@@ -98,7 +98,9 @@
     <v:String x:Key="r_content_scroll_hint">Прокрутите колесо мыши здесь, чтобы сдвинуть текст открытой главы.</v:String>
     <v:String x:Key="r_current_chapter_first_part">Вы читаете:</v:String>
     <v:String x:Key="r_current_chapter_second_part">Прочитано:</v:String>
-    <v:String x:Key="r_reading_progress_hint">Прочтено от всей книги</v:String>
+    <v:String x:Key="r_reading_info">Информация о текущем сеансе чтения</v:String>
+    <v:String x:Key="r_reading_progress">Прочтено от всей книги:</v:String>
+    <v:String x:Key="r_reading_already">Вы читаете уже:</v:String>
     <v:String x:Key="r_temporarily_out_of_service">Эта чаcть приложения пока не работает</v:String>
     <!--#endregion-->
     

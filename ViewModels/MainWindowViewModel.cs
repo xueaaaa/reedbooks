@@ -82,7 +82,7 @@ namespace ReedBooks.ViewModels
 
         public int ReadingNowTabBlurRadius
         {
-            get => HideReadingNow ? 30 : 0;
+            get => HideReadingNow ? 30 : -1;
         }
 
         private ObservableCollection<Book> _loadedBooks;
@@ -219,14 +219,26 @@ namespace ReedBooks.ViewModels
 
         public int BlurRadius
         {
-            get => IsInternetConnected ? 0 : 10;
+            get => IsInternetConnected ? -1 : 10;
         }
 
         public TimeGoalController TimeGoal
         {
             get => App.TimeGoalController;
         }
-        #endregion
+
+        public Visibility DebugVisibility
+        {
+            get
+            {
+                #if DEBUG
+                return Visibility.Visible;
+                #else
+                return Visibility.Collapsed;
+                #endif
+            }
+        }
+#endregion
 
         #region Commands
         public ICommand HandleFileDropCommand { get; }
@@ -417,7 +429,7 @@ namespace ReedBooks.ViewModels
             var selectedBook = (Book)param;
                     
             ReadingWindow rW = new ReadingWindow(selectedBook);
-            rW.Show();
+            rW.ShowDialog();
         }
 
         public void OpenReadingDiary(object param)

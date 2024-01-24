@@ -14,7 +14,7 @@ namespace ReedBooks.Views
             DataContext = new MainWindowViewModel();
 
             #if DEBUG
-            new DialogWindow("Режим отладки", "Приложение запущено в режиме отладки. Автообновление недоступно.").Show();
+            return;
             #else
             if (App.Updater.CheckForUpdates())
             {
