@@ -18,6 +18,7 @@ namespace ReedBooks
         public static StorageManager StorageManager { get; private set; }
         public static Updater Updater { get; private set; }
         public static ThemeController ThemeController { get; private set; }
+        public static TimeGoalController TimeGoalController { get; private set; }
 
         public static bool IsInternetConnected
         {
@@ -48,6 +49,7 @@ namespace ReedBooks
             StorageManager = new StorageManager();
 
             ThemeController = new ThemeController();
+            TimeGoalController = new TimeGoalController();
 
             Localizator.AddLang(new CultureInfo("ru"));
             Localizator.AddLang(new CultureInfo("en"));

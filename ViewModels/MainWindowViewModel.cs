@@ -210,6 +210,11 @@ namespace ReedBooks.ViewModels
         {
             get => IsInternetConnected ? 0 : 10;
         }
+
+        public TimeGoalController TimeGoal
+        {
+            get => App.TimeGoalController;
+        }
         #endregion
 
         #region Commands

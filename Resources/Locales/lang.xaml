@@ -60,6 +60,7 @@
     <v:String x:Key="m_shop_books_not_found">Нет книг для отображения</v:String>
     <v:String x:Key="m_open_external">Открыть на внешнем ресурсе</v:String>
     <v:String x:Key="m_tab_disabled_by_privacy">Эта вкладка скрыта настройками приватности.</v:String>
+    <v:String x:Key="m_readed_today">Сегодня вы читали:</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->
@@ -191,6 +192,7 @@
     <v:String x:Key="dark">Тёмная</v:String>
     
     <v:String x:Key="megabytes">МБ</v:String>
+    <v:String x:Key="minutes">минут</v:String>
     
     <v:String x:Key="dialog_settings_title">Требуется перезагрузка</v:String>
     <v:String x:Key="dialog_settings_content">Для вступления установленных настроек в силу необходимо перезагрузить приложение. Вы хотите сделать это сейчас?</v:String>

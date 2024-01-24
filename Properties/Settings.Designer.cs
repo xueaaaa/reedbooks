@@ -151,5 +151,28 @@ namespace ReedBooks.Properties {
                 this["TimeGoal"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public ushort CurrentReadingTime {
+            get {
+                return ((ushort)(this["CurrentReadingTime"]));
+            }
+            set {
+                this["CurrentReadingTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime LastOpenDay {
+            get {
+                return ((global::System.DateTime)(this["LastOpenDay"]));
+            }
+            set {
+                this["LastOpenDay"] = value;
+            }
+        }
     }
 }

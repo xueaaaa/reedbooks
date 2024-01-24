@@ -35,5 +35,11 @@
     <Setting Name="TimeGoal" Type="System.UInt16" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="CurrentReadingTime" Type="System.UInt16" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="LastOpenDay" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

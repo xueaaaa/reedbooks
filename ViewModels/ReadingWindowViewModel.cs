@@ -294,6 +294,8 @@ namespace ReedBooks.ViewModels
             AddQuoteCommand = new RelayCommand(obj => AddQuote());
             ClearModeCommand = new RelayCommand(obj => ClearMode());
             ConcentrationModeCommand = new RelayCommand(obj => ConcentrationMode());
+
+            App.TimeGoalController.StartCounter();
         }
 
         public ReadingWindowViewModel(Book readingBook) : this()
@@ -458,6 +460,8 @@ namespace ReedBooks.ViewModels
         {
             if (CurrentNavigation != null)
                 Book.LastReadingPosition = new Position(Book.Guid, CurrentNavigation.Link, ScrollOffset);
+
+            App.TimeGoalController.StopCounter();
         }
 
         public double OnWindowLoaded()

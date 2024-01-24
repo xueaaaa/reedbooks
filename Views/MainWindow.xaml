@@ -205,7 +205,21 @@
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                            Margin="30"
                                            Text="{DynamicResource m_reading_now}"/>
-                                <Separator Margin="30 0 30 0"/>
+                                
+                                <StackPanel Margin="30 0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                                                   Text="{DynamicResource m_readed_today}"/>
+                                        <TextBlock Foreground="{DynamicResource hint_color}"
+                                                   Margin="5 3.5 0 0"
+                                                   VerticalAlignment="Center">
+                                            <Run Text="{Binding TimeGoal.CountedMinutes}"/>
+                                            <Run Text="{DynamicResource minutes}"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                                
+                                <Separator Margin="30 20 30 0"/>
                                 <Grid Margin="30 0 0 30">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
