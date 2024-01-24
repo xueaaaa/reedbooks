@@ -196,6 +196,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private int _goal;
+        public int Goal
+        {
+            get => _goal;
+            set
+            {
+                _goal = value;
+                OnPropertyChanged(nameof(Goal));
+            }
+        }
+
         public bool IsInternetConnected
         {
             get => App.IsInternetConnected;
@@ -270,6 +281,7 @@ namespace ReedBooks.ViewModels
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
             SearchedBooks = LoadedBooks;
             SelectedTab = Settings.Default.DefaultTab;
+            Goal = Settings.Default.TimeGoal;
 
             UpdateRecentAndCurrent();
 
@@ -278,6 +290,7 @@ namespace ReedBooks.ViewModels
             Settings.Default.PropertyChanged += (o, e) =>
             {
                 HideReadingNow = Settings.Default.HideReadingNow;
+                Goal = Settings.Default.TimeGoal;
                 OnPropertyChanged(nameof(ReadingNowTabBlurRadius));
 
                 UpdateRecentAndCurrent();

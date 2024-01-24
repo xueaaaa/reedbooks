@@ -285,6 +285,7 @@ namespace ReedBooks.ViewModels
             Properties.Settings.Default.UpdateAutomatically = UpdateAutomatically;
             Properties.Settings.Default.DeleteUnusedAutomatically = DeleteUnusedAutomatically;
             Properties.Settings.Default.HideReadingNow = HideReadingNow;
+            Properties.Settings.Default.TimeGoal = TimeGoal;
 
             Themes = App.ThemeController.Load();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();

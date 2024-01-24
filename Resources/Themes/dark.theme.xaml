@@ -7,4 +7,5 @@
     <SolidColorBrush x:Key="text_color">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="hint_color">#787878</SolidColorBrush>
     <SolidColorBrush x:Key="danger_color">OrangeRed</SolidColorBrush>
+    <SolidColorBrush x:Key="success_color">#365e4f</SolidColorBrush>
 </ResourceDictionary>

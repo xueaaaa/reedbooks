@@ -248,6 +248,7 @@
     <Compile Include="Converters\LangCodeToNameConverter.cs" />
     <Compile Include="Converters\MinDateToVisibilityConverter.cs" />
     <Compile Include="Converters\StringCollectionToStringConverter.cs" />
+    <Compile Include="Converters\TimeToColorConverter.cs" />
     <Compile Include="Core\Theme\Theme.cs" />
     <Compile Include="Core\Theme\ThemeController.cs" />
     <Compile Include="Core\TimeGoalController.cs" />

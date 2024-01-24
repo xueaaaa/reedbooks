@@ -39,6 +39,7 @@
                 </Grid.RowDefinitions>
 
                 <ProgressBar Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                             materialDesign:TransitionAssist.DisableTransitions="True"
                              Grid.ColumnSpan="3"
                              Height="20"
                              Foreground="{DynamicResource accent_color}"
@@ -138,6 +139,7 @@
                                              Width="45"
                                              Height="45">
                             <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                                         materialDesign:TransitionAssist.DisableTransitions="True"
                                          VerticalAlignment="Center"
                                          HorizontalAlignment="Center"
                                          Width="30"
