@@ -8,7 +8,6 @@ namespace ReedBooks.Views
         public AuthorizationWindow()
         {
             InitializeComponent();
-            DataContext = new AuthorizationWindowViewModel();
 
             ((AuthorizationWindowViewModel)DataContext).Success += () =>
             {

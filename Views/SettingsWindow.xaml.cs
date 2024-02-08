@@ -1,5 +1,4 @@
-﻿using ReedBooks.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ReedBooks.Views
 {
@@ -8,7 +7,6 @@ namespace ReedBooks.Views
         public SettingsWindow()
         {
             InitializeComponent();
-            DataContext = new SettingsWindowViewModel();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using AngleSharp.Text;
+using Microsoft.Win32;
 using ReedBooks.Core;
 using ReedBooks.Core.Theme;
 using ReedBooks.Views;
@@ -193,6 +194,17 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
         public Version InstalledVersion
         {
             get => Version.Local;
@@ -243,6 +255,7 @@ namespace ReedBooks.ViewModels
             HideReadingNow = Properties.Settings.Default.HideReadingNow;
             UpdateAutomatically = Properties.Settings.Default.UpdateAutomatically;
             DeleteUnusedAutomatically = Properties.Settings.Default.DeleteUnusedAutomatically;
+            Password = Properties.Settings.Default.Password;
             ReloadTabs();
         }
 
@@ -260,7 +273,7 @@ namespace ReedBooks.ViewModels
 
         public void DeleteTheme()
         {
-            if (new DialogWindow(App.Current.Resources["dialog_delete_theme_title"].ToString(),
+            if (new DialogWindow(Application.Current.Resources["dialog_delete_theme_title"].ToString(),
                 Application.Current.Resources["dialog_delete_theme_content"].ToString()).ShowDialog() == true)
                 App.ThemeController.Remove(Properties.Settings.Default.Theme);
         }
@@ -286,6 +299,9 @@ namespace ReedBooks.ViewModels
             Properties.Settings.Default.DeleteUnusedAutomatically = DeleteUnusedAutomatically;
             Properties.Settings.Default.HideReadingNow = HideReadingNow;
             Properties.Settings.Default.TimeGoal = TimeGoal;
+            if (Password != string.Empty && (Password.Length != 4 || Password.Where(c => !c.IsDigit()).ToList().Count > 0)) new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
+                                                                                                              Application.Current.Resources["dialog_malformed_password_content"].ToString(), Visibility.Hidden).ShowDialog();
+            else Properties.Settings.Default.Password = Password;
 
             Themes = App.ThemeController.Load();
             SelectedTheme = Themes.Where(t => t.Tag == Properties.Settings.Default.Theme).First();

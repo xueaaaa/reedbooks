@@ -180,6 +180,22 @@
                                 </Expander.Header>
 
                                 <StackPanel>
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_password_label}"
+                                                                ParameterHint="{DynamicResource s_password_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <TextBox materialDesign:HintAssist.HelperText="{DynamicResource s_enter_password_hint}"
+                                                     materialDesign:TextFieldAssist.HasClearButton="True"
+                                                     Text="{Binding Password}"
+                                                     MaxLength="4">
+                                                <materialDesign:HintAssist.Hint>
+                                                    <materialDesign:PackIcon Kind="Key"/>
+                                                </materialDesign:HintAssist.Hint>
+                                            </TextBox>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
+                                    
+                                    <Separator Margin="10"/>
+                                    
                                     <controls:SettingsParameter ParameterName="{DynamicResource s_hide_reading_now_label}"
                                                                 ParameterHint="{DynamicResource s_hide_reading_now_hint}">
                                         <controls:SettingsParameter.ValueSelector>

@@ -4,16 +4,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         SizeToContent="WidthAndHeight"
         WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_edit_collection_window}" ResizeMode="CanResize" WindowStyle="ToolWindow">
-    <Window.DataContext>
-        <local:EditCollectionViewModel/>
-    </Window.DataContext>
-    
     <Grid Style="{DynamicResource MainGrid}">
         <Border CornerRadius="{DynamicResource CornerRadius}"
                 Margin="30"

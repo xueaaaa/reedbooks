@@ -1,6 +1,4 @@
-﻿using ReedBooks.Core.Version;
-using ReedBooks.ViewModels;
-using System.Windows;
+﻿using System.Windows;
 
 namespace ReedBooks.Views
 {
@@ -9,7 +7,6 @@ namespace ReedBooks.Views
         public UpdateWindow()
         {
             InitializeComponent();
-            DataContext = new UpdateWindowViewModel();
         }
     }
 }

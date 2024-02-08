@@ -5,16 +5,12 @@
 	    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-	    xmlns:local="clr-namespace:ReedBooks.ViewModels"
         xmlns:controls="clr-namespace:ReedBooks.Views.Controls"
         xmlns:converters="clr-namespace:ReedBooks.Converters"
         mc:Ignorable="d"
         MinWidth="800"
         WindowStartupLocation="CenterScreen"
         Title="{DynamicResource h_reading_diary_window}">
-	<Window.DataContext>
-		<local:ReadingDiaryWindowViewModel/>
-	</Window.DataContext>
     <Window.Resources>
         <converters:InvertCountToVisibilityConverter x:Key="InvertCountToVisibilityConverter"/>
         <converters:DateToVisibilityConverter x:Key="DateToVisibilityConverter"/>

@@ -11,7 +11,6 @@ namespace ReedBooks.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
 
             #if DEBUG
             return;

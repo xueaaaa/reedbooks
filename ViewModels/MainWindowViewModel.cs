@@ -265,6 +265,9 @@ namespace ReedBooks.ViewModels
 
         public MainWindowViewModel()
         {
+            if(Settings.Default.Password != string.Empty)
+                if (new AuthorizationWindow().ShowDialog() == false) Application.Current.Shutdown();
+
             HandleFileDropCommand = new RelayCommand(obj => HandleFileDrop(obj));
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             ChangeCollectionActionsVisibilityCommand = new RelayCommand(obj => ChangeCollectionActionsVisibility());
