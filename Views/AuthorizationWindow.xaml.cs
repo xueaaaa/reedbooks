@@ -13,6 +13,10 @@ namespace ReedBooks.Views
             {
                 DialogResult = true;
             };
+            ((AuthorizationWindowViewModel)DataContext).Reset += () =>
+            {
+                DialogResult = false;
+            };
         }
     }
 }

@@ -1,13 +1,16 @@
 ﻿using ReedBooks.Core;
+using ReedBooks.Views;
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace ReedBooks.ViewModels
 {
     public class AuthorizationWindowViewModel : ObservableObject
     {
-        public delegate void SuccessHandler();
-        public event SuccessHandler Success;
+        public delegate void StateHandler();
+        public event StateHandler Success;
+        public event StateHandler Reset;
 
         private string[] _enteredPassword;
         public string[] EnteredPassword
@@ -44,6 +47,7 @@ namespace ReedBooks.ViewModels
 
         public ICommand EnterSymbolCommand { get; }
         public ICommand EraseSymbolCommand { get; }
+        public ICommand ResetPasswordCommand { get; }
 
         public AuthorizationWindowViewModel()
         {
@@ -52,6 +56,7 @@ namespace ReedBooks.ViewModels
 
             EnterSymbolCommand = new RelayCommand(obj => EnterSymbol(obj));
             EraseSymbolCommand = new RelayCommand(obj => EraseSymbol());
+            ResetPasswordCommand = new RelayCommand(obj => ResetPassword());    
         }
 
         public void EnterSymbol(object param)
@@ -83,6 +88,17 @@ namespace ReedBooks.ViewModels
                 EnteredPassword[CurrentPosition - 1] = string.Empty;
                 CurrentPosition--;
                 OnPropertyChanged(nameof(EnteredPassword));
+            }
+        }
+
+        public void ResetPassword()
+        {
+            if(new DialogWindow(Application.Current.Resources["dialog_forgot_password_title"].ToString(),
+                Application.Current.Resources["dialog_forgot_password_content"].ToString()).ShowDialog() == true)
+            {
+                App.StorageManager.DeleteAllBooks();
+                Properties.Settings.Default.Reset();
+                Reset?.Invoke();
             }
         }
     }

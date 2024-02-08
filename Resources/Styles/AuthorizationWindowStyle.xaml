@@ -14,7 +14,7 @@
         <Setter Property="IsReadOnly" Value="True"/>
     </Style>
 
-    <Style x:Key="PasswordCharacterButton"
+    <Style x:Key="PasswordKeyboardButton"
            TargetType="Button"
            BasedOn="{StaticResource MaterialDesignIconButton}">
         <Setter Property="Background" Value="{DynamicResource container_background_color}"/>

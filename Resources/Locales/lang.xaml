@@ -126,7 +126,7 @@
     <v:String x:Key="s_reading_goal_hint">Количество минут, которое вы хотите проводить за чтением в день.</v:String>
     <v:String x:Key="s_privacy_header">Приватность</v:String>
     <v:String x:Key="s_password_label">Пароль</v:String>
-    <v:String x:Key="s_password_hint">Этот пароль будет использоваться для входа в приложение и для разблокировки доступа к скрытым книгам.</v:String>
+    <v:String x:Key="s_password_hint">Этот пароль будет использоваться для входа в приложение и разблокировки доступа к скрытым книгам.</v:String>
     <v:String x:Key="s_enter_password_hint">4 символа</v:String>
     <v:String x:Key="s_hide_reading_now_label">Скрыть вкладку "Читаю сейчас"</v:String>
     <v:String x:Key="s_hide_reading_now_hint">Замазать содержимое вкладки "Читаю сейчас".</v:String>
@@ -230,6 +230,9 @@
 
     <v:String x:Key="dialog_share_file_title">Совместный файл создан</v:String>
     <v:String x:Key="dialog_share_file_content">Совместный файл успешно создан. Его получатель сможет загрузить книгу в своё приложение ReedBooks. По нажатию на ОК вы переместитесь в папку с созданным совместным файлом.</v:String>
+
+    <v:String x:Key="dialog_forgot_password_title">Забыли пароль?</v:String>
+    <v:String x:Key="dialog_forgot_password_content">Вы можете сбросить пароль, но в таком случае ваша база данных книг будет полностью стёрта. Если вы хотите сбросить пароль, нажмите кнопку ОК.</v:String>
     
     <v:String x:Key="genre_fantasy">Фантастика</v:String>
     <v:String x:Key="genre_detective">Детектив</v:String>
