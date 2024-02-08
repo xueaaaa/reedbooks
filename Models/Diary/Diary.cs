@@ -43,6 +43,18 @@ namespace ReedBooks.Models.Diary
             }
         }
 
+        private int _readingTime;
+        public int ReadingTime
+        {
+            get => _readingTime;
+            set
+            {
+                _readingTime = value;
+                Update();
+                OnPropertyChanged(nameof(ReadingTime));
+            }
+        }
+
         private EmotionalAssessment _emotionalAssessment;
         public EmotionalAssessment EmotionalAssessment
         {

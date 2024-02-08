@@ -16,6 +16,7 @@
 		<local:ReadingDiaryWindowViewModel/>
 	</Window.DataContext>
     <Window.Resources>
+        <converters:InvertCountToVisibilityConverter x:Key="InvertCountToVisibilityConverter"/>
         <converters:DateToVisibilityConverter x:Key="DateToVisibilityConverter"/>
         <converters:MinDateToVisibilityConverter x:Key="MinDateToVisibilityConverter"/>
     </Window.Resources>
@@ -96,6 +97,19 @@
                                 <TextBlock Style="{DynamicResource PropertyValue}"
                                            Visibility="{Binding Book.BoundDiary.EndReadingAt, Converter={StaticResource MinDateToVisibilityConverter}}"
                                            Text="{DynamicResource rd_reading_not_ended}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                           Visibility="{Binding Book.BoundDiary.ReadingTime, Converter={StaticResource InvertCountToVisibilityConverter}}"
+                                           Text="{DynamicResource rd_reading_time}"/>
+                                <TextBlock Style="{DynamicResource PropertyValue}"
+                                           Visibility="{Binding Book.BoundDiary.ReadingTime, Converter={StaticResource InvertCountToVisibilityConverter}}">
+                                    <Run Text="{Binding Book.BoundDiary.ReadingTime}"/>
+                                    <Run Text="{DynamicResource minutes}"/>
+                                </TextBlock>
+                                <TextBlock Style="{DynamicResource PropertyTitle}"
+                                           Visibility="{Binding Book.BoundDiary.ReadingTime, Converter={StaticResource CountToVisibilityConverter}}"
+                                           Text="{DynamicResource rd_null_reading_time}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <CheckBox IsChecked="{Binding Book.BoundDiary.ReadingIsOver}"

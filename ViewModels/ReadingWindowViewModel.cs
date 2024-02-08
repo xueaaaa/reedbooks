@@ -466,6 +466,7 @@ namespace ReedBooks.ViewModels
             if (CurrentNavigation != null)
                 Book.LastReadingPosition = new Position(Book.Guid, CurrentNavigation.Link, ScrollOffset);
 
+            Book.BoundDiary.ReadingTime += App.TimeGoalController.CurrentBookCountedMinutes;
             App.TimeGoalController.StopCounter();
         }
 

@@ -1,0 +1,42 @@
+﻿<Window x:Class="ReedBooks.Views.AuthorizationWindow"
+        Style="{DynamicResource ReedBooksWindow}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="{DynamicResource h_authorization_window}">
+    <Grid Style="{DynamicResource MainGrid}">
+        <StackPanel Margin="30">
+            <Border CornerRadius="{DynamicResource CornerRadius}"
+                    Background="{DynamicResource container_background_color}">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <TextBox Style="{DynamicResource PasswordCharacterTextBox}" Tag="*" d:Text="2"/>
+                    <TextBox Style="{DynamicResource PasswordCharacterTextBox}" Tag="*" d:Text="1"/>
+                    <TextBox Style="{DynamicResource PasswordCharacterTextBox}" Tag="*" d:Text="3"/>
+                    <TextBox Style="{DynamicResource PasswordCharacterTextBox}" Tag="*" d:Text="5"/>
+                </StackPanel>
+            </Border>
+
+            <WrapPanel Margin="0 40 0 0"
+                       MaxWidth="210">
+                <Button Style="{DynamicResource PasswordCharacterButton}">1</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">2</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">3</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">4</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">5</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">6</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">7</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">8</Button>
+                <Button Style="{DynamicResource PasswordCharacterButton}">9</Button>
+            </WrapPanel>
+                <Button Style="{DynamicResource PasswordCharacterButton}">0</Button>
+        </StackPanel>
+    </Grid>
+</Window>

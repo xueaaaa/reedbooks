@@ -160,6 +160,8 @@
     <v:String x:Key="rd_reading_not_beginned">Чтение не начато</v:String>
     <v:String x:Key="rd_end_reading_at">Конец прочтения:</v:String>
     <v:String x:Key="rd_reading_not_ended">Чтение не закончено</v:String>
+    <v:String x:Key="rd_reading_time">Вы читали эту книгу:</v:String>
+    <v:String x:Key="rd_null_reading_time">Вы ещё не читали эту книгу</v:String>
     <v:String x:Key="rd_reading_is_over">Книга прочитана?</v:String>
     <v:String x:Key="rd_arithmetic_average">Общая оценка:</v:String>
     <v:String x:Key="rd_my_emotions">Мои эмоции</v:String>
@@ -188,6 +190,10 @@
     <v:String x:Key="rd_quote_author_hint">Введите автора цитаты...</v:String>
     <v:String x:Key="rd_quote_location_hint">Введите местоположение цитаты в книге (например, глава, страница и т.п.)...</v:String>
     <v:String x:Key="rd_cancel">Закрыть</v:String>
+    <!--#endregion-->
+    
+    <!--#region Authorization window-->
+    <v:String x:Key="h_authorization_window">ReedBooks - Ввод пароля</v:String>
     <!--#endregion-->
     
     <!--#region SPECIAL STRINGS -->
