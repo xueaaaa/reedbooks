@@ -240,6 +240,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\BoolToFailedColorConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\DateToVisibilityConverter.cs" />
@@ -272,6 +273,7 @@
     <Compile Include="Models\Diary\Quote.cs" />
     <Compile Include="Models\Shop\ParsedBook.cs" />
     <Compile Include="Models\Shop\Parser.cs" />
+    <Compile Include="ViewModels\AuthorizationWindowViewModel.cs" />
     <Compile Include="ViewModels\DialogWindowViewModel.cs" />
     <Compile Include="ViewModels\EditCollectionViewModel.cs" />
     <Compile Include="ViewModels\ReadingDiaryWindowViewModel.cs" />
