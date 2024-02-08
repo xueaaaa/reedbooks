@@ -121,9 +121,32 @@ namespace ReedBooks.Models.Book
             }
         }
 
+        private bool _isHidden;
+        public bool IsHidden
+        {
+            get => _isHidden;
+            set
+            {
+                _isHidden = value;
+                Update();
+                OnPropertyChanged(nameof(IsHidden));
+            }
+        }
+
         [NotMapped] public EpubBook Origin
         {
             get => EpubReader.ReadBook(LinkToOrigin);
+        }
+
+        private bool _isTempHidden;
+        [NotMapped] public bool IsTempHidden
+        {
+            get => _isTempHidden;
+            set
+            {
+                _isTempHidden = value;
+                OnPropertyChanged(nameof(IsTempHidden));
+            }
         }
 
         private Position _lastReadingPosition;
@@ -214,6 +237,8 @@ namespace ReedBooks.Models.Book
                     await App.ApplicationContext.Entry(book.BoundDiary)
                           .Reference(d => d.BookAssessment)
                           .LoadAsync();
+
+                    book.IsTempHidden = book.IsHidden;
                 }
             }
 

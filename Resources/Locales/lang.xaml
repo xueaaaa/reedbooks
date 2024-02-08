@@ -62,6 +62,9 @@
     <v:String x:Key="m_tab_disabled_by_privacy">Эта вкладка скрыта настройками приватности.</v:String>
     <v:String x:Key="m_readed_today">Сегодня вы читали:</v:String>
     <v:String x:Key="m_your_goal">Ваша цель:</v:String>
+    <v:String x:Key="m_hide">Скрыть книгу</v:String>
+    <v:String x:Key="m_show">Показать книгу</v:String>
+    <v:String x:Key="m_hidden_book_hint">Эта книга скрыта. Нажмите, чтобы отобразить.</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->

@@ -261,6 +261,9 @@ namespace ReedBooks.ViewModels
         public ICommand ShareCommand { get; }
         public ICommand ShopSearchCommand { get; }
         public ICommand DownloadCommand { get; }
+        public ICommand HideBookCommand { get; }
+        public ICommand ShowBookCommand { get; }
+        public ICommand TemporaryShowBookCommand { get; }
         #endregion
 
         public MainWindowViewModel()
@@ -287,7 +290,10 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
             ShareCommand = new RelayCommand(obj => Share(obj));
             ShopSearchCommand = new RelayCommand(obj => ShopSearch(obj));
-            DownloadCommand = new RelayCommand(obj => Download(obj));   
+            DownloadCommand = new RelayCommand(obj => Download(obj));
+            HideBookCommand = new RelayCommand(obj => HideBook(obj));
+            ShowBookCommand = new RelayCommand(obj => ShowBook(obj));
+            TemporaryShowBookCommand = new RelayCommand(obj => TemporaryShowBook(obj));
 
             SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
@@ -536,6 +542,36 @@ namespace ReedBooks.ViewModels
                 var downloaded = new Book(link);
                 LoadedBooks.Add(downloaded);
             };
+        }
+
+        public void HideBook(object param)
+        {
+            Book book = (Book)param;
+            book.IsHidden = true;
+            book.IsTempHidden = true;
+            OnPropertyChanged(nameof(LoadedBooks));
+        }
+
+        public void ShowBook(object param)
+        {
+            Book book = (Book)param;
+            book.IsHidden = false; 
+            book.IsTempHidden = false;
+            OnPropertyChanged(nameof(LoadedBooks));
+        }
+
+        public void TemporaryShowBook(object param)
+        {
+            Book book = (Book)param;
+
+            if(Settings.Default.Password != string.Empty)
+            {
+                bool? result = new AuthorizationWindow().ShowDialog();
+                if (result.HasValue && result.Value != true) return;
+            }
+
+            book.IsTempHidden = false;
+            OnPropertyChanged(nameof(LoadedBooks));
         }
     }
 }
