@@ -205,10 +205,7 @@
                                        Text="{DynamicResource m_tab_disabled_by_privacy}"/>
 
                             <StackPanel Orientation="Vertical"
-                                        IsEnabled="{Binding HideReadingNow, Converter={StaticResource InvertBooleanConverter}}">
-                                <StackPanel.Effect>
-                                    <BlurEffect d:Radius="-1" Radius="{Binding ReadingNowTabBlurRadius}"/>
-                                </StackPanel.Effect>
+                                        Visibility="{Binding HideReadingNow, Converter={StaticResource InverseBoolToVisConverter}}">
                                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                            Margin="30"
                                            Text="{DynamicResource m_reading_now}"/>

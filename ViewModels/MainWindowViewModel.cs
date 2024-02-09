@@ -80,11 +80,6 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        public int ReadingNowTabBlurRadius
-        {
-            get => HideReadingNow ? 30 : -1;
-        }
-
         private ObservableCollection<Book> _loadedBooks;
         public ObservableCollection<Book> LoadedBooks
         {
@@ -317,7 +312,6 @@ namespace ReedBooks.ViewModels
             {
                 HideReadingNow = Settings.Default.HideReadingNow;
                 Goal = Settings.Default.TimeGoal;
-                OnPropertyChanged(nameof(ReadingNowTabBlurRadius));
 
                 UpdateRecentAndCurrent();
             };

@@ -71,7 +71,17 @@
                     </Button.CommandParameter>
                 </Button>
 
+                <TextBlock Grid.Column="1"
+                           FontSize="14"
+                           HorizontalAlignment="Right"
+                           Style="{DynamicResource Caption}"
+                           Visibility="{Binding ElementName=ActionsPanel, Path=IsVisible, Converter={StaticResource InverseBoolToVisConverter}}">
+                    <Run Text="{DynamicResource books}"/>
+                    <Run Text="{Binding Count, Mode=OneWay}"/>
+                </TextBlock>
+
                 <StackPanel Grid.Column="1"
+                            x:Name="ActionsPanel"
                             Visibility="{Binding DataContext.CollectionActionsVisibility, RelativeSource={RelativeSource AncestorType=Window}}"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
