@@ -34,8 +34,8 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        private bool _failed;
-        public bool Failed
+        private bool? _failed;
+        public bool? Failed
         {
             get => _failed;
             set
@@ -61,7 +61,7 @@ namespace ReedBooks.ViewModels
 
         public void EnterSymbol(object param)
         {
-            Failed = false;
+            Failed = null;
 
             if(CurrentPosition >= EnteredPassword.Length)
             {
@@ -76,7 +76,11 @@ namespace ReedBooks.ViewModels
             if(CurrentPosition == EnteredPassword.Length)
             {
                 string correctPassword = Properties.Settings.Default.Password;
-                if (correctPassword == string.Join(string.Empty, EnteredPassword)) Success?.Invoke();
+                if (correctPassword == string.Join(string.Empty, EnteredPassword)) 
+                {
+                    Failed = false;
+                    Success?.Invoke();
+                }
                 else Failed = true;
             }
         }

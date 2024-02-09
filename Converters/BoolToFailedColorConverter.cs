@@ -9,8 +9,12 @@ namespace ReedBooks.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool val) return val ? Application.Current.Resources["danger_color"] : Application.Current.Resources["hint_color"];
-            return Application.Current.Resources["hint_color"];
+            bool? val = (bool?)value;
+            if (val == null)
+                return Application.Current.Resources["hint_color"];
+            else if (val == true)
+                return Application.Current.Resources["danger_color"];
+            else return Application.Current.Resources["success_color"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

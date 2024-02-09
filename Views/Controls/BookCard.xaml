@@ -256,6 +256,7 @@
             </Grid>
         </Grid>
         <StackPanel Visibility="{Binding ElementName=Card, Path=Book.IsTempHidden, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    d:Visibility="Hidden"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <materialDesign:PackIcon Kind="LockOutline"

@@ -5,7 +5,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource hint_color}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="7 15"/>
+        <Setter Property="Margin" Value="7"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="FontSize" Value="25"/>

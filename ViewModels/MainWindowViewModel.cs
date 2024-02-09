@@ -268,8 +268,13 @@ namespace ReedBooks.ViewModels
 
         public MainWindowViewModel()
         {
-            if(Settings.Default.Password != string.Empty)
-                if (new AuthorizationWindow().ShowDialog() == false) App.Restart();
+            if (Settings.Default.Password != string.Empty)
+            {
+                bool? res = new AuthorizationWindow().ShowDialog();
+                if (res == null) App.Restart();
+                else if (res == false) Application.Current.Shutdown();
+            }
+                
 
             HandleFileDropCommand = new RelayCommand(obj => HandleFileDrop(obj));
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
@@ -300,7 +305,7 @@ namespace ReedBooks.ViewModels
             HideReadingNow = Settings.Default.HideReadingNow;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
             LoadedCollections = new ObservableCollection<Collection>(App.ApplicationContext.Collections);
-            SearchedBooks = LoadedBooks;
+            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.IsTempHidden != true));
             SelectedTab = Settings.Default.DefaultTab;
             Goal = Settings.Default.TimeGoal;
 
@@ -430,7 +435,7 @@ namespace ReedBooks.ViewModels
             var namePart = (string)param;
 
             if (namePart.Length < 3) return;
-            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.Name.ToLower().Contains(namePart.ToLower())).ToList());
+            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.IsTempHidden != true && b.Name.ToLower().Contains(namePart.ToLower())).ToList());
         }
 
         public void Read(object param)

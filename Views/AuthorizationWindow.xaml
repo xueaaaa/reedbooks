@@ -11,6 +11,7 @@
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
         WindowStartupLocation="CenterScreen"
+        KeyDown="Window_KeyDown"
         Title="{DynamicResource h_authorization_window}">
     <Window.DataContext>
         <local:AuthorizationWindowViewModel/>
@@ -19,13 +20,14 @@
         <converters:BoolToFailedColorConverter x:Key="boolToFailedColorConverter"/>
     </Window.Resources>
     <Grid Style="{DynamicResource MainGrid}">
-        <StackPanel Margin="30">
+        <StackPanel Margin="20">
             <Border CornerRadius="{DynamicResource CornerRadius}"
                     Background="{DynamicResource container_background_color}">
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <TextBox Style="{DynamicResource PasswordCharacterTextBox}" 
+                             Margin="20 0 0 0"
                              Foreground="{Binding Failed, Converter={StaticResource boolToFailedColorConverter}}"
                              Text="{Binding EnteredPassword[0]}" d:Text="2"/>
                     <TextBox Style="{DynamicResource PasswordCharacterTextBox}" 
@@ -35,13 +37,15 @@
                              Foreground="{Binding Failed, Converter={StaticResource boolToFailedColorConverter}}"
                              Text="{Binding EnteredPassword[2]}" d:Text="3"/>
                     <TextBox Style="{DynamicResource PasswordCharacterTextBox}" 
+                             Margin="0 0 20 0"
                              Foreground="{Binding Failed, Converter={StaticResource boolToFailedColorConverter}}"
                              Text="{Binding EnteredPassword[3]}" d:Text="5"/>
                 </StackPanel>
             </Border>
 
-            <WrapPanel Margin="0 40 0 0"
-                       MaxWidth="210">
+            <Separator Margin="0 20 0 10"/>
+
+            <WrapPanel MaxWidth="210">
                 <Button Style="{DynamicResource PasswordKeyboardButton}"
                         Command="{Binding EnterSymbolCommand}"
                         CommandParameter="1">1</Button>
