@@ -63,8 +63,6 @@
                     <controls:ChaptersView x:Name="ChaptetsView"
                                            Navigation="{Binding Navigation}"
                                            OnSelectedItemChanged="{Binding MoveToAnotherDocumentCommand}"/>
-
-                    
                 </Grid>
 
                 <GridSplitter Grid.Column="1"
@@ -263,7 +261,7 @@
                                              Width="20"
                                              Height="20"
                                              ToolTip="{DynamicResource r_mark_as_read}"
-                                             Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                             Command="{Binding MarkAsReadCommand}">
                             <controls:IconButton.CommandParameter>
                                 <controls:InWindowDialog Header="{DynamicResource r_end_of_read_dialog_header}">
                                     <controls:InWindowDialog.Content>

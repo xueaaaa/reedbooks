@@ -5,8 +5,7 @@
              Name="RadioButton">
     <RadioButton.Template>
         <ControlTemplate TargetType="RadioButton">
-            <Rectangle Width="18"
-                       Height="18">
+            <Rectangle>
                 <Rectangle.Fill>
                     <VisualBrush>
                         <VisualBrush.Visual>

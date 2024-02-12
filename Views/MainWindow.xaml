@@ -382,22 +382,43 @@
                                             VerticalAlignment="Center"
                                             Margin="10 0 0 0">
                                         <controls:SortButton Icon="SortAlphabeticalAscending"
-                                                         Margin="0 0 7 0"
-                                                         Command="{Binding SortByNameCommand}"
-                                                         ToolTip="{DynamicResource m_sort_by_name_a-z}"/>
+                                                             Width="18"
+                                                             Height="18"
+                                                             Margin="0 0 7 0"
+                                                             Command="{Binding SortByNameCommand}"
+                                                             ToolTip="{DynamicResource m_sort_by_name_a-z}"/>
 
                                         <controls:SortButton Icon="SortAlphabeticalDescending"
-                                                         Command="{Binding SortByNameDescendingCommand}"
-                                                         ToolTip="{DynamicResource m_sort_by_name_z-a}"/>
+                                                             Width="18"
+                                                             Height="18"
+                                                             Command="{Binding SortByNameDescendingCommand}"
+                                                             ToolTip="{DynamicResource m_sort_by_name_z-a}"/>
 
                                         <controls:SortButton Icon="SortCalendarAscending"
-                                                         Margin="20 0 7 0"
-                                                         Command="{Binding SortByLastReadingDateCommand}"
-                                                         ToolTip="{DynamicResource m_sort_by_last_reading_date}"/>
+                                                             Width="25"
+                                                             Height="20"
+                                                             Margin="20 0 7 0"
+                                                             Command="{Binding SortByLastReadingDateCommand}"
+                                                             ToolTip="{DynamicResource m_sort_by_last_reading_date}"/>
 
                                         <controls:SortButton Icon="SortCalendarDescending"
-                                                         Command="{Binding SortByLastReadingDateDescendingCommand}"
-                                                         ToolTip="{DynamicResource m_sort_by_last_reading_date_descending}"/>
+                                                             Width="25"
+                                                             Height="20"
+                                                             Command="{Binding SortByLastReadingDateDescendingCommand}"
+                                                             ToolTip="{DynamicResource m_sort_by_last_reading_date_descending}"/>
+
+                                        <controls:SortButton Icon="BookmarkMultiple"
+                                                             Width="18"
+                                                             Height="18"
+                                                             Margin="20 0"
+                                                             Command="{Binding SortOnlyUnreadCommand}"
+                                                             ToolTip="{DynamicResource m_sort_only_unread}"/>
+                                        <controls:IconButton Source="Reload"
+                                                             Width="18"
+                                                             Height="18"
+                                                             Foreground="{DynamicResource accent_color}"
+                                                             Command="{Binding ResetSortCommand}"
+                                                             ToolTip="{DynamicResource m_sort_reset}"/>
                                     </StackPanel>
                                 </StackPanel>
                                 <Separator Margin="0 10 0 0"/>

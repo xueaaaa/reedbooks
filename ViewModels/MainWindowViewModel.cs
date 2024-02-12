@@ -250,6 +250,8 @@ namespace ReedBooks.ViewModels
         public ICommand SortByNameDescendingCommand { get; }
         public ICommand SortByLastReadingDateCommand { get; }
         public ICommand SortByLastReadingDateDescendingCommand { get; }
+        public ICommand SortOnlyUnreadCommand { get; }
+        public ICommand ResetSortCommand { get; }
         public ICommand CreateCollectionCommand { get; }
         public ICommand EditCollectionCommand { get; }
         public ICommand DeleteCollectionCommand { get; }
@@ -285,6 +287,8 @@ namespace ReedBooks.ViewModels
             SortByNameDescendingCommand = new RelayCommand(obj => SortByNameDescending());
             SortByLastReadingDateCommand = new RelayCommand(obj => SortByLastReadingDate());
             SortByLastReadingDateDescendingCommand = new RelayCommand(obj => SortByLastReadingDateDescending());
+            SortOnlyUnreadCommand = new RelayCommand(obj => SortOnlyUnread());
+            ResetSortCommand = new RelayCommand(obj => ResetSort());
             CreateCollectionCommand = new RelayCommand(obj => CreateCollection());
             EditCollectionCommand = new RelayCommand(obj => EditCollection(obj));
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
@@ -471,6 +475,16 @@ namespace ReedBooks.ViewModels
         public void SortByLastReadingDateDescending()
         {
             SearchedBooks = new ObservableCollection<Book>(SearchedBooks.OrderBy(b => b.BoundDiary?.LastReadingAt));
+        }
+
+        public void SortOnlyUnread()
+        {
+            SearchedBooks = new ObservableCollection<Book>(SearchedBooks.Where(b => b.BoundDiary?.ReadingIsOver == false));
+        }
+
+        public void ResetSort()
+        {
+            SearchedBooks = new ObservableCollection<Book>(LoadedBooks.Where(b => b.IsTempHidden != true));
         }
 
         public void CreateCollection()

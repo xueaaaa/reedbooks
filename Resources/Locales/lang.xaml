@@ -32,6 +32,8 @@
     <v:String x:Key="m_sort_by_name_z-a">По названию книги (Я-А)</v:String>
     <v:String x:Key="m_sort_by_last_reading_date">По дате прочтения (от недавней)</v:String>
     <v:String x:Key="m_sort_by_last_reading_date_descending">По дате прочтения (от самой старой)</v:String>
+    <v:String x:Key="m_sort_only_unread">Только непрочитанные</v:String>
+    <v:String x:Key="m_sort_reset">Сбросить сортировку</v:String>
     <v:String x:Key="m_genre">Жанр:</v:String>
     <v:String x:Key="m_chapters_count">Количество глав:</v:String>
     <v:String x:Key="m_your_rating">Ваша оценка:</v:String>
