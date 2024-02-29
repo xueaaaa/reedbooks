@@ -1,0 +1,259 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- #region 主窗口 -->
+    <v:String x:Key="h_main_window">ReedBooks</v:String>
+    <v:String x:Key="m_edit">编辑</v:String>
+    <v:String x:Key="m_edit_hint">显示/隐藏集合管理按钮</v:String>
+    <v:String x:Key="m_hide_panel_button_hint">显示/隐藏菜单</v:String>
+    <v:String x:Key="m_books">书籍</v:String>
+    <v:String x:Key="m_reading_now">正在阅读</v:String>
+    <v:String x:Key="m_all_books">所有书籍</v:String>
+    <v:String x:Key="m_search">搜索</v:String>
+    <v:String x:Key="m_books_shop">书店</v:String>
+    <v:String x:Key="m_readers_diary_collection">读者日记</v:String>
+    <v:String x:Key="m_my_collections_collection">我的收藏</v:String>
+    <v:String x:Key="m_new_collection">新收藏</v:String>
+    <v:String x:Key="m_collection_name_hint">收藏名称...</v:String>
+    <v:String x:Key="m_create_collection">创建收藏</v:String>
+    <v:String x:Key="m_added_books">已添加的书籍：</v:String>
+    <v:String x:Key="m_current">当前</v:String>
+    <v:String x:Key="m_last_reading_at">上次阅读日期</v:String>
+    <v:String x:Key="m_name">名称</v:String>
+    <v:String x:Key="m_no_current">您最近没有打开过任何书籍</v:String>
+    <v:String x:Key="m_recent">最近</v:String>
+    <v:String x:Key="m_no_recent">最近没有打开的书籍</v:String>
+    <v:String x:Key="m_no_elements">还没有添加任何元素</v:String>
+    <v:String x:Key="m_load_book">加载书籍</v:String>
+    <v:String x:Key="m_search_hint">开始输入书名...</v:String>
+    <v:String x:Key="m_sort">排序：</v:String>
+    <v:String x:Key="m_sort_by_name_a-z">按书名排序（A-Z）</v:String>
+    <v:String x:Key="m_sort_by_name_z-a">按书名排序（Z-A）</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date">按最后阅读日期排序（最近的）</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date_descending">按最后阅读日期排序（最早的）</v:String>
+    <v:String x:Key="m_sort_only_unread">仅显示未读</v:String>
+    <v:String x:Key="m_sort_reset">重置排序</v:String>
+    <v:String x:Key="m_genre">类型：</v:String>
+    <v:String x:Key="m_chapters_count">章节数：</v:String>
+    <v:String x:Key="m_your_rating">您的评分：</v:String>
+    <v:String x:Key="m_book_readed">已读完</v:String>
+    <v:String x:Key="m_read">阅读</v:String>
+    <v:String x:Key="m_information">书籍信息</v:String>
+    <v:String x:Key="m_share">分享...</v:String>
+    <v:String x:Key="m_delete">删除</v:String>
+    <v:String x:Key="m_not_stated">未说明</v:String>
+    <v:String x:Key="m_authors">作者：</v:String>
+    <v:String x:Key="m_publishers">出版商：</v:String>
+    <v:String x:Key="m_rights">版权：</v:String>
+    <v:String x:Key="m_language">语言：</v:String>
+    <v:String x:Key="m_description">描述：</v:String>
+    <v:String x:Key="m_copyright_warning">此标签页上的所有内容均来自 topliba.com。ReedBooks 不拥有这些内容的版权。</v:String>
+    <v:String x:Key="m_shop_search_hint">输入书名...</v:String>
+    <v:String x:Key="m_genres">流派：</v:String>
+    <v:String x:Key="m_book_year">出版年份：</v:String>
+    <v:String x:Key="m_users_rating">用户评分：</v:String>
+    <v:String x:Key="m_rated_users_first">基于</v:String>
+    <v:String x:Key="m_rated_users_second">用户评分</v:String>
+    <v:String x:Key="m_download">下载</v:String>
+    <v:String x:Key="m_epub_not_enabled">此书不支持 EPUB 格式。</v:String>
+    <v:String x:Key="m_please_wait">正在处理数据，请稍候...</v:String>
+    <v:String x:Key="m_internet_not_connected">无法连接到互联网。</v:String>
+    <v:String x:Key="m_shop_books_not_found">没有可显示的书籍</v:String>
+    <v:String x:Key="m_open_external">在外部打开</v:String>
+    <v:String x:Key="m_tab_disabled_by_privacy">此标签页已被隐私设置禁用。</v:String>
+    <v:String x:Key="m_readed_today">今天您阅读了：</v:String>
+    <v:String x:Key="m_your_goal">您的目标：</v:String>
+    <v:String x:Key="m_hide">隐藏书籍</v:String>
+    <v:String x:Key="m_show">显示书籍</v:String>
+    <v:String x:Key="m_hidden_book_hint">此书籍已隐藏。单击以显示。</v:String>
+    <v:String x:Key="m_hidden_book_tool_tip">此书籍将在下次打开 ReedBooks 时隐藏。</v:String>
+    <!-- #endregion -->
+    
+    <!-- #region 编辑收藏窗口 -->
+    <v:String x:Key="h_edit_collection_window">ReedBooks - 编辑收藏</v:String>
+    <v:String x:Key="ec_edit_collection">编辑收藏</v:String>
+    <v:String x:Key="ec_edit_collection_button">编辑</v:String>
+    <!-- #endregion -->
+    
+    <!-- #region 更新窗口 -->
+    <v:String x:Key="u_header">新版本</v:String>
+    <v:String x:Key="u_whats_new">更新内容：</v:String>
+    <v:String x:Key="u_description_limitations">更新详细信息仅提供俄文版本。</v:String>
+    <v:String x:Key="u_published_at">发布于：</v:String>
+    <v:String x:Key="u_update">更新</v:String>
+    <v:String x:Key="u_not_now">暂不更新</v:String>
+    <!-- #endregion -->
+    
+    <!-- #region 阅读窗口 -->
+    <v:String x:Key="h_reading_window">ReedBooks - 阅读模式</v:String>
+    <v:String x:Key="r_mark_as_read">标记为已读</v:String>
+    <v:String x:Key="r_end_of_read_dialog_header">恭喜！</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">恭喜您完成阅读，建议您前往读者日记评价此书。</v:String>
+    <v:String x:Key="r_open_reading_diary">前往</v:String>
+    <v:String x:Key="r_stay">留在此页</v:String>
+    <v:String x:Key="r_previous_chapter">上一章</v:String>
+    <v:String x:Key="r_next_chapter">下一章</v:String>
+    <v:String x:Key="r_return">返回</v:String>
+    <v:String x:Key="r_add_quote">添加引用...</v:String>
+    <v:String x:Key="r_scroll_to_start">滚动到顶部</v:String>
+    <v:String x:Key="r_scroll_to_end">滚动到底部</v:String>
+    <v:String x:Key="r_clear_mode">清晰模式</v:String>
+    <v:String x:Key="r_concentration_mode">专注模式</v:String>
+    <v:String x:Key="r_line_scroll_hint">在此滚动鼠标滚轮以调整专注线的位置。</v:String>
+    <v:String x:Key="r_content_scroll_hint">在此滚动鼠标滚轮以调整当前章节的内容。</v:String>
+    <v:String x:Key="r_current_chapter_first_part">您正在阅读：</v:String>
+    <v:String x:Key="r_current_chapter_second_part">已读：</v:String>
+    <v:String x:Key="r_reading_info">当前阅读会话信息</v:String>
+    <v:String x:Key="r_reading_progress">已读/总阅读：</v:String>
+    <v:String x:Key="r_reading_already">您已读：</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">此部分功能暂时不可用</v:String>
+    <!-- #endregion -->
+    
+    <!-- #region 设置窗口 -->
+    <v:String x:Key="h_settings_window">ReedBooks - 设置</v:String>
+    <v:String x:Key="s_interface_header">界面</v:String>
+    <v:String x:Key="s_language_label">应用语言</v:String>
+    <v:String x:Key="s_language_hint">此设置仅更改界面语言。书籍作者姓名和内容不会被本地化。</v:String>
+    <v:String x:Key="s_theme_label">主题</v:String>
+    <v:String x:Key="s_theme_hint">更改应用程序的配色方案。</v:String>
+    <v:String x:Key="s_theme_load_custom">加载主题...</v:String>
+    <v:String x:Key="s_theme_delete_custom">删除主题...</v:String>
+    <v:String x:Key="s_personalization_header">个性化</v:String>
+    <v:String x:Key="s_show_hints_label">显示界面提示</v:String>
+    <v:String x:Key="s_show_hints_hint">与界面交互时显示提示。</v:String>
+    <v:String x:Key="s_current_counted_days_label">当前计数天数</v:String>
+    <v:String x:Key="s_current_counted_days_hint">此设置指定自上次打开书籍以来，书籍将显示在“当前”选项卡中的天数。</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_label">最近显示的书籍数量</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_hint">此设置指定在“最近”选项卡中显示的书籍数量（最多 255 本）。</v:String>
+    <v:String x:Key="s_start_tab_label">启动时打开选项卡</v:String>
+    <v:String x:Key="s_start_tab_hint">此设置指定默认打开的选项卡。</v:String>
+    <v:String x:Key="s_reading_goal_label">阅读目标</v:String>
+    <v:String x:Key="s_reading_goal_hint">每天阅读的分钟数。</v:String>
+    <v:String x:Key="s_privacy_header">隐私</v:String>
+    <v:String x:Key="s_password_label">密码</v:String>
+    <v:String x:Key="s_password_hint">此密码用于登录应用程序和解锁隐藏的书籍。</v:String>
+    <v:String x:Key="s_enter_password_hint">4 个字符</v:String>
+    <v:String x:Key="s_hide_reading_now_label">隐藏“正在阅读”选项卡</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">隐藏“正在阅读”选项卡的内容。</v:String>
+    <v:String x:Key="s_storage_management_header">存储管理</v:String>
+    <v:String x:Key="s_delete_unused_automatically_header">自动删除未使用的文件</v:String>
+    <v:String x:Key="s_delete_unused_automatically_label">每次启动时检查应用程序目录中是否有未使用的文件，并自动删除它们。</v:String>
+    <v:String x:Key="s_delete_all_books_label">删除所有书籍</v:String>
+    <v:String x:Key="s_delete_all_books_hint">单击按钮将删除应用程序中已下载的所有书籍。</v:String>
+    <v:String x:Key="s_delete_unused_files_label">删除未使用的文件</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">从应用程序中删除书籍后，某些文件仍会保留在目录中。未使用的文件总大小：</v:String>
+    <v:String x:Key="s_delete">删除</v:String>
+    <v:String x:Key="s_summary_size_label">ReedBooks 总计占用磁盘空间</v:String>
+    <v:String x:Key="s_version_header">版本信息</v:String>
+    <v:String x:Key="s_update_automatically_label">自动更新</v:String>
+    <v:String x:Key="s_update_automatically_hint">检测到新版本时自动安装，无需询问权限。</v:String>
+    <v:String x:Key="s_installed_version_label">已安装版本</v:String>
+    <v:String x:Key="s_help_label">帮助</v:String>
+    <v:String x:Key="s_help_hint">如果您需要程序帮助，请查阅我们在 GitHub 上的 Wiki。</v:String>
+    <v:String x:Key="s_save">保存</v:String>
+    <!-- #endregion -->
+    
+    <!-- #region 对话窗口 -->
+    <v:String x:Key="h_dialog_window">ReedBooks - 对话</v:String>
+    <v:String x:Key="d_acept_button">确认</v:String>
+    <v:String x:Key="d_refuse_button">取消</v:String>
+    <!-- #endregion -->
+
+    <!-- #region 阅读日记窗口 -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - 阅读日记</v:String>
+    <v:String x:Key="rd_author_label">作者：</v:String>
+    <v:String x:Key="rd_chapters_count_label">章节数：</v:String>
+    <v:String x:Key="rd_genre_label">类型：</v:String>
+    <v:String x:Key="rd_genre_hint">输入类型名称...</v:String>
+    <v:String x:Key="rd_begin_reading_at">开始阅读时间：</v:String>
+    <v:String x:Key="rd_reading_not_beginned">尚未开始阅读</v:String>
+    <v:String x:Key="rd_end_reading_at">阅读结束时间：</v:String>
+    <v:String x:Key="rd_reading_not_ended">尚未结束阅读</v:String>
+    <v:String x:Key="rd_reading_time">您已阅读此书：</v:String>
+    <v:String x:Key="rd_null_reading_time">您尚未阅读此书</v:String>
+    <v:String x:Key="rd_reading_is_over">阅读已完成？</v:String>
+    <v:String x:Key="rd_arithmetic_average">综合评分：</v:String>
+    <v:String x:Key="rd_my_emotions">我的情绪</v:String>
+    <v:String x:Key="rd_selected_emotion">选定的情绪：</v:String>
+    <v:String x:Key="rd_start">书籍开头</v:String>
+    <v:String x:Key="rd_middle">书籍中部</v:String>
+    <v:String x:Key="rd_end">书籍结尾</v:String>
+    <v:String x:Key="rd_sadness">悲伤</v:String>
+    <v:String x:Key="rd_amazement">惊讶</v:String>
+    <v:String x:Key="rd_indifference">冷漠</v:String>
+    <v:String x:Key="rd_interesting">感兴趣</v:String>
+    <v:String x:Key="rd_happiness">快乐</v:String>
+    <v:String x:Key="rd_reset_emotion">重置所选</v:String>
+    <v:String x:Key="rd_assessment">评价</v:String>
+    <v:String x:Key="rd_plot_originality">情节独特性</v:String>
+    <v:String x:Key="rd_characters">角色</v:String>
+    <v:String x:Key="rd_world_inside_book">书中世界</v:String>
+    <v:String x:Key="rd_love_line">爱情线索</v:String>
+    <v:String x:Key="rd_humor">幽默</v:String>
+    <v:String x:Key="rd_meaning_fulness">意义深度</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">您可以在此处记录您的笔记或写下阅读体验。</v:String>
+    <v:String x:Key="rd_quotes">引用</v:String>
+    <v:String x:Key="rd_add_quote">添加</v:String>
+    <v:String x:Key="rd_add_quote_header">添加引用</v:String>
+    <v:String x:Key="rd_quote_data_hint">输入引用文本...</v:String>
+    <v:String x:Key="rd_quote_author_hint">输入引用作者...</v:String>
+    <v:String x:Key="rd_quote_location_hint">输入引用在书中的位置（例如章节、页码等）...</v:String>
+    <v:String x:Key="rd_cancel">关闭</v:String>
+
+    <!-- #region 授权窗口 -->
+    <v:String x:Key="h_authorization_window">ReedBooks - 输入密码</v:String>
+    <v:String x:Key="a_clear_button_hint">清除</v:String>
+    <v:String x:Key="a_reset_button_hint">重置密码</v:String>
+    <!-- #endregion -->
+
+    <!-- #region 特殊字符串 -->
+    <v:String x:Key="light">亮色</v:String>
+    <v:String x:Key="dark">暗色</v:String>
+
+    <v:String x:Key="megabytes">MB</v:String>
+    <v:String x:Key="minutes">分钟</v:String>
+    <v:String x:Key="books">书籍:</v:String>
+
+    <v:String x:Key="dialog_settings_title">需要重新启动</v:String>
+    <v:String x:Key="dialog_settings_content">为了使已设置的设置生效，您需要重新启动应用程序。您现在要这样做吗？</v:String>
+
+    <v:String x:Key="dialog_error_title">错误</v:String>
+    <v:String x:Key="dialog_fatal_error_content">程序执行过程中发生了错误:</v:String>
+    <v:String x:Key="dialog_null_quote_content">无法添加没有内容或作者的引用！</v:String>
+    <v:String x:Key="dialog_not_epub_content">此文件不是 EPUB 格式。</v:String>
+    <v:String x:Key="dialog_null_collection_content">无法创建空集合！</v:String>
+    <v:String x:Key="dialog_malformed_password_content">密码长度必须为 4 个字符，并且只能包含数字。</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">删除书籍</v:String>
+    <v:String x:Key="dialog_delete_book_content">您确定要删除此书籍吗？</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">删除所有书籍</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">您确定要删除所有书籍吗？此操作无法撤销。</v:String>
+
+    <v:String x:Key="dialog_delete_theme_title">删除主题</v:String>
+    <v:String x:Key="dialog_delete_theme_content">您确定要删除当前主题吗？此操作无法撤销。</v:String>
+
+    <v:String x:Key="dialog_success_title">成功！</v:String>
+    <v:String x:Key="dialog_success_content">操作已成功完成。</v:String>
+
+    <v:String x:Key="dialog_share_file_title">已创建共享文件</v:String>
+    <v:String x:Key="dialog_share_file_content">共享文件已成功创建。接收者将能够将书籍下载到他们的 ReedBooks 应用程序中。点击确定后，您将转到创建的共享文件夹。</v:String>
+
+    <v:String x:Key="dialog_forgot_password_title">忘记密码？</v:String>
+    <v:String x:Key="dialog_forgot_password_content">您可以重置密码，但这将清除您的整个书籍数据库。如果您想要重置密码，请点击确定按钮。</v:String>
+
+    <v:String x:Key="genre_fantasy">奇幻</v:String>
+    <v:String x:Key="genre_detective">侦探</v:String>
+    <v:String x:Key="genre_horror">恐怖</v:String>
+    <v:String x:Key="genre_adventure">冒险</v:String>
+    <v:String x:Key="genre_poetry">诗歌</v:String>
+    <v:String x:Key="genre_love_story">爱情故事</v:String>
+    <v:String x:Key="genre_thriller">惊悚</v:String>
+    <v:String x:Key="genre_prose">散文</v:String>
+    <v:String x:Key="genre_foreign_classics">外国经典</v:String>
+    <v:String x:Key="genre_locale_country_classics">中国经典</v:String>
+    <v:String x:Key="genre_folklore">民间传说</v:String>
+    <!-- #endregion -->
+
+</ResourceDictionary>

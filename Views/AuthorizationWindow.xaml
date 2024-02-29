@@ -74,12 +74,14 @@
                         Command="{Binding EnterSymbolCommand}"
                         CommandParameter="9">9</Button>
                 <Button Style="{DynamicResource PasswordKeyboardButton}"
+                        ToolTip="{DynamicResource a_reset_button_hint}"
                         Command="{Binding ResetPasswordCommand}"
                         Foreground="{DynamicResource danger_color}">R</Button>
                 <Button Style="{DynamicResource PasswordKeyboardButton}"
                         Command="{Binding EnterSymbolCommand}"
                         CommandParameter="0">0</Button>
                 <Button Style="{DynamicResource PasswordKeyboardButton}"
+                        ToolTip="{DynamicResource a_clear_button_hint}"
                         Command="{Binding EraseSymbolCommand}"
                         Background="{DynamicResource accent_color}">C</Button>
             </WrapPanel>

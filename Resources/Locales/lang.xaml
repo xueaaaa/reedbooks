@@ -67,6 +67,7 @@
     <v:String x:Key="m_hide">Скрыть книгу</v:String>
     <v:String x:Key="m_show">Показать книгу</v:String>
     <v:String x:Key="m_hidden_book_hint">Эта книга скрыта. Нажмите, чтобы отобразить.</v:String>
+    <v:String x:Key="m_hidden_book_tool_tip">Эта книга будет скрыта при следующем запуске ReedBooks.</v:String>
     <!--#endregion-->
 
     <!--#region Edit collection window-->
@@ -148,7 +149,9 @@
     <v:String x:Key="s_update_automatically_label">Обновлять автоматически</v:String>
     <v:String x:Key="s_update_automatically_hint">Не спрашивать разрешения на установку при обнаружении нового обновления.</v:String>
     <v:String x:Key="s_installed_version_label">Установленная версия</v:String>
-
+    <v:String x:Key="s_help_label">Помощь</v:String>
+    <v:String x:Key="s_help_hint">Если вам требуется помощь по работе программы, вы можете ознакомиться с вики на нашем GitHub.</v:String>
+    
     <v:String x:Key="s_save">Сохранить</v:String>
     <!--#endregion-->
 
@@ -202,6 +205,8 @@
     
     <!--#region Authorization window-->
     <v:String x:Key="h_authorization_window">ReedBooks - Ввод пароля</v:String>
+    <v:String x:Key="a_clear_button_hint">Стереть</v:String>
+    <v:String x:Key="a_reset_button_hint">Сбросить пароль</v:String>
     <!--#endregion-->
     
     <!--#region SPECIAL STRINGS -->

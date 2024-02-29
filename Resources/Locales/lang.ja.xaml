@@ -1,0 +1,260 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+    <!--#region メインウィンドウ -->
+    <v:String x:Key="h_main_window">ReedBooks</v:String>
+    <v:String x:Key="m_edit">編集</v:String>
+    <v:String x:Key="m_edit_hint">コレクション管理ボタンの表示/非表示</v:String>
+    <v:String x:Key="m_hide_panel_button_hint">メニューを表示/非表示</v:String>
+    <v:String x:Key="m_books">書籍</v:String>
+    <v:String x:Key="m_reading_now">現在読書中</v:String>
+    <v:String x:Key="m_all_books">すべての書籍</v:String>
+    <v:String x:Key="m_search">検索</v:String>
+    <v:String x:Key="m_books_shop">書籍ショップ</v:String>
+    <v:String x:Key="m_readers_diary_collection">読書日記</v:String>
+    <v:String x:Key="m_my_collections_collection">マイコレクション</v:String>
+    <v:String x:Key="m_new_collection">新しいコレクション</v:String>
+    <v:String x:Key="m_collection_name_hint">コレクション名...</v:String>
+    <v:String x:Key="m_create_collection">コレクションを作成</v:String>
+    <v:String x:Key="m_added_books">追加された書籍:</v:String>
+    <v:String x:Key="m_current">現在</v:String>
+    <v:String x:Key="m_last_reading_at">最終閲覧日</v:String>
+    <v:String x:Key="m_name">名前</v:String>
+    <v:String x:Key="m_no_current">過去数日間、書籍を開いていません</v:String>
+    <v:String x:Key="m_recent">最近</v:String>
+    <v:String x:Key="m_no_recent">最近開かれた書籍はありません</v:String>
+    <v:String x:Key="m_no_elements">要素がまだ追加されていません</v:String>
+    <v:String x:Key="m_load_book">書籍を読み込む</v:String>
+    <v:String x:Key="m_search_hint">書籍名を入力してください...</v:String>
+    <v:String x:Key="m_sort">ソート:</v:String>
+    <v:String x:Key="m_sort_by_name_a-z">書籍名（昇順）</v:String>
+    <v:String x:Key="m_sort_by_name_z-a">書籍名（降順）</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date">閲覧日時（新しい順）</v:String>
+    <v:String x:Key="m_sort_by_last_reading_date_descending">閲覧日時（古い順）</v:String>
+    <v:String x:Key="m_sort_only_unread">未読のみ</v:String>
+    <v:String x:Key="m_sort_reset">ソートリセット</v:String>
+    <v:String x:Key="m_genre">ジャンル:</v:String>
+    <v:String x:Key="m_chapters_count">章の数:</v:String>
+    <v:String x:Key="m_your_rating">あなたの評価:</v:String>
+    <v:String x:Key="m_book_readed">書籍を読み終えました</v:String>
+    <v:String x:Key="m_read">読む</v:String>
+    <v:String x:Key="m_information">書籍情報</v:String>
+    <v:String x:Key="m_share">共有...</v:String>
+    <v:String x:Key="m_delete">削除</v:String>
+    <v:String x:Key="m_not_stated">未指定</v:String>
+    <v:String x:Key="m_authors">著者:</v:String>
+    <v:String x:Key="m_publishers">出版社:</v:String>
+    <v:String x:Key="m_rights">権利:</v:String>
+    <v:String x:Key="m_language">言語:</v:String>
+    <v:String x:Key="m_description">説明:</v:String>
+    <v:String x:Key="m_copyright_warning">このタブのすべての素材は topliba.com から取得されました。 ReedBooks はこのコンテンツの権利所有者ではありません。</v:String>
+    <v:String x:Key="m_shop_search_hint">書籍名を入力してください...</v:String>
+    <v:String x:Key="m_genres">ジャンル:</v:String>
+    <v:String x:Key="m_book_year">出版年:</v:String>
+    <v:String x:Key="m_users_rating">ユーザー評価:</v:String>
+    <v:String x:Key="m_rated_users_first">評価数：</v:String>
+    <v:String x:Key="m_rated_users_second">人の評価に基づく</v:String>
+    <v:String x:Key="m_download">ダウンロード</v:String>
+    <v:String x:Key="m_epub_not_enabled">この書籍は EPUB 形式では利用できません。</v:String>
+    <v:String x:Key="m_please_wait">データ処理中、しばらくお待ちください...</v:String>
+    <v:String x:Key="m_internet_not_connected">インターネット接続が利用できません。</v:String>
+    <v:String x:Key="m_shop_books_not_found">表示する書籍はありません</v:String>
+    <v:String x:Key="m_open_external">外部リソースで開く</v:String>
+    <v:String x:Key="m_tab_disabled_by_privacy">このタブはプライバシー設定で非表示にされています。</v:String>
+    <v:String x:Key="m_readed_today">本日の読了:</v:String>
+    <v:String x:Key="m_your_goal">あなたの目標:</v:String>
+    <v:String x:Key="m_hide">書籍を非表示</v:String>
+    <v:String x:Key="m_show">書籍を表示</v:String>
+    <v:String x:Key="m_hidden_book_hint">この書籍は非表示にされています。表示するにはクリックしてください。</v:String>
+    <v:String x:Key="m_hidden_book_tool_tip">次回 ReedBooks を起動すると、この書籍は非表示になります。</v:String>
+    <!--#endregion-->
+
+    <!--#region コレクション編集ウィンドウ -->
+    <v:String x:Key="h_edit_collection_window">ReedBooks - コレクションの編集</v:String>
+    <v:String x:Key="ec_edit_collection">コレクションの編集</v:String>
+    <v:String x:Key="ec_edit_collection_button">変更</v:String>
+    <!--#endregion-->
+
+    <!--#region アップデートウィンドウ -->
+    <v:String x:Key="u_header">新しいバージョン</v:String>
+    <v:String x:Key="u_whats_new">更新内容:</v:String>
+    <v:String x:Key="u_description_limitations">詳細な更新情報はロシア語のみです</v:String>
+    <v:String x:Key="u_published_at">公開日:</v:String>
+    <v:String x:Key="u_update">更新</v:String>
+    <v:String x:Key="u_not_now">今はしない</v:String>
+    <!--#endregion-->
+
+    <!--#region 読書ウィンドウ -->
+    <v:String x:Key="h_reading_window">ReedBooks - 読書モード</v:String>
+    <v:String x:Key="r_mark_as_read">読了にする</v:String>
+    <v:String x:Key="r_end_of_read_dialog_header">おめでとうございます!</v:String>
+    <v:String x:Key="r_end_of_read_dialog_content">書籍を読み終えたおめでとうございます。評価するために読書日記に移動しますか？</v:String>
+    <v:String x:Key="r_open_reading_diary">移動</v:String>
+    <v:String x:Key="r_stay">とどまる</v:String>
+    <v:String x:Key="r_previous_chapter">前の章</v:String>
+    <v:String x:Key="r_next_chapter">次の章</v:String>
+    <v:String x:Key="r_return">戻る</v:String>
+    <v:String x:Key="r_add_quote">引用を追加...</v:String>
+    <v:String x:Key="r_scroll_to_start">章の始まりへスクロール</v:String>
+    <v:String x:Key="r_scroll_to_end">章の終わりへスクロール</v:String>
+    <v:String x:Key="r_clear_mode">クリアモード</v:String>
+    <v:String x:Key="r_concentration_mode">集中モード</v:String>
+    <v:String x:Key="r_line_scroll_hint">ここでマウスホイールをスクロールすると、行の位置が上下します。</v:String>
+    <v:String x:Key="r_content_scroll_hint">ここでマウスホイールをスクロールすると、開いている章のテキストが移動します。</v:String>
+    <v:String x:Key="r_current_chapter_first_part">読んでいる章:</v:String>
+    <v:String x:Key="r_current_chapter_second_part">読了:</v:String>
+    <v:String x:Key="r_reading_info">現在の読書セッション情報</v:String>
+    <v:String x:Key="r_reading_progress">書籍全体の進捗:</v:String>
+    <v:String x:Key="r_reading_already">既に読了:</v:String>
+    <v:String x:Key="r_temporarily_out_of_service">この機能は現在ご利用いただけません</v:String>
+    <!--#endregion-->
+
+    <!--#region 設定ウィンドウ -->
+    <v:String x:Key="h_settings_window">ReedBooks - 設定</v:String>
+    <v:String x:Key="s_interface_header">インターフェース</v:String>
+    <v:String x:Key="s_language_label">アプリ言語</v:String>
+    <v:String x:Key="s_language_hint">この設定はインターフェース言語のみを変更します。書籍の著者名や内容はローカライズされません。</v:String>
+    <v:String x:Key="s_theme_label">テーマ</v:String>
+    <v:String x:Key="s_theme_hint">アプリの配色を変更します。</v:String>
+    <v:String x:Key="s_theme_load_custom">テーマを読み込む...</v:String>
+    <v:String x:Key="s_theme_delete_custom">テーマを削除...</v:String>
+    <v:String x:Key="s_personalization_header">パーソナライズ</v:String>
+    <v:String x:Key="s_show_hints_label">インターフェースヒントを表示</v:String>
+    <v:String x:Key="s_show_hints_hint">インターフェースとのやり取り時にヒントを表示します。</v:String>
+    <v:String x:Key="s_current_counted_days_label">現在のカウント日数</v:String>
+    <v:String x:Key="s_current_counted_days_hint">書籍を最後に開いてからの期間（日数）を設定します。</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_label">表示される最近の書籍数</v:String>
+    <v:String x:Key="s_recent_books_number_displaying_hint">"最近の書籍"タブに表示される書籍の数を設定します（最大255）。</v:String>
+    <v:String x:Key="s_start_tab_label">起動時のタブ</v:String>
+    <v:String x:Key="s_start_tab_hint">デフォルトで開くタブを設定します。</v:String>
+    <v:String x:Key="s_reading_goal_label">読書目標</v:String>
+    <v:String x:Key="s_reading_goal_hint">1日に読書に費やす目標時間（分）を設定します。</v:String>
+    <v:String x:Key="s_privacy_header">プライバシー</v:String>
+    <v:String x:Key="s_password_label">パスワード</v:String>
+    <v:String x:Key="s_password_hint">このパスワードはアプリへのログインと、非表示にされた書籍へのアクセスに使用されます。</v:String>
+    <v:String x:Key="s_enter_password_hint">4文字</v:String>
+    <v:String x:Key="s_hide_reading_now_label">"現在読書中"タブを非表示</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">"現在読書中"タブの内容をマスキングします。</v:String>
+    <v:String x:Key="s_storage_management_header">ストレージ管理</v:String>
+    <v:String x:Key="s_delete_unused_automatically_header">未使用ファイルを自動削除</v:String>
+    <v:String x:Key="s_delete_unused_automatically_label">毎回起動時にアプリディレクトリ内の未使用ファイルをチェックし、自動的に削除します。</v:String>
+    <v:String x:Key="s_delete_all_books_label">すべての書籍を削除</v:String>
+    <v:String x:Key="s_delete_all_books_hint">クリックすると、アプリにダウンロードされたすべての書籍が削除されます。</v:String>
+    <v:String x:Key="s_delete_unused_files_label">未使用ファイルを削除</v:String>
+    <v:String x:Key="s_delete_unused_files_hint">アプリから書籍を削除すると、そのファイルがディレクトリに残ります。未使用ファイルの合計サイズ:</v:String>
+    <v:String x:Key="s_delete">削除</v:String>
+    <v:String x:Key="s_summary_size_label">ReedBooks の合計サイズ</v:String>
+    <v:String x:Key="s_version_header">アップデート</v:String>
+    <v:String x:Key="s_update_automatically_label">自動アップデート</v:String>
+    <v:String x:Key="s_update_automatically_hint">新しいアップデートが検出された場合、許可なしに自動的にインストールします。</v:String>
+    <v:String x:Key="s_installed_version_label">インストールされたバージョン</v:String>
+    <v:String x:Key="s_help_label">ヘルプ</v:String>
+    <v:String x:Key="s_help_hint">アプリの操作に関するヘルプが必要な場合、GitHub のウィキを参照してください。</v:String>
+
+    <v:String x:Key="s_save">保存</v:String>
+    <!--#endregion-->
+
+    <!--#region ダイアログウィンドウ -->
+    <v:String x:Key="h_dialog_window">ReedBooks - ダイアログ</v:String>
+    <v:String x:Key="d_acept_button">OK</v:String>
+    <v:String x:Key="d_refuse_button">キャンセル</v:String>
+    <!--#endregion-->
+
+    <!--#region リーディング・ダイアリー ウィンドウ -->
+    <v:String x:Key="h_reading_diary_window">ReedBooks - リーディング・ダイアリー</v:String>
+    <v:String x:Key="rd_author_label">著者：</v:String>
+    <v:String x:Key="rd_chapters_count_label">章の数：</v:String>
+    <v:String x:Key="rd_genre_label">ジャンル：</v:String>
+    <v:String x:Key="rd_genre_hint">ジャンルの名前を入力してください...</v:String>
+    <v:String x:Key="rd_begin_reading_at">読書を開始：</v:String>
+    <v:String x:Key="rd_reading_not_beginned">読書はまだ開始されていません</v:String>
+    <v:String x:Key="rd_end_reading_at">読書を終了：</v:String>
+    <v:String x:Key="rd_reading_not_ended">読書はまだ終了していません</v:String>
+    <v:String x:Key="rd_reading_time">この本を読んでいた時間：</v:String>
+    <v:String x:Key="rd_null_reading_time">この本はまだ読んでいません</v:String>
+    <v:String x:Key="rd_reading_is_over">読書は終わりましたか？</v:String>
+    <v:String x:Key="rd_arithmetic_average">総合評価：</v:String>
+    <v:String x:Key="rd_my_emotions">私の感情</v:String>
+    <v:String x:Key="rd_selected_emotion">選択された感情：</v:String>
+    <v:String x:Key="rd_start">冒頭</v:String>
+    <v:String x:Key="rd_middle">中間</v:String>
+    <v:String x:Key="rd_end">終わり</v:String>
+    <v:String x:Key="rd_sadness">悲しみ</v:String>
+    <v:String x:Key="rd_amazement">驚き</v:String>
+    <v:String x:Key="rd_indifference">無関心</v:String>
+    <v:String x:Key="rd_interesting">興味深い</v:String>
+    <v:String x:Key="rd_happiness">幸せ</v:String>
+    <v:String x:Key="rd_reset_emotion">選択をリセット</v:String>
+    <v:String x:Key="rd_assessment">アセスメント</v:String>
+    <v:String x:Key="rd_plot_originality">プロットの独創性</v:String>
+    <v:String x:Key="rd_characters">キャラクター</v:String>
+    <v:String x:Key="rd_world_inside_book">本の中の世界</v:String>
+    <v:String x:Key="rd_love_line">愛の線</v:String>
+    <v:String x:Key="rd_humor">ユーモア</v:String>
+    <v:String x:Key="rd_meaning_fulness">意味のある負担</v:String>
+    <v:String x:Key="rd_plot_brief_retelling_hint">ここにはメモを残したり、読書の感想を書いたりすることができます。</v:String>
+    <v:String x:Key="rd_quotes">引用</v:String>
+    <v:String x:Key="rd_add_quote">追加</v:String>
+    <v:String x:Key="rd_add_quote_header">引用の追加</v:String>
+    <v:String x:Key="rd_quote_data_hint">引用文を入力してください...</v:String>
+    <v:String x:Key="rd_quote_author_hint">引用の著者を入力してください...</v:String>
+    <v:String x:Key="rd_quote_location_hint">本の中での引用の場所を入力してください（例：章、ページなど）...</v:String>
+    <v:String x:Key="rd_cancel">閉じる</v:String>
+    <!--#endregion-->
+    
+    <!--#region 認証ウィンドウ-->
+    <v:String x:Key="h_authorization_window">ReedBooks - パスワード入力</v:String>
+    <v:String x:Key="a_clear_button_hint">クリア</v:String>
+    <v:String x:Key="a_reset_button_hint">パスワードをリセット</v:String>
+    <!--#endregion-->
+    
+    <!--#region SPECIAL STRINGS -->
+    <v:String x:Key="light">ライト</v:String>
+    <v:String x:Key="dark">ダーク</v:String>
+
+    <v:String x:Key="megabytes">MB</v:String>
+    <v:String x:Key="minutes">分</v:String>
+    <v:String x:Key="books">冊：</v:String>
+
+    <v:String x:Key="dialog_settings_title">再起動が必要です</v:String>
+    <v:String x:Key="dialog_settings_content">設定が有効になるには、アプリを再起動する必要があります。 今すぐ再起動しますか？</v:String>
+
+    <v:String x:Key="dialog_error_title">エラー</v:String>
+    <v:String x:Key="dialog_fatal_error_content">プログラムの実行中にエラーが発生しました：</v:String>
+    <v:String x:Key="dialog_null_quote_content">内容や著者のない引用を追加することはできません！</v:String>
+    <v:String x:Key="dialog_not_epub_content">このファイルはepub形式ではありません。</v:String>
+    <v:String x:Key="dialog_null_collection_content">空のコレクションは作成できません！</v:String>
+    <v:String x:Key="dialog_malformed_password_content">パスワードの長さは4文字でなければならず、数字のみを含める必要があります。</v:String>
+
+    <v:String x:Key="dialog_delete_book_title">書籍の削除</v:String>
+    <v:String x:Key="dialog_delete_book_content">この本を削除してもよろしいですか？</v:String>
+
+    <v:String x:Key="dialog_delete_all_books_title">すべての書籍の削除</v:String>
+    <v:String x:Key="dialog_delete_all_books_content">すべての書籍を削除してもよろしいですか？ この操作は取り消すことができません。</v:String>
+
+    <v:String x:Key="dialog_delete_theme_title">テーマの削除</v:String>
+    <v:String x:Key="dialog_delete_theme_content">現在のテーマを削除してもよろしいですか？ この操作は取り消すことができません。</v:String>
+
+    <v:String x:Key="dialog_success_title">成功！</v:String>
+    <v:String x:Key="dialog_success_content">指定された操作が正常に完了しました。</v:String>
+
+    <v:String x:Key="dialog_share_file_title">共有ファイルが作成されました</v:String>
+    <v:String x:Key="dialog_share_file_content">共有ファイルが正常に作成されました。 受信者はこのファイルをReedBooksアプリにダウンロードできます。 OKを押すと、作成された共有ファイルのあるフォルダに移動します。</v:String>
+
+    <v:String x:Key="dialog_forgot_password_title">パスワードを忘れましたか？</v:String>
+    <v:String x:Key="dialog_forgot_password_content">パスワードをリセットすることができますが、その場合、書籍のデータベースが完全に削除されます。 パスワードをリセットする場合は、OKボタンをクリックしてください。</v:String>
+
+    <v:String x:Key="genre_fantasy">ファンタジー</v:String>
+    <v:String x:Key="genre_detective">推理小説</v:String>
+    <v:String x:Key="genre_horror">ホラー</v:String>
+    <v:String x:Key="genre_adventure">冒険</v:String>
+    <v:String x:Key="genre_poetry">詩</v:String>
+    <v:String x:Key="genre_love_story">恋愛小説</v:String>
+    <v:String x:Key="genre_thriller">スリラー</v:String>
+    <v:String x:Key="genre_prose">散文</v:String>
+    <v:String x:Key="genre_foreign_classics">外国の古典</v:String>
+    <v:String x:Key="genre_locale_country_classics">日本の古典</v:String>
+    <v:String x:Key="genre_folklore">民話</v:String>
+    <!--#endregion-->
+    
+</ResourceDictionary>

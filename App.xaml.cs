@@ -51,10 +51,14 @@ namespace ReedBooks
             ThemeController = new ThemeController();
             TimeGoalController = new TimeGoalController();
 
-            Localizator.AddLang(new CultureInfo("ru"));
-            Localizator.AddLang(new CultureInfo("en"));
-            Localizator.AddLang(new CultureInfo("es-ES"));
-            Localizator.AddLang(new CultureInfo("de"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("ru"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("en"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("es"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("fr"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("de"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("zh"));
+            Localizator.AddLang(CultureInfo.GetCultureInfo("ja"));
+
             Localizator.LanguageChanged += App_LanguageChanged;
         }
 

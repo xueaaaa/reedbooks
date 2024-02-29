@@ -294,6 +294,18 @@
                                                        Text="{Binding InstalledVersion}"/>
                                         </controls:SettingsParameter.ValueSelector>
                                     </controls:SettingsParameter>
+
+                                    <Separator Margin="10"/>
+
+                                    <controls:SettingsParameter ParameterName="{DynamicResource s_help_label}"
+                                                                ParameterHint="{DynamicResource s_help_hint}">
+                                        <controls:SettingsParameter.ValueSelector>
+                                            <controls:IconButton Source="ExternalLink"
+                                                                 HorizontalAlignment="Right"
+                                                                 Foreground="{DynamicResource accent_color}"
+                                                                 Click="IconButton_Click"/>
+                                        </controls:SettingsParameter.ValueSelector>
+                                    </controls:SettingsParameter>
                                 </StackPanel>
                             </Expander>
                             <!--#endregion-->

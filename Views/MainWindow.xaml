@@ -227,8 +227,8 @@
                                         </TextBlock>
                                     </StackPanel>
 
-                                    <ProgressBar Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                                                 Height="7"
+                                    <ProgressBar BorderThickness="0"
+                                                 Height="10"
                                                  materialDesign:TransitionAssist.DisableTransitions="True"
                                                  Margin="0 10 0 0"
                                                  Value="{Binding TimeGoal.TimeGoalPercent}"

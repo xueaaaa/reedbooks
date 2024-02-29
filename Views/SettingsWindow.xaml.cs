@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace ReedBooks.Views
 {
@@ -7,6 +8,11 @@ namespace ReedBooks.Views
         public SettingsWindow()
         {
             InitializeComponent();
+        }
+
+        private void IconButton_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/xueaaaa/reedbooks/wiki");
         }
     }
 }
