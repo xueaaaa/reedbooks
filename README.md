@@ -49,6 +49,16 @@ ReedBooks - программа для чтения книг и ведения ч
 | Любой дистрибутив Linux | Нет                 |
 | macOS                   | Нет                 |
 
+## Скриншоты
+
+<img src="https://i.imgur.com/MnEITZa.png" width="600">
+<img src="https://i.imgur.com/Ye3QkHG.png" width="600">
+<img src="https://i.imgur.com/wVpKORQ.png" width="600">
+<img src="https://i.imgur.com/PFs9TAa.png" width="600">
+<img src="https://i.imgur.com/JPCd8fn.png" width="600">
+<img src="https://i.imgur.com/BMhC9Kc.png" width="600">
+<img src="https://i.imgur.com/23bXviJ.png" width="600">
+
 # English
 ## Description
 ReedBooks is a program for reading books and keeping reading diaries. It is developed as an individual project and its code is completely open source.
