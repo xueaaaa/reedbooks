@@ -40,7 +40,7 @@
 
     <Style x:Key="MainTabControl"
            TargetType="TabControl"
-           BasedOn="{StaticResource MaterialDesignFilledTabControl}">
+           BasedOn="{StaticResource MaterialDesignTabControl}">
         <Setter Property="Grid.Column" Value="1"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
