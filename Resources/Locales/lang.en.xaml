@@ -6,7 +6,6 @@
     <v:String x:Key="m_edit">Edit</v:String>
     <v:String x:Key="m_edit_hint">Show/hide collection management buttons</v:String>
     <v:String x:Key="m_hide_panel_button_hint">Show/hide menu</v:String>
-    <v:String x:Key="m_books">Books</v:String>
     <v:String x:Key="m_reading_now">Currently reading</v:String>
     <v:String x:Key="m_all_books">All books</v:String>
     <v:String x:Key="m_search">Search</v:String>
@@ -134,7 +133,7 @@
     <v:String x:Key="s_password_hint">This password will be used to log into the application and unlock access to hidden books.</v:String>
     <v:String x:Key="s_enter_password_hint">4 characters</v:String>
     <v:String x:Key="s_hide_reading_now_label">Hide "Reading Now" Tab</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">Blur the content of the "Reading Now" tab.</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">Do not show the contents of the "Reading Now" tab.</v:String>
     <v:String x:Key="s_storage_management_header">Storage Management</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">Delete Unused Files Automatically</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">Check the application directories for unused files each time it starts and automatically delete them.</v:String>

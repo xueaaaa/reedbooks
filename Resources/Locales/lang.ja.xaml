@@ -6,7 +6,6 @@
     <v:String x:Key="m_edit">編集</v:String>
     <v:String x:Key="m_edit_hint">コレクション管理ボタンの表示/非表示</v:String>
     <v:String x:Key="m_hide_panel_button_hint">メニューを表示/非表示</v:String>
-    <v:String x:Key="m_books">書籍</v:String>
     <v:String x:Key="m_reading_now">現在読書中</v:String>
     <v:String x:Key="m_all_books">すべての書籍</v:String>
     <v:String x:Key="m_search">検索</v:String>
@@ -134,7 +133,7 @@
     <v:String x:Key="s_password_hint">このパスワードはアプリへのログインと、非表示にされた書籍へのアクセスに使用されます。</v:String>
     <v:String x:Key="s_enter_password_hint">4文字</v:String>
     <v:String x:Key="s_hide_reading_now_label">"現在読書中"タブを非表示</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">"現在読書中"タブの内容をマスキングします。</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">"現在読書中"タブの内容を表示しない。</v:String>
     <v:String x:Key="s_storage_management_header">ストレージ管理</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">未使用ファイルを自動削除</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">毎回起動時にアプリディレクトリ内の未使用ファイルをチェックし、自動的に削除します。</v:String>

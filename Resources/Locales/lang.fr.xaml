@@ -6,7 +6,6 @@
     <v:String x:Key="m_edit">Modifier</v:String>
     <v:String x:Key="m_edit_hint">Afficher/masquer les boutons de gestion des collections</v:String>
     <v:String x:Key="m_hide_panel_button_hint">Afficher/masquer le menu</v:String>
-    <v:String x:Key="m_books">Livres</v:String>
     <v:String x:Key="m_reading_now">En train de lire</v:String>
     <v:String x:Key="m_all_books">Tous les livres</v:String>
     <v:String x:Key="m_search">Recherche</v:String>
@@ -134,7 +133,7 @@
     <v:String x:Key="s_password_hint">Ce mot de passe sera utilisé pour accéder à l'application et débloquer l'accès aux livres masqués.</v:String>
     <v:String x:Key="s_enter_password_hint">4 caractères</v:String>
     <v:String x:Key="s_hide_reading_now_label">Masquer l'onglet "En train de lire"</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">Masquer le contenu de l'onglet "En train de lire".</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">Ne pas afficher le contenu de l'onglet "En train de lire".</v:String>
     <v:String x:Key="s_storage_management_header">Gestion de l'espace de stockage</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">Supprimer automatiquement les fichiers non utilisés</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">Vérifier les répertoires de l'application à la recherche de fichiers non utilisés à chaque démarrage et les supprimer automatiquement.</v:String>

@@ -27,15 +27,20 @@
 
                 <Button Style="{DynamicResource HintedButton}"
                         Grid.Column="0"
-                        Content="{Binding Name}"
                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                    <Button.Content>
+                        <TextBlock Text="{Binding Name}"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxWidth="200"/>
+                    </Button.Content>
                     <Button.CommandParameter>
                         <StackPanel Style="{DynamicResource DialogPanel}"
                                     MinWidth="300">
                             <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                                        Foreground="{DynamicResource accent_color}"
                                        Margin="0 0 0 20"
-                                       Text="{Binding Name}"/>
+                                       Text="{Binding Name}"
+                                       TextWrapping="Wrap"/>
 
                             <TextBlock Text="{DynamicResource m_added_books}"
                                        Foreground="{DynamicResource text_color}"/>

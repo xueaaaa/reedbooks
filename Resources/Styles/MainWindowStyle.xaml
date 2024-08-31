@@ -52,6 +52,12 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ReedBooksDataGridColumnHeader"
+           TargetType="DataGridColumnHeader"
+           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+        <Setter Property="Foreground" Value="{DynamicResource accent_color}"/>
+    </Style>
+
     <Style x:Key="BookScrollViewer"
            TargetType="ScrollViewer">
         <Setter Property="Grid.Row" Value="1"/>

@@ -299,7 +299,7 @@ namespace ReedBooks.ViewModels
             ShowBookCommand = new RelayCommand(obj => ShowBook(obj));
             TemporaryShowBookCommand = new RelayCommand(obj => TemporaryShowBook(obj));
 
-            SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
+            SidePanelColumnLength = new GridLength(0.3, GridUnitType.Star);
             CollectionActionsVisibility = Visibility.Hidden;
             HideReadingNow = Settings.Default.HideReadingNow;
             LoadedBooks = new ObservableCollection<Book>(Book.ReadAll().Result);
@@ -365,11 +365,11 @@ namespace ReedBooks.ViewModels
             {
                 case Visibility.Visible:
                     SidePanelVisibility = Visibility.Hidden;
-                    SidePanelColumnLength = new GridLength(0.05, GridUnitType.Star);
+                    SidePanelColumnLength = new GridLength(0.02, GridUnitType.Star);
                     break;
                 case Visibility.Hidden:
                     SidePanelVisibility = Visibility.Visible;
-                    SidePanelColumnLength = new GridLength(0.4, GridUnitType.Star);
+                    SidePanelColumnLength = new GridLength(0.3, GridUnitType.Star);
                     break;
                 default:
                     SidePanelVisibility = Visibility.Visible;

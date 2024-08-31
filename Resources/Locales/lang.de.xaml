@@ -7,7 +7,6 @@
     <v:String x:Key="m_edit">Bearbeiten</v:String>
     <v:String x:Key="m_edit_hint">Steuerelemente für Sammlungen anzeigen/ausblenden</v:String>
     <v:String x:Key="m_hide_panel_button_hint">Menü anzeigen/ausblenden</v:String>
-    <v:String x:Key="m_books">Bücher</v:String>
     <v:String x:Key="m_reading_now">Aktuell Lesen</v:String>
     <v:String x:Key="m_all_books">Alle Bücher</v:String>
     <v:String x:Key="m_search">Suche</v:String>
@@ -135,7 +134,7 @@
     <v:String x:Key="s_password_hint">Dieses Passwort wird zum Anmelden in der Anwendung und zum Entsperren des Zugriffs auf ausgeblendete Bücher verwendet.</v:String>
     <v:String x:Key="s_enter_password_hint">4 Zeichen</v:String>
     <v:String x:Key="s_hide_reading_now_label">Tab "Aktuell Lesen" ausblenden</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">Blenden Sie den Inhalt des Tabs "Aktuell Lesen" aus.</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">Den Inhalt der Registerkarte "Aktuell Lesen" nicht anzeigen.</v:String>
     <v:String x:Key="s_storage_management_header">Speicherverwaltung</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">Nicht verwendete Dateien automatisch löschen</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">Überprüft die Anwendungsverzeichnisse bei jedem Start auf nicht verwendete Dateien und löscht sie automatisch.</v:String>

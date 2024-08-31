@@ -47,5 +47,16 @@ namespace ReedBooks.Views
                 ((MainWindowViewModel)DataContext).SelectedCollectionBooks.Add((Book)item);
             }
         }
+
+        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            var dgrid = (DataGrid)sender;
+
+            if (dgrid.SelectedIndex != -1)
+            {
+                ((MainWindowViewModel)DataContext).ReadCommand.Execute(dgrid.SelectedItem);
+                dgrid.SelectedIndex = -1;
+            }
+        }
     }
 }

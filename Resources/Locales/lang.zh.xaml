@@ -7,7 +7,6 @@
     <v:String x:Key="m_edit">编辑</v:String>
     <v:String x:Key="m_edit_hint">显示/隐藏集合管理按钮</v:String>
     <v:String x:Key="m_hide_panel_button_hint">显示/隐藏菜单</v:String>
-    <v:String x:Key="m_books">书籍</v:String>
     <v:String x:Key="m_reading_now">正在阅读</v:String>
     <v:String x:Key="m_all_books">所有书籍</v:String>
     <v:String x:Key="m_search">搜索</v:String>
@@ -135,7 +134,7 @@
     <v:String x:Key="s_password_hint">此密码用于登录应用程序和解锁隐藏的书籍。</v:String>
     <v:String x:Key="s_enter_password_hint">4 个字符</v:String>
     <v:String x:Key="s_hide_reading_now_label">隐藏“正在阅读”选项卡</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">隐藏“正在阅读”选项卡的内容。</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">不显示“正在阅读”选项卡的内容。</v:String>
     <v:String x:Key="s_storage_management_header">存储管理</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">自动删除未使用的文件</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">每次启动时检查应用程序目录中是否有未使用的文件，并自动删除它们。</v:String>

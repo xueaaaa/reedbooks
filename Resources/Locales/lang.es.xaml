@@ -7,7 +7,6 @@
     <v:String x:Key="m_edit">Editar</v:String>
     <v:String x:Key="m_edit_hint">Mostrar/ocultar botones de control de colecciones</v:String>
     <v:String x:Key="m_hide_panel_button_hint">Mostrar/ocultar menú</v:String>
-    <v:String x:Key="m_books">Libros</v:String>
     <v:String x:Key="m_reading_now">Leyendo ahora</v:String>
     <v:String x:Key="m_all_books">Todos los libros</v:String>
     <v:String x:Key="m_search">Buscar</v:String>
@@ -135,7 +134,7 @@
     <v:String x:Key="s_password_hint">Esta contraseña se utilizará para iniciar sesión en la aplicación y desbloquear el acceso a los libros ocultos.</v:String>
     <v:String x:Key="s_enter_password_hint">4 caracteres</v:String>
     <v:String x:Key="s_hide_reading_now_label">Ocultar pestaña "Leyendo ahora"</v:String>
-    <v:String x:Key="s_hide_reading_now_hint">Ocultar el contenido de la pestaña "Leyendo ahora".</v:String>
+    <v:String x:Key="s_hide_reading_now_hint">No mostrar el contenido de la pestaña "Leyendo ahora".</v:String>
     <v:String x:Key="s_storage_management_header">Gestión del almacenamiento</v:String>
     <v:String x:Key="s_delete_unused_automatically_header">Eliminar archivos no utilizados automáticamente</v:String>
     <v:String x:Key="s_delete_unused_automatically_label">Comprobar los directorios de la aplicación en busca de archivos no utilizados cada vez que se inicie y eliminarlos automáticamente.</v:String>

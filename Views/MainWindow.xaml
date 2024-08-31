@@ -70,7 +70,7 @@
                                Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                FontWeight="DemiBold"
                                Margin="10"
-                               Text="{DynamicResource m_books}"/>
+                               Text="{DynamicResource h_main_window}"/>
 
                     <!--#region Main menu buttons -->
                     <StackPanel Grid.Row="2"
@@ -249,29 +249,28 @@
                                         <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                                    Text="{DynamicResource m_current}"/>
 
-                                        <ListView Style="{DynamicResource MaterialDesignListView}"
-                                                  Name="CurrentListView"
+                                        <DataGrid Style="{DynamicResource MaterialDesignDataGrid}"
+                                                  AutoGenerateColumns="False"
+                                                  IsReadOnly="True"
+                                                  Name="CurrentDataGrid"
+                                                  Background="{DynamicResource window_background_color}"
                                                   Foreground="{DynamicResource text_color}"
                                                   ItemsSource="{Binding CurrentBooks}"
-                                                  SelectionChanged="ListView_SelectionChanged">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                        <TextBlock Text="{DynamicResource m_last_reading_at}"
-                                                                   Foreground="{DynamicResource accent_color}"/>
-                                                    </GridViewColumn>
-                                                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                        <TextBlock Text="{DynamicResource m_name}"
-                                                                   Foreground="{DynamicResource accent_color}"/>
-                                                    </GridViewColumn>
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
+                                                  SelectedCellsChanged="DataGrid_SelectedCellsChanged">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="{DynamicResource m_last_reading_at}"
+                                                                    HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
+                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd:MM.yyyy HH:mm\}}"/>
+                                                <DataGridTextColumn Header="{DynamicResource m_name}"
+                                                                    HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
+                                                                    Binding="{Binding Name}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
                                         <TextBlock Foreground="{DynamicResource hint_color}"
                                                    Text="{DynamicResource m_no_current}"
                                                    TextWrapping="Wrap"
-                                                   Visibility="{Binding Items.Count, ElementName=CurrentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                                   Visibility="{Binding Items.Count, ElementName=CurrentDataGrid, Converter={StaticResource CountToVisibilityConverter}}"/>
                                     </StackPanel>
                                     <!--#endregion-->
 
@@ -282,29 +281,28 @@
                                         <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" 
                                                    Text="{DynamicResource m_recent}"/>
 
-                                        <ListView Style="{DynamicResource MaterialDesignListView}"
-                                                  Name="RecentListView"
+                                        <DataGrid Style="{DynamicResource MaterialDesignDataGrid}"
+                                                  AutoGenerateColumns="False"
+                                                  IsReadOnly="True"
+                                                  Name="RecentDataGrid"
+                                                  Background="{DynamicResource window_background_color}"
                                                   Foreground="{DynamicResource text_color}"
                                                   ItemsSource="{Binding RecentBooks}"
-                                                  SelectionChanged="ListView_SelectionChanged">
-                                            <ListView.View>
-                                                <GridView>
-                                                    <GridViewColumn DisplayMemberBinding="{Binding BoundDiary.LastReadingAt}">
-                                                        <TextBlock Text="{DynamicResource m_last_reading_at}"
-                                                                   Foreground="{DynamicResource accent_color}"/>
-                                                    </GridViewColumn>
-                                                    <GridViewColumn DisplayMemberBinding="{Binding Name}">
-                                                        <TextBlock Text="{DynamicResource m_name}"
-                                                                   Foreground="{DynamicResource accent_color}"/>
-                                                    </GridViewColumn>
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
+                                                  SelectedCellsChanged="DataGrid_SelectedCellsChanged">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Header="{DynamicResource m_last_reading_at}"
+                                                                    HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
+                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd:MM.yyyy HH:mm\}}"/>
+                                                <DataGridTextColumn Header="{DynamicResource m_name}"
+                                                                    HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
+                                                                    Binding="{Binding Name}"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
                                         <TextBlock Foreground="{DynamicResource hint_color}"
                                                    Text="{DynamicResource m_no_recent}"
                                                    TextWrapping="Wrap"
-                                                   Visibility="{Binding Items.Count, ElementName=RecentListView, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                                   Visibility="{Binding Items.Count, ElementName=RecentDataGrid, Converter={StaticResource CountToVisibilityConverter}}"/>
                                     </StackPanel>
                                     <!--#endregion-->
                                 </Grid>
