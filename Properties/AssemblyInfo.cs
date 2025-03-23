@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Reed")]
 [assembly: AssemblyProduct("ReedBooks")]
-[assembly: AssemblyCopyright("Reed ©  2024")]
+[assembly: AssemblyCopyright("Reed ©  2025")]
 [assembly: AssemblyTrademark("Reed")]
 [assembly: AssemblyCulture("")]
 
@@ -50,6 +50,6 @@ using System.Windows;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
 [assembly: NeutralResourcesLanguage("ru")]
