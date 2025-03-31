@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:ReedBooks.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -18,14 +19,15 @@
     <Grid Style="{DynamicResource MainGrid}">
         <Border CornerRadius="{DynamicResource CornerRadius}"
                 Margin="30"
-                Background="{DynamicResource container_background_color}">
+                Background="{DynamicResource container_background_color}"
+                IsEnabled="{Binding InterfaceAvaliable}">
             <StackPanel Margin="20">
                 <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                            Text="{Binding Header}"/>
 
                 <Separator/>
 
-                <TextBlock Style="{DynamicResource PropertyTitle}"
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
                            Margin="0 15 0 0"
                            Text="{DynamicResource u_whats_new}"/>
                 <TextBlock Style="{DynamicResource PropertyValue}"
@@ -45,11 +47,27 @@
                                TextWrapping="Wrap"/>
                 </StackPanel>
 
-                <ProgressBar Style="{DynamicResource MaterialDesignLinearProgressBar}"
-                             Value="{Binding ProgressBarPercentage}"
-                             Minimum="0"
-                             Maximum="100"
-                             Margin="0 15 0 0"/>
+                <StackPanel Margin="0 30 0 0">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               Text="{DynamicResource u_installation_progress}"/>
+
+                    <StackPanel>
+                        <ProgressBar Style="{DynamicResource MaterialDesignLinearProgressBar}"
+                                     materialDesign:TransitionAssist.DisableTransitions="True"
+                                     Value="{Binding ProgressBarPercentage}"
+                                     Minimum="0"
+                                     Maximum="100"
+                                     Margin="0 15 0 0"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Style="{DynamicResource Caption}">
+                            <Run Text="{Binding MegabytesReceived, StringFormat=0.00}"/>
+                            <Run Text="/"/>
+                            <Run Text="{Binding TotalMegabytes, StringFormat=0.00}"/>
+                            <Run Text="{DynamicResource megabytes}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
 
                 <Grid Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>

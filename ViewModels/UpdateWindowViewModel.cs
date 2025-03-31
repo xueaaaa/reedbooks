@@ -1,5 +1,6 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Core.Version;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -44,6 +45,40 @@ namespace ReedBooks.ViewModels
             }
         }
 
+        private double _megabytesReceived;
+        public double MegabytesReceived
+        {
+            get => _megabytesReceived;
+            set
+            {
+                _megabytesReceived = value;
+                OnPropertyChanged(nameof(MegabytesReceived));
+            }
+        }
+
+        private double _totalMegabytes;
+        public double TotalMegabytes
+        {
+            get => _totalMegabytes;
+            set
+            {
+                _totalMegabytes = value;
+                OnPropertyChanged(nameof(TotalMegabytes));
+            }
+        }
+
+
+        private bool _interfaceAvaliable;
+        public bool InterfaceAvaliable
+        {
+            get => _interfaceAvaliable;
+            set
+            {
+                _interfaceAvaliable = value;
+                OnPropertyChanged(nameof(InterfaceAvaliable));
+            }
+        }
+
         public ICommand UpdateCommand { get; }
 
         public string Header
@@ -55,6 +90,7 @@ namespace ReedBooks.ViewModels
         {
             UpdateCommand = new RelayCommand(obj => Update());
 
+            InterfaceAvaliable = true;
             Version = new GitHubVersion();
             Updater = App.Updater;
             Updater.WebForDownloading.DownloadProgressChanged += WebForDownloading_DownloadProgressChanged;
@@ -65,18 +101,22 @@ namespace ReedBooks.ViewModels
 
         private void WebForDownloading_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
+            InterfaceAvaliable = true;
             Process.Start($"{Directory.GetCurrentDirectory()}\\updater.exe", Updater.UPDATE_FILE_PATH);
             Process.GetCurrentProcess().Kill(); 
         }
 
         private void Update()
         {
+            InterfaceAvaliable = false;
             Updater.InstallUpdate();
         }
 
         private void WebForDownloading_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             ProgressBarPercentage = e.ProgressPercentage;
+            MegabytesReceived = e.BytesReceived / Math.Pow(2, 20);
+            TotalMegabytes = e.TotalBytesToReceive / Math.Pow(2, 20);
         }
     }
 }

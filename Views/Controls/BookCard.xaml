@@ -21,8 +21,8 @@
 
     <Grid>
         <Grid Width="{Binding ElementName=Card, Path=Width}"
-          Height="{Binding ElementName=Card, Path=Height}"
-          Visibility="{Binding ElementName=Card, Path=Book.IsTempHidden, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+              Height="{Binding ElementName=Card, Path=Height}"
+              Visibility="{Binding ElementName=Card, Path=Book.IsTempHidden, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -45,6 +45,10 @@
             <StackPanel Grid.Column="0"
                         Grid.RowSpan="2"
                         Margin="20">
+                <materialDesign:HintAssist.Hint>
+                    <Image Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
+                </materialDesign:HintAssist.Hint>
+
                 <Image Source="{Binding ElementName=Card, Path=Book.LinkToCover, Mode=OneWay}"/>
 
                 <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"

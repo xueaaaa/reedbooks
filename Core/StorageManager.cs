@@ -22,13 +22,13 @@ namespace ReedBooks.Core
                 foreach (var cover in Directory.GetFiles($"{Directory.GetCurrentDirectory()}{COVERS_DIRECTORY}"))
                 {
                     int count = App.ApplicationContext.Books.Where(b => b.LinkToCover == cover).Count();
-                    if (count == 0) size += (new FileInfo(cover).Length) / Math.Pow(1024, 2);
+                    if (count == 0) size += (new FileInfo(cover).Length) / Math.Pow(2, 20);
                 }
 
                 foreach (var epub in Directory.GetFiles($"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}"))
                 {
                     int count = App.ApplicationContext.Books.Where(b => b.LinkToOrigin == epub).Count();
-                    if (count == 0) size += (new FileInfo(epub).Length) / Math.Pow(1024, 2);
+                    if (count == 0) size += (new FileInfo(epub).Length) / Math.Pow(2, 20);
                 }
 
                 return size;
@@ -60,7 +60,7 @@ namespace ReedBooks.Core
                 size += GetFromDirectory(directory);
 
             foreach (var file in Directory.GetFiles(path))
-                size += (new FileInfo(file).Length) / Math.Pow(1024, 2);
+                size += (new FileInfo(file).Length) / Math.Pow(2, 20);
 
             return size;
         }
@@ -76,10 +76,10 @@ namespace ReedBooks.Core
                 if (count == 0) File.Delete(cover);
             }
 
-            foreach (var cover in Directory.GetFiles($"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}"))
+            foreach (var origin in Directory.GetFiles($"{Directory.GetCurrentDirectory()}{EPUBS_DIRECTORY}"))
             {
-                int count = App.ApplicationContext.Books.Where(b => b.LinkToOrigin == cover).Count();
-                if (count == 0) File.Delete(cover);
+                int count = App.ApplicationContext.Books.Where(b => b.LinkToOrigin == origin).Count();
+                if (count == 0) File.Delete(origin);
             }
         }
 
@@ -112,7 +112,7 @@ namespace ReedBooks.Core
                 Directory.CreateDirectory(resourcesPath);
             if (!Directory.Exists(themesPath))
                 Directory.CreateDirectory(themesPath);
-            if(!Directory.Exists(SHARED_DIRECTORY))
+            if(!Directory.Exists(sharedPath))
                 Directory.CreateDirectory(sharedPath);
 
             if (File.Exists(App.Updater.UPDATE_FILE_PATH)) File.Delete(App.Updater.UPDATE_FILE_PATH);

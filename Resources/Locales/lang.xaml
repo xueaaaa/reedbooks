@@ -77,9 +77,10 @@
 
     <!--#region Update window-->
     <v:String x:Key="u_header">Новая версия</v:String>
-    <v:String x:Key="u_whats_new">Что нового:</v:String>
+    <v:String x:Key="u_whats_new">Что нового?</v:String>
     <v:String x:Key="u_description_limitations">Подробная информация об обновлении доступна только на русском языке</v:String>
-    <v:String x:Key="u_published_at">Выпущено:</v:String>
+    <v:String x:Key="u_published_at">Дата выхода:</v:String>
+    <v:String x:Key="u_installation_progress">Прогресс установки</v:String>
     <v:String x:Key="u_update">Обновить</v:String>
     <v:String x:Key="u_not_now">Не сейчас</v:String>
     <!--#endregion-->

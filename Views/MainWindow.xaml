@@ -260,7 +260,7 @@
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="{DynamicResource m_last_reading_at}"
                                                                     HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
-                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd:MM.yyyy HH:mm\}}"/>
+                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd.MM.yyyy HH:mm\}}"/>
                                                 <DataGridTextColumn Header="{DynamicResource m_name}"
                                                                     HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
                                                                     Binding="{Binding Name}"/>
@@ -292,7 +292,7 @@
                                             <DataGrid.Columns>
                                                 <DataGridTextColumn Header="{DynamicResource m_last_reading_at}"
                                                                     HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
-                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd:MM.yyyy HH:mm\}}"/>
+                                                                    Binding="{Binding BoundDiary.LastReadingAt, StringFormat=\{0:dd.MM.yyyy HH:mm\}}"/>
                                                 <DataGridTextColumn Header="{DynamicResource m_name}"
                                                                     HeaderStyle="{DynamicResource ReedBooksDataGridColumnHeader}"
                                                                     Binding="{Binding Name}"/>
