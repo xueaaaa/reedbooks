@@ -72,6 +72,7 @@
                 <Grid Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
@@ -80,7 +81,7 @@
                             HorizontalAlignment="Left"
                             Content="{DynamicResource u_update}"/>
                     <Button Style="{DynamicResource MaterialDesignFlatButton}"
-                            Grid.Column="1"
+                            Grid.Column="2"
                             HorizontalAlignment="Right"
                             IsCancel="True"
                             Foreground="{DynamicResource accent_color}"

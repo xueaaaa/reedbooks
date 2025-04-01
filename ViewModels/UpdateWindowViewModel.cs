@@ -1,5 +1,6 @@
 ﻿using ReedBooks.Core;
 using ReedBooks.Core.Version;
+using ReedBooks.Views;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -102,7 +103,13 @@ namespace ReedBooks.ViewModels
         private void WebForDownloading_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             InterfaceAvaliable = true;
-            Process.Start($"{Directory.GetCurrentDirectory()}\\updater.exe", Updater.UPDATE_FILE_PATH);
+
+            if (File.Exists($"{Directory.GetCurrentDirectory()}\\updater.exe"))
+                Process.Start($"{Directory.GetCurrentDirectory()}\\updater.exe", Updater.UPDATE_FILE_PATH);
+            else
+                if (new DialogWindow(Application.Current.Resources["dialog_error_title"].ToString(),
+                    Application.Current.Resources["u_updater_not_found"].ToString(), Visibility.Hidden).ShowDialog().Value)
+                Process.Start("https://github.com/xueaaaa/reedbooks/wiki/Manual-update-installation");
             Process.GetCurrentProcess().Kill(); 
         }
 

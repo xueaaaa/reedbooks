@@ -81,6 +81,7 @@
     <v:String x:Key="u_description_limitations">Подробная информация об обновлении доступна только на русском языке</v:String>
     <v:String x:Key="u_published_at">Дата выхода:</v:String>
     <v:String x:Key="u_installation_progress">Прогресс установки</v:String>
+    <v:String x:Key="u_updater_not_found">Не найден модуль программы, отвечающий за установку обновлений. Завершите обновление вручную.</v:String>
     <v:String x:Key="u_update">Обновить</v:String>
     <v:String x:Key="u_not_now">Не сейчас</v:String>
     <!--#endregion-->
