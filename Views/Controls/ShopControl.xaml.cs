@@ -21,6 +21,8 @@ namespace ReedBooks.Views.Controls
             get { return (bool)GetValue(IsNullProperty); }
             set { SetValue(IsNullProperty, value); }
         }
+
+        public bool IsInternetConnected => App.IsInternetConnected;
         
         public ShopControl()
         {
