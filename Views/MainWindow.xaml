@@ -436,20 +436,13 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Margin="10">
                                     <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
-                                               Margin="30 20 0 10"
+                                               Margin="30 30 0 10"
                                                Text="{DynamicResource m_books_shop}"/>
-
-                                    <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
-                                               Foreground="{DynamicResource accent_color}"
-                                               HorizontalAlignment="Center"
-                                               TextWrapping="Wrap"
-                                               Text="{DynamicResource m_copyright_warning}"/>
-
-                                    <Separator Margin="0 10"/>
 
                                     <StackPanel Orientation="Horizontal"
                                                 HorizontalAlignment="Center"
@@ -467,12 +460,22 @@
                                 </StackPanel>
 
                                 <ScrollViewer Grid.Row="1"
-                                          Style="{DynamicResource ShopBookScrollViewer}">
+                                              Style="{DynamicResource ShopBookScrollViewer}">
                                     <controls:ShopControl ItemsSource="{Binding ShopSearchedBooks}"
                                                           Visibility="{Binding IsInternetConnected, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                           IsLoading="{Binding IsLoading}"
                                                           IsNull="{Binding IsNull}"/>
                                 </ScrollViewer>
+
+                                <StackPanel Grid.Row="2"
+                                            Margin="0 -15 0 10">
+                                    <Separator Margin="0 0 0 10"/>
+                                    <TextBlock Style="{DynamicResource MaterialDesignOverlineTextBlock}"
+                                               Foreground="{DynamicResource accent_color}"
+                                               HorizontalAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{DynamicResource m_copyright_warning}"/>
+                                </StackPanel>
                             </Grid>
 
                             <TextBlock Style="{DynamicResource Caption}"
