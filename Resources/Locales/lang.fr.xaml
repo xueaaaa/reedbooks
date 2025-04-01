@@ -3,8 +3,6 @@
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <!--#region Fenêtre principale -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
-    <v:String x:Key="m_edit">Modifier</v:String>
-    <v:String x:Key="m_edit_hint">Afficher/masquer les boutons de gestion des collections</v:String>
     <v:String x:Key="m_hide_panel_button_hint">Afficher/masquer le menu</v:String>
     <v:String x:Key="m_reading_now">En train de lire</v:String>
     <v:String x:Key="m_all_books">Tous les livres</v:String>

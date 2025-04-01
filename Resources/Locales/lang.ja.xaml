@@ -3,8 +3,6 @@
                     xmlns:v="clr-namespace:System;assembly=mscorlib">
     <!--#region メインウィンドウ -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
-    <v:String x:Key="m_edit">編集</v:String>
-    <v:String x:Key="m_edit_hint">コレクション管理ボタンの表示/非表示</v:String>
     <v:String x:Key="m_hide_panel_button_hint">メニューを表示/非表示</v:String>
     <v:String x:Key="m_reading_now">現在読書中</v:String>
     <v:String x:Key="m_all_books">すべての書籍</v:String>

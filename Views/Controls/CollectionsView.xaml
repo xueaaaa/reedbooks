@@ -19,7 +19,7 @@
 
     <ItemsControl.ItemTemplate>
         <DataTemplate>
-            <Grid>
+            <Grid Name="CollectionCard">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.5*"/>
                     <RowDefinition Height="0.5*"/>
@@ -87,7 +87,7 @@
 
                 <StackPanel Grid.Column="1"
                             x:Name="ActionsPanel"
-                            Visibility="{Binding DataContext.CollectionActionsVisibility, RelativeSource={RelativeSource AncestorType=Window}}"
+                            Visibility="{Binding IsMouseOver, ElementName=CollectionCard, Converter={StaticResource BooleanToVisibilityConverter}}"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
                     <controls:IconButton Source="EditOutline"

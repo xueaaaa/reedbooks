@@ -4,8 +4,6 @@
     
     <!-- #region 主窗口 -->
     <v:String x:Key="h_main_window">ReedBooks</v:String>
-    <v:String x:Key="m_edit">编辑</v:String>
-    <v:String x:Key="m_edit_hint">显示/隐藏集合管理按钮</v:String>
     <v:String x:Key="m_hide_panel_button_hint">显示/隐藏菜单</v:String>
     <v:String x:Key="m_reading_now">正在阅读</v:String>
     <v:String x:Key="m_all_books">所有书籍</v:String>
