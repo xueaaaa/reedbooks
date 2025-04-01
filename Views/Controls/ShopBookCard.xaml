@@ -133,7 +133,7 @@
                                       Source="/Resources/Icons/download.png"
                                       Text="{DynamicResource m_download}"
                                       IsEnabled="{Binding ElementName=Card, Path=Book.DownloadEnabled}"
-                                      Command="{Binding DataContext.DownloadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                      Command="{Binding DataContext.DownloadManager.DownloadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                       CommandParameter="{Binding ElementName=Card, Path=Book}"/>
             <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}"
                        Foreground="{DynamicResource hint_color}"

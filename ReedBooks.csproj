@@ -298,6 +298,7 @@
     <Compile Include="ViewModels\AuthorizationWindowViewModel.cs" />
     <Compile Include="ViewModels\DialogWindowViewModel.cs" />
     <Compile Include="ViewModels\EditCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Helpers\DownloadManagerViewModel.cs" />
     <Compile Include="ViewModels\ReadingDiaryWindowViewModel.cs" />
     <Compile Include="ViewModels\SettingsParameterViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

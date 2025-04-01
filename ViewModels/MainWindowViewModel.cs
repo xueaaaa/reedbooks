@@ -5,13 +5,13 @@ using ReedBooks.Models.Book;
 using ReedBooks.Models.Collection;
 using ReedBooks.Models.Shop;
 using ReedBooks.Properties;
+using ReedBooks.ViewModels.Helpers;
 using ReedBooks.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,7 +20,16 @@ namespace ReedBooks.ViewModels
     public class MainWindowViewModel : ObservableObject
     {
         #region Properties
-        public delegate void BooksListChanged();
+        private DownloadManagerViewModel _downloadManager;
+        public DownloadManagerViewModel DownloadManager
+        {
+            get => _downloadManager;
+            set
+            {
+                _downloadManager = value;
+                OnPropertyChanged(nameof(DownloadManager));
+            }
+        }
 
         private Visibility _sidePanelVisibility;
         public Visibility SidePanelVisibility
@@ -191,21 +200,6 @@ namespace ReedBooks.ViewModels
             }
         }
 
-        public bool IsInternetConnected
-        {
-            get => App.IsInternetConnected;
-        }
-
-        public bool IsInternetNotConnected
-        {
-            get => !IsInternetConnected;
-        }
-
-        public int BlurRadius
-        {
-            get => IsInternetConnected ? -1 : 10;
-        }
-
         public TimeGoalController TimeGoal
         {
             get => App.TimeGoalController;
@@ -222,7 +216,22 @@ namespace ReedBooks.ViewModels
                 #endif
             }
         }
-#endregion
+
+        public bool IsInternetConnected
+        {
+            get => App.IsInternetConnected;
+        }
+
+        public bool IsInternetNotConnected
+        {
+            get => !IsInternetConnected;
+        }
+
+        public int BlurRadius
+        {
+            get => IsInternetConnected ? -1 : 10;
+        }
+        #endregion
 
         #region Commands
         public ICommand HandleFileDropCommand { get; }
@@ -245,7 +254,6 @@ namespace ReedBooks.ViewModels
         public ICommand DeleteCollectionCommand { get; }
         public ICommand ShareCommand { get; }
         public ICommand ShopSearchCommand { get; }
-        public ICommand DownloadCommand { get; }
         public ICommand HideBookCommand { get; }
         public ICommand ShowBookCommand { get; }
         public ICommand TemporaryShowBookCommand { get; }
@@ -259,8 +267,8 @@ namespace ReedBooks.ViewModels
                 if (res == null) App.Restart();
                 else if (res == false) Application.Current.Shutdown();
             }
-                
 
+            DownloadManager = new DownloadManagerViewModel();
             HandleFileDropCommand = new RelayCommand(obj => HandleFileDrop(obj));
             ChangeSidePanelVisibilityCommand = new RelayCommand(obj => ChangeSidePanelVisibility());
             SwitchToTabCommand = new RelayCommand(obj => SwitchToTab(obj));
@@ -281,7 +289,6 @@ namespace ReedBooks.ViewModels
             DeleteCollectionCommand = new RelayCommand(obj => DeleteCollection(obj));
             ShareCommand = new RelayCommand(obj => Share(obj));
             ShopSearchCommand = new RelayCommand(obj => ShopSearch(obj));
-            DownloadCommand = new RelayCommand(obj => Download(obj));
             HideBookCommand = new RelayCommand(obj => HideBook(obj));
             ShowBookCommand = new RelayCommand(obj => ShowBook(obj));
             TemporaryShowBookCommand = new RelayCommand(obj => TemporaryShowBook(obj));
@@ -297,6 +304,11 @@ namespace ReedBooks.ViewModels
             UpdateRecentAndCurrent();
 
             SelectedCollectionBooks = new ObservableCollection<Book>();
+
+            DownloadManager.DownloadCompleted += (book) =>
+            {
+                LoadedBooks.Add(book);
+            };
 
             Settings.Default.PropertyChanged += (o, e) =>
             {
@@ -511,20 +523,6 @@ namespace ReedBooks.ViewModels
             IsLoading = false;
             if (searched != null) ShopSearchedBooks = new ObservableCollection<ParsedBook>(searched.OrderByDescending(b => b.RatedUsersNumber).ThenBy(b => b.DownloadEnabled == true));
             else IsNull = true;
-        }
-
-        public void Download(object param)
-        {
-            ParsedBook book = (ParsedBook)param;
-            var client = new WebClient();
-            var link = $"{Directory.GetCurrentDirectory()}{StorageManager.EPUBS_DIRECTORY}{book.Name.Replace(':', '-')}.epub";
-            client.DownloadFileAsync(new Uri(book.DownloadLink), link);
-
-            client.DownloadFileCompleted += (o, e) =>
-            {
-                var downloaded = new Book(link);
-                LoadedBooks.Add(downloaded);
-            };
         }
 
         public void HideBook(object param)
