@@ -33,28 +33,38 @@
                                    TextTrimming="CharacterEllipsis"
                                    MaxWidth="200"/>
                     </Button.Content>
+                    
                     <Button.CommandParameter>
                         <StackPanel Style="{DynamicResource DialogPanel}"
                                     MinWidth="300">
-                            <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                            <TextBlock Style="{DynamicResource MaterialDesignHeadline5TextBlock}"
                                        Foreground="{DynamicResource accent_color}"
-                                       Margin="0 0 0 20"
                                        Text="{Binding Name}"
                                        TextWrapping="Wrap"/>
 
-                            <TextBlock Text="{DynamicResource m_added_books}"
+                            <Separator Margin="0 0 0 10"/>
+
+                            <TextBlock Style="{DynamicResource Caption}"
+                                       FontSize="14"
+                                       Text="{DynamicResource m_added_books}"
                                        Foreground="{DynamicResource text_color}"/>
 
                             <ListBox ItemsSource="{Binding RepresentedAsBook}"
+                                     materialDesign:ListBoxItemAssist.ShowSelection="False"
                                      MaxHeight="600"
                                      Margin="0 0 0 15">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Style="{DynamicResource HintedButton}"
-                                                Content="{Binding Name}"
-                                                Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                                CommandParameter="{Binding}"
-                                                ToolTip="{DynamicResource m_read}"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <controls:IconButton Source="Book"
+                                                                 Foreground="{DynamicResource accent_color}"
+                                                                 ToolTip="{DynamicResource m_read}"
+                                                                 Command="{Binding DataContext.ReadCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                 CommandParameter="{Binding}"/>
+                                            <TextBlock Style="{DynamicResource Caption}"
+                                                       VerticalAlignment="Center"
+                                                       Text="{Binding Name}"/>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

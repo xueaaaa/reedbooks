@@ -50,20 +50,10 @@
                     </Grid.RowDefinitions>
                     
                     <!--#region Top panel-->
-                    <StackPanel Grid.Row="0"
-                                Orientation="Vertical"
-                                Margin="10">
-                        <Button Style="{DynamicResource HintedButton}" 
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Right"
-                                Content="{DynamicResource m_edit}" 
-                                Command="{Binding ChangeCollectionActionsVisibilityCommand}"
-                                ToolTip="{DynamicResource m_edit_hint}"/>
-
-                        <controls:IconButton Source="SettingsOutline"
+                        <controls:IconButton Margin="13.5"
+                                             Source="SettingsOutline"
                                              HorizontalAlignment="Right"
                                              Command="{Binding OpenSettingsCommand}"/>
-                    </StackPanel>
                     <!--#endregion-->
 
                     <TextBlock Grid.Row="1"
